@@ -39,7 +39,7 @@ const recentPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pu
             </time>
           </div>
           <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors leading-tight">
-            <a href={`/blog/${post.slug}`}>
+            <a href={`/blog/${post.id}`}>
               <span class="absolute inset-0 z-20"></span>
               {post.data.title}
             </a>
