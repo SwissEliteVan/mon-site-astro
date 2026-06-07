@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
-import RecentPosts from '../components/RecentPosts.astro';
+import RecentPosts from '../components/RecentPosts.astro'; // Le composant contenant la boucle .map()
 import Testimonials from '../components/Testimonials.astro';
 import Pricing from '../components/Pricing.astro';
 import CallToAction from '../components/CallToAction.astro';
@@ -85,7 +85,7 @@ const pageDescription = "Clicom accompagne les PME et commerces suisses dans leu
   <!-- Tarifs -->
   <Pricing />
 
-  <!-- Derniers Articles de Blog -->
+  <!-- Section Blog Intégrée : Affiche les 3 articles générés via la boucle .map() -->
   <RecentPosts />
 
   <!-- Appel à l'action final -->
