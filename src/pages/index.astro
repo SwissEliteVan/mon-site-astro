@@ -5,45 +5,76 @@ import RecentPosts from '../components/RecentPosts.astro';
 import Testimonials from '../components/Testimonials.astro';
 import Pricing from '../components/Pricing.astro';
 import CallToAction from '../components/CallToAction.astro';
+
+// Balises SEO pour la page d'accueil (Passées au Layout en tant que props)
+const pageTitle = "Clicom | Agence de marketing digital et webdesign pour PME suisses";
+const pageDescription = "Clicom accompagne les PME et commerces suisses dans leur croissance digitale : création de sites performants, SEO, Google Ads, et automatisation IA. Découvrez nos solutions rentables.";
 ---
 
-<Layout title="Accueil | Mon Projet Astro">
-  <!-- Section Hero intégrée -->
+<Layout title={pageTitle} description={pageDescription}>
+  <!-- Section Hero (Contient le H1 SEO et l'introduction) -->
   <Hero />
 
-  <!-- Section Features (Atouts) conservée et adaptée sous le Hero -->
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+  <!-- Section Services (Nos 3 modèles de croissance) -->
+  <section id="services" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
     <div class="text-center mb-16">
-      <h2 class="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">Pourquoi choisir cette architecture ?</h2>
-      <p class="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">Une base technique irréprochable pour construire des interfaces complexes et garantir des performances optimales.</p>
+      <h2 class="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">Nos 3 modèles de croissance</h2>
+      <p class="mt-4 text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+        Notre approche se démarque radicalement des agences traditionnelles. Nous ne facturons pas à l'heure pour des tâches abstraites ; nous mettons en place des partenariats à long terme (sous forme d'abonnements ou retainers) dont l'unique but est de générer un chiffre d'affaires continu pour votre entreprise.
+      </p>
     </div>
     
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <!-- Feature 1 -->
-      <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 transform hover:-translate-y-1 group">
-        <div class="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
+      <!-- Service 1 -->
+      <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl hover:shadow-indigo-500/10 transition-all duration-300 transform hover:-translate-y-1 group">
+        <div class="w-14 h-14 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+        </div>
+        <h3 class="font-bold text-xl text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors">Création de sites web éco-conçus & performants</h3>
+        <p class="text-slate-600 leading-relaxed">
+          Votre site internet n'est pas une simple carte de visite, c'est votre meilleur vendeur, disponible 24h/24. Nous concevons des plateformes ultra-rapides, optimisées pour la conversion et respectueuses de l'environnement.
+        </p>
+      </div>
+      
+      <!-- Service 2 -->
+      <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl hover:shadow-indigo-500/10 transition-all duration-300 transform hover:-translate-y-1 group">
+        <div class="w-14 h-14 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+        </div>
+        <h3 class="font-bold text-xl text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors">Commerce local : Le pack "Tout-en-un"</h3>
+        <p class="text-slate-600 leading-relaxed">
+          Commerçants, dominez votre zone de chalandise. Nous avons packagé une solution regroupant site web, visibilité locale (Google My Business), carte de fidélité NFC innovante et campagnes SMS pour faire revenir vos clients.
+        </p>
+      </div>
+      
+      <!-- Service 3 -->
+      <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl hover:shadow-indigo-500/10 transition-all duration-300 transform hover:-translate-y-1 group">
+        <div class="w-14 h-14 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300">
           <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
         </div>
-        <h3 class="font-bold text-xl text-slate-900 mb-3">Performances Inégalées</h3>
-        <p class="text-slate-600 leading-relaxed">Le framework Astro envoie par défaut du HTML pur, sans JavaScript superflu pour un temps de chargement quasi instantané.</p>
+        <h3 class="font-bold text-xl text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors">Performance & IA : Acquisition en continu</h3>
+        <p class="text-slate-600 leading-relaxed">
+          Ne payez plus pour du vent. Nous allions la puissance du référencement naturel (SEO), la précision de Google Ads et l'automatisation par l'Intelligence Artificielle pour vous livrer un flux constant de prospects qualifiés.
+        </p>
       </div>
-      
-      <!-- Feature 2 -->
-      <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl hover:shadow-teal-500/10 transition-all duration-300 transform hover:-translate-y-1 group">
-        <div class="w-14 h-14 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center mb-6 group-hover:bg-teal-600 group-hover:text-white transition-colors duration-300">
-          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+    </div>
+  </section>
+
+  <!-- Section Garantie nLPD -->
+  <section class="bg-indigo-50 py-16 lg:py-24 border-y border-indigo-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center gap-10">
+        <div class="md:w-1/3 flex justify-center">
+          <div class="w-24 h-24 bg-white shadow-sm rounded-full flex items-center justify-center text-indigo-600 border border-indigo-100">
+            <svg class="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+          </div>
         </div>
-        <h3 class="font-bold text-xl text-slate-900 mb-3">Design Flexible</h3>
-        <p class="text-slate-600 leading-relaxed">Tailwind CSS permet de créer une interface moderne, complètement responsive avec un contrôle total sur l'esthétique finale.</p>
-      </div>
-      
-      <!-- Feature 3 -->
-      <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl hover:shadow-violet-500/10 transition-all duration-300 transform hover:-translate-y-1 group">
-        <div class="w-14 h-14 rounded-2xl bg-violet-50 text-violet-600 flex items-center justify-center mb-6 group-hover:bg-violet-600 group-hover:text-white transition-colors duration-300">
-          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+        <div class="md:w-2/3 text-center md:text-left">
+          <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-4 tracking-tight">La garantie Clicom : Transparence et conformité nLPD</h2>
+          <p class="text-lg text-slate-600 leading-relaxed">
+            Basée en Suisse romande, notre agence comprend vos enjeux légaux. Nous garantissons que toutes nos stratégies d'acquisition et vos plateformes web respectent strictement la nouvelle <strong class="text-indigo-700">Loi sur la protection des données (nLPD)</strong>. Développez votre entreprise en toute sérénité, sans risquer de sanctions.
+          </p>
         </div>
-        <h3 class="font-bold text-xl text-slate-900 mb-3">Typage Robuste</h3>
-        <p class="text-slate-600 leading-relaxed">Grâce à TypeScript natif, profitez d'un typage fort pour une autocomplétion parfaite et pour éviter les erreurs en amont.</p>
       </div>
     </div>
   </section>
