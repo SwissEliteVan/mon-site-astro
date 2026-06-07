@@ -1,0 +1,62 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import RecentPosts from '../components/RecentPosts.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Pricing from '../components/Pricing.astro';
+import CallToAction from '../components/CallToAction.astro';
+---
+
+<Layout title="Accueil | Mon Projet Astro">
+  <!-- Section Hero intégrée -->
+  <Hero />
+
+  <!-- Section Features (Atouts) conservée et adaptée sous le Hero -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">Pourquoi choisir cette architecture ?</h2>
+      <p class="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">Une base technique irréprochable pour construire des interfaces complexes et garantir des performances optimales.</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Feature 1 -->
+      <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 transform hover:-translate-y-1 group">
+        <div class="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+        </div>
+        <h3 class="font-bold text-xl text-slate-900 mb-3">Performances Inégalées</h3>
+        <p class="text-slate-600 leading-relaxed">Le framework Astro envoie par défaut du HTML pur, sans JavaScript superflu pour un temps de chargement quasi instantané.</p>
+      </div>
+      
+      <!-- Feature 2 -->
+      <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl hover:shadow-teal-500/10 transition-all duration-300 transform hover:-translate-y-1 group">
+        <div class="w-14 h-14 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center mb-6 group-hover:bg-teal-600 group-hover:text-white transition-colors duration-300">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+        </div>
+        <h3 class="font-bold text-xl text-slate-900 mb-3">Design Flexible</h3>
+        <p class="text-slate-600 leading-relaxed">Tailwind CSS permet de créer une interface moderne, complètement responsive avec un contrôle total sur l'esthétique finale.</p>
+      </div>
+      
+      <!-- Feature 3 -->
+      <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl hover:shadow-violet-500/10 transition-all duration-300 transform hover:-translate-y-1 group">
+        <div class="w-14 h-14 rounded-2xl bg-violet-50 text-violet-600 flex items-center justify-center mb-6 group-hover:bg-violet-600 group-hover:text-white transition-colors duration-300">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+        </div>
+        <h3 class="font-bold text-xl text-slate-900 mb-3">Typage Robuste</h3>
+        <p class="text-slate-600 leading-relaxed">Grâce à TypeScript natif, profitez d'un typage fort pour une autocomplétion parfaite et pour éviter les erreurs en amont.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Témoignages Clients -->
+  <Testimonials />
+
+  <!-- Tarifs -->
+  <Pricing />
+
+  <!-- Derniers Articles de Blog -->
+  <RecentPosts />
+
+  <!-- Appel à l'action final -->
+  <CallToAction />
+</Layout>

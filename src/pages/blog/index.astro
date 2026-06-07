@@ -1,0 +1,55 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog');
+const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+<Layout title="Le Blog | Mon Projet Astro" description="Découvrez nos derniers articles, tutoriels et astuces de notre équipe de développement.">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+    <div class="text-center mb-16">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight mb-6">Notre <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-500">Blog</span></h1>
+      <p class="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto">Tutoriels, actualités et réflexions sur le développement web moderne, l'architecture et le design.</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      {sortedPosts.map((post) => (
+        <article class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-300 transform hover:-translate-y-2 group flex flex-col relative">
+          <div class="h-56 bg-slate-200 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-indigo-500 to-purple-600 opacity-90 group-hover:scale-110 transition-transform duration-700"></div>
+            <div class="absolute top-4 right-4 z-10">
+              <span class="bg-white/95 backdrop-blur-sm px-3 py-1 text-xs font-bold text-indigo-700 uppercase tracking-wider rounded-full shadow-sm">
+                {post.data.tags?.[0] || 'Général'}
+              </span>
+            </div>
+          </div>
+          <div class="p-8 flex flex-col flex-grow">
+            <div class="flex items-center text-xs text-slate-500 mb-4 font-medium uppercase tracking-wide">
+              <time datetime={post.data.pubDate.toISOString()}>
+                {post.data.pubDate.toLocaleDateString('fr-FR', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}
+              </time>
+              <span class="mx-2 text-slate-300">&middot;</span>
+              <span>Par {post.data.author}</span>
+            </div>
+            <h2 class="text-2xl font-bold text-slate-900 mb-4 group-hover:text-indigo-600 transition-colors leading-tight">
+              <a href={`/blog/${post.slug}`}>
+                <span class="absolute inset-0 z-20"></span>
+                {post.data.title}
+              </a>
+            </h2>
+            <p class="text-slate-600 line-clamp-3 mb-6 flex-grow leading-relaxed">
+              {post.data.description}
+            </p>
+            <div class="mt-auto flex items-center text-indigo-600 font-bold group-hover:translate-x-1 transition-transform duration-300">
+              Lire l'article <span aria-hidden="true" class="ml-1">&rarr;</span>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</Layout>

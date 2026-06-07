@@ -1,0 +1,12 @@
+# Fichier robots.txt optimisé
+User-agent: *
+Allow: /
+
+# Bloquer l'indexation des dossiers ou fichiers inutiles/sensibles
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*?* # Bloque l'indexation des URLs avec paramètres pour éviter le duplicate content
+
+# Indiquer l'emplacement du sitemap aux moteurs de recherche
+Sitemap: https://www.votredomaine.com/sitemap-index.xml

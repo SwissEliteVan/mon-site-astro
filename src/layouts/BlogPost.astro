@@ -1,0 +1,35 @@
+---
+import Layout from './Layout.astro';
+import type { CollectionEntry } from 'astro:content';
+
+type Props = CollectionEntry<'blog'>['data'];
+
+const { title, description, pubDate, author, image } = Astro.props;
+---
+<Layout title={`${title} | Mon Projet Astro`} description={description} image={image}>
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+    <div class="mb-12 text-center">
+      <a href="/blog" class="inline-flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-500 mb-8 transition-colors group">
+        <svg class="w-4 h-4 mr-1 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+        Retour au blog
+      </a>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight mb-8 leading-tight">{title}</h1>
+      <div class="flex items-center justify-center gap-4 text-slate-500 text-sm">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-600 font-bold text-xs uppercase">{author.substring(0,2)}</div>
+          <span class="font-medium text-slate-900">{author}</span>
+        </div>
+        <span>&middot;</span>
+        <time datetime={pubDate.toISOString()} class="flex items-center gap-1">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          {pubDate.toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </time>
+      </div>
+    </div>
+    
+    <!-- Zone de rendu du Markdown stylisée via @tailwindcss/typography (classe prose) -->
+    <div class="prose prose-lg prose-indigo mx-auto prose-headings:font-bold prose-a:text-indigo-600 hover:prose-a:text-indigo-500 prose-img:rounded-2xl prose-img:shadow-md">
+      <slot />
+    </div>
+  </article>
+</Layout>
