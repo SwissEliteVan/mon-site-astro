@@ -1,0 +1,75 @@
+---
+// Composant CookieBanner.astro pour la conformité nLPD
+---
+
+<div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-[100] transform translate-y-full transition-transform duration-700 ease-out sm:bottom-6 sm:left-6 sm:right-auto sm:max-w-sm" aria-hidden="true">
+  <div class="bg-slate-900 text-white rounded-t-3xl sm:rounded-3xl p-6 shadow-2xl border border-slate-700/50 relative overflow-hidden">
+    <!-- Décoration d'arrière-plan -->
+    <div class="absolute -top-10 -right-10 w-32 h-32 bg-indigo-500 rounded-full blur-3xl opacity-20 pointer-events-none"></div>
+    
+    <div class="relative z-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="bg-slate-800 p-2 rounded-full">
+          <svg class="w-5 h-5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+          </svg>
+        </div>
+        <h3 class="font-bold text-lg tracking-tight">Respect de votre vie privée</h3>
+      </div>
+      <p class="text-slate-300 text-sm leading-relaxed mb-6">
+        Conformément à la nLPD suisse, nous utilisons des cookies pour assurer le bon fonctionnement du site et analyser notre trafic. 
+        <a href="/mentions-legales" class="text-indigo-400 hover:text-indigo-300 underline underline-offset-4 transition-colors font-medium">En savoir plus</a>.
+      </p>
+      
+      <div class="flex flex-row gap-3">
+        <button id="accept-cookies" class="flex-1 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-bold py-3 px-4 rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-400 shadow-lg shadow-indigo-600/20 active:scale-95 transform">
+          Accepter
+        </button>
+        <button id="reject-cookies" class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-300 text-sm font-bold py-3 px-4 rounded-xl border border-slate-600 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 active:scale-95 transform">
+          Refuser
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Exécution uniquement côté client
+  document.addEventListener('DOMContentLoaded', () => {
+    const banner = document.getElementById('cookie-banner');
+    const acceptBtn = document.getElementById('accept-cookies');
+    const rejectBtn = document.getElementById('reject-cookies');
+
+    // Vérifier si un choix a déjà été enregistré dans le navigateur
+    if (!localStorage.getItem('clicom_cookie_consent')) {
+      // Afficher le bandeau avec une animation fluide d'entrée par le bas
+      setTimeout(() => {
+        if (banner) {
+          banner.classList.remove('translate-y-full');
+          banner.setAttribute('aria-hidden', 'false');
+        }
+      }, 800); // Léger délai au chargement de la page pour ne pas agresser l'utilisateur
+    }
+
+    // Fonction de masquage
+    const hideBanner = (consentValue) => {
+      localStorage.setItem('clicom_cookie_consent', consentValue);
+      if (banner) {
+        banner.classList.add('translate-y-full'); // Animation de sortie
+        // Attendre la fin de l'animation pour cacher le DOM
+        setTimeout(() => {
+          banner.style.display = 'none';
+        }, 700);
+      }
+    };
+
+    // Écouteurs de clics
+    if (acceptBtn) {
+      acceptBtn.addEventListener('click', () => hideBanner('accepted'));
+    }
+
+    if (rejectBtn) {
+      rejectBtn.addEventListener('click', () => hideBanner('rejected'));
+    }
+  });
+</script>

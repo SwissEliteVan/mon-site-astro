@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Footer from '../components/Footer.astro';
+import CookieBanner from '../components/CookieBanner.astro';
 
 // Définition rigoureuse des props avec TypeScript
 interface Props {
@@ -153,6 +154,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || Astro.url.origin)
 
     <!-- Pied de page sémantique <footer> importé via un composant -->
     <Footer />
+
+    <!-- Bandeau de consentement Cookies nLPD -->
+    <CookieBanner />
 
   </body>
 </html>
