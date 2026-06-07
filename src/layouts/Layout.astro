@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Footer from '../components/Footer.astro';
 import CookieBanner from '../components/CookieBanner.astro';
+import FloatingContact from '../components/FloatingContact.astro';
 
 // Définition rigoureuse des props avec TypeScript
 interface Props {
@@ -157,6 +158,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || Astro.url.origin)
 
     <!-- Bandeau de consentement Cookies nLPD -->
     <CookieBanner />
+
+    <!-- Bouton flottant WhatsApp -->
+    <FloatingContact />
 
   </body>
 </html>
