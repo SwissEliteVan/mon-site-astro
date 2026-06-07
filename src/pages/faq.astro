@@ -1,0 +1,112 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const pageTitle = "Foire Aux Questions (FAQ) | Clicom Suisse";
+const pageDescription = "Retrouvez les réponses aux questions les plus fréquentes sur notre agence digitale, nos tarifs, la nLPD et nos méthodes de travail.";
+
+const faqs = [
+  {
+    question: "Combien de temps faut-il pour voir les premiers résultats ?",
+    answer: "Pour la création d'un site web, comptez généralement entre 3 et 4 semaines. Pour les campagnes d'acquisition immédiate (Google Ads couplé à notre IA), les premiers prospects (leads) arrivent souvent dans les 48 heures suivant le lancement. Le SEO naturel (référencement sur Google) est une stratégie à plus long terme qui prend entre 3 et 6 mois pour dominer votre région."
+  },
+  {
+    question: "Facturez-vous à l'heure ou au projet ?",
+    answer: "Nous refusons le modèle traditionnel de l'agence qui facture le temps passé. Chez Clicom, nous proposons des forfaits mensuels clairs (Retainers) ou des tarifs fixes au projet. Notre philosophie est de facturer la <strong>valeur et le retour sur investissement (ROI)</strong> que nous vous apportons, sans aucune mauvaise surprise."
+  },
+  {
+    question: "Vos sites respectent-ils la nouvelle loi nLPD suisse ?",
+    answer: "Absolument. La sécurité et la conformité à la nLPD sont intégrées nativement dans 100% de nos créations. De l'hébergement hautement sécurisé à la minimisation des données en passant par la gestion stricte du consentement, nous vous garantissons une tranquillité d'esprit juridique totale pour éviter toute sanction pénale."
+  },
+  {
+    question: "Je n'ai aucune compétence technique, est-ce un problème ?",
+    answer: "Pas du tout ! Clicom s'occupe de l'intégralité de la technique : serveurs, sécurité, mises à jour, gestion de votre nom de domaine, et automatisation. Nous vous livrons des systèmes d'acquisition clés en main pour que vous puissiez vous concentrer sur ce que vous faites de mieux : votre métier."
+  },
+  {
+    question: "Je suis basé hors du canton de Vaud, pouvons-nous travailler ensemble ?",
+    answer: "Oui, avec grand plaisir. Nous accompagnons des PME et commerces dans toute la <strong>Suisse romande</strong> (Genève, Vaud, Fribourg, Valais, Neuchâtel, Jura). Grâce à nos processus asynchrones et nos outils collaboratifs modernes, la distance géographique n'est jamais un frein à la réussite de votre projet."
+  }
+];
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <!-- En-tête -->
+  <section class="bg-slate-50 pt-24 pb-16 lg:pt-32 lg:pb-24 border-b border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-bold text-indigo-700 bg-indigo-100 mb-6 ring-1 ring-inset ring-indigo-500/20">Questions fréquentes</div>
+      <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-6">
+        Foire Aux <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-500">Questions</span>
+      </h1>
+      <p class="text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto">
+        Tout ce que vous devez savoir sur notre méthode de travail, nos garanties et nos tarifs, en toute transparence.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section FAQ Accordéons -->
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div class="space-y-4">
+      {faqs.map((faq) => (
+        <details class="group bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-6 text-slate-900 text-lg hover:bg-slate-50 transition-colors">
+            <span class="pr-6">{faq.question}</span>
+            <span class="transition-transform duration-300 group-open:rotate-180 flex-shrink-0 bg-slate-100 rounded-full p-2 text-indigo-600">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </span>
+          </summary>
+          <div class="p-6 pt-0 text-slate-600 text-lg leading-relaxed bg-white" set:html={faq.answer} />
+        </details>
+      ))}
+    </div>
+  </div>
+
+  <!-- Call To Action Direct -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+    <div class="bg-slate-900 rounded-[2.5rem] p-8 md:p-12 text-center shadow-2xl shadow-slate-900/20 relative overflow-hidden">
+      <!-- Décoration -->
+      <div class="absolute -top-24 -right-24 w-64 h-64 bg-indigo-500 rounded-full blur-3xl opacity-20 pointer-events-none"></div>
+      <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-purple-500 rounded-full blur-3xl opacity-20 pointer-events-none"></div>
+      
+      <div class="relative z-10">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+          Vous avez une autre question ?
+        </h2>
+        <p class="text-xl text-slate-300 mb-10 max-w-2xl mx-auto">
+          Discutons-en de vive voix ! Notre équipe est disponible pour répondre à vos doutes et élaborer votre feuille de route.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-6 mb-10">
+          <a href="/contact" class="w-full sm:w-auto inline-flex items-center justify-center rounded-xl bg-indigo-600 px-8 py-4 text-lg font-bold text-white shadow-lg shadow-indigo-600/30 hover:bg-indigo-500 transition-all transform hover:-translate-y-1">
+            Prendre rendez-vous
+          </a>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-12 pt-8 border-t border-slate-700/50">
+          <div class="flex items-center gap-3 text-slate-300 hover:text-white transition-colors">
+            <div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-indigo-400">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            </div>
+            <a href="tel:+41788238950" class="text-lg font-medium">078 823 89 50</a>
+          </div>
+          
+          <div class="flex items-center gap-3 text-slate-300 hover:text-white transition-colors">
+            <div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-indigo-400">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <a href="mailto:hello@clicom.ch" class="text-lg font-medium">hello@clicom.ch</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  /* Fallback pour s'assurer que la petite flèche native (marker) de <details> est bien cachée sur tous les navigateurs */
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+</style>
