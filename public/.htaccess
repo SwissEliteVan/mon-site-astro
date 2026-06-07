@@ -1,0 +1,40 @@
+# ======================================================================
+# CONFIGURATION DE SÉCURITÉ SERVEUR (CLICOM SUISSE)
+# ======================================================================
+
+# 1. Empêcher le listage des répertoires (Sécurité de base)
+Options -Indexes
+
+# 2. Forcer la redirection HTTP vers HTTPS (Cryptage obligatoire)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# 3. En-têtes de sécurité stricts (Bouclier Serveur)
+<IfModule mod_headers.c>
+    # Strict-Transport-Security : Force les navigateurs à utiliser uniquement HTTPS pendant 1 an
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    
+    # X-Content-Type-Options : Empêche le navigateur de "deviner" le type de fichier (MIME-sniffing)
+    Header always set X-Content-Type-Options "nosniff"
+    
+    # X-Frame-Options : Empêche un site tiers d'intégrer le vôtre via iframe (Clickjacking)
+    Header always set X-Frame-Options "SAMEORIGIN"
+    
+    # X-XSS-Protection : Protection basique contre le Cross-Site Scripting sur les anciens navigateurs
+    Header always set X-XSS-Protection "1; mode=block"
+    
+    # Masquer les informations du serveur aux attaquants
+    Header unset X-Powered-By
+    Header unset Server
+</IfModule>
+
+# 4. Gérer l'extension .html pour Astro en mode statique (Optionnel mais recommandé)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}\.html -f
+    RewriteRule ^(.*)$ $1.html [NC,L]
+</IfModule>
