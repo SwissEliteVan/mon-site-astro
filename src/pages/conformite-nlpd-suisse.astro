@@ -1,0 +1,98 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CallToAction from '../components/CallToAction.astro';
+
+const pageTitle = "Conformité nLPD et Sécurité des Données | Clicom";
+const pageDescription = "Évitez les sanctions légales. Clicom s'assure que votre site web et vos outils marketing respectent strictement la nouvelle loi suisse sur la protection des données (nLPD).";
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <!-- En-tête de la page -->
+  <section class="bg-slate-50 pt-24 pb-16 lg:pt-32 lg:pb-24 border-b border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-bold text-red-700 bg-red-100 mb-6 ring-1 ring-inset ring-red-700/20">Sécurité Juridique</div>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight mb-6">
+        Votre marketing 100 % sécurisé et conforme à la <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-rose-500">nLPD</span>
+      </h1>
+    </div>
+  </section>
+
+  <!-- Contenu Principal -->
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24 space-y-16">
+    
+    <!-- Section 1 : Les Risques -->
+    <section>
+      <h2 class="text-3xl font-bold text-slate-900 mb-6 tracking-tight flex items-center gap-3">
+        <svg class="w-8 h-8 text-red-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
+        Les risques de la non-conformité en Suisse
+      </h2>
+      <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 relative overflow-hidden group hover:shadow-xl hover:shadow-red-500/10 transition-all duration-300">
+        <!-- Décoration d'arrière-plan -->
+        <div class="absolute top-0 right-0 w-32 h-32 bg-red-50 rounded-bl-full -z-0 opacity-50 group-hover:scale-110 transition-transform duration-500"></div>
+        
+        <div class="relative z-10">
+          <p class="text-lg text-slate-600 leading-relaxed mb-6">
+            Depuis septembre 2023, la nouvelle <strong>Loi sur la protection des données (nLPD)</strong> est entrée en vigueur en Suisse. Ses exigences sont strictes et les dirigeants de PME sont désormais tenus personnellement responsables en cas d'infraction.
+          </p>
+          <div class="bg-red-50 border border-red-200 p-6 rounded-2xl mb-6">
+            <p class="text-red-900 font-medium">
+              La non-conformité vous expose à des sanctions pénales sévères pouvant aller 
+              <strong class="text-red-700 text-xl sm:text-2xl block mt-2 tracking-tight">jusqu'à 250 000 CHF d'amende.</strong>
+            </p>
+          </div>
+          <p class="text-lg text-slate-600 leading-relaxed">
+            Utiliser des outils d'analyse obsolètes ou collecter des emails sans un protocole clair et transparent n'est tout simplement plus une option aujourd'hui.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2 : Avantage concurrentiel -->
+    <section>
+      <h2 class="text-3xl font-bold text-slate-900 mb-6 tracking-tight flex items-center gap-3">
+        <svg class="w-8 h-8 text-emerald-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+        La transparence comme avantage concurrentiel
+      </h2>
+      <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl hover:shadow-emerald-500/10 transition-all duration-300">
+        <p class="text-lg text-slate-600 leading-relaxed mb-6">
+          Chez Clicom, la sécurité informatique et légale n'est pas une option ajoutée à la fin du projet, elle est le socle même de notre travail. Le respect de la vie privée est <strong>intégré nativement</strong> dans tous nos sites web et dans toutes nos stratégies d'acquisition.
+        </p>
+        
+        <ul class="space-y-4 mb-8">
+          <li class="flex items-start gap-3">
+            <div class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0 mt-1">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+            </div>
+            <span class="text-slate-700 text-lg">Minimisation systématique de la récolte des données.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0 mt-1">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+            </div>
+            <span class="text-slate-700 text-lg">Gestion irréprochable du consentement éclairé de vos visiteurs.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0 mt-1">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+            </div>
+            <span class="text-slate-700 text-lg">Sécurité des serveurs sans faille (chiffrement et hébergement de qualité).</span>
+          </li>
+        </ul>
+
+        <div class="bg-indigo-50 p-6 sm:p-8 rounded-2xl border border-indigo-100">
+          <p class="text-indigo-900 leading-relaxed text-lg">
+            Nous vous aidons à transformer cette contrainte légale en une véritable force commerciale. À une époque où la confiance numérique est fragile, <strong class="text-indigo-700">montrer patte blanche sur la gestion des données rassure et fidélise la clientèle</strong>. Afficher fièrement votre conformité devient un puissant avantage concurrentiel sur le marché suisse romand pour convaincre vos futurs partenaires.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer CTA partagé (Appel à l'action final) -->
+  <CallToAction />
+</Layout>

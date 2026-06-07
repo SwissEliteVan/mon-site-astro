@@ -1,0 +1,149 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CallToAction from '../components/CallToAction.astro';
+
+// Balises SEO agrégées pour cette page hub
+const pageTitle = "Nos Services : Création Web, SEO, IA & Commerce Local | Clicom";
+const pageDescription = "Découvrez l'ensemble des services de Clicom pour les PME suisses : conception de sites éco-conçus, digitalisation locale, acquisition Google Ads/SEO et automatisation IA.";
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <!-- En-tête de la page Services -->
+  <section class="bg-slate-50 pt-24 pb-16 lg:pt-32 lg:pb-24 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight mb-6">
+        Nos Solutions de <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-500">Croissance</span>
+      </h1>
+      <p class="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+        Nous n'offrons pas de simples prestations, nous construisons des machines d'acquisition. Découvrez nos 4 piliers d'expertise pour digitaliser et développer votre PME suisse.
+      </p>
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 space-y-32">
+    
+    <!-- SERVICE 1 : Création de Sites Web -->
+    <section id="webdesign" class="scroll-mt-24">
+      <div class="mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight">Création de Sites Web & Webdesign 2026</h2>
+        <p class="text-lg text-slate-600 max-w-3xl leading-relaxed">
+          Saviez-vous que <strong>40 % des internautes abandonnent une page web après 3 secondes d'attente</strong> ? Dans un monde où l'attention est la ressource la plus rare, la vitesse de chargement est une question de survie commerciale. Chez Clicom, nous construisons des sites vitrines et e-commerce taillés pour les exigences de demain.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl hover:shadow-indigo-500/10 transition-all duration-300 transform hover:-translate-y-1 group">
+          <h3 class="font-bold text-xl text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors">Une approche "Mobile-First"</h3>
+          <p class="text-slate-600 leading-relaxed">Plus de 60 % du trafic web global se joue sur un smartphone. Nous concevons votre site d'abord pour le mobile, offrant une navigation fluide et intuitive au bout du pouce de votre client.</p>
+        </div>
+        <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl hover:shadow-indigo-500/10 transition-all duration-300 transform hover:-translate-y-1 group">
+          <h3 class="font-bold text-xl text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors">Éco-conception & Vitesse</h3>
+          <p class="text-slate-600 leading-relaxed">Internet pèse 4 % des émissions de CO2. En allégeant le code, nous réduisons l'empreinte carbone. Votre site se charge instantanément, ce qui booste massivement votre SEO Google.</p>
+        </div>
+        <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl hover:shadow-indigo-500/10 transition-all duration-300 transform hover:-translate-y-1 group">
+          <h3 class="font-bold text-xl text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors">Le minimalisme face à l'IA</h3>
+          <p class="text-slate-600 leading-relaxed">Face aux interfaces froides générées en masse, nous misons sur un minimalisme utile et une interface profondément humaine qui instaure un climat de confiance immédiat.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICE 2 : Commerce Local -->
+    <section id="local" class="scroll-mt-24">
+      <div class="mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight">Dominez votre quartier : le Pack Digital</h2>
+        <p class="text-lg text-slate-600 max-w-3xl leading-relaxed">
+          En Suisse, <strong>91 % des consommateurs</strong> effectuent des recherches en ligne avant d'acheter localement, et <strong>73 % consultent Google Maps</strong> avant de franchir votre porte. Fini les abonnements multiples, optez pour la simplicité (env. 990 CHF puis 120 CHF/an).
+        </p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-teal-50 p-6 rounded-3xl border border-teal-100">
+          <span class="block text-teal-600 font-bold mb-2">01.</span>
+          <h3 class="font-bold text-teal-900 mb-2">Site Vitrine SEO Local</h3>
+          <p class="text-teal-800 text-sm leading-relaxed">Une présence en ligne rapide et élégante pour présenter vos horaires et offres du moment.</p>
+        </div>
+        <div class="bg-teal-50 p-6 rounded-3xl border border-teal-100">
+          <span class="block text-teal-600 font-bold mb-2">02.</span>
+          <h3 class="font-bold text-teal-900 mb-2">Google My Business</h3>
+          <p class="text-teal-800 text-sm leading-relaxed">Nous optimisons votre profil pour que vous dominiez les résultats sur Google Maps.</p>
+        </div>
+        <div class="bg-teal-50 p-6 rounded-3xl border border-teal-100">
+          <span class="block text-teal-600 font-bold mb-2">03.</span>
+          <h3 class="font-bold text-teal-900 mb-2">Fidélité NFC</h3>
+          <p class="text-teal-800 text-sm leading-relaxed">Vos clients cumulent des points en posant leur smartphone sur une élégante plaquette en bois.</p>
+        </div>
+        <div class="bg-teal-50 p-6 rounded-3xl border border-teal-100">
+          <span class="block text-teal-600 font-bold mb-2">04.</span>
+          <h3 class="font-bold text-teal-900 mb-2">Campagnes SMS ciblées</h3>
+          <p class="text-teal-800 text-sm leading-relaxed">Automatisez l'envoi d'offres spéciales avec un taux d'ouverture imbattable de 98 %.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICE 3 : Acquisition -->
+    <section id="acquisition" class="scroll-mt-24">
+      <div class="mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight">Acquisition & Performance : Un ROI garanti</h2>
+        <p class="text-lg text-slate-600 max-w-3xl leading-relaxed">
+          Un site web à 8 000 CHF qui n'a pas de trafic est un superbe prospectus que personne ne lit. Nous combinons Google Ads et le SEO pour mettre en place la stratégie la plus rentable sur 24 mois.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 transform hover:-translate-y-1">
+          <h3 class="font-bold text-xl text-slate-900 mb-3">Google Ads : L'Immédiat</h3>
+          <p class="text-slate-600 leading-relaxed">Enchérissez sur les mots-clés exacts de vos prospects. Positionnez votre PME tout en haut des résultats et générez des leads mesurables dès le premier mois.</p>
+        </div>
+        <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 transform hover:-translate-y-1">
+          <h3 class="font-bold text-xl text-slate-900 mb-3">SEO : L'Investissement</h3>
+          <p class="text-slate-600 leading-relaxed">L'actif qui travaille pour vous sur le long terme. Après 6 à 12 mois, l'optimisation technique et de contenu diminue drastiquement votre coût par acquisition.</p>
+        </div>
+        <div class="bg-blue-600 p-8 rounded-3xl shadow-lg shadow-blue-600/20 text-white transform md:-translate-y-2">
+          <h3 class="font-bold text-xl mb-3">L'approche Retainers Clicom</h3>
+          <p class="text-blue-100 mb-6 text-sm leading-relaxed">Nous sommes transparents : en dessous de 1 000 CHF/mois, les résultats sont trop dilués face à la concurrence.</p>
+          <ul class="space-y-4 text-sm font-medium">
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-blue-300 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              Dès 1 500 CHF/mois pour un indépendant
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-blue-300 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              Entre 3 000 et 5 000 CHF/mois pour générer 20 à 40 leads (PME)
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICE 4 : IA & CRM -->
+    <section id="ia" class="scroll-mt-24">
+      <div class="mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight">Travaillez moins, convertissez plus : IA & CRM</h2>
+        <p class="text-lg text-slate-600 max-w-3xl leading-relaxed">
+          Les tâches répétitives rongent votre rentabilité. L'automatisation couplée à l'IA permet aujourd'hui aux PME d'économiser en moyenne <strong>30 heures par mois et jusqu'à 15 000 CHF par an</strong>.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 flex flex-col sm:flex-row gap-6 items-start hover:shadow-xl hover:shadow-violet-500/10 transition-all duration-300 group">
+          <div class="w-14 h-14 rounded-2xl bg-violet-50 text-violet-600 flex items-center justify-center flex-shrink-0 group-hover:bg-violet-600 group-hover:text-white transition-colors">
+            <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+          </div>
+          <div>
+            <h3 class="font-bold text-xl text-slate-900 mb-3">IA Générative & Hyper-personnalisation</h3>
+            <p class="text-slate-600 leading-relaxed">Augmentez la productivité de création de contenu de 40 %. En analysant finement le comportement de vos prospects, envoyez le bon message au bon moment pour générer 40 % de revenus supplémentaires.</p>
+          </div>
+        </div>
+        <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 flex flex-col sm:flex-row gap-6 items-start hover:shadow-xl hover:shadow-violet-500/10 transition-all duration-300 group">
+          <div class="w-14 h-14 rounded-2xl bg-violet-50 text-violet-600 flex items-center justify-center flex-shrink-0 group-hover:bg-violet-600 group-hover:text-white transition-colors">
+            <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" /></svg>
+          </div>
+          <div>
+            <h3 class="font-bold text-xl text-slate-900 mb-3">Centralisation de vos données (CRM)</h3>
+            <p class="text-slate-600 leading-relaxed">Fini les contacts dans Excel et les emails éparpillés. Nous intégrons un CRM puissant pour obtenir une vue client à 360°, facilitant le travail de vos commerciaux et rendant vos campagnes redoutablement efficaces.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer CTA -->
+  <CallToAction />
+</Layout>
