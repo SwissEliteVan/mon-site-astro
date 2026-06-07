@@ -6,13 +6,15 @@ interface Props {
   title: string;
   description?: string;
   image?: string;
+  noindex?: boolean;
 }
 
 // Extraction des props avec des valeurs par défaut intelligentes
 const { 
   title, 
   description = "Description par défaut de mon site web professionnel créé avec Astro et Tailwind CSS. Optimisé pour les performances et le SEO.",
-  image = "/og-image.webp" 
+  image = "/og-image.webp",
+  noindex = false
 } = Astro.props;
 
 // Construction de l'URL canonique pour le SEO
@@ -27,7 +29,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || Astro.url.origin)
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
     
     <!-- Titre de la page -->
     <title>{title}</title>

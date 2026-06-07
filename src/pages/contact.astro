@@ -1,0 +1,126 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const pageTitle = "Contact et Diagnostic Gratuit | Clicom Suisse";
+const pageDescription = "Prêt à accélérer votre croissance ? Réservez votre diagnostic digital gratuit avec les experts de Clicom. Sans engagement.";
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <!-- En-tête -->
+  <section class="bg-slate-50 pt-24 pb-16 lg:pt-32 lg:pb-24 border-b border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-bold text-indigo-700 bg-indigo-100 mb-6 ring-1 ring-inset ring-indigo-500/20">Passez à l'action</div>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight mb-6">
+        Prêt à accélérer la <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-500">croissance</span> de votre PME ?
+      </h1>
+      <p class="text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto">
+        Vous avez le savoir-faire, nous avons la méthode pour le faire savoir. Ne laissez plus vos concurrents monopoliser l'attention et le budget de vos futurs clients.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contenu Principal -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+    <div class="flex flex-col lg:flex-row gap-16 lg:gap-24">
+      
+      <!-- Colonne de gauche : Argumentaire & Citation -->
+      <div class="lg:w-5/12 flex flex-col justify-between">
+        <div>
+          <h2 class="text-3xl font-bold text-slate-900 mb-6 tracking-tight">Un diagnostic de visibilité offert</h2>
+          <p class="text-lg text-slate-600 leading-relaxed mb-10">
+            Totalement sans engagement. Ensemble, pendant 30 minutes, nous analyserons votre présence numérique actuelle, identifierons vos points de blocage et dessinerons une feuille de route claire pour multiplier votre chiffre d'affaires.
+          </p>
+          
+          <!-- Citation mise en évidence (Blockquote stylisé) -->
+          <blockquote class="bg-indigo-50/50 border-l-4 border-indigo-600 p-6 sm:p-8 rounded-r-3xl mb-12 shadow-sm relative overflow-hidden group">
+            <div class="absolute -right-4 -top-4 w-24 h-24 bg-indigo-100 rounded-full blur-2xl opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <svg class="w-10 h-10 text-indigo-300 mb-4 relative z-10" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true">
+              <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
+            </svg>
+            <p class="text-xl sm:text-2xl font-bold text-indigo-900 leading-tight mb-4 relative z-10">
+              "La simplicité n'est pas un confort, c'est un soin."
+            </p>
+            <footer class="text-indigo-700 font-medium relative z-10">— La promesse Clicom</footer>
+          </blockquote>
+
+          <h3 class="text-xl font-bold text-slate-900 mb-4">Prenez rendez-vous en 3 secondes</h3>
+          <p class="text-slate-600 mb-8 leading-relaxed">
+            Nous avons éliminé toute friction. Utilisez notre formulaire ultra-court ci-contre, nous vous répondrons en moins de 2 heures ouvrées.
+          </p>
+        </div>
+
+        <!-- Coordonnées de contact directes -->
+        <div class="space-y-6 pt-8 border-t border-slate-200 mt-auto">
+          <div class="flex items-center gap-5 group cursor-pointer">
+            <div class="w-14 h-14 rounded-2xl bg-slate-100 text-slate-600 flex items-center justify-center flex-shrink-0 group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <div>
+              <p class="text-sm font-medium text-slate-500 mb-1">Email direct</p>
+              <a href="mailto:hello@clicom.ch" class="text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">hello@clicom.ch</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Colonne de droite : Formulaire UI -->
+      <div class="lg:w-7/12">
+        <div class="bg-white rounded-[2.5rem] p-8 sm:p-12 shadow-xl shadow-slate-200/50 border border-slate-100 relative">
+          <!-- Petit effet visuel derrière le formulaire -->
+          <div class="absolute -inset-0.5 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-[2.6rem] opacity-20 blur-xl -z-10"></div>
+          
+          <form action="#" method="POST" class="space-y-8 relative z-10">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <!-- Nom -->
+              <div>
+                <label for="name" class="block text-sm font-bold text-slate-900 mb-3">Nom complet</label>
+                <input type="text" name="name" id="name" autocomplete="name" required
+                  class="block w-full rounded-2xl border-0 py-4 px-5 text-slate-900 bg-slate-50 shadow-sm ring-1 ring-inset ring-slate-200 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base transition-all duration-300 hover:bg-white" 
+                  placeholder="Jean Dupont">
+              </div>
+              <!-- Entreprise -->
+              <div>
+                <label for="company" class="block text-sm font-bold text-slate-900 mb-3">Entreprise <span class="text-slate-400 font-normal">(Optionnel)</span></label>
+                <input type="text" name="company" id="company" autocomplete="organization"
+                  class="block w-full rounded-2xl border-0 py-4 px-5 text-slate-900 bg-slate-50 shadow-sm ring-1 ring-inset ring-slate-200 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base transition-all duration-300 hover:bg-white" 
+                  placeholder="Ma belle PME">
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div>
+              <label for="email" class="block text-sm font-bold text-slate-900 mb-3">Adresse Email</label>
+              <input type="email" name="email" id="email" autocomplete="email" required
+                class="block w-full rounded-2xl border-0 py-4 px-5 text-slate-900 bg-slate-50 shadow-sm ring-1 ring-inset ring-slate-200 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base transition-all duration-300 hover:bg-white" 
+                placeholder="jean@entreprise.ch">
+            </div>
+
+            <!-- Besoin -->
+            <div>
+              <label for="message" class="block text-sm font-bold text-slate-900 mb-3">Comment pouvons-nous accélérer votre croissance ?</label>
+              <textarea id="message" name="message" rows="5" required
+                class="block w-full rounded-2xl border-0 py-4 px-5 text-slate-900 bg-slate-50 shadow-sm ring-1 ring-inset ring-slate-200 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base transition-all duration-300 hover:bg-white resize-none" 
+                placeholder="Bonjour, j'aimerais obtenir plus de clients locaux pour mon commerce grâce à l'IA..."></textarea>
+            </div>
+
+            <!-- Bouton Submit -->
+            <div class="pt-2">
+              <button type="submit" 
+                class="w-full rounded-2xl bg-indigo-600 px-8 py-5 text-lg font-bold text-white shadow-lg shadow-indigo-600/25 hover:bg-indigo-500 hover:shadow-indigo-600/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-all duration-300 transform hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-3">
+                Envoyer ma demande
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </button>
+            </div>
+            
+            <div class="flex items-center justify-center gap-2 mt-6">
+              <svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <p class="text-center text-sm text-slate-500 font-medium">
+                Données protégées conformément à la nLPD suisse.
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

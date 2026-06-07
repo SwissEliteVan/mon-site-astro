@@ -1,0 +1,86 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const pageTitle = "Mentions Légales et Politique de Confidentialité (nLPD) | Clicom";
+const pageDescription = "Mentions légales de l'agence Clicom et politique de protection des données conformément à la nLPD suisse.";
+---
+
+<Layout title={pageTitle} description={pageDescription} noindex={true}>
+  <!-- En-tête sobre -->
+  <section class="bg-slate-50 pt-24 pb-12 border-b border-slate-200">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-4">
+        Mentions Légales & Protection des Données (nLPD)
+      </h1>
+      <p class="text-slate-500 font-medium">
+        Dernière mise à jour : {new Date().toLocaleDateString('fr-CH')}
+      </p>
+    </div>
+  </section>
+
+  <!-- Contenu juridique structuré via Tailwind Typography -->
+  <main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <article class="prose prose-slate prose-lg max-w-none prose-headings:font-bold prose-h2:text-slate-900 prose-h2:border-b prose-h2:border-slate-200 prose-h2:pb-2 prose-h2:mt-16 prose-h3:mt-8 prose-h3:text-slate-800 prose-a:text-indigo-600 hover:prose-a:text-indigo-500 marker:text-indigo-500">
+      
+      <h2>1. Éditeur du site</h2>
+      <p>
+        Le site internet <strong>Clicom</strong> (ci-après "le Site") est édité par l'agence de marketing digital Clicom, agissant pour la croissance des PME en Suisse romande :
+      </p>
+      <ul>
+        <li><strong>Raison sociale :</strong> Clicom Sàrl</li>
+        <li><strong>Siège social :</strong> Rue de l'Exemple 42, 1000 Lausanne, Suisse</li>
+        <li><strong>IDE (Identification des entreprises) :</strong> CHE-123.456.789</li>
+        <li><strong>Email de contact :</strong> <a href="mailto:hello@clicom.ch">hello@clicom.ch</a></li>
+      </ul>
+
+      <h2>2. Hébergement et Sécurité</h2>
+      <p>
+        Le Site est hébergé en toute sécurité grâce à un réseau de diffusion mondial (CDN) garantissant des performances optimales. Afin de respecter l'exigence de la clientèle suisse, les données sensibles liées à notre propre fonctionnement interne et aux informations de nos clients locaux sont stockées sur des serveurs physiquement localisés en Suisse, bénéficiant d'un chiffrement de pointe (SSL/TLS).
+      </p>
+
+      <h2>3. Politique de Confidentialité et nLPD</h2>
+      <p>
+        La protection de votre vie privée est au cœur des valeurs de Clicom. Nous nous engageons à traiter vos données personnelles avec la plus stricte confidentialité et en totale conformité avec la nouvelle <strong>Loi fédérale sur la protection des données (nLPD)</strong>, entrée en vigueur le 1er septembre 2023.
+      </p>
+
+      <h3>3.1. Collecte et finalité des données</h3>
+      <p>
+        Nous appliquons le principe fondamental de la <strong>minimisation des données</strong>. Les seules données que nous récoltons via notre formulaire de contact sont celles que vous nous fournissez volontairement de votre plein gré (Nom, Email, Entreprise). Celles-ci servent exclusivement à :
+      </p>
+      <ul>
+        <li>Vous recontacter suite à votre demande de diagnostic gratuit.</li>
+        <li>Vous fournir les services de marketing et de création web souscrits.</li>
+        <li>Assurer le suivi administratif et légal de la facturation.</li>
+      </ul>
+
+      <h3>3.2. Consentement et revente</h3>
+      <p>
+        En remplissant notre formulaire de contact, vous consentez explicitement au traitement de ces informations pour les finalités décrites. Ces données ne sont <strong>jamais revendues, louées ni cédées</strong> à des tiers à des fins publicitaires. Seuls nos collaborateurs internes en charge de votre dossier y ont accès.
+      </p>
+
+      <h3>3.3. Vos droits (Accès, Rectification, Oubli)</h3>
+      <p>
+        Conformément à la nLPD, vous disposez en tout temps du plein contrôle sur vos informations. Vous avez le droit :
+      </p>
+      <ul>
+        <li>D'accéder gratuitement à vos données personnelles stockées par nos soins.</li>
+        <li>De demander la rectification de celles-ci si elles sont inexactes ou incomplètes.</li>
+        <li>De demander la suppression totale de vos données (droit à l'oubli).</li>
+      </ul>
+      <p>
+        Pour exercer ces droits, il vous suffit de nous adresser une simple demande écrite par email à l'adresse <a href="mailto:privacy@clicom.ch">privacy@clicom.ch</a>. Nous nous engageons à traiter votre requête dans les plus brefs délais réglementaires.
+      </p>
+
+      <h2>4. Propriété intellectuelle</h2>
+      <p>
+        L'ensemble des contenus présents sur ce site (textes, images, logos, architecture web, concepts) sont la propriété exclusive de Clicom, à l'exception des éléments libres de droits ou appartenant à des tiers ayant expressément autorisé leur utilisation. Toute reproduction, même partielle, sans notre accord écrit préalable constitue une violation des droits d'auteur.
+      </p>
+
+      <h2>5. For juridique et droit applicable</h2>
+      <p>
+        Les présentes mentions légales sont soumises au droit matériel suisse. Tout litige éventuel découlant de l'utilisation de ce site web ou de l'interprétation des présentes conditions sera soumis à la juridiction exclusive des tribunaux ordinaires compétents du canton de Vaud (Suisse), sous réserve d'un recours au Tribunal Fédéral.
+      </p>
+
+    </article>
+  </main>
+</Layout>
