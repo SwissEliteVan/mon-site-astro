@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Footer from '../components/Footer.astro';
 
 // Définition rigoureuse des props avec TypeScript
 interface Props {
@@ -150,15 +151,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || Astro.url.origin)
       <slot />
     </main>
 
-    <!-- Pied de page sémantique <footer> -->
-    <footer class="bg-white border-t border-slate-200 mt-auto">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-sm text-slate-500 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p>&copy; {new Date().getFullYear()} Clicom Suisse. Tous droits réservés.</p>
-        <div class="flex space-x-6">
-          <a href="/mentions-legales" class="hover:text-indigo-600 transition-colors focus:outline-none focus:underline">Mentions légales & nLPD</a>
-        </div>
-      </div>
-    </footer>
+    <!-- Pied de page sémantique <footer> importé via un composant -->
+    <Footer />
 
   </body>
 </html>
