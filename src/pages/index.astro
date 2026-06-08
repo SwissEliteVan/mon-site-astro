@@ -1,93 +1,273 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
-import RecentPosts from '../components/RecentPosts.astro'; // Le composant contenant la boucle .map()
-import Testimonials from '../components/Testimonials.astro';
 import Pricing from '../components/Pricing.astro';
-import CallToAction from '../components/CallToAction.astro';
 
-// Balises SEO pour la page d'accueil (Passées au Layout en tant que props)
 const pageTitle = "Clicom | Agence de marketing digital et webdesign pour PME suisses";
 const pageDescription = "Clicom accompagne les PME et commerces suisses dans leur croissance digitale : création de sites performants, SEO, Google Ads, et automatisation IA. Découvrez nos solutions rentables.";
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-  <!-- Section Hero (Contient le H1 SEO et l'introduction) -->
-  <Hero />
-
-  <!-- Section Services (Nos 3 modèles de croissance) -->
-  <section id="services" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
-    <div class="text-center mb-16">
-      <h2 class="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">Nos 3 modèles de croissance</h2>
-      <p class="mt-4 text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-        Notre approche se démarque radicalement des agences traditionnelles. Nous ne facturons pas à l'heure pour des tâches abstraites ; nous mettons en place des partenariats à long terme (sous forme d'abonnements ou retainers) dont l'unique but est de générer un chiffre d'affaires continu pour votre entreprise.
-      </p>
+  
+  <!-- HERO SECTION (Sans lazy-load, décodage asynchrone, vidéo en arrière-plan) -->
+  <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-slate-950">
+    <div class="absolute inset-0 z-0">
+      <video 
+        autoPlay 
+        loop 
+        muted 
+        playsInline 
+        poster="/assets/medias/poster-hero.avif"
+        class="w-full h-full object-cover opacity-30"
+        decoding="async"
+      >
+        <!-- Source vidéo simulée, en attente de l'actif réel -->
+        <source src="/assets/medias/hero-background.mp4" type="video/mp4" />
+      </video>
+      <div class="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-slate-950/80 to-slate-950"></div>
     </div>
-    
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <!-- Service 1 -->
-      <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl hover:shadow-indigo-500/10 transition-all duration-300 transform hover:-translate-y-1 group">
-        <div class="w-14 h-14 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300">
-          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
-        </div>
-        <h3 class="font-bold text-xl text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors">Création de sites web éco-conçus & performants</h3>
-        <p class="text-slate-600 leading-relaxed">
-          Votre site internet n'est pas une simple carte de visite, c'est votre meilleur vendeur, disponible 24h/24. Nous concevons des plateformes ultra-rapides, optimisées pour la conversion et respectueuses de l'environnement.
-        </p>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20 pb-24">
+      <div class="inline-flex items-center rounded-full px-5 py-2 text-sm font-semibold text-[#B9FF66] bg-[#B9FF66]/10 ring-1 ring-inset ring-[#B9FF66]/20 mb-8 backdrop-blur-md">
+        <span class="flex w-2.5 h-2.5 rounded-full bg-[#B9FF66] mr-3 relative">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#B9FF66] opacity-75"></span>
+        </span>
+        L'Agence Digitale Nouvelle Génération en Suisse Romande
       </div>
-      
-      <!-- Service 2 -->
-      <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl hover:shadow-indigo-500/10 transition-all duration-300 transform hover:-translate-y-1 group">
-        <div class="w-14 h-14 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300">
-          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
-        </div>
-        <h3 class="font-bold text-xl text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors">Commerce local : Le pack "Tout-en-un"</h3>
-        <p class="text-slate-600 leading-relaxed">
-          Commerçants, dominez votre zone de chalandise. Nous avons packagé une solution regroupant site web, visibilité locale (Google My Business), carte de fidélité NFC innovante et campagnes SMS pour faire revenir vos clients.
-        </p>
-      </div>
-      
-      <!-- Service 3 -->
-      <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl hover:shadow-indigo-500/10 transition-all duration-300 transform hover:-translate-y-1 group">
-        <div class="w-14 h-14 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300">
-          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-        </div>
-        <h3 class="font-bold text-xl text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors">Performance & IA : Acquisition en continu</h3>
-        <p class="text-slate-600 leading-relaxed">
-          Ne payez plus pour du vent. Nous allions la puissance du référencement naturel (SEO), la précision de Google Ads et l'automatisation par l'Intelligence Artificielle pour vous livrer un flux constant de prospects qualifiés.
-        </p>
+
+      <h1 class="text-[clamp(2.5rem,5vw,5rem)] font-extrabold tracking-tight text-white mb-8 leading-[1.1]">
+        Accélérez votre croissance avec <br class="hidden lg:block" />
+        une stratégie digitale <span class="text-[#B9FF66]">rentable</span>
+      </h1>
+
+      <p class="text-[clamp(1.125rem,2vw,1.25rem)] text-slate-300 max-w-3xl mx-auto leading-relaxed mb-12">
+        Le digital n'est plus une option. Nous allions l'expertise humaine locale à la vélocité de l'intelligence artificielle pour générer un flux d'acquisition constant pour votre PME.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+        <a href="/contact" class="w-full sm:w-auto bg-[#B9FF66] text-slate-950 hover:bg-[#a3e655] font-bold px-8 py-4 min-h-[48px] rounded-full shadow-[0_0_30px_rgba(185,255,102,0.3)] transition-all transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-950 focus:ring-[#B9FF66] flex items-center justify-center text-lg">
+          Démarrer l'audit gratuit
+        </a>
+        <a href="#services" class="w-full sm:w-auto bg-transparent border border-slate-700 text-white hover:bg-slate-800 font-bold px-8 py-4 min-h-[48px] rounded-full transition-colors flex items-center justify-center text-lg">
+          Découvrir l'architecture
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- Section Garantie nLPD -->
-  <section class="bg-indigo-50 py-16 lg:py-24 border-y border-indigo-100">
+  <!-- SERVICES : BENTO GRID (Standards 2026) -->
+  <section id="services" class="bg-slate-950 py-24 border-t border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col md:flex-row items-center gap-10">
+      <div class="mb-16">
+        <h2 class="text-[clamp(2rem,4vw,3rem)] font-bold text-white tracking-tight mb-4">Nos 3 modèles de croissance</h2>
+        <p class="text-[clamp(1rem,1.5vw,1.125rem)] text-slate-400 max-w-2xl">Une approche radicalement différente, facturée au résultat et non au temps passé. La synergie technologique au service de votre rentabilité.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(300px,auto)]">
+        
+        <!-- Bento Card 1 (Large - Occupe 2 colonnes sur Desktop) -->
+        <article class="md:col-span-2 bg-gradient-to-br from-slate-900 to-[#0f1523] p-8 lg:p-12 rounded-3xl border border-slate-800 hover:border-slate-700 transition-colors group relative overflow-hidden flex flex-col justify-end">
+          <div class="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-40 transition-opacity">
+            <svg class="w-32 h-32 text-[#B9FF66]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+          </div>
+          <div class="relative z-10">
+            <span class="inline-block px-3 py-1 mb-4 text-xs font-bold uppercase tracking-wider text-[#B9FF66] bg-[#B9FF66]/10 rounded-full border border-[#B9FF66]/20">Acquisition Continue</span>
+            <h3 class="text-3xl font-bold text-white mb-4">Performance & Intelligence Artificielle</h3>
+            <p class="text-slate-300 text-lg max-w-xl">L'alliance de la précision de Google Ads, de l'autorité du SEO organique et des algorithmes prédictifs. Nous construisons un écosystème qui génère des prospects qualifiés en flux continu pour votre entreprise.</p>
+          </div>
+        </article>
+
+        <!-- Bento Card 2 (Standard) -->
+        <article class="bg-gradient-to-br from-slate-900 to-[#0f1523] p-8 lg:p-12 rounded-3xl border border-slate-800 hover:border-slate-700 transition-colors group flex flex-col justify-end">
+          <div class="mb-auto">
+            <svg class="w-12 h-12 text-[#B9FF66] mb-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" /></svg>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-3">Plateformes Éco-conçues</h3>
+          <p class="text-slate-400">Des sites web ultra-rapides, respectueux de l'environnement et structurés pour convertir vos visiteurs en clients fidèles.</p>
+        </article>
+
+        <!-- Bento Card 3 (Standard) -->
+        <article class="bg-gradient-to-br from-slate-900 to-[#0f1523] p-8 lg:p-12 rounded-3xl border border-slate-800 hover:border-slate-700 transition-colors group flex flex-col justify-end">
+          <div class="mb-auto">
+            <svg class="w-12 h-12 text-[#B9FF66] mb-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-3">Commerce Local Actif</h3>
+          <p class="text-slate-400">Packs spécifiques intégrant référencement local (GMB), cartes de fidélité NFC et marketing SMS pour dominer votre zone de chalandise.</p>
+        </article>
+
+        <!-- Bento Card 4 (Large - Occupe 2 colonnes sur Desktop) -->
+        <article class="md:col-span-2 bg-gradient-to-br from-[#0f1523] to-slate-900 p-8 lg:p-12 rounded-3xl border border-slate-800 hover:border-slate-700 transition-colors group flex flex-col justify-center items-center text-center">
+          <h3 class="text-2xl font-bold text-white mb-6">Prêt à dominer votre marché ?</h3>
+          <a href="/contact" class="bg-white text-slate-950 hover:bg-slate-200 font-bold px-8 py-4 min-h-[48px] rounded-full transition-colors flex items-center justify-center">
+            Consulter la grille tarifaire complète
+          </a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION PREUVE SOCIALE / ÉTUDE DE CAS -->
+  <section class="bg-slate-900 py-24 border-y border-slate-800 overflow-hidden relative">
+    <div class="absolute inset-0 bg-[#B9FF66]/5 blur-[120px] rounded-full w-[800px] h-[800px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <span class="text-[#B9FF66] font-bold tracking-wider uppercase text-sm mb-4 block">Étude de Cas Réelle</span>
+          <h2 class="text-[clamp(2rem,3vw,2.5rem)] font-bold text-white leading-tight mb-6">Comment nous avons multiplié par 3 l'acquisition client d'une PME romande.</h2>
+          <p class="text-slate-300 text-lg mb-8 leading-relaxed">
+            En restructurant totalement l'architecture web et en automatisant la qualification des prospects via nos agents IA, nous avons permis à notre client du secteur tertiaire de réduire son coût d'acquisition de 45% tout en triplant son volume de leads mensuels qualifiés.
+          </p>
+          <div class="grid grid-cols-2 gap-8 border-t border-slate-800 pt-8">
+            <div>
+              <div class="text-4xl font-extrabold text-[#B9FF66] mb-2">-45%</div>
+              <div class="text-slate-400 font-medium">Coût Par Acquisition (CPA)</div>
+            </div>
+            <div>
+              <div class="text-4xl font-extrabold text-white mb-2">x3</div>
+              <div class="text-slate-400 font-medium">Volume de prospects (Leads)</div>
+            </div>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="absolute inset-0 bg-gradient-to-tr from-[#B9FF66]/20 to-transparent rounded-3xl transform translate-x-4 translate-y-4"></div>
+          <img 
+            src="/assets/medias/etude-de-cas-croissance.avif" 
+            alt="Graphique de croissance illustrant les résultats de la stratégie marketing Clicom" 
+            width="800" 
+            height="600" 
+            loading="lazy" 
+            class="relative rounded-3xl shadow-2xl border border-slate-700 w-full object-cover"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION ÉQUIPE HYBRIDE (L'Humain orchestre, l'IA exécute) -->
+  <section id="equipe" class="bg-slate-950 py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-20">
+        <h2 class="text-[clamp(2.5rem,4vw,3.5rem)] font-bold text-white tracking-tight mb-6">L'Humain orchestre, l'IA exécute</h2>
+        <p class="text-[clamp(1.125rem,1.5vw,1.25rem)] text-slate-400 max-w-3xl mx-auto leading-relaxed">Une synergie inédite. La puissance de calcul et la vélocité de nos agents intelligents, rigoureusement supervisées par notre expertise humaine suisse. Résultat : une exécution fulgurante, des coûts maîtrisés, et une qualité irréprochable garantie à 100 % par notre fondateur.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
+        
+        <!-- Le Fondateur -->
+        <article class="bg-slate-900 rounded-3xl p-8 border border-slate-800 hover:border-slate-700 transition-all group flex flex-col h-full">
+          <div class="aspect-square overflow-hidden rounded-2xl mb-6 border border-slate-800">
+            <img src="/assets/medias/fondateur-agence-marketing-suisse.avif" alt="Fondateur de l'agence Clicom" width="400" height="400" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" />
+          </div>
+          <h3 class="font-bold text-2xl text-white mb-1">Le Fondateur</h3>
+          <p class="text-[#B9FF66] font-semibold text-sm uppercase tracking-wider mb-4">Stratège (L'Humain)</p>
+          <p class="text-slate-400 leading-relaxed mt-auto">En tant que garant de la qualité et de la vision globale, il est l'unique point de contact des PME suisses. Il définit la stratégie sur-mesure, contrôle méticuleusement chaque livrable produit par l'IA et assume la responsabilité totale de la conformité (nLPD) et du ROI.</p>
+        </article>
+
+        <!-- Lumina -->
+        <article class="bg-[#0f1523] rounded-3xl p-8 border border-slate-800 hover:border-slate-700 transition-all group flex flex-col h-full">
+          <div class="aspect-square overflow-hidden rounded-2xl mb-6 border border-slate-800 bg-slate-950 relative">
+            <div class="absolute inset-0 bg-[#B9FF66]/10 opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none"></div>
+            <img src="/assets/medias/agent-ia-webdesign-ux.avif" alt="Lumina - Agent IA UX/UI" width="400" height="400" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 opacity-90 grayscale group-hover:grayscale-0" />
+          </div>
+          <h3 class="font-bold text-2xl text-white mb-1">Lumina</h3>
+          <p class="text-[#B9FF66] font-semibold text-sm uppercase tracking-wider mb-4">Agent UX/UI & Webdesign</p>
+          <p class="text-slate-400 leading-relaxed mt-auto">Spécialisée dans l'ergonomie cognitive et l'éco-conception. Cet agent génère des interfaces ultra-performantes, adaptées au comportement de navigation mobile-first. Elle optimise le parcours utilisateur pour maximiser la conversion.</p>
+        </article>
+
+        <!-- Koda -->
+        <article class="bg-[#0f1523] rounded-3xl p-8 border border-slate-800 hover:border-slate-700 transition-all group flex flex-col h-full">
+          <div class="aspect-square overflow-hidden rounded-2xl mb-6 border border-slate-800 bg-slate-950 relative">
+            <div class="absolute inset-0 bg-[#B9FF66]/10 opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none"></div>
+            <img src="/assets/medias/agent-ia-developpement-webperf.avif" alt="Koda - Agent IA Code" width="400" height="400" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 opacity-90 grayscale group-hover:grayscale-0" />
+          </div>
+          <h3 class="font-bold text-2xl text-white mb-1">Koda</h3>
+          <p class="text-[#B9FF66] font-semibold text-sm uppercase tracking-wider mb-4">Agent Code & WebPerf</p>
+          <p class="text-slate-400 leading-relaxed mt-auto">L'architecte technique de l'agence. Dédié au développement d'infrastructures modernes (Astro.js), cet agent assure une vitesse de chargement instantanée et un code parfait. Garant des fondations techniques impénétrables.</p>
+        </article>
+
+        <!-- Synergia -->
+        <article class="bg-[#0f1523] rounded-3xl p-8 border border-slate-800 hover:border-slate-700 transition-all group flex flex-col h-full">
+          <div class="aspect-square overflow-hidden rounded-2xl mb-6 border border-slate-800 bg-slate-950 relative">
+            <div class="absolute inset-0 bg-[#B9FF66]/10 opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none"></div>
+            <img src="/assets/medias/agent-ia-copywriting-acquisition.avif" alt="Synergia - Agent IA Copywriting" width="400" height="400" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 opacity-90 grayscale group-hover:grayscale-0" />
+          </div>
+          <h3 class="font-bold text-2xl text-white mb-1">Synergia</h3>
+          <p class="text-[#B9FF66] font-semibold text-sm uppercase tracking-wider mb-4">Agent Copywriting & Ads</p>
+          <p class="text-slate-400 leading-relaxed mt-auto">L'analyste de la data et stratège de contenu. Elle scrute les tendances de recherche locales en Suisse pour structurer des textes SEO à haute valeur ajoutée. Elle optimise mathématiquement la rentabilité publicitaire en temps réel.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION INTERFACE ASSISTÉE (AGENT IA) -->
+  <section class="bg-gradient-to-b from-slate-900 to-slate-950 py-24 border-t border-slate-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="bg-[#0f1523] rounded-3xl p-8 border border-slate-700 shadow-2xl relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#B9FF66] to-transparent opacity-50"></div>
+        <div class="w-16 h-16 bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-6 border border-slate-700">
+           <svg class="w-8 h-8 text-[#B9FF66]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" /></svg>
+        </div>
+        <h2 class="text-2xl font-bold text-white mb-4">Interagissez avec notre Agent Stratégique</h2>
+        <p class="text-slate-400 mb-8 max-w-xl mx-auto">Posez vos questions techniques, analysez la viabilité de votre projet ou réservez directement un audit de 30 minutes avec l'expertise humaine de notre fondateur.</p>
+        
+        <div class="bg-slate-900 rounded-xl p-4 flex items-center justify-between border border-slate-700 mb-6 max-w-2xl mx-auto">
+          <span class="text-slate-500 text-sm text-left px-2">"Comment pouvez-vous optimiser la présence locale de ma clinique en Suisse romande ?"</span>
+          <button class="bg-[#B9FF66] text-slate-950 px-4 py-2 rounded-lg font-bold min-h-[48px] hover:bg-[#a3e655] transition-colors focus:outline-none focus:ring-2 focus:ring-[#B9FF66] focus:ring-offset-2 focus:ring-offset-slate-900">
+            Simuler
+          </button>
+        </div>
+        
+        <p class="text-sm text-slate-500">Ou utilisez le widget de discussion en bas à droite de votre écran.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION GARANTIE nLPD -->
+  <section class="bg-slate-950 py-24 border-y border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center gap-12 bg-slate-900 p-8 lg:p-12 rounded-3xl border border-slate-800">
         <div class="md:w-1/3 flex justify-center">
-          <div class="w-24 h-24 bg-white shadow-sm rounded-full flex items-center justify-center text-indigo-600 border border-indigo-100">
-            <svg class="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+          <div class="w-32 h-32 bg-slate-950 shadow-inner rounded-full flex items-center justify-center text-[#B9FF66] border border-slate-800">
+            <svg class="w-16 h-16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
           </div>
         </div>
         <div class="md:w-2/3 text-center md:text-left">
-          <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-4 tracking-tight">La garantie Clicom : Transparence et conformité nLPD</h2>
-          <p class="text-lg text-slate-600 leading-relaxed">
-            Basée en Suisse romande, notre agence comprend vos enjeux légaux. Nous garantissons que toutes nos stratégies d'acquisition et vos plateformes web respectent strictement la nouvelle <strong class="text-indigo-700">Loi sur la protection des données (nLPD)</strong>. Développez votre entreprise en toute sérénité, sans risquer de sanctions.
+          <h2 class="text-[clamp(1.5rem,2.5vw,2rem)] font-bold text-white mb-4 tracking-tight">Sécurité des données et Conformité nLPD absolue</h2>
+          <p class="text-lg text-slate-400 leading-relaxed mb-6">
+            Basée en Suisse romande, notre agence intègre vos enjeux légaux dès l'architecture de votre projet. Nous garantissons que toutes nos stratégies d'acquisition (IA ou traditionnelles) et vos plateformes web respectent strictement la <strong class="text-white">Loi fédérale sur la protection des données (nLPD)</strong>.
           </p>
+          <a href="/mentions-legales" class="inline-flex items-center text-[#B9FF66] hover:text-white font-semibold transition-colors">
+            Lire notre manifeste sur la vie privée
+            <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Témoignages Clients -->
-  <Testimonials />
+  <!-- APPEL À L'ACTION / CONTACT -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+    <div class="bg-gradient-to-br from-[#1a2332] to-slate-900 rounded-3xl p-8 md:p-16 text-center relative overflow-hidden shadow-2xl border border-slate-700">
+      <div class="absolute inset-0 pointer-events-none">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-[#B9FF66] rounded-full mix-blend-multiply filter blur-[128px] opacity-10"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-slate-600 rounded-full mix-blend-multiply filter blur-[128px] opacity-20"></div>
+      </div>
+      
+      <div class="relative z-10">
+        <h2 class="text-[clamp(2rem,4vw,3rem)] font-extrabold text-white mb-6">Prêt à dominer votre secteur ?</h2>
+        <p class="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto mb-10">Laissez-nous automatiser votre acquisition. Réservez un audit stratégique de 30 minutes avec notre fondateur, sans engagement.</p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="rounded-full bg-[#B9FF66] text-slate-950 px-8 py-4 font-bold min-h-[48px] hover:bg-[#a3e655] transition-colors shadow-lg transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-[#B9FF66] flex items-center justify-center text-lg">
+            Planifier mon audit stratégique
+          </a>
+          <a href="/realisations" class="rounded-full bg-transparent text-white px-8 py-4 font-bold min-h-[48px] border border-slate-600 hover:bg-slate-800 transition-colors flex items-center justify-center text-lg">
+            Découvrir nos cas clients
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- Tarifs -->
-  <Pricing />
-
-  <!-- Section Blog Intégrée : Affiche les 3 articles générés via la boucle .map() -->
-  <RecentPosts />
-
-  <!-- Appel à l'action final -->
-  <CallToAction />
 </Layout>

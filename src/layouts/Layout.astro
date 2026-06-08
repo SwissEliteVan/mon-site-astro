@@ -4,7 +4,6 @@ import Footer from '../components/Footer.astro';
 import CookieBanner from '../components/CookieBanner.astro';
 import FloatingContact from '../components/FloatingContact.astro';
 
-// Définition rigoureuse des props avec TypeScript
 interface Props {
   title: string;
   description?: string;
@@ -12,112 +11,146 @@ interface Props {
   noindex?: boolean;
 }
 
-// Extraction des props avec des valeurs par défaut intelligentes
 const { 
   title, 
-  description = "Description par défaut de mon site web professionnel créé avec Astro et Tailwind CSS. Optimisé pour les performances et le SEO.",
+  description = "Clicom accompagne les PME suisses avec des solutions digitales 2026. Création de sites, automatisation IA et SEO. Performance et rentabilité garanties.",
   image = "/og-image.webp",
   noindex = false
 } = Astro.props;
 
-// Construction de l'URL canonique pour le SEO
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || Astro.url.origin);
 ---
 
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
   <head>
-    <!-- Balises Meta Indispensables -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
     <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
     
-    <!-- Titre de la page -->
     <title>{title}</title>
     
-    <!-- Lien canonique (Évite le duplicate content en SEO) -->
     <link rel="canonical" href={canonicalURL} />
-
-    <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     
-    <!-- Balises Open Graph (OG) pour le partage social (Facebook, LinkedIn, Discord...) -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={Astro.url} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(image, Astro.url)} />
-    <meta property="og:site_name" content="Mon Projet Astro" />
-    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Clicom" />
+    <meta property="og:locale" content="fr_CH" />
 
-    <!-- Balises Twitter Card (Pour un affichage riche sur X/Twitter) -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content={Astro.url} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL(image, Astro.url)} />
+
+    <!-- SEO / AIO : JSON-LD Structuré pour Google et les Robots IA -->
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "LocalBusiness",
+            "name": "Clicom",
+            "url": "https://clicom.ch",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "CH",
+              "addressRegion": "Vaud"
+            },
+            "telephone": "+41788238950",
+            "email": "hello@clicom.ch"
+          },
+          {
+            "@type": "WebPage",
+            "name": "Clicom | Agence de marketing digital",
+            "url": "https://clicom.ch"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Accueil",
+                "item": "https://clicom.ch/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Agence Marketing",
+                "item": "https://clicom.ch/a-propos"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
   </head>
 
-  <!-- selection:bg-indigo-200 améliore l'expérience quand l'utilisateur surligne du texte -->
-  <body class="bg-slate-50 text-slate-900 font-sans antialiased min-h-screen flex flex-col selection:bg-indigo-200 selection:text-indigo-900">
+  <!-- Thème Soft Dark Premium (Anthracite bg-slate-950) et accents Lime Green #B9FF66 -->
+  <body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col selection:bg-[#B9FF66] selection:text-slate-950">
     
-    <!-- Lien d'évitement pour l'accessibilité (caché visuellement sauf au focus clavier) -->
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-indigo-600 text-white px-4 py-2 rounded-md z-[100] shadow-lg">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-[#B9FF66] text-slate-950 px-4 py-2 min-h-[48px] rounded-md z-[100] shadow-lg flex items-center">
       Aller au contenu principal
     </a>
 
-    <!-- En-tête sémantique <header> -->
-    <header class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50 transition-all duration-300">
+    <header class="bg-slate-950/90 backdrop-blur-md shadow-sm border-b border-slate-800/80 sticky top-0 z-50 transition-all duration-300">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center relative">
-        <!-- Logo -->
-        <a href="/" class="font-bold text-2xl tracking-tight text-slate-900 flex items-center gap-2 hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-md z-20">
-          <!-- Icône simple et mémorable -->
-          <svg class="w-8 h-8 text-indigo-600" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <a href="/" class="font-bold text-[clamp(1.25rem,2vw,1.5rem)] tracking-tight text-white flex items-center gap-2 hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-[#B9FF66] rounded-md z-20">
+          <svg class="w-8 h-8 text-[#B9FF66]" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12 2L2 22h20L12 2zm0 4.5l6.5 13.5h-13L12 6.5z"/>
           </svg>
-          Clicom<span class="text-indigo-600">.</span>
+          Clicom<span class="text-[#B9FF66]">.</span>
         </a>
         
-        <!-- Bouton Burger (Mobile) -->
-        <button id="menu-toggle" aria-expanded="false" aria-label="Ouvrir le menu" class="lg:hidden z-20 p-2 text-slate-600 hover:text-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-md transition-colors">
-          <svg id="menu-icon-open" class="w-7 h-7 block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-          <svg id="menu-icon-close" class="w-7 h-7 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
+        <button id="menu-toggle" aria-expanded="false" aria-label="Ouvrir le menu" class="lg:hidden z-20 p-2 min-h-[48px] min-w-[48px] text-slate-400 hover:text-[#B9FF66] focus:outline-none focus:ring-2 focus:ring-[#B9FF66] rounded-md transition-colors flex items-center justify-center">
+          <svg id="menu-icon-open" class="w-7 h-7 block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+          <svg id="menu-icon-close" class="w-7 h-7 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
         </button>
 
-        <!-- Navigation Desktop -->
+        <!-- Navigation réparée avec lien /blog -->
         <nav class="hidden lg:flex items-center space-x-8" aria-label="Menu principal">
-          <a href="/" class="text-slate-600 hover:text-indigo-600 font-medium transition-colors px-2 py-1">Accueil</a>
-          <a href="/services" class="text-slate-600 hover:text-indigo-600 font-medium transition-colors px-2 py-1">Services</a>
-          <a href="/a-propos" class="text-slate-600 hover:text-indigo-600 font-medium transition-colors px-2 py-1">À Propos</a>
-          <a href="/realisations" class="text-slate-600 hover:text-indigo-600 font-medium transition-colors px-2 py-1">Réalisations</a>
-          <a href="/faq" class="text-slate-600 hover:text-indigo-600 font-medium transition-colors px-2 py-1">FAQ</a>
-          <a href="/contact" class="bg-indigo-600 text-white hover:bg-indigo-500 font-bold px-6 py-2.5 rounded-full shadow-sm hover:shadow-md transition-all transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600">Contact</a>
+          <a href="/" class="text-slate-300 hover:text-[#B9FF66] font-medium transition-colors px-2 py-1">Accueil</a>
+          <a href="/services" class="text-slate-300 hover:text-[#B9FF66] font-medium transition-colors px-2 py-1">Services</a>
+          <a href="/a-propos" class="text-slate-300 hover:text-[#B9FF66] font-medium transition-colors px-2 py-1">À Propos</a>
+          <a href="/realisations" class="text-slate-300 hover:text-[#B9FF66] font-medium transition-colors px-2 py-1">Réalisations</a>
+          <a href="/faq" class="text-slate-300 hover:text-[#B9FF66] font-medium transition-colors px-2 py-1">FAQ</a>
+          <a href="/blog" class="text-slate-300 hover:text-[#B9FF66] font-medium transition-colors px-2 py-1">Blog</a>
+          <a href="/contact" class="bg-[#B9FF66] text-slate-950 hover:bg-[#a3e655] font-bold px-6 py-3 min-h-[48px] rounded-full shadow-sm hover:shadow-[#B9FF66]/20 transition-all transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-950 focus:ring-[#B9FF66] flex items-center justify-center">Diagnostic</a>
         </nav>
 
-        <!-- Menu Mobile Overlay -->
-        <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 right-0 bg-white border-b border-slate-200 shadow-xl flex-col py-6 px-4 space-y-4">
-          <a href="/" class="block text-center text-lg text-slate-700 hover:text-indigo-600 font-medium transition-colors py-2">Accueil</a>
-          <a href="/services" class="block text-center text-lg text-slate-700 hover:text-indigo-600 font-medium transition-colors py-2">Services</a>
-          <a href="/a-propos" class="block text-center text-lg text-slate-700 hover:text-indigo-600 font-medium transition-colors py-2">À Propos</a>
-          <a href="/realisations" class="block text-center text-lg text-slate-700 hover:text-indigo-600 font-medium transition-colors py-2">Réalisations</a>
-          <a href="/faq" class="block text-center text-lg text-slate-700 hover:text-indigo-600 font-medium transition-colors py-2">FAQ</a>
-          <div class="pt-4 border-t border-slate-100 flex justify-center">
-            <a href="/contact" class="bg-indigo-600 text-white hover:bg-indigo-500 font-bold px-8 py-3 rounded-full shadow-sm w-full text-center">Diagnostic Gratuit</a>
+        <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 right-0 bg-slate-900 border-b border-slate-800 shadow-xl flex-col py-6 px-4 space-y-4">
+          <a href="/" class="block text-center text-lg text-slate-200 hover:text-[#B9FF66] font-medium transition-colors py-2">Accueil</a>
+          <a href="/services" class="block text-center text-lg text-slate-200 hover:text-[#B9FF66] font-medium transition-colors py-2">Services</a>
+          <a href="/a-propos" class="block text-center text-lg text-slate-200 hover:text-[#B9FF66] font-medium transition-colors py-2">À Propos</a>
+          <a href="/realisations" class="block text-center text-lg text-slate-200 hover:text-[#B9FF66] font-medium transition-colors py-2">Réalisations</a>
+          <a href="/faq" class="block text-center text-lg text-slate-200 hover:text-[#B9FF66] font-medium transition-colors py-2">FAQ</a>
+          <a href="/blog" class="block text-center text-lg text-slate-200 hover:text-[#B9FF66] font-medium transition-colors py-2">Blog</a>
+          <div class="pt-4 border-t border-slate-800 flex justify-center">
+            <a href="/contact" class="bg-[#B9FF66] text-slate-950 hover:bg-[#a3e655] font-bold px-8 py-3 min-h-[48px] min-w-[200px] rounded-full shadow-sm text-center flex items-center justify-center">Diagnostic Gratuit</a>
           </div>
         </div>
       </div>
     </header>
 
-    <!-- Script minimaliste pour le menu burger (exécuté sur le client) -->
-    <script>
+    <!-- Fil d'Ariane Sémantique (AIO) -->
+    <nav aria-label="Fil d'Ariane" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-[clamp(0.75rem,1.5vw,0.875rem)] text-slate-400">
+      <ol class="flex items-center space-x-2">
+        <li><a href="/" class="hover:text-[#B9FF66] transition-colors focus:outline-none focus:underline">Accueil</a></li>
+        <li><span class="text-slate-600">/</span></li>
+        <li aria-current="page" class="text-slate-300 font-medium">Agence Marketing</li>
+      </ol>
+    </nav>
+
+    <script is:inline>
       document.addEventListener('DOMContentLoaded', () => {
         const toggle = document.getElementById('menu-toggle');
         const menu = document.getElementById('mobile-menu');
@@ -128,8 +161,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || Astro.url.origin)
           toggle.addEventListener('click', () => {
             const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
             toggle.setAttribute('aria-expanded', !isExpanded ? 'true' : 'false');
-            
-            // Toggle classes for menu
             if (menu.classList.contains('hidden')) {
               menu.classList.remove('hidden');
               menu.classList.add('flex');
@@ -137,8 +168,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || Astro.url.origin)
               menu.classList.add('hidden');
               menu.classList.remove('flex');
             }
-            
-            // Toggle icons
             iconOpen.classList.toggle('hidden');
             iconOpen.classList.toggle('block');
             iconClose.classList.toggle('hidden');
@@ -148,24 +177,17 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || Astro.url.origin)
       });
     </script>
 
-    <!-- Contenu principal dynamique <main> -->
-    <main id="main-content" class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <main id="main-content" class="flex-grow w-full">
       <slot />
     </main>
 
-    <!-- Pied de page sémantique <footer> importé via un composant -->
     <Footer />
-
-    <!-- Bandeau de consentement Cookies nLPD -->
     <CookieBanner />
-
-    <!-- Bouton flottant WhatsApp -->
     <FloatingContact />
 
     <!-- Script du Chatbot IA (Chatbase) -->
     <script is:inline>
       (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="71Qpm7ZKJKyOI_KPa52eE";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
     </script>
-
   </body>
 </html>
