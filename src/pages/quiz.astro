@@ -1,0 +1,942 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Quiz : Quel Agent IA manque à votre PME ? | CLICOM"
+  description="Faites le test en 3 questions pour découvrir quel agent IA CLICOM (Lumina, Koda ou Synergia) devrait renforcer votre PME dès demain."
+>
+
+  <div class="quiz-shell">
+
+    <!-- ── Fil d'Ariane ─────────────────────────────── -->
+    <nav class="quiz-breadcrumb" aria-label="Progression">
+      <div class="bc-track" id="bc-track" aria-hidden="true">
+        <div class="bc-fill" id="bc-fill"></div>
+      </div>
+      <ol class="bc-steps">
+        <li class="bc-step active" id="bc-0" aria-current="step">Départ</li>
+        <li class="bc-sep" aria-hidden="true"></li>
+        <li class="bc-step" id="bc-1">Visibilité</li>
+        <li class="bc-sep" aria-hidden="true"></li>
+        <li class="bc-step" id="bc-2">Acquisition</li>
+        <li class="bc-sep" aria-hidden="true"></li>
+        <li class="bc-step" id="bc-3">Loi nLPD</li>
+        <li class="bc-sep" aria-hidden="true"></li>
+        <li class="bc-step" id="bc-4">Résultat</li>
+      </ol>
+    </nav>
+
+    <!-- ══════════════════════════════════════════════
+         ÉCRAN 0 — ACCUEIL
+    ══════════════════════════════════════════════ -->
+    <section class="quiz-screen active" id="screen-0" aria-labelledby="s0-title">
+      <div class="screen-inner screen-center">
+
+        <div class="s0-label">Diagnostic PME · 3 questions · 90 secondes</div>
+
+        <h1 class="s0-title" id="s0-title">
+          Quel Agent IA manque<br/>
+          <span class="text-lime">cruellement</span> à votre PME&nbsp;?
+        </h1>
+
+        <p class="s0-body">
+          Faites le test en 3 questions pour découvrir qui de Lumina, Koda ou Synergia devrait intégrer vos effectifs dès demain.
+        </p>
+
+        <!-- Agents aperçu -->
+        <div class="agents-preview" aria-hidden="true">
+          <div class="agent-chip agent-lumina">
+            <span class="chip-dot"></span>
+            Lumina — Contenu &amp; Stratégie
+          </div>
+          <div class="agent-chip agent-koda">
+            <span class="chip-dot"></span>
+            Koda — Technique &amp; Performance
+          </div>
+          <div class="agent-chip agent-synergia">
+            <span class="chip-dot"></span>
+            Synergia — Conformité &amp; Qualité
+          </div>
+        </div>
+
+        <button
+          class="btn-start"
+          id="btn-start"
+          onclick="goTo(1)"
+          aria-label="Démarrer le diagnostic — 3 questions"
+        >
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          Démarrer le diagnostic
+        </button>
+
+        <p class="s0-legal">Sans inscription · Résultat personnalisé par e-mail</p>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         ÉCRAN 1 — QUESTION 1 : VISIBILITÉ
+    ══════════════════════════════════════════════ -->
+    <section class="quiz-screen" id="screen-1" aria-labelledby="s1-title" aria-hidden="true">
+      <div class="screen-inner">
+
+        <div class="q-counter">
+          <span class="q-num">01</span>
+          <span class="q-slash">/</span>
+          <span class="q-total">03</span>
+        </div>
+
+        <h2 class="q-title" id="s1-title">
+          Comment vos clients vous trouvent-ils aujourd'hui&nbsp;?
+        </h2>
+
+        <p class="q-hint">Choisissez la réponse qui correspond le mieux à votre situation réelle.</p>
+
+        <div class="choices" role="group" aria-labelledby="s1-title">
+
+          <button class="choice-btn" onclick="answer(1,'A')" data-q="1" data-a="A">
+            <div class="choice-letter">A</div>
+            <div class="choice-content">
+              <p class="choice-text">Principalement le bouche-à-oreille. Google ne nous connaît pas.</p>
+              <p class="choice-sub">Vous existez, mais pas en ligne.</p>
+            </div>
+            <div class="choice-arrow" aria-hidden="true">
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </div>
+          </button>
+
+          <button class="choice-btn" onclick="answer(1,'B')" data-q="1" data-a="B">
+            <div class="choice-letter">B</div>
+            <div class="choice-content">
+              <p class="choice-text">On a un site web, mais il met 12 secondes à charger.</p>
+              <p class="choice-sub">Vos visiteurs partent avant de voir votre offre.</p>
+            </div>
+            <div class="choice-arrow" aria-hidden="true">
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </div>
+          </button>
+
+          <button class="choice-btn" onclick="answer(1,'C')" data-q="1" data-a="C">
+            <div class="choice-letter">C</div>
+            <div class="choice-content">
+              <p class="choice-text">On a un site, mais on dirait qu'il a été fait en 2004.</p>
+              <p class="choice-sub">Un site vieillissant nuit à votre crédibilité.</p>
+            </div>
+            <div class="choice-arrow" aria-hidden="true">
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </div>
+          </button>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         ÉCRAN 2 — QUESTION 2 : ACQUISITION
+    ══════════════════════════════════════════════ -->
+    <section class="quiz-screen" id="screen-2" aria-labelledby="s2-title" aria-hidden="true">
+      <div class="screen-inner">
+
+        <div class="q-counter">
+          <span class="q-num">02</span>
+          <span class="q-slash">/</span>
+          <span class="q-total">03</span>
+        </div>
+
+        <h2 class="q-title" id="s2-title">
+          Votre stratégie pour générer des contacts ressemble à&nbsp;:
+        </h2>
+
+        <p class="q-hint">Soyez honnête — personne ne regarde.</p>
+
+        <div class="choices" role="group" aria-labelledby="s2-title">
+
+          <button class="choice-btn" onclick="answer(2,'A')" data-q="2" data-a="A">
+            <div class="choice-letter">A</div>
+            <div class="choice-content">
+              <p class="choice-text">Une belle brochure PDF qu'on envoie par e-mail en espérant très fort.</p>
+              <p class="choice-sub">L'espoir n'est pas une stratégie commerciale.</p>
+            </div>
+            <div class="choice-arrow" aria-hidden="true">
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </div>
+          </button>
+
+          <button class="choice-btn" onclick="answer(2,'B')" data-q="2" data-a="B">
+            <div class="choice-letter">B</div>
+            <div class="choice-content">
+              <p class="choice-text">Jeter des billets de 100 CHF par la fenêtre sur Google Ads sans mesurer le retour.</p>
+              <p class="choice-sub">Le budget part, mais les appels ne viennent pas.</p>
+            </div>
+            <div class="choice-arrow" aria-hidden="true">
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </div>
+          </button>
+
+          <button class="choice-btn" onclick="answer(2,'C')" data-q="2" data-a="C">
+            <div class="choice-letter">C</div>
+            <div class="choice-content">
+              <p class="choice-text">Des formulaires de contact qui plantent une fois sur deux.</p>
+              <p class="choice-sub">Chaque formulaire cassé est un client perdu.</p>
+            </div>
+            <div class="choice-arrow" aria-hidden="true">
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </div>
+          </button>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         ÉCRAN 3 — QUESTION 3 : nLPD
+    ══════════════════════════════════════════════ -->
+    <section class="quiz-screen" id="screen-3" aria-labelledby="s3-title" aria-hidden="true">
+      <div class="screen-inner">
+
+        <div class="q-counter">
+          <span class="q-num">03</span>
+          <span class="q-slash">/</span>
+          <span class="q-total">03</span>
+        </div>
+
+        <h2 class="q-title" id="s3-title">
+          Si je vous parle de conformité nLPD&nbsp;:
+        </h2>
+
+        <p class="q-hint">La réponse honnête vous fait gagner 250 000 CHF d'amende à éviter.</p>
+
+        <div class="choices" role="group" aria-labelledby="s3-title">
+
+          <button class="choice-btn" onclick="answer(3,'A')" data-q="3" data-a="A">
+            <div class="choice-letter">A</div>
+            <div class="choice-content">
+              <p class="choice-text">C'est un nouveau parti politique cantonal&nbsp;?</p>
+              <p class="choice-sub">Non. C'est la loi fédérale suisse sur la protection des données.</p>
+            </div>
+            <div class="choice-arrow" aria-hidden="true">
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </div>
+          </button>
+
+          <button class="choice-btn" onclick="answer(3,'B')" data-q="3" data-a="B">
+            <div class="choice-letter">B</div>
+            <div class="choice-content">
+              <p class="choice-text">J'ai copié-collé les mentions légales d'un concurrent français.</p>
+              <p class="choice-sub">Le RGPD et la nLPD ne sont pas identiques. Votre site est exposé.</p>
+            </div>
+            <div class="choice-arrow" aria-hidden="true">
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </div>
+          </button>
+
+          <button class="choice-btn" onclick="answer(3,'C')" data-q="3" data-a="C">
+            <div class="choice-letter">C</div>
+            <div class="choice-content">
+              <p class="choice-text">Notre serveur est en Suisse, mais je n'en sais pas plus.</p>
+              <p class="choice-sub">La localisation du serveur n'est qu'un des 11 critères de conformité.</p>
+            </div>
+            <div class="choice-arrow" aria-hidden="true">
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </div>
+          </button>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         ÉCRAN 4 — RÉSULTAT + LEAD MAGNET
+    ══════════════════════════════════════════════ -->
+    <section class="quiz-screen" id="screen-4" aria-labelledby="s4-title" aria-hidden="true">
+      <div class="screen-inner screen-center">
+
+        <!-- Indicateur visuel résultat -->
+        <div class="result-badge" id="result-badge" aria-live="polite">
+          <div class="result-pulse" aria-hidden="true"></div>
+          <span class="result-icon" id="result-icon" aria-hidden="true">S</span>
+        </div>
+
+        <div class="result-agent-name" id="result-agent-name">Synergia</div>
+        <div class="result-agent-role" id="result-agent-role">Coordinatrice &amp; Garante Qualité</div>
+
+        <h2 class="r-title" id="s4-title">
+          Diagnostic terminé.<br/>
+          <span class="text-lime">Votre PME a besoin d'aide.</span>
+        </h2>
+
+        <p class="r-body">
+          Nous avons identifié l'Agent IA et le plan d'action qu'il vous faut pour dominer votre marché. Laissez votre e-mail pour découvrir votre résultat complet.
+        </p>
+
+        <!-- Formulaire lead magnet -->
+        <form
+          class="lead-form"
+          id="lead-form"
+          onsubmit="submitLead(event)"
+          novalidate
+        >
+          <div class="lead-field">
+            <label for="lead-email" class="lead-label">E-mail professionnel</label>
+            <input
+              type="email"
+              id="lead-email"
+              name="email"
+              class="lead-input"
+              placeholder="vous@votrepme.ch"
+              autocomplete="email"
+              required
+              aria-describedby="lead-hint"
+            />
+            <p class="lead-hint" id="lead-hint">
+              Vos données sont traitées selon la nLPD suisse. Aucune revente. Désabonnement en un clic.
+            </p>
+          </div>
+
+          <!-- Champ caché pour le résultat -->
+          <input type="hidden" id="lead-result" name="agent_result" value="" />
+
+          <button type="submit" class="btn-lead" id="btn-lead">
+            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+            Découvrir mon résultat
+          </button>
+        </form>
+
+        <!-- État après soumission -->
+        <div class="lead-success hidden" id="lead-success" role="alert">
+          <div class="success-icon" aria-hidden="true">
+            <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <h3 class="success-title">Résultat envoyé.</h3>
+          <p class="success-body">Mohamed Saber vous contacte sous 2 heures avec votre plan d'action personnalisé.</p>
+          <a href="/#contact" class="btn-success">Parler directement à Mohamed Saber</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── Bouton retour ─────────────────────────────── -->
+    <div class="quiz-back-wrap" id="back-wrap" aria-hidden="true">
+      <button class="btn-back" id="btn-back" onclick="goBack()" aria-label="Revenir à la question précédente">
+        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+        </svg>
+        Question précédente
+      </button>
+    </div>
+
+  </div><!-- /.quiz-shell -->
+
+</Layout>
+
+<!-- ══════════════════════════════════════════════════════
+     LOGIQUE JAVASCRIPT VANILLA
+══════════════════════════════════════════════════════ -->
+<script>
+  // ── État global ──────────────────────────────────────
+  let currentScreen = 0;
+  const answers    = {};
+  const TOTAL      = 4; // 0..4
+
+  // ── Table de résultats ───────────────────────────────
+  // La réponse à Q1 est le signal principal
+  // Q2 + Q3 renforcent le diagnostic
+  const agentMap = {
+    // Q1-A → invisible sur Google → Lumina (contenu/visibilité)
+    A: { name: 'Lumina',   role: 'Analyste & Stratège Contenu',      color: '#B9FF66', initial: 'L',
+         verdict: 'Lumina est votre priorité. Votre problème n\'est pas technique — c\'est votre absence sur les canaux où vos clients cherchent.' },
+    // Q1-B → site lent → Koda (technique)
+    B: { name: 'Koda',     role: 'Développeur & Architecte Technique', color: '#60a5fa', initial: 'K',
+         verdict: 'Koda doit intervenir. Un site lent coûte des clients chaque jour. 1 seconde de délai = 7 % de contacts en moins.' },
+    // Q1-C ou défaut → Synergia (conformité/qualité globale)
+    C: { name: 'Synergia', role: 'Coordinatrice & Garante Qualité',   color: '#f472b6', initial: 'S',
+         verdict: 'Synergia est votre alliée. Votre présence existe mais manque de cohérence, de conformité et d\'une stratégie globale.' },
+  };
+
+  // ── Navigation ───────────────────────────────────────
+  function goTo(n) {
+    // Masque écran courant
+    const prev = document.getElementById('screen-' + currentScreen);
+    prev.classList.remove('active');
+    prev.setAttribute('aria-hidden', 'true');
+
+    // Affiche nouvel écran
+    currentScreen = n;
+    const next = document.getElementById('screen-' + n);
+    next.classList.add('active');
+    next.removeAttribute('aria-hidden');
+
+    // Breadcrumb
+    updateBreadcrumb(n);
+
+    // Bouton retour
+    const backWrap = document.getElementById('back-wrap');
+    if (n > 0) {
+      backWrap.removeAttribute('aria-hidden');
+      backWrap.querySelector('.btn-back').removeAttribute('disabled');
+    } else {
+      backWrap.setAttribute('aria-hidden', 'true');
+    }
+
+    // Scroll haut
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function goBack() {
+    if (currentScreen > 0) goTo(currentScreen - 1);
+  }
+
+  // ── Enregistre réponse & avance ──────────────────────
+  function answer(q, a) {
+    answers[q] = a;
+
+    // Effet visuel sur le bouton cliqué
+    const btns = document.querySelectorAll(`[data-q="${q}"]`);
+    btns.forEach(b => b.classList.remove('selected'));
+    const clicked = document.querySelector(`[data-q="${q}"][data-a="${a}"]`);
+    if (clicked) clicked.classList.add('selected');
+
+    // Légère pause pour l'effet visuel (150ms) puis avance
+    setTimeout(() => {
+      if (q < 3) {
+        goTo(q + 1);
+      } else {
+        // Calcule le résultat et affiche l'écran final
+        computeResult();
+        goTo(4);
+      }
+    }, 150);
+  }
+
+  // ── Calcul du résultat ───────────────────────────────
+  function computeResult() {
+    // Signal principal = Q1
+    const key   = answers[1] || 'C';
+    const agent = agentMap[key];
+
+    // Met à jour le badge
+    const badge    = document.getElementById('result-badge');
+    const iconEl   = document.getElementById('result-icon');
+    const nameEl   = document.getElementById('result-agent-name');
+    const roleEl   = document.getElementById('result-agent-role');
+
+    iconEl.textContent                 = agent.initial;
+    iconEl.style.color                 = agent.color;
+    badge.style.borderColor            = agent.color + '40';
+    badge.style.backgroundColor        = agent.color + '12';
+
+    nameEl.textContent                 = agent.name;
+    nameEl.style.color                 = agent.color;
+    roleEl.textContent                 = agent.role;
+
+    // Stocke dans le champ caché
+    const hiddenField = document.getElementById('lead-result');
+    hiddenField.value = `${agent.name} — ${agent.verdict}`;
+  }
+
+  // ── Soumission formulaire ────────────────────────────
+  function submitLead(e) {
+    e.preventDefault();
+    const emailInput = document.getElementById('lead-email');
+    const email      = emailInput.value.trim();
+
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      emailInput.classList.add('input-error');
+      emailInput.setAttribute('aria-invalid', 'true');
+      emailInput.focus();
+      return;
+    }
+
+    emailInput.classList.remove('input-error');
+    emailInput.removeAttribute('aria-invalid');
+
+    // Simule envoi (remplacer par fetch vers votre endpoint)
+    const btn = document.getElementById('btn-lead');
+    btn.disabled    = true;
+    btn.textContent = 'Envoi en cours…';
+
+    setTimeout(() => {
+      document.getElementById('lead-form').classList.add('hidden');
+      document.getElementById('lead-success').classList.remove('hidden');
+    }, 800);
+  }
+
+  // ── Breadcrumb ───────────────────────────────────────
+  function updateBreadcrumb(n) {
+    const steps   = document.querySelectorAll('.bc-step');
+    const fill    = document.getElementById('bc-fill');
+    const pct     = Math.round((n / (TOTAL)) * 100);
+
+    fill.style.width = pct + '%';
+
+    steps.forEach((s, i) => {
+      s.classList.toggle('active',   i === n);
+      s.classList.toggle('done',     i < n);
+      if (i === n) s.setAttribute('aria-current', 'step');
+      else         s.removeAttribute('aria-current');
+    });
+  }
+</script>
+
+<style>
+  /* ── Shell global ─────────────────────────────────── */
+  .quiz-shell {
+    min-height: calc(100dvh - 4rem);
+    background-color: var(--color-brand-dark);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  /* ── Breadcrumb ──────────────────────────────────── */
+  .quiz-breadcrumb {
+    padding: 1.25rem 1.5rem 0.75rem;
+    max-width: 48rem;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .bc-track {
+    height: 2px;
+    background-color: var(--color-border);
+    border-radius: 9999px;
+    overflow: hidden;
+    margin-bottom: 0.875rem;
+  }
+  .bc-fill {
+    height: 100%;
+    background-color: var(--color-brand-lime);
+    border-radius: 9999px;
+    width: 0%;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .bc-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+  .bc-step {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: #4b5563;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+  .bc-step.active { color: var(--color-brand-lime); font-weight: 800; }
+  .bc-step.done   { color: #6b7280; }
+  .bc-sep {
+    flex: 1;
+    height: 1px;
+    background-color: var(--color-border);
+    margin: 0 0.5rem;
+    min-width: 0.5rem;
+  }
+
+  /* ── Écrans ──────────────────────────────────────── */
+  .quiz-screen {
+    display: none;
+    flex: 1;
+    padding: 2.5rem 1.5rem 5rem;
+    animation: screenIn 0.3s ease both;
+  }
+  .quiz-screen.active { display: flex; justify-content: center; }
+
+  @keyframes screenIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .screen-inner {
+    width: 100%;
+    max-width: 42rem;
+  }
+  .screen-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* ── Écran 0 ─────────────────────────────────────── */
+  .s0-label {
+    font-size: 0.6875rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-brand-lime);
+    margin-bottom: 1.5rem;
+  }
+  .s0-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.25rem;
+  }
+  .text-lime { color: var(--color-brand-lime); }
+  .s0-body {
+    font-size: 1.0625rem;
+    color: #9ca3af;
+    line-height: 1.7;
+    max-width: 34rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Agents preview */
+  .agents-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+  }
+  .agent-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.35rem 0.875rem;
+    border-radius: 9999px;
+    border: 1px solid;
+  }
+  .chip-dot {
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+  .agent-lumina  { color: #B9FF66; border-color: rgba(185,255,102,0.25); background: rgba(185,255,102,0.06); }
+  .agent-lumina  .chip-dot { background-color: #B9FF66; }
+  .agent-koda    { color: #60a5fa; border-color: rgba(96,165,250,0.25);  background: rgba(96,165,250,0.06); }
+  .agent-koda    .chip-dot { background-color: #60a5fa; }
+  .agent-synergia { color: #f472b6; border-color: rgba(244,114,182,0.25); background: rgba(244,114,182,0.06); }
+  .agent-synergia .chip-dot { background-color: #f472b6; }
+
+  /* Bouton démarrer */
+  .btn-start {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    background-color: var(--color-brand-lime);
+    color: var(--color-brand-dark);
+    font-weight: 800;
+    font-size: 1.0625rem;
+    padding: 1rem 2rem;
+    border-radius: 0.875rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    box-shadow: var(--shadow-lime);
+    margin-bottom: 1rem;
+  }
+  .btn-start:hover {
+    background-color: var(--color-brand-lime-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lime-strong);
+  }
+  .s0-legal {
+    font-size: 0.75rem;
+    color: #4b5563;
+  }
+
+  /* ── Questions ───────────────────────────────────── */
+  .q-counter {
+    display: flex;
+    align-items: baseline;
+    gap: 0.125rem;
+    margin-bottom: 1.5rem;
+  }
+  .q-num {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--color-brand-lime);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    opacity: 0.7;
+  }
+  .q-slash { font-size: 1.5rem; color: #374151; margin: 0 0.125rem; }
+  .q-total { font-size: 1.25rem; font-weight: 700; color: #374151; }
+
+  .q-title {
+    font-size: clamp(1.375rem, 3vw, 1.875rem);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+  }
+  .q-hint {
+    font-size: 0.875rem;
+    color: #4b5563;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+
+  /* Choix */
+  .choices {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .choice-btn {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2.5rem 1fr 1.5rem;
+    align-items: center;
+    gap: 1rem;
+    background-color: var(--color-brand-dark-2);
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    padding: 1.125rem 1.25rem 1.125rem 1rem;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.15s, background-color 0.15s, transform 0.15s;
+    position: relative;
+    overflow: hidden;
+  }
+  .choice-btn:hover {
+    border-color: var(--color-border-lime);
+    background-color: rgba(185,255,102,0.04);
+    transform: translateX(3px);
+  }
+  .choice-btn:focus-visible {
+    outline: 2px solid var(--color-brand-lime);
+    outline-offset: 2px;
+  }
+  .choice-btn.selected {
+    border-color: var(--color-brand-lime);
+    background-color: rgba(185,255,102,0.08);
+  }
+
+  .choice-letter {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.5rem;
+    background-color: var(--color-border);
+    color: #9ca3af;
+    font-size: 0.875rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background-color 0.15s, color 0.15s;
+  }
+  .choice-btn:hover .choice-letter,
+  .choice-btn.selected .choice-letter {
+    background-color: var(--color-brand-lime);
+    color: var(--color-brand-dark);
+  }
+
+  .choice-text {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #e5e7eb;
+    line-height: 1.4;
+    margin-bottom: 0.25rem;
+  }
+  .choice-sub {
+    font-size: 0.75rem;
+    color: #6b7280;
+    line-height: 1.4;
+  }
+
+  .choice-arrow {
+    color: #4b5563;
+    transition: color 0.15s, transform 0.15s;
+  }
+  .choice-btn:hover .choice-arrow { color: var(--color-brand-lime); transform: translateX(2px); }
+
+  /* ── Écran résultat ──────────────────────────────── */
+  .result-badge {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    border: 2px solid rgba(185,255,102,0.2);
+    background-color: rgba(185,255,102,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    position: relative;
+  }
+  .result-pulse {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 1px solid rgba(185,255,102,0.15);
+    animation: pulse-ring 2s ease-out infinite;
+  }
+  @keyframes pulse-ring {
+    0%   { transform: scale(0.95); opacity: 0.6; }
+    70%  { transform: scale(1.08); opacity: 0; }
+    100% { opacity: 0; }
+  }
+  .result-icon {
+    font-size: 1.75rem;
+    font-weight: 900;
+    color: var(--color-brand-lime);
+  }
+  .result-agent-name {
+    font-size: 1.125rem;
+    font-weight: 900;
+    color: var(--color-brand-lime);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.25rem;
+  }
+  .result-agent-role {
+    font-size: 0.8rem;
+    color: #6b7280;
+    margin-bottom: 1.75rem;
+  }
+
+  .r-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+  .r-body {
+    font-size: 1rem;
+    color: #9ca3af;
+    line-height: 1.7;
+    max-width: 34rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Lead form */
+  .lead-form {
+    width: 100%;
+    max-width: 28rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .lead-field { display: flex; flex-direction: column; gap: 0.375rem; text-align: left; }
+  .lead-label { font-size: 0.75rem; font-weight: 700; color: #9ca3af; letter-spacing: 0.06em; text-transform: uppercase; }
+  .lead-input {
+    width: 100%;
+    background-color: var(--color-brand-dark-2);
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    padding: 0.875rem 1.125rem;
+    color: #fff;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .lead-input::placeholder { color: #4b5563; }
+  .lead-input:focus { border-color: var(--color-brand-lime); }
+  .lead-input.input-error { border-color: #dc2626; }
+  .lead-hint { font-size: 0.6875rem; color: #4b5563; line-height: 1.5; }
+
+  .btn-lead {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    background-color: var(--color-brand-lime);
+    color: var(--color-brand-dark);
+    font-weight: 800;
+    font-size: 1rem;
+    padding: 0.9375rem 1.5rem;
+    border-radius: 0.875rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+    box-shadow: var(--shadow-lime);
+  }
+  .btn-lead:hover:not(:disabled) {
+    background-color: var(--color-brand-lime-hover);
+    transform: translateY(-1px);
+  }
+  .btn-lead:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* Succès */
+  .lead-success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    max-width: 28rem;
+    width: 100%;
+  }
+  .success-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background-color: rgba(185,255,102,0.12);
+    border: 1px solid rgba(185,255,102,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-brand-lime);
+  }
+  .success-title { font-size: 1.25rem; font-weight: 800; color: #fff; }
+  .success-body  { font-size: 0.9rem; color: #9ca3af; line-height: 1.6; }
+  .btn-success {
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-brand-lime);
+    text-decoration: none;
+    border: 1px solid var(--color-border-lime);
+    padding: 0.625rem 1.25rem;
+    border-radius: 0.75rem;
+    transition: background-color 0.2s;
+  }
+  .btn-success:hover { background-color: rgba(185,255,102,0.08); }
+
+  /* ── Bouton retour ───────────────────────────────── */
+  .quiz-back-wrap {
+    position: sticky;
+    bottom: 0;
+    background: linear-gradient(to top, var(--color-brand-dark) 60%, transparent);
+    padding: 1rem 1.5rem 1.5rem;
+    display: flex;
+    justify-content: center;
+  }
+  .btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #4b5563;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    transition: color 0.2s, background-color 0.2s;
+  }
+  .btn-back:hover { color: #9ca3af; background-color: var(--color-border); }
+
+  /* ── Utilitaires ─────────────────────────────────── */
+  .hidden { display: none !important; }
+</style>
