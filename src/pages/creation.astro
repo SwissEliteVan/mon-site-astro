@@ -1,0 +1,383 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactForm from '../components/ContactForm.astro';
+---
+
+<Layout
+  title="Création de Sites Web Suisse | CLICOM — Lausanne, Vevey, Montreux"
+  description="CLICOM développe des sites ultra-rapides pour les PME de Suisse romande. Chargement en moins d'une seconde, conformes nLPD, livrés en 21 jours."
+>
+
+  <!-- ── HERO ───────────────────────────────────────── -->
+  <section class="page-hero">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <a href="/tarifs" class="hero-badge">Forfaits à partir de 3 000 CHF</a>
+      <h1 class="hero-title">Des sites web ultra-performants<br/>qui convertissent.</h1>
+      <p class="hero-text">Nous développons des plateformes sur-mesure pour les PME suisses. Temps de chargement instantanés, design rassurant et architecture technique taillée pour dominer Google.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-lime">
+          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          Devis gratuit — Réponse sous 24h
+        </a>
+        <a href="/tarifs" class="btn-outline">Voir les forfaits →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CHIFFRES CLÉS ──────────────────────────────── -->
+  <section class="stats-band">
+    <div class="stat-wrap">
+      <span class="stat-n">&lt; 1 s</span>
+      <span class="stat-l">Chargement moyen<br/>de nos sites</span>
+    </div>
+    <div class="stat-div" aria-hidden="true"></div>
+    <div class="stat-wrap">
+      <span class="stat-n">21 j</span>
+      <span class="stat-l">Délai moyen<br/>de livraison</span>
+    </div>
+    <div class="stat-div" aria-hidden="true"></div>
+    <div class="stat-wrap">
+      <span class="stat-n">100 %</span>
+      <span class="stat-l">Conformes nLPD<br/>dès la livraison</span>
+    </div>
+    <div class="stat-div" aria-hidden="true"></div>
+    <div class="stat-wrap">
+      <span class="stat-n">3–8k</span>
+      <span class="stat-l">CHF — fourchette<br/>de prix en Suisse</span>
+    </div>
+  </section>
+
+  <!-- ── CE QUE NOUS LIVRONS ────────────────────────── -->
+  <section class="content-section">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label">Ce que comprend chaque site</span>
+        <h2 class="section-title">Construit à la main.<br/>Optimisé pour les résultats.</h2>
+      </div>
+
+      <div class="features-grid">
+        {[
+          { title: "Design sur-mesure", text: "Chaque site est conçu pour votre activité et votre clientèle locale. Aucun template copié-collé." },
+          { title: "Textes de vente inclus", text: "Nos rédacteurs écrivent tous vos textes. Vous n'avez pas à produire une seule ligne de contenu." },
+          { title: "Ultra-rapide (Astro)", text: "Architecture statique moderne — zéro WordPress, zéro plugin fragile. Score Lighthouse 100/100." },
+          { title: "Mobile parfait", text: "73 % de vos clients visitent via téléphone. Chaque écran est testé avant livraison." },
+          { title: "Formulaire conforme nLPD", text: "Vos données et celles de vos clients sont protégées selon la loi fédérale suisse dès le jour 1." },
+          { title: "Formation incluse", text: "1 heure de formation pour que vous puissiez mettre à jour vos textes et images en autonomie." },
+        ].map(f => (
+          <div class="feature-card">
+            <div class="feature-dot" aria-hidden="true"></div>
+            <div>
+              <h3 class="feature-title">{f.title}</h3>
+              <p class="feature-text">{f.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CE QUE NOUS REFUSONS ──────────────────────── -->
+  <section class="alert-section">
+    <div class="section-inner">
+      <div class="alert-box">
+        <h2 class="alert-title">Pourquoi pas WordPress ?</h2>
+        <p class="alert-text">WordPress représente 43 % des sites du monde — et 96 % des sites hackés. Chaque plugin ajouté est une faille potentielle. Nos sites n'ont aucune base de données exposée, aucun panneau d'administration accessible depuis Internet. Le résultat : un site que personne ne peut pirater, parce qu'il n'y a rien à pirater.</p>
+        <p class="alert-stat">En moyenne, un site WordPress charge en <strong>3,2 secondes</strong>. Nos sites chargent en <strong>moins de 0,8 secondes</strong>. Cette différence coûte ou rapporte des clients chaque jour.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROCESSUS ──────────────────────────────────── -->
+  <section class="content-section">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label">Notre méthode</span>
+        <h2 class="section-title">De la première réunion<br/>à la mise en ligne.</h2>
+      </div>
+      <div class="process-grid">
+        {[
+          { n: "01", title: "Bilan en 1h", text: "Audit de votre situation, définition des objectifs et validation du budget." },
+          { n: "02", title: "Maquette J+5", text: "Première version visuelle soumise à votre validation avant tout développement." },
+          { n: "03", title: "Rédaction J+10", text: "Tous les textes de vente écrits par notre équipe — zéro contenu générique." },
+          { n: "04", title: "Livraison J+21", text: "Mise en ligne, formation d'1h et remise de tous vos accès." },
+        ].map(s => (
+          <div class="process-step">
+            <span class="step-num">{s.n}</span>
+            <h3 class="step-title">{s.title}</h3>
+            <p class="step-text">{s.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FORMULAIRE CONTACT ─────────────────────────── -->
+  <ContactForm
+    title="Votre site en 21 jours. Demandez votre devis gratuit."
+    subtitle="Décrivez votre activité — Mohamed Saber vous répond sous 24h avec une proposition chiffrée."
+  />
+
+</Layout>
+
+<style>
+  /* ── Hero ──────────────────────────────────────────── */
+  .page-hero {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-brand-dark);
+    padding: 7rem 1.5rem 5rem;
+    text-align: center;
+  }
+  .hero-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(185,255,102,0.09) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 52rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .hero-badge {
+    display: inline-block;
+    background-color: var(--color-brand-lime-muted);
+    border: 1px solid var(--color-border-lime);
+    color: var(--color-brand-lime);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.35rem 1rem;
+    border-radius: var(--radius-full);
+    text-decoration: none;
+  }
+  .hero-title {
+    font-size: var(--text-hero);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+  }
+  .hero-text {
+    font-size: 1.125rem;
+    color: #9ca3af;
+    line-height: 1.7;
+    max-width: 40rem;
+  }
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+  .btn-lime {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--color-brand-lime);
+    color: var(--color-brand-dark);
+    font-weight: 800;
+    font-size: 1rem;
+    padding: 0.875rem 1.75rem;
+    border-radius: var(--radius-xl);
+    text-decoration: none;
+    transition: var(--transition-base);
+    box-shadow: var(--shadow-lime);
+  }
+  .btn-lime:hover {
+    background-color: var(--color-brand-lime-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lime-strong);
+  }
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    color: #9ca3af;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    padding: 0.875rem 1.5rem;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border);
+    text-decoration: none;
+    transition: var(--transition-base);
+  }
+  .btn-outline:hover {
+    color: #fff;
+    border-color: var(--color-border-strong);
+  }
+
+  /* ── Stats ─────────────────────────────────────────── */
+  .stats-band {
+    background-color: var(--color-brand-lime);
+    padding: 1.75rem 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+  .stat-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem 3rem;
+    text-align: center;
+  }
+  .stat-n {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--color-brand-dark);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .stat-l {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(25,26,35,0.6);
+    line-height: 1.4;
+  }
+  .stat-div {
+    width: 1px;
+    height: 2.5rem;
+    background-color: rgba(25,26,35,0.15);
+  }
+  @media (max-width: 640px) {
+    .stat-div { display: none; }
+    .stat-wrap { padding: 0.75rem 1.5rem; }
+  }
+
+  /* ── Sections ──────────────────────────────────────── */
+  .content-section {
+    padding: 5rem 1.5rem;
+    background-color: var(--color-brand-dark);
+  }
+  .content-section:nth-child(even) {
+    background-color: var(--color-brand-dark-2);
+  }
+  .section-inner {
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+  .section-header {
+    margin-bottom: 3rem;
+  }
+  .section-title {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.2;
+    margin-top: 0.5rem;
+  }
+
+  /* ── Features ──────────────────────────────────────── */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    gap: 1.25rem;
+  }
+  .feature-card {
+    display: flex;
+    gap: 1rem;
+    background-color: var(--color-brand-dark-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    padding: 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .feature-card:hover { border-color: var(--color-border-lime); }
+  .feature-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: var(--color-brand-lime);
+    flex-shrink: 0;
+    margin-top: 0.35rem;
+  }
+  .feature-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.375rem;
+  }
+  .feature-text {
+    font-size: 0.875rem;
+    color: #6b7280;
+    line-height: 1.6;
+  }
+
+  /* ── Alert ─────────────────────────────────────────── */
+  .alert-section {
+    padding: 5rem 1.5rem;
+    background-color: var(--color-brand-dark-2);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .alert-box {
+    max-width: 52rem;
+    margin: 0 auto;
+    border-left: 3px solid var(--color-brand-lime);
+    padding-left: 2rem;
+  }
+  .alert-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  .alert-text {
+    font-size: 1rem;
+    color: #9ca3af;
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+  .alert-stat {
+    font-size: 0.9375rem;
+    color: #6b7280;
+    line-height: 1.7;
+  }
+  .alert-stat strong { color: var(--color-brand-lime); }
+
+  /* ── Process ───────────────────────────────────────── */
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: 1.5rem;
+  }
+  .process-step {
+    background-color: var(--color-brand-dark-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    padding: 1.75rem;
+    transition: border-color 0.2s;
+  }
+  .process-step:hover { border-color: var(--color-border-lime); }
+  .step-num {
+    display: block;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--color-brand-lime);
+    line-height: 1;
+    margin-bottom: 1rem;
+    opacity: 0.7;
+  }
+  .step-title {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+  .step-text {
+    font-size: 0.875rem;
+    color: #6b7280;
+    line-height: 1.6;
+  }
+</style>

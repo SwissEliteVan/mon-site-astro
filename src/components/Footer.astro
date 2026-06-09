@@ -1,18 +1,214 @@
 ---
 ---
-<footer class="bg-[#191A23] text-gray-400 py-12 border-t border-[#B9FF66]/20">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-    <div class="text-white font-bold text-xl flex items-center gap-2">
-      CLICOM
+<footer class="site-footer">
+  <div class="footer-inner">
+
+    <!-- Logo + tagline -->
+    <div class="footer-brand">
+      <a href="/" class="footer-logo" aria-label="CLICOM — Accueil">
+        <span class="footer-logo-mark">
+          <svg width="16" height="16" fill="none" stroke="#191A23" viewBox="0 0 24 24" stroke-width="3">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+        </span>
+        CLICOM
+      </a>
+      <p class="footer-tagline">L'Humain orchestre, l'IA exécute.</p>
     </div>
-    <div class="flex flex-wrap justify-center gap-6">
-      <a href="/mentions-legales" class="hover:text-[#B9FF66] transition-colors text-sm focus:outline-none focus:ring-2 focus:ring-[#B9FF66] rounded-sm">Mentions légales & nLPD</a>
-      <a href="/politique-confidentialite" class="hover:text-[#B9FF66] transition-colors text-sm focus:outline-none focus:ring-2 focus:ring-[#B9FF66] rounded-sm">Politique de confidentialité</a>
-      <a href="/#blog" class="hover:text-[#B9FF66] transition-colors text-sm focus:outline-none focus:ring-2 focus:ring-[#B9FF66] rounded-sm">Blog</a>
-      <a href="/#contact" class="hover:text-[#B9FF66] transition-colors text-sm focus:outline-none focus:ring-2 focus:ring-[#B9FF66] rounded-sm">Contact</a>
+
+    <!-- Navigation -->
+    <nav class="footer-nav" aria-label="Liens du bas de page">
+
+      <div class="footer-col">
+        <p class="footer-col-title">Services</p>
+        <a href="/creation"   class="footer-link">Création de sites</a>
+        <a href="/visibilite" class="footer-link">Visibilité locale</a>
+        <a href="/tarifs"     class="footer-link">Tarifs</a>
+        <a href="/equipe"     class="footer-link">L'Équipe</a>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-col-title">Ressources</p>
+        <a href="/blog"       class="footer-link">Blog</a>
+        <a href="/#contact"   class="footer-link">Contact</a>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-col-title">Légal</p>
+        <a href="/mentions-legales"          class="footer-link">Mentions légales</a>
+        <a href="/politique-confidentialite" class="footer-link">Confidentialité (nLPD)</a>
+      </div>
+
+    </nav>
+
+    <!-- Contact direct -->
+    <div class="footer-contact">
+      <a href="tel:+41788238950" class="footer-contact-link">+41 78 823 89 50</a>
+      <a href="mailto:contact@clicom.ch" class="footer-contact-link">contact@clicom.ch</a>
+      <span class="footer-location">Corseaux, Vaud · Suisse</span>
     </div>
+
   </div>
-  <div class="mt-8 pt-8 border-t border-gray-800 text-center text-sm">
-    &copy; {new Date().getFullYear()} Clicom. L'Humain orchestre, l'IA exécute.
+
+  <!-- Copyright -->
+  <div class="footer-bottom">
+    <span>&copy; {new Date().getFullYear()} CLICOM · Agence Marketing Digital · Suisse Romande</span>
+    <span class="footer-sep" aria-hidden="true">·</span>
+    <a href="/mentions-legales" class="footer-bottom-link">Mentions légales</a>
+    <span class="footer-sep" aria-hidden="true">·</span>
+    <a href="/politique-confidentialite" class="footer-bottom-link">nLPD</a>
   </div>
 </footer>
+
+<style>
+  .site-footer {
+    background-color: var(--color-brand-dark);
+    border-top: 1px solid var(--color-border-lime);
+  }
+
+  .footer-inner {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem 2.5rem;
+    display: grid;
+    grid-template-columns: 1.5fr 2fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  @media (max-width: 900px) {
+    .footer-inner {
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .footer-brand { grid-column: 1 / -1; }
+  }
+
+  @media (max-width: 540px) {
+    .footer-inner { grid-template-columns: 1fr; }
+  }
+
+  /* Brand */
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .footer-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 900;
+    font-size: 1.125rem;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+
+  .footer-logo:hover { color: var(--color-brand-lime); }
+
+  .footer-logo-mark {
+    width: 1.75rem;
+    height: 1.75rem;
+    background-color: var(--color-brand-lime);
+    border-radius: 0.375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .footer-tagline {
+    font-size: 0.8125rem;
+    color: #4b5563;
+    font-style: italic;
+    line-height: 1.5;
+    max-width: 16rem;
+  }
+
+  /* Navigation colonnes */
+  .footer-nav {
+    display: contents;
+  }
+
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .footer-col-title {
+    font-size: 0.6875rem;
+    font-weight: 800;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--color-brand-lime);
+    margin-bottom: 0.25rem;
+  }
+
+  .footer-link {
+    font-size: 0.875rem;
+    color: #6b7280;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .footer-link:hover {
+    color: #fff;
+  }
+
+  .footer-link:focus-visible {
+    outline: 2px solid var(--color-brand-lime);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Contact */
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-contact-link {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #9ca3af;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .footer-contact-link:hover { color: #fff; }
+
+  .footer-location {
+    font-size: 0.8rem;
+    color: #4b5563;
+    margin-top: 0.25rem;
+  }
+
+  /* Bas de page */
+  .footer-bottom {
+    border-top: 1px solid var(--color-border);
+    padding: 1.25rem 1.5rem;
+    max-width: 80rem;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: #4b5563;
+  }
+
+  .footer-sep { color: #374151; }
+
+  .footer-bottom-link {
+    color: #4b5563;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .footer-bottom-link:hover { color: var(--color-brand-lime); }
+</style>
