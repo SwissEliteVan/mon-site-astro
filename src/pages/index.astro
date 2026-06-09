@@ -2,19 +2,16 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="CLICOM | Agence de Marketing Digital Hybride en Suisse" description="L'Humain orchestre, l'IA exécute. Propulsez votre PME suisse avec la vitesse de nos agents intelligents et la sécurité de notre expert local.">
+<Layout title="CLICOM | Agence de Marketing Digital en Suisse" description="L'Humain orchestre, l'IA exécute. Propulsez votre PME suisse avec la vitesse de nos agents intelligents et la sécurité de notre expert local.">
   
-  <!-- HERO SECTION (PAGE 1) -->
+  <!-- PROMPT 01: LA PAGE D'ACCUEIL -->
   <section class="relative min-h-[90vh] flex items-center justify-center pt-20 pb-16 overflow-hidden">
     <div class="absolute inset-0 z-0">
       <img src="/assets/medias/agence-marketing-digital-pme-suisse.avif" alt="Bureau d'agence marketing digital en Suisse" width="1920" height="1080" decoding="async" class="w-full h-full object-cover opacity-20" />
       <div class="absolute inset-0 bg-gradient-to-b from-[#191A23]/80 via-[#191A23]/95 to-[#191A23]"></div>
     </div>
 
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <span class="inline-block py-1 px-3 rounded-full bg-[#B9FF66]/10 text-[#B9FF66] text-sm font-semibold tracking-wider uppercase mb-6 border border-[#B9FF66]/20">
-        Le pragmatisme avant tout
-      </span>
+    <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h1 class="text-[clamp(2.5rem,5vw,4.5rem)] font-extrabold text-white leading-tight mb-8">
         Avoir un site internet ne sert à rien...<br class="hidden lg:block" />
         <span class="text-[#B9FF66]">si personne ne le visite.</span>
@@ -22,119 +19,183 @@ import Layout from '../layouts/Layout.astro';
       <p class="text-[clamp(1.125rem,2vw,1.25rem)] text-gray-400 max-w-3xl mx-auto mb-10 leading-relaxed">
         Aujourd'hui en Suisse romande, 95 % des petites entreprises possèdent un site web. Pourtant, moins de 15 % d'entre elles investissent le moindre centime pour y amener du monde. Résultat ? Votre site est comme un magnifique prospectus oublié au fond d'un tiroir que personne ne lit. C'est une perte de temps et un gaspillage d'argent total.
       </p>
-      <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-        <a href="#contact" class="w-full sm:w-auto bg-[#B9FF66] text-[#191A23] font-bold px-8 py-4 rounded-xl min-h-[48px] hover:bg-[#a3e655] transition-all focus:ring-2 focus:ring-[#B9FF66] focus:ring-offset-2 focus:ring-offset-[#191A23] shadow-lg shadow-[#B9FF66]/10 text-lg flex items-center justify-center">
-          Découvrir comment le récupérer
-        </a>
-        <a href="#services" class="w-full sm:w-auto bg-transparent text-white border border-white/20 font-bold px-8 py-4 rounded-xl min-h-[48px] hover:bg-white/5 transition-all text-lg flex items-center justify-center">
-          Voir nos solutions
+      
+      <div class="bg-[#1f202b] border border-[#B9FF66]/20 p-8 md:p-12 rounded-3xl mb-12 max-w-4xl mx-auto text-left shadow-2xl">
+        <h3 class="text-2xl font-bold text-white mb-4">Le piège des petits budgets dispersés</h3>
+        <p class="text-gray-300 mb-6 text-lg">Beaucoup d'indépendants essaient de tout faire eux-mêmes. Ils mettent 200 CHF sur un réseau social par-ci, 300 CHF sur une publicité par-là, en espérant attirer de nouveaux clients.</p>
+        <p class="text-[#B9FF66] font-bold text-lg border-l-4 border-[#B9FF66] pl-6">C'est une erreur coûteuse. La règle sur le marché suisse est mathématique : en dessous de 1 000 CHF investis par mois au total, votre entreprise reste invisible au milieu de la concurrence. L'argent dépensé est purement et simplement gaspillé.</p>
+      </div>
+
+      <h2 class="text-3xl font-bold text-white mb-6">Notre promesse : faire sonner votre téléphone</h2>
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-10">Chez Clicom, nous ne faisons pas d'art. Nous ne vendons pas de sites "vitrines" destinés à prendre la poussière sur internet. Nous concentrons votre budget pour atteindre un seul et unique objectif : attirer de vrais clients.</p>
+
+      <div class="flex justify-center">
+        <a href="#contact" class="bg-[#B9FF66] text-[#191A23] font-bold px-10 py-5 rounded-xl hover:bg-[#a3e655] transition-all text-xl shadow-lg shadow-[#B9FF66]/10">
+          Découvrir comment récupérer votre argent
         </a>
       </div>
     </div>
   </section>
 
-  <!-- BANDEAU LOGOS -->
-  <section class="py-10 border-y border-white/5 bg-[#191A23]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <p class="text-center text-sm font-semibold text-gray-500 uppercase tracking-widest mb-6">Le piège des petits budgets dispersés</p>
-      <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 grayscale">
-        <div class="text-xl font-bold text-white">Partenaire 1</div>
-        <div class="text-xl font-bold text-white">Partenaire 2</div>
-        <div class="text-xl font-bold text-white">Partenaire 3</div>
-        <div class="text-xl font-bold text-white">Partenaire 4</div>
-        <div class="text-xl font-bold text-white">Partenaire 5</div>
+  <!-- PROMPT 02: CRÉATION DE SITES -->
+  <section id="creation" class="py-24 bg-[#1f202b] border-t border-white/5">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row gap-12 items-center">
+        <div class="md:w-1/2">
+          <img src="/assets/medias/creation-site-web-performant-suisse.avif" alt="Création de sites" class="rounded-3xl shadow-2xl" />
+        </div>
+        <div class="md:w-1/2">
+          <h2 class="text-4xl font-bold text-white mb-6">Un site lent vous fait perdre des clients</h2>
+          <p class="text-gray-300 text-lg mb-6">Avoir un beau site internet, c'est bien. Mais s'il est lourd et lent à charger, il fait fuir les gens. <span class="text-[#B9FF66] font-bold bg-[#B9FF66]/10 px-2 py-1 rounded">40 % des visiteurs quittent immédiatement</span> une page si elle met plus de 3 secondes à s'afficher.</p>
+          
+          <h3 class="text-2xl font-bold text-white mb-4 mt-8">Les vrais prix en Suisse romande</h3>
+          <p class="text-gray-400 mb-6">Un vrai site professionnel coûte entre 3 000 et 8 000 CHF. Les sites au rabais sont lourds, fabriqués à la chaîne et invisibles sur Google.</p>
+
+          <h3 class="text-2xl font-bold text-white mb-4 mt-8">Rapide et écologique</h3>
+          <p class="text-gray-400 mb-8">Le web génère 4 % des émissions de CO2. Un site allégé consomme moins d'énergie et s'affiche instantanément. C'est le bon sens.</p>
+
+          <a href="#contact" class="text-[#B9FF66] font-bold hover:underline text-lg">Contactez-nous pour un devis clair et net &rarr;</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- LE PROBLÈME -->
-  <section class="py-16 bg-[#191A23]">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-lg text-gray-300">
-      <p class="mb-6">Beaucoup d'indépendants essaient de tout faire eux-mêmes. Ils mettent 200 CHF sur un réseau social par-ci, 300 CHF sur une publicité par-là, en espérant attirer de nouveaux clients.</p>
-      <p class="font-bold text-white text-xl p-6 border border-[#B9FF66]/20 bg-[#1f202b] rounded-2xl">C'est une erreur coûteuse. La règle sur le marché suisse est mathématique : en dessous de 1 000 CHF investis par mois au total, votre entreprise reste invisible au milieu de la concurrence. L'argent dépensé est purement et simplement gaspillé.</p>
+  <!-- PROMPT 03: VISIBILITÉ LOCALE -->
+  <section id="visibilite" class="py-24 bg-[#191A23] border-t border-white/5">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row-reverse gap-12 items-center">
+        <div class="md:w-1/2 relative h-[400px]">
+          <div class="absolute inset-0 bg-[#B9FF66]/10 rounded-3xl transform rotate-3"></div>
+          <img src="/assets/medias/digitalisation-commerce-local-carte-nfc.avif" alt="Google Maps" class="rounded-3xl shadow-2xl absolute inset-0 w-full h-full object-cover" />
+        </div>
+        <div class="md:w-1/2">
+          <h2 class="text-4xl font-bold text-white mb-6">Si on ne vous trouve pas, on va chez le concurrent</h2>
+          <p class="text-gray-300 text-lg mb-6"><span class="text-[#B9FF66] font-bold bg-[#B9FF66]/10 px-2 py-1 rounded">73 % des Suisses consultent Google Maps</span> avant de se rendre dans un commerce. Ne pas y être, c'est offrir vos clients à vos concurrents.</p>
+          
+          <h3 class="text-2xl font-bold text-white mb-4 mt-8">La réalité du prix et du temps</h3>
+          <p class="text-gray-400 mb-6">Un vrai travail durable coûte entre 1 000 et 3 500 CHF par mois. Et soyons honnêtes : il faut 6 à 12 mois pour obtenir des appels réguliers. Mais une fois la machine lancée, c'est ultra-rentable.</p>
+
+          <a href="#contact" class="text-[#B9FF66] font-bold hover:underline text-lg">Évaluons votre marché local sans engagement &rarr;</a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- SERVICES (BENTO GRID) -->
-  <section id="services" class="py-24 bg-[#191A23]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- PROMPT 04: PUBLICITÉ EN LIGNE -->
+  <section id="publicite" class="py-24 bg-[#1f202b] border-t border-white/5 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-[#B9FF66]/5 rounded-full blur-3xl"></div>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <h2 class="text-4xl font-bold text-white mb-8">Publicité en ligne : La visibilité immédiate a un prix</h2>
+      <p class="text-xl text-gray-300 mb-12">Contrairement à la visibilité locale, la publicité payante fait sonner le téléphone dès le 1er jour. Mais il faut en connaître les règles.</p>
+      
+      <div class="grid md:grid-cols-2 gap-8 mb-12">
+        <div class="bg-[#191A23] p-8 rounded-3xl border border-white/5 text-left">
+          <h3 class="text-2xl font-bold text-white mb-4">Le prix d'un visiteur</h3>
+          <p class="text-gray-400 text-lg">En Suisse romande, amener un visiteur qualifié sur votre site coûte en moyenne <strong class="text-[#B9FF66] text-xl">3,29 CHF</strong>. Ce prix varie selon le métier : 1,38 CHF pour un avocat, jusqu'à 24 CHF pour un serrurier en urgence.</p>
+        </div>
+        <div class="bg-[#191A23] p-8 rounded-3xl border border-white/5 text-left">
+          <h3 class="text-2xl font-bold text-white mb-4">Le budget minimum</h3>
+          <p class="text-gray-400 text-lg">Moins de <strong class="text-[#B9FF66] text-xl">1 200 à 2 000 CHF par mois</strong>, c'est jeter l'argent par les fenêtres. En dessous, le système informatique n'a pas assez de données pour apprendre et trouver les bons clients.</p>
+        </div>
+      </div>
+
+      <a href="#contact" class="inline-block bg-[#B9FF66] text-[#191A23] font-bold px-8 py-4 rounded-xl hover:bg-[#a3e655] transition-colors text-lg">
+        Calculons ensemble votre budget exact
+      </a>
+    </div>
+  </section>
+
+  <!-- PROMPT 05: FIDÉLISATION -->
+  <section id="fidelisation" class="py-24 bg-[#191A23] border-t border-white/5">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row gap-12 items-center">
+        <div class="md:w-1/2">
+          <div class="w-full aspect-square bg-[#1f202b] rounded-3xl flex flex-col justify-center items-center border border-[#B9FF66]/20 p-8 text-center relative overflow-hidden shadow-2xl">
+            <div class="absolute inset-0 bg-gradient-to-tr from-[#191A23] to-[#B9FF66]/10 opacity-50"></div>
+            <svg class="w-24 h-24 text-[#B9FF66] mb-6 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path></svg>
+            <h3 class="text-3xl font-bold text-white mb-4 relative z-10">La Plaquette Magique</h3>
+            <p class="text-gray-300 text-lg relative z-10">Sans contact, sans application à télécharger.</p>
+          </div>
+        </div>
+        <div class="md:w-1/2">
+          <h2 class="text-4xl font-bold text-white mb-6">Fidéliser coûte beaucoup moins cher</h2>
+          <p class="text-gray-300 text-lg mb-6">La règle d'or du commerce : <span class="text-[#B9FF66] font-bold">un nouveau client coûte 5 à 7 fois plus cher</span> que de faire revenir un habitué.</p>
+          
+          <h3 class="text-2xl font-bold text-white mb-4 mt-8">Notre plaquette en bois sur votre comptoir</h3>
+          <p class="text-gray-400 mb-6 text-lg">Le client approche son téléphone de la plaquette posée sur votre comptoir. Sa carte de fidélité s'ouvre instantanément sur son écran. Aucune application lourde à télécharger.</p>
+
+          <h3 class="text-2xl font-bold text-white mb-4 mt-8">La puissance absolue du SMS</h3>
+          <p class="text-gray-400 mb-8 text-lg">Pour prévenir vos clients d'une offre, l'email est mort (22 % de lecture). Le SMS est lu à <strong class="text-white">98 %</strong> dans les 3 minutes.</p>
+
+          <a href="#contact" class="text-[#B9FF66] font-bold hover:underline text-lg">Demandez une démonstration gratuite dans votre commerce &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMPT 07: AUTOMATISATION -->
+  <section id="automatisation" class="py-24 bg-[#1f202b] border-t border-white/5">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-4xl font-bold text-white mb-6">Le temps de votre entreprise, c'est de l'argent</h2>
+        <p class="text-xl text-gray-300">Les patrons perdent trop de temps sur les tâches administratives répétitives au lieu de se concentrer sur leur vrai métier.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="bg-[#191A23] p-10 rounded-3xl border border-[#B9FF66]/30 shadow-2xl relative">
+          <div class="absolute -top-6 -right-6 w-24 h-24 bg-[#B9FF66] rounded-full flex items-center justify-center text-[#191A23] font-black text-3xl shadow-lg transform rotate-12">
+            30h
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-6">Le gain financier de la machine</h3>
+          <p class="text-gray-400 text-lg mb-6">Laisser les logiciels intelligents faire le travail à votre place fait gagner en moyenne <strong class="text-white">30 heures de travail par mois</strong>.</p>
+          <p class="text-2xl text-[#B9FF66] font-bold border-t border-white/10 pt-6">Soit 15 000 CHF d'économie directe par an.</p>
+        </div>
+
+        <div>
+          <h3 class="text-3xl font-bold text-white mb-6">Plus de revenus, sans effort</h3>
+          <p class="text-gray-400 text-lg mb-8">Envoyer le bon message, totalement personnalisé, exactement au bon moment (anniversaire, rappel, offre spéciale) génère <strong class="text-[#B9FF66] text-xl">40 % de revenus supplémentaires</strong>.</p>
+          <a href="#contact" class="inline-block bg-white text-[#191A23] font-bold px-8 py-4 rounded-xl hover:bg-gray-200 transition-colors text-lg">
+            Identifions en 30 min les 3 tâches à automatiser
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMPT 08: EXPERTISE GEN Z -->
+  <section id="jeunes" class="py-24 bg-[#191A23] border-t border-white/5">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <h2 class="text-[clamp(2rem,3vw,3rem)] font-bold text-white mb-4">Notre promesse : faire sonner votre téléphone.</h2>
-        <p class="text-xl text-gray-400 max-w-2xl mx-auto">Chez Clicom, nous ne faisons pas d'art. Nous ne vendons pas de sites "vitrines" destinés à prendre la poussière sur internet. Nous concentrons votre budget pour atteindre un seul et unique objectif.</p>
+        <span class="text-[#B9FF66] font-bold tracking-wider uppercase text-sm mb-4 block">Article d'expertise</span>
+        <h2 class="text-4xl font-bold text-white mb-6">Vendre aux moins de 30 ans en Suisse romande</h2>
+        <p class="text-xl text-gray-300">Les jeunes clients ne consomment plus du tout comme leurs parents.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[minmax(300px,auto)]">
-        
-        <!-- Création Web (Row 1, Cols 2) -->
-        <article class="col-span-1 lg:col-span-2 bg-[#1f202b] rounded-3xl overflow-hidden border border-white/10 hover:border-[#B9FF66]/30 transition-all group relative flex flex-col md:flex-row">
-          <div class="p-8 md:p-12 flex-1 flex flex-col justify-center z-10">
-            <h3 class="text-2xl font-bold text-white mb-4">Sites Rapides & Performants</h3>
-            <p class="text-gray-400 mb-6 leading-relaxed">Un site magnifique mais lent fait fuir les gens. 40 % des visiteurs quittent immédiatement une page si elle met plus de 3 secondes à s'afficher.</p>
-            <a href="/creation-sites-web" class="text-[#B9FF66] font-semibold hover:underline mt-auto">Voir les tarifs suisses &rarr;</a>
-          </div>
-          <div class="w-full md:w-1/2 relative h-64 md:h-auto">
-            <img src="/assets/medias/creation-site-web-performant-suisse.avif" alt="Création de site web performant" width="600" height="400" loading="lazy" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" />
-            <div class="absolute inset-0 bg-gradient-to-t from-[#1f202b] via-[#1f202b]/50 md:bg-gradient-to-l to-transparent"></div>
-          </div>
-        </article>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-[#1f202b] p-8 rounded-3xl border border-t-4 border-t-[#B9FF66] border-x-white/5 border-b-white/5">
+          <h3 class="text-2xl font-bold text-white mb-4">Le prix est absolu</h3>
+          <p class="text-gray-400 text-lg">C'est le critère numéro 1 pour <strong class="text-white">66 % d'entre eux</strong>. La marque ne compte que pour 14 %. S'il est caché, ils fuient.</p>
+        </div>
 
-        <!-- Commerce Local (Row 1, Col 1) -->
-        <article class="bg-[#1f202b] rounded-3xl overflow-hidden border border-white/10 hover:border-[#B9FF66]/30 transition-all group relative flex flex-col">
-          <div class="h-40 relative">
-            <img src="/assets/medias/digitalisation-commerce-local-carte-nfc.avif" alt="Digitalisation du commerce local NFC" width="400" height="300" loading="lazy" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" />
-            <div class="absolute inset-0 bg-gradient-to-t from-[#1f202b] to-transparent"></div>
-          </div>
-          <div class="p-8 flex-1 flex flex-col">
-            <h3 class="text-2xl font-bold text-white mb-4">Visibilité sur Google Maps</h3>
-            <p class="text-gray-400 mb-6 text-sm">Si on ne vous trouve pas, on va chez votre concurrent. 73% des Suisses consultent Google Maps.</p>
-            <a href="/digitalisation-locale" class="text-[#B9FF66] font-semibold hover:underline mt-auto">Dominer votre ville &rarr;</a>
-          </div>
-        </article>
+        <div class="bg-[#1f202b] p-8 rounded-3xl border border-t-4 border-t-gray-500 border-x-white/5 border-b-white/5">
+          <h3 class="text-2xl font-bold text-white mb-4">L'avis des autres</h3>
+          <p class="text-gray-400 text-lg"><strong class="text-white">85 %</strong> changent d'avis à la dernière minute, directement en magasin, à cause de l'opinion d'un proche.</p>
+        </div>
 
-        <!-- Fidélisation Locale (Row 2, Col 1) -->
-        <article class="bg-[#1f202b] rounded-3xl overflow-hidden border border-white/10 hover:border-[#B9FF66]/30 transition-all group relative flex flex-col">
-          <div class="p-8 flex-1 flex flex-col">
-            <div class="w-12 h-12 bg-[#B9FF66]/10 text-[#B9FF66] rounded-xl flex items-center justify-center mb-6">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path></svg>
-            </div>
-            <h3 class="text-2xl font-bold text-white mb-4">Fidélisation sans contact</h3>
-            <p class="text-gray-400 mb-6 text-sm">Trouver un nouveau client coûte 5 fois plus cher. Découvrez notre plaquette en bois magique.</p>
-            <a href="/fidelisation" class="text-[#B9FF66] font-semibold hover:underline mt-auto">Faire revenir vos clients &rarr;</a>
-          </div>
-        </article>
+        <div class="bg-[#1f202b] p-8 rounded-3xl border border-t-4 border-t-gray-500 border-x-white/5 border-b-white/5">
+          <h3 class="text-2xl font-bold text-white mb-4">Zéro friction</h3>
+          <p class="text-gray-400 text-lg">L'attente, les files et la moindre complication technique sont leurs ennemis jurés.</p>
+        </div>
+      </div>
 
-        <!-- Automatisation (Row 2, Cols 2) -->
-        <article class="col-span-1 lg:col-span-2 bg-[#1f202b] rounded-3xl overflow-hidden border border-white/10 hover:border-[#B9FF66]/30 transition-all group relative flex flex-col md:flex-row">
-          <div class="p-8 md:p-12 flex-1 flex flex-col justify-center z-10">
-            <h3 class="text-2xl font-bold text-white mb-4">Gain de temps & Automatisation</h3>
-            <p class="text-gray-400 mb-6 leading-relaxed">Les logiciels intelligents font le travail à votre place. Gagnez 30 heures de travail par mois et économisez 15 000 CHF par an.</p>
-            <a href="/automatisation" class="text-[#B9FF66] font-semibold hover:underline mt-auto">Arrêter de perdre du temps &rarr;</a>
-          </div>
-          <div class="w-full md:w-1/2 relative h-64 md:h-auto">
-            <div class="absolute inset-0 bg-[#B9FF66]/5 flex items-center justify-center group-hover:bg-[#B9FF66]/10 transition-colors duration-700">
-              <svg class="w-32 h-32 text-[#B9FF66]/30 group-hover:scale-110 transition-transform duration-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-            </div>
-            <div class="absolute inset-0 bg-gradient-to-t from-[#1f202b] via-[#1f202b]/50 md:bg-gradient-to-l to-transparent"></div>
-          </div>
-        </article>
-
-        <!-- Acquisition IA (Row 3, Cols 3) -->
-        <article class="col-span-1 lg:col-span-3 bg-[#1f202b] rounded-3xl overflow-hidden border border-white/10 hover:border-[#B9FF66]/30 transition-all group relative">
-          <img src="/assets/medias/acquisition-seo-google-ads-ia.avif" alt="Acquisition SEO et Google Ads par IA" width="1200" height="400" loading="lazy" class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:scale-105 transition-transform duration-700" />
-          <div class="absolute inset-0 bg-[#191A23]/80 group-hover:bg-[#191A23]/60 transition-colors"></div>
-          <div class="relative z-10 p-8 md:p-16 text-center max-w-3xl mx-auto">
-            <h3 class="text-3xl font-bold text-white mb-4">Vous rendre visible sur Google là où vos clients vous cherchent.</h3>
-            <p class="text-xl text-gray-300 mb-8">Amener de vrais clients à franchir la porte de votre commerce ou à vous demander des devis dès le premier jour.</p>
-            <a href="/acquisition" class="inline-block bg-white text-[#191A23] font-bold px-8 py-3 rounded-xl hover:bg-gray-200 transition-colors">Faire sonner le téléphone &rarr;</a>
-          </div>
-        </article>
-
+      <div class="text-center mt-12">
+        <a href="#contact" class="text-[#B9FF66] font-bold hover:underline text-xl">Audit rapide pour adapter votre commerce à cette génération &rarr;</a>
       </div>
     </div>
   </section>
 
-  <!-- L'ÉQUIPE (PAGE 5) -->
-  <section id="equipe" class="py-24 bg-[#1f202b]">
+  <!-- L'ÉQUIPE -->
+  <section id="equipe" class="py-24 bg-[#1f202b] border-t border-white/5">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
         <h2 class="text-[clamp(2rem,3vw,3rem)] font-bold text-white mb-4">L'Humain augmenté par la technologie.</h2>
@@ -173,42 +234,53 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <!-- CALL TO ACTION FINAL (PROMPT 09) -->
-  <section id="contact" class="py-24 bg-[#191A23] relative overflow-hidden border-t border-[#B9FF66]/10">
+  <!-- PROMPT 06: SÉCURITÉ nLPD -->
+  <section id="nlpd" class="py-24 bg-gradient-to-br from-red-900/30 to-[#191A23] border-t border-y border-red-500/20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-block bg-red-500/20 text-red-400 px-4 py-2 rounded-full font-bold mb-6 border border-red-500/30">Loi Fédérale Suisse</div>
+      <h2 class="text-4xl font-bold text-white mb-8">Le risque pénal pour le dirigeant</h2>
+      <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">Un site non sécurisé expose directement le patron (à titre personnel) à des amendes pénales pouvant aller jusqu'à <strong class="text-red-400 text-2xl bg-red-900/40 px-2 py-1 rounded">250 000 CHF</strong>.</p>
+      <p class="text-lg text-gray-400 mb-10 max-w-2xl mx-auto">L'agence Clicom prend ce fardeau sur ses épaules et sécurise tout votre système aux normes suisses pour votre tranquillité d'esprit absolue.</p>
+      <a href="#contact" class="inline-block bg-white text-red-900 font-bold px-10 py-5 rounded-xl hover:bg-gray-200 transition-colors text-lg shadow-lg">
+        Vérifiez si votre site respecte la loi avant qu'il ne soit trop tard
+      </a>
+    </div>
+  </section>
+
+  <!-- PROMPT 09: CONTACT FINAL -->
+  <section id="contact" class="py-32 bg-[#191A23] relative overflow-hidden">
     <div class="absolute inset-0 z-0">
-      <img src="/assets/medias/audit-gratuit-visibilite-digitale.avif" alt="Audit gratuit visibilité digitale" width="1920" height="1080" loading="lazy" class="w-full h-full object-cover opacity-10" />
-      <div class="absolute inset-0 bg-gradient-to-t from-[#191A23] via-[#191A23]/80 to-transparent"></div>
+      <img src="/assets/medias/audit-gratuit-visibilite-digitale.avif" alt="Contact Clicom" width="1920" height="1080" class="w-full h-full object-cover opacity-10" />
+      <div class="absolute inset-0 bg-gradient-to-t from-[#1f202b] via-[#191A23]/90 to-transparent"></div>
     </div>
     
     <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-[clamp(2.5rem,4vw,3.5rem)] font-bold text-white mb-6">
+      <h2 class="text-[clamp(2.5rem,4vw,3.5rem)] font-bold text-white mb-8 leading-tight">
         L'argent est déjà sur la table. En 1 heure, découvrez exactement combien vous perdez et comment le récupérer.
       </h2>
-      <p class="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
-        Ne laissez plus vos concurrents prendre votre place. Remplissez simplement le formulaire ci-dessous avec vos coordonnées pour fixer cet entretien décisif. Ensemble, nous ferons le point sur votre situation réelle et nous mettrons en place un plan d'action concret pour faire sonner votre téléphone.
-      </p>
+      <p class="text-xl text-gray-300 mb-12">Remplissez simplement le formulaire ci-dessous pour fixer cet entretien décisif.</p>
       
-      <div class="bg-[#1f202b] p-8 rounded-2xl border border-white/10 shadow-2xl">
-        <form class="space-y-6 text-left">
+      <div class="bg-[#1f202b] p-8 md:p-12 rounded-3xl border border-white/10 shadow-2xl text-left">
+        <form class="space-y-6">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label for="name" class="block text-sm font-medium text-gray-400 mb-2">Nom & Prénom</label>
-              <input type="text" id="name" name="name" class="w-full bg-[#191A23] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#B9FF66] focus:ring-1 focus:ring-[#B9FF66] transition-colors" required>
+              <input type="text" id="name" name="name" class="w-full bg-[#191A23] border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-[#B9FF66] focus:ring-1 focus:ring-[#B9FF66]" required>
             </div>
             <div>
               <label for="email" class="block text-sm font-medium text-gray-400 mb-2">Email professionnel</label>
-              <input type="email" id="email" name="email" class="w-full bg-[#191A23] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#B9FF66] focus:ring-1 focus:ring-[#B9FF66] transition-colors" required>
+              <input type="email" id="email" name="email" class="w-full bg-[#191A23] border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-[#B9FF66] focus:ring-1 focus:ring-[#B9FF66]" required>
             </div>
           </div>
           <div>
-            <label for="website" class="block text-sm font-medium text-gray-400 mb-2">URL de votre site actuel</label>
-            <input type="url" id="website" name="website" class="w-full bg-[#191A23] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#B9FF66] focus:ring-1 focus:ring-[#B9FF66] transition-colors">
+            <label for="website" class="block text-sm font-medium text-gray-400 mb-2">URL de votre site</label>
+            <input type="url" id="website" name="website" class="w-full bg-[#191A23] border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-[#B9FF66] focus:ring-1 focus:ring-[#B9FF66]">
           </div>
-          <button type="submit" class="w-full bg-[#B9FF66] text-[#191A23] font-bold px-8 py-4 rounded-xl hover:bg-[#a3e655] transition-all min-h-[48px] focus:outline-none focus:ring-2 focus:ring-[#B9FF66] focus:ring-offset-2 focus:ring-offset-[#191A23] text-lg">
+          <button type="submit" class="w-full bg-[#B9FF66] text-[#191A23] font-bold px-8 py-5 rounded-xl hover:bg-[#a3e655] transition-all text-xl mt-4 shadow-lg shadow-[#B9FF66]/20">
             Envoyer
           </button>
-          <p class="text-xs text-center text-gray-500 mt-4">
-            Vos données sont protégées et traitées dans le strict respect de la <a href="/conformite-nlpd" class="text-[#B9FF66] hover:underline">nouvelle loi fédérale (nLPD)</a>.
+          <p class="text-sm text-center text-gray-500 mt-6 font-medium">
+            Vos données sont protégées et traitées dans le strict respect de la nouvelle loi fédérale (nLPD).
           </p>
         </form>
       </div>
