@@ -1,0 +1,316 @@
+---
+import Layout from '../layouts/Layout.astro';
+const lastUpdate = new Date().toLocaleDateString('fr-CH', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<Layout
+  title="Politique de confidentialité (nLPD) | CLICOM"
+  description="Politique de confidentialité de CLICOM, conforme à la nouvelle Loi fédérale suisse sur la protection des données (nLPD — RS 235.1). Vos droits, nos engagements.">
+
+  <section class="pt-32 pb-24 bg-[#191A23] min-h-screen">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <a href="/" class="inline-flex items-center text-gray-400 hover:text-[#B9FF66] transition-colors mb-12">
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+        </svg>
+        Retour à l'accueil
+      </a>
+
+      <!-- En-tête -->
+      <div class="mb-16">
+        <div class="inline-flex items-center gap-2 bg-[#B9FF66]/10 border border-[#B9FF66]/20 text-[#B9FF66] text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          Conforme nLPD — RS 235.1
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Politique de confidentialité</h1>
+        <p class="text-gray-400 text-lg leading-relaxed max-w-2xl">
+          Chez CLICOM, la protection de vos informations personnelles est une priorité absolue. Ce document vous explique, sans jargon, ce que nous faisons avec vos données et quels sont vos droits.
+        </p>
+        <p class="text-gray-600 text-sm mt-4">Dernière mise à jour : {lastUpdate}</p>
+      </div>
+
+      <!-- Résumé visuel -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+        <div class="bg-[#1f202b] p-4 rounded-2xl border border-white/5 text-center">
+          <div class="text-2xl mb-2">🚫</div>
+          <p class="text-white text-xs font-bold">Zéro revente</p>
+          <p class="text-gray-600 text-xs mt-1">de vos données</p>
+        </div>
+        <div class="bg-[#1f202b] p-4 rounded-2xl border border-white/5 text-center">
+          <div class="text-2xl mb-2">🇨🇭</div>
+          <p class="text-white text-xs font-bold">Droit suisse</p>
+          <p class="text-gray-600 text-xs mt-1">nLPD applicable</p>
+        </div>
+        <div class="bg-[#1f202b] p-4 rounded-2xl border border-white/5 text-center">
+          <div class="text-2xl mb-2">🔒</div>
+          <p class="text-white text-xs font-bold">HTTPS</p>
+          <p class="text-gray-600 text-xs mt-1">Chiffrement total</p>
+        </div>
+        <div class="bg-[#1f202b] p-4 rounded-2xl border border-white/5 text-center">
+          <div class="text-2xl mb-2">⏱</div>
+          <p class="text-white text-xs font-bold">30 jours</p>
+          <p class="text-gray-600 text-xs mt-1">pour vous répondre</p>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+
+        <!-- 1. Responsable du traitement -->
+        <div class="bg-[#1f202b] rounded-3xl border border-white/10 overflow-hidden">
+          <div class="px-8 py-5 border-b border-white/5">
+            <h2 class="text-lg font-bold text-white flex items-center gap-3">
+              <span class="w-7 h-7 bg-[#B9FF66]/10 text-[#B9FF66] rounded-lg flex items-center justify-center text-sm font-black flex-shrink-0">1</span>
+              Responsable du traitement des données
+            </h2>
+          </div>
+          <div class="px-8 py-6 text-gray-400 text-sm leading-relaxed space-y-3">
+            <p>Le responsable du traitement des données personnelles collectées via ce site est :</p>
+            <div class="bg-[#191A23] rounded-2xl p-5 border border-white/5 text-sm space-y-1">
+              <p><span class="text-gray-500">Entreprise :</span> <strong class="text-white">CLICOM</strong></p>
+              <p><span class="text-gray-500">Responsable :</span> <strong class="text-white">Mohamed Saber</strong></p>
+              <p><span class="text-gray-500">Adresse :</span> <strong class="text-white">Corseaux, Canton de Vaud, Suisse</strong></p>
+              <p><span class="text-gray-500">Email :</span> <a href="mailto:contact@clicom.ch" class="text-[#B9FF66] hover:underline font-bold">contact@clicom.ch</a></p>
+            </div>
+            <p>Conformément à l'art. 5 lit. j nLPD, le responsable du traitement est la personne qui, seule ou conjointement avec d'autres, détermine les finalités et les moyens du traitement des données personnelles.</p>
+          </div>
+        </div>
+
+        <!-- 2. Données collectées -->
+        <div class="bg-[#1f202b] rounded-3xl border border-white/10 overflow-hidden">
+          <div class="px-8 py-5 border-b border-white/5">
+            <h2 class="text-lg font-bold text-white flex items-center gap-3">
+              <span class="w-7 h-7 bg-[#B9FF66]/10 text-[#B9FF66] rounded-lg flex items-center justify-center text-sm font-black flex-shrink-0">2</span>
+              Quelles données collectons-nous ?
+            </h2>
+          </div>
+          <div class="px-8 py-6 space-y-6">
+
+            <div>
+              <h3 class="text-white font-bold mb-3 text-sm uppercase tracking-wider">A. Via le formulaire de contact</h3>
+              <div class="space-y-2">
+                {[
+                  { data: 'Nom et prénom', purpose: 'Vous identifier et personnaliser notre réponse', basis: 'Consentement (art. 6 nLPD)' },
+                  { data: 'Adresse email', purpose: 'Vous recontacter suite à votre demande', basis: 'Consentement (art. 6 nLPD)' },
+                  { data: 'URL de votre site', purpose: 'Préparer un audit de votre visibilité en ligne', basis: 'Intérêt légitime (art. 31 nLPD)' },
+                ].map(item => (
+                  <div class="bg-[#191A23] rounded-xl p-4 border border-white/5 text-xs">
+                    <div class="flex justify-between items-start gap-4">
+                      <div>
+                        <p class="text-white font-bold mb-1">{item.data}</p>
+                        <p class="text-gray-500">{item.purpose}</p>
+                      </div>
+                      <span class="bg-[#B9FF66]/10 text-[#B9FF66] px-2 py-1 rounded-lg text-xs font-medium flex-shrink-0 border border-[#B9FF66]/10">{item.basis}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 class="text-white font-bold mb-3 text-sm uppercase tracking-wider">B. Données de navigation (anonymes)</h3>
+              <div class="bg-[#191A23] rounded-xl p-5 border border-white/5 text-sm text-gray-400 space-y-2">
+                <p>Lors de votre visite, notre serveur enregistre automatiquement des données techniques <strong class="text-white">totalement anonymes et non personnelles</strong> :</p>
+                <ul class="space-y-1 text-xs mt-3">
+                  <li class="flex items-center gap-2"><span class="text-[#B9FF66]">→</span> Type de navigateur et système d'exploitation</li>
+                  <li class="flex items-center gap-2"><span class="text-[#B9FF66]">→</span> Pages visitées et durée de la visite</li>
+                  <li class="flex items-center gap-2"><span class="text-[#B9FF66]">→</span> Pays d'origine (non l'adresse IP précise)</li>
+                </ul>
+                <p class="text-xs text-gray-600 mt-3 border-t border-white/5 pt-3">Ces données servent uniquement à améliorer le site. Elles ne permettent pas de vous identifier personnellement.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 3. Ce que nous ne faisons PAS -->
+        <div class="bg-[#1f202b] rounded-3xl border border-red-500/10 overflow-hidden">
+          <div class="px-8 py-5 border-b border-red-500/10 bg-red-500/5">
+            <h2 class="text-lg font-bold text-white flex items-center gap-3">
+              <span class="w-7 h-7 bg-red-500/10 text-red-400 rounded-lg flex items-center justify-center text-sm font-black flex-shrink-0">3</span>
+              Ce que nous ne faisons <span class="text-red-400">jamais</span> avec vos données
+            </h2>
+          </div>
+          <div class="px-8 py-6">
+            <div class="space-y-3">
+              {[
+                'Vendre, louer ou échanger vos données personnelles avec des tiers',
+                'Utiliser vos données à des fins publicitaires pour d\'autres entreprises',
+                'Transférer vos données hors de Suisse sans garanties équivalentes',
+                'Conserver vos données au-delà de la durée nécessaire',
+                'Prendre des décisions automatisées à votre égard sans intervention humaine',
+              ].map(item => (
+                <div class="flex items-start gap-3 bg-[#191A23] p-4 rounded-xl border border-white/5">
+                  <svg class="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
+                  <p class="text-gray-400 text-sm">{item}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Durée de conservation -->
+        <div class="bg-[#1f202b] rounded-3xl border border-white/10 overflow-hidden">
+          <div class="px-8 py-5 border-b border-white/5">
+            <h2 class="text-lg font-bold text-white flex items-center gap-3">
+              <span class="w-7 h-7 bg-[#B9FF66]/10 text-[#B9FF66] rounded-lg flex items-center justify-center text-sm font-black flex-shrink-0">4</span>
+              Combien de temps gardons-nous vos données ?
+            </h2>
+          </div>
+          <div class="px-8 py-6">
+            <div class="space-y-3">
+              {[
+                { type: 'Données de contact (formulaire)', duration: '12 mois maximum', detail: 'Supprimées après traitement de votre demande, au plus tard 12 mois après votre dernier contact.' },
+                { type: 'Données de navigation anonymes', duration: '13 mois', detail: 'Standard suisse pour les statistiques de site, conformément aux recommandations du PFPDT.' },
+                { type: 'Correspondance email', duration: '3 ans', detail: 'Durée légale minimale pour les communications professionnelles (art. 958f CO).' },
+              ].map(item => (
+                <div class="bg-[#191A23] p-5 rounded-xl border border-white/5">
+                  <div class="flex justify-between items-start gap-4 mb-2">
+                    <p class="text-white font-bold text-sm">{item.type}</p>
+                    <span class="bg-[#B9FF66] text-[#191A23] text-xs font-black px-3 py-1 rounded-full flex-shrink-0">{item.duration}</span>
+                  </div>
+                  <p class="text-gray-500 text-xs">{item.detail}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Sécurité -->
+        <div class="bg-[#1f202b] rounded-3xl border border-white/10 overflow-hidden">
+          <div class="px-8 py-5 border-b border-white/5">
+            <h2 class="text-lg font-bold text-white flex items-center gap-3">
+              <span class="w-7 h-7 bg-[#B9FF66]/10 text-[#B9FF66] rounded-lg flex items-center justify-center text-sm font-black flex-shrink-0">5</span>
+              Comment sécurisons-nous vos données ?
+            </h2>
+          </div>
+          <div class="px-8 py-6">
+            <div class="grid md:grid-cols-2 gap-4">
+              {[
+                { icon: '🔐', title: 'HTTPS / TLS', desc: 'Toutes les communications entre votre navigateur et notre serveur sont chiffrées.' },
+                { icon: '🏗', title: 'Architecture statique', desc: 'Ce site est généré statiquement (Astro SSG). Aucune base de données exposée.' },
+                { icon: '🚫', title: 'Zéro cookie traceur', desc: 'Aucun pixel publicitaire, aucun Google Analytics, aucun tracker tiers.' },
+                { icon: '👤', title: 'Accès restreint', desc: 'Seul le responsable de l\'agence a accès à vos données personnelles.' },
+              ].map(item => (
+                <div class="bg-[#191A23] p-5 rounded-xl border border-white/5">
+                  <div class="text-2xl mb-3">{item.icon}</div>
+                  <h3 class="text-white font-bold text-sm mb-1">{item.title}</h3>
+                  <p class="text-gray-500 text-xs leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Vos droits nLPD -->
+        <div class="bg-[#1f202b] rounded-3xl border border-[#B9FF66]/20 overflow-hidden">
+          <div class="px-8 py-5 border-b border-[#B9FF66]/10 bg-[#B9FF66]/5">
+            <h2 class="text-lg font-bold text-white flex items-center gap-3">
+              <span class="w-7 h-7 bg-[#B9FF66]/20 text-[#B9FF66] rounded-lg flex items-center justify-center text-sm font-black flex-shrink-0">6</span>
+              Vos droits garantis par la nLPD
+            </h2>
+          </div>
+          <div class="px-8 py-6">
+            <div class="space-y-3">
+              {[
+                { right: 'Droit d\'accès', article: 'Art. 25 nLPD', desc: 'Demander à tout moment la liste complète des données que nous détenons sur vous.' },
+                { right: 'Droit de rectification', article: 'Art. 32 nLPD', desc: 'Exiger la correction de toute donnée inexacte ou incomplète vous concernant.' },
+                { right: 'Droit à l\'oubli', article: 'Art. 32 nLPD', desc: 'Exiger la suppression définitive et totale de toutes vos données personnelles.' },
+                { right: 'Droit à la limitation', article: 'Art. 32 nLPD', desc: 'Demander de restreindre temporairement le traitement de vos données.' },
+                { right: 'Droit à la portabilité', article: 'Art. 28 nLPD', desc: 'Recevoir vos données dans un format structuré et lisible par machine.' },
+                { right: 'Droit d\'opposition', article: 'Art. 30 nLPD', desc: 'Vous opposer au traitement de vos données fondé sur un intérêt légitime.' },
+              ].map(item => (
+                <div class="bg-[#191A23] p-4 rounded-xl border border-white/5 flex items-start gap-4">
+                  <svg class="w-5 h-5 text-[#B9FF66] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <div class="flex-1">
+                    <div class="flex items-center justify-between gap-2 mb-1">
+                      <p class="text-white font-bold text-sm">{item.right}</p>
+                      <span class="text-gray-600 text-xs">{item.article}</span>
+                    </div>
+                    <p class="text-gray-500 text-xs">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div class="mt-6 p-4 bg-[#B9FF66]/5 rounded-xl border border-[#B9FF66]/10 text-sm text-gray-400">
+              <strong class="text-white">Comment exercer vos droits :</strong> Envoyez votre demande par email à <a href="mailto:contact@clicom.ch" class="text-[#B9FF66] hover:underline font-bold">contact@clicom.ch</a> en précisant votre nom et la nature de votre demande. Nous vous répondrons dans un délai de <strong class="text-white">30 jours calendaires</strong>, conformément à l'art. 25 al. 6 nLPD.
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Sous-traitants -->
+        <div class="bg-[#1f202b] rounded-3xl border border-white/10 overflow-hidden">
+          <div class="px-8 py-5 border-b border-white/5">
+            <h2 class="text-lg font-bold text-white flex items-center gap-3">
+              <span class="w-7 h-7 bg-[#B9FF66]/10 text-[#B9FF66] rounded-lg flex items-center justify-center text-sm font-black flex-shrink-0">7</span>
+              Sous-traitants et transferts de données
+            </h2>
+          </div>
+          <div class="px-8 py-6 text-gray-400 text-sm leading-relaxed space-y-4">
+            <p>Pour assurer le fonctionnement de ce site, nous faisons appel à des prestataires techniques qui peuvent traiter vos données en notre nom :</p>
+            <div class="space-y-2">
+              {[
+                { name: 'Hébergement / CDN', provider: 'Vercel Inc. (USA) — certifié EU-US Data Privacy Framework', adequacy: 'Décision d\'adéquation PFPDT' },
+                { name: 'Envoi de formulaires', provider: 'Web3Forms ou équivalent — traitement en Europe', adequacy: 'Clauses contractuelles types' },
+              ].map(item => (
+                <div class="bg-[#191A23] p-4 rounded-xl border border-white/5">
+                  <p class="text-white font-bold text-sm mb-1">{item.name}</p>
+                  <p class="text-gray-500 text-xs mb-1">{item.provider}</p>
+                  <span class="text-xs bg-blue-500/10 text-blue-400 border border-blue-500/10 px-2 py-0.5 rounded-full">{item.adequacy}</span>
+                </div>
+              ))}
+            </div>
+            <p class="text-xs text-gray-600">Tous nos sous-traitants sont tenus contractuellement de respecter des normes de sécurité équivalentes à la nLPD suisse (art. 9 nLPD).</p>
+          </div>
+        </div>
+
+        <!-- 8. Réclamation -->
+        <div class="bg-[#1f202b] rounded-3xl border border-white/10 overflow-hidden">
+          <div class="px-8 py-5 border-b border-white/5">
+            <h2 class="text-lg font-bold text-white flex items-center gap-3">
+              <span class="w-7 h-7 bg-[#B9FF66]/10 text-[#B9FF66] rounded-lg flex items-center justify-center text-sm font-black flex-shrink-0">8</span>
+              Réclamation auprès de l'autorité de surveillance
+            </h2>
+          </div>
+          <div class="px-8 py-6 text-gray-400 text-sm leading-relaxed space-y-3">
+            <p>Si vous estimez que le traitement de vos données personnelles n'est pas conforme à la nLPD, vous avez le droit de déposer une plainte auprès de l'autorité de surveillance compétente en Suisse :</p>
+            <div class="bg-[#191A23] p-5 rounded-xl border border-white/5">
+              <p class="text-white font-bold mb-1">Préposé fédéral à la protection des données et à la transparence (PFPDT)</p>
+              <p class="text-gray-500 text-xs">Feldeggweg 1, 3003 Berne, Suisse</p>
+              <a href="https://www.edoeb.admin.ch" target="_blank" rel="noopener noreferrer" class="text-[#B9FF66] text-xs hover:underline mt-1 inline-block">www.edoeb.admin.ch →</a>
+            </div>
+            <p class="text-xs text-gray-600">Nous vous encourageons toutefois à nous contacter directement en premier lieu. La plupart des problèmes peuvent être résolus rapidement et à l'amiable.</p>
+          </div>
+        </div>
+
+        <!-- 9. Modifications -->
+        <div class="bg-[#1f202b] rounded-3xl border border-white/10 overflow-hidden">
+          <div class="px-8 py-5 border-b border-white/5">
+            <h2 class="text-lg font-bold text-white flex items-center gap-3">
+              <span class="w-7 h-7 bg-[#B9FF66]/10 text-[#B9FF66] rounded-lg flex items-center justify-center text-sm font-black flex-shrink-0">9</span>
+              Modifications de cette politique
+            </h2>
+          </div>
+          <div class="px-8 py-6 text-gray-400 text-sm leading-relaxed">
+            <p>CLICOM se réserve le droit de modifier cette politique de confidentialité à tout moment pour la maintenir conforme aux évolutions légales ou à nos pratiques. La date de mise à jour figurant en haut de ce document fait foi. Nous vous invitons à la consulter régulièrement.</p>
+          </div>
+        </div>
+
+        <!-- CTA Contact -->
+        <div class="bg-gradient-to-br from-[#B9FF66]/10 to-[#1f202b] rounded-3xl border border-[#B9FF66]/20 p-10 text-center">
+          <div class="text-4xl mb-4">🔒</div>
+          <h2 class="text-2xl font-bold text-white mb-4">Une question sur la protection de vos données ?</h2>
+          <p class="text-gray-400 mb-8 max-w-lg mx-auto text-sm leading-relaxed">
+            Nous nous engageons à vous répondre personnellement et dans un délai de 30 jours calendaires, conformément à la loi fédérale suisse.
+          </p>
+          <a href="mailto:contact@clicom.ch" class="inline-block bg-[#B9FF66] text-[#191A23] font-bold px-10 py-4 rounded-xl hover:bg-[#a3e655] transition-colors text-lg mb-4">
+            contact@clicom.ch
+          </a>
+          <p class="text-gray-600 text-xs">Ou consultez nos <a href="/mentions-legales" class="text-[#B9FF66] hover:underline">Mentions légales complètes →</a></p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</Layout>

@@ -1,81 +1,208 @@
 ---
 import Layout from '../layouts/Layout.astro';
+const year = new Date().getFullYear();
 ---
 
-<Layout title="Mentions légales et Confidentialité (nLPD) | CLICOM" description="Mentions légales et politique de protection des données de l'agence Clicom, conformément à la nouvelle loi fédérale suisse (nLPD).">
+<Layout
+  title="Mentions légales et politique de confidentialité | CLICOM"
+  description="Mentions légales, politique de confidentialité et conformité à la loi fédérale suisse sur la protection des données (nLPD) de l'agence CLICOM.">
 
   <section class="pt-32 pb-24 bg-[#191A23] min-h-screen">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
 
       <a href="/" class="inline-flex items-center text-gray-400 hover:text-[#B9FF66] transition-colors mb-12">
-        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+        </svg>
         Retour à l'accueil
       </a>
 
-      <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Mentions légales et protection de vos données (nLPD)</h1>
-      <p class="text-[#B9FF66] font-semibold mb-16">Dernière mise à jour : {new Date().toLocaleDateString('fr-CH', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+      <!-- En-tête -->
+      <div class="mb-16">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Mentions légales & Confidentialité</h1>
+        <p class="text-gray-500 text-sm">Conformes à la Loi fédérale sur la protection des données (nLPD) — En vigueur depuis le 1er septembre 2023.</p>
+        <p class="text-gray-600 text-sm mt-1">Dernière mise à jour : {new Date().toLocaleDateString('fr-CH', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+      </div>
 
-      <div class="space-y-16 prose prose-invert prose-lg max-w-none prose-p:text-gray-300 prose-headings:text-white prose-a:text-[#B9FF66]">
+      <div class="space-y-6">
 
-        <!-- Section 1 -->
-        <div class="bg-[#1f202b] p-8 rounded-3xl border border-white/10">
-          <h2 class="text-2xl font-bold text-white mb-6">1. Qui sommes-nous ?</h2>
-          <p class="text-gray-400 mb-2">Ce site internet est édité par l'entreprise :</p>
-          <ul class="text-gray-300 space-y-2 list-none pl-0">
-            <li><span class="text-gray-500">Raison sociale :</span> <strong class="text-white">CLICOM</strong></li>
-            <li><span class="text-gray-500">Adresse :</span> <strong class="text-white">Corseaux, Vaud, Suisse</strong></li>
-            <li><span class="text-gray-500">Numéro d'entreprise (IDE) :</span> <strong class="text-[#B9FF66]">[IDE/Numéro d'entreprise]</strong></li>
-            <li><span class="text-gray-500">Email direct :</span> <strong class="text-[#B9FF66]">[Email de contact]</strong></li>
-          </ul>
-        </div>
-
-        <!-- Section 2 -->
-        <div class="bg-[#1f202b] p-8 rounded-3xl border border-white/10">
-          <h2 class="text-2xl font-bold text-white mb-6">2. Comment nous protégeons vos informations</h2>
-          <p class="text-gray-300 mb-4">Nous prenons la sécurité de vos données très au sérieux et respectons strictement la <strong class="text-white">nouvelle Loi fédérale sur la protection des données (nLPD)</strong> en Suisse.</p>
-          <p class="text-gray-300 mb-4">Lorsque vous remplissez notre formulaire de contact ou naviguez sur notre site, nous récoltons uniquement les informations strictement nécessaires. Ces données servent à une seule chose : vous recontacter pour répondre à votre demande, ou nous aider à améliorer ce site internet.</p>
-          <p class="text-[#B9FF66] font-bold text-lg border-l-4 border-[#B9FF66] pl-6 py-2 bg-[#B9FF66]/10 rounded-r-xl">
-            Engagement formel : vos informations ne seront jamais vendues, louées ou échangées avec d'autres entreprises. Elles restent entre vous et nous.
-          </p>
-        </div>
-
-        <!-- Section 3 -->
-        <div class="bg-[#1f202b] p-8 rounded-3xl border border-white/10">
-          <h2 class="text-2xl font-bold text-white mb-6">3. Vos droits sur vos données</h2>
-          <p class="text-gray-300 mb-8">La loi suisse est claire et nous l'appliquons à la lettre pour vous garantir un contrôle total :</p>
-          <div class="space-y-6">
-            <div class="flex gap-4">
-              <div class="w-10 h-10 bg-[#B9FF66]/10 text-[#B9FF66] rounded-xl flex-shrink-0 flex items-center justify-center font-bold">1</div>
-              <div>
-                <h3 class="text-white font-bold text-xl mb-2">Le droit de savoir</h3>
-                <p class="text-gray-400">Vous pouvez nous demander à tout moment quelles informations nous avons gardées sur vous. Nous vous répondrons clairement et rapidement.</p>
-              </div>
+        <!-- 1. Identité -->
+        <div class="bg-[#1f202b] rounded-3xl border border-white/10 overflow-hidden">
+          <div class="px-8 py-5 border-b border-white/5 flex items-center gap-4">
+            <div class="w-10 h-10 bg-[#B9FF66]/10 rounded-xl flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-[#B9FF66]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-2 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
             </div>
-            <div class="flex gap-4">
-              <div class="w-10 h-10 bg-[#B9FF66]/10 text-[#B9FF66] rounded-xl flex-shrink-0 flex items-center justify-center font-bold">2</div>
-              <div>
-                <h3 class="text-white font-bold text-xl mb-2">Le droit à l'oubli</h3>
-                <p class="text-gray-400">Vous pouvez exiger que nous effacions définitivement toutes vos informations de nos systèmes, sans avoir à vous justifier. Nous exécuterons votre demande sans délai.</p>
-              </div>
-            </div>
-            <div class="flex gap-4">
-              <div class="w-10 h-10 bg-[#B9FF66]/10 text-[#B9FF66] rounded-xl flex-shrink-0 flex items-center justify-center font-bold">3</div>
-              <div>
-                <h3 class="text-white font-bold text-xl mb-2">La sécurité stricte</h3>
-                <p class="text-gray-400">Les informations que vous nous confiez sont verrouillées et protégées par des standards de sécurité professionnels. Notre site est sécurisé aux normes suisses.</p>
-              </div>
-            </div>
+            <h2 class="text-xl font-bold text-white">1. Identité de l'entreprise</h2>
+          </div>
+          <div class="px-8 py-6">
+            <table class="w-full text-sm">
+              <tbody class="divide-y divide-white/5">
+                <tr class="py-3 flex gap-4">
+                  <td class="text-gray-500 w-40 flex-shrink-0 py-3">Raison sociale</td>
+                  <td class="text-white font-medium py-3">CLICOM</td>
+                </tr>
+                <tr class="py-3 flex gap-4">
+                  <td class="text-gray-500 w-40 flex-shrink-0 py-3">Forme juridique</td>
+                  <td class="text-white font-medium py-3">Entreprise individuelle / [Sàrl — à compléter]</td>
+                </tr>
+                <tr class="py-3 flex gap-4">
+                  <td class="text-gray-500 w-40 flex-shrink-0 py-3">Adresse</td>
+                  <td class="text-white font-medium py-3">Corseaux, Canton de Vaud, Suisse</td>
+                </tr>
+                <tr class="py-3 flex gap-4">
+                  <td class="text-gray-500 w-40 flex-shrink-0 py-3">IDE / RC</td>
+                  <td class="text-[#B9FF66] font-bold py-3">[IDE/Numéro d'entreprise — à compléter]</td>
+                </tr>
+                <tr class="py-3 flex gap-4">
+                  <td class="text-gray-500 w-40 flex-shrink-0 py-3">Responsable</td>
+                  <td class="text-white font-medium py-3">Mohamed Saber</td>
+                </tr>
+                <tr class="py-3 flex gap-4">
+                  <td class="text-gray-500 w-40 flex-shrink-0 py-3">Email</td>
+                  <td class="py-3"><a href="mailto:contact@clicom.ch" class="text-[#B9FF66] hover:underline">contact@clicom.ch</a></td>
+                </tr>
+                <tr class="py-3 flex gap-4">
+                  <td class="text-gray-500 w-40 flex-shrink-0 py-3">Site web</td>
+                  <td class="text-white font-medium py-3">www.clicom.ch</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
-        <!-- Section 4 -->
-        <div class="bg-[#1f202b] p-8 rounded-3xl border border-[#B9FF66]/20">
-          <h2 class="text-2xl font-bold text-white mb-6">4. Une question sur vos données ?</h2>
-          <p class="text-gray-300 mb-6">Notre responsabilité est de vous garantir une transparence totale. Si vous avez la moindre question concernant la protection de vos informations, ou si vous souhaitez que nous effacions votre dossier, il vous suffit de nous écrire directement à :</p>
-          <a href="mailto:[Email de contact]" class="inline-block bg-[#B9FF66] text-[#191A23] font-bold px-8 py-4 rounded-xl hover:bg-[#a3e655] transition-colors text-lg">
-            Nous contacter par email
+        <!-- 2. Propriété intellectuelle -->
+        <div class="bg-[#1f202b] rounded-3xl border border-white/10 overflow-hidden">
+          <div class="px-8 py-5 border-b border-white/5 flex items-center gap-4">
+            <div class="w-10 h-10 bg-[#B9FF66]/10 rounded-xl flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-[#B9FF66]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            </div>
+            <h2 class="text-xl font-bold text-white">2. Propriété intellectuelle</h2>
+          </div>
+          <div class="px-8 py-6 space-y-4 text-gray-400 leading-relaxed">
+            <p>L'ensemble des contenus présents sur ce site — textes, images, logos, graphismes, vidéos et code — sont la propriété exclusive de CLICOM ou de leurs auteurs respectifs, et sont protégés par le droit d'auteur suisse (<strong class="text-white">art. 2 LDA</strong>).</p>
+            <p>Toute reproduction, diffusion, modification ou utilisation commerciale, totale ou partielle, sans autorisation écrite préalable de CLICOM est strictement interdite.</p>
+            <p class="text-sm text-gray-600">© {year} CLICOM — Tous droits réservés.</p>
+          </div>
+        </div>
+
+        <!-- 3. Responsabilité -->
+        <div class="bg-[#1f202b] rounded-3xl border border-white/10 overflow-hidden">
+          <div class="px-8 py-5 border-b border-white/5 flex items-center gap-4">
+            <div class="w-10 h-10 bg-[#B9FF66]/10 rounded-xl flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-[#B9FF66]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+            </div>
+            <h2 class="text-xl font-bold text-white">3. Limitation de responsabilité</h2>
+          </div>
+          <div class="px-8 py-6 space-y-4 text-gray-400 leading-relaxed">
+            <p>CLICOM s'efforce de maintenir les informations publiées sur ce site exactes et à jour. Cependant, nous ne pouvons pas garantir l'exhaustivité ou l'exactitude de tous les contenus.</p>
+            <p>CLICOM décline toute responsabilité pour les dommages directs ou indirects découlant de l'utilisation de ce site ou de liens vers des sites tiers. Ces sites externes sont indépendants de notre contrôle et nous n'assumons aucune responsabilité quant à leur contenu.</p>
+          </div>
+        </div>
+
+        <!-- 4. Protection des données (nLPD) -->
+        <div class="bg-[#1f202b] rounded-3xl border border-[#B9FF66]/20 overflow-hidden">
+          <div class="px-8 py-5 border-b border-[#B9FF66]/10 flex items-center gap-4 bg-[#B9FF66]/5">
+            <div class="w-10 h-10 bg-[#B9FF66]/20 rounded-xl flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-[#B9FF66]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            </div>
+            <div>
+              <h2 class="text-xl font-bold text-white">4. Protection de vos données (nLPD)</h2>
+              <p class="text-[#B9FF66] text-xs font-bold uppercase tracking-wider mt-0.5">Loi fédérale en vigueur depuis le 1er septembre 2023</p>
+            </div>
+          </div>
+          <div class="px-8 py-6 space-y-6 text-gray-400 leading-relaxed">
+
+            <div>
+              <h3 class="text-white font-bold mb-2">Quelles données récoltons-nous ?</h3>
+              <ul class="space-y-2 text-sm">
+                <li class="flex items-start gap-3"><span class="text-[#B9FF66] mt-0.5">→</span> <span><strong class="text-white">Formulaire de contact :</strong> Nom, adresse email, URL de votre site. Ces données sont utilisées uniquement pour vous recontacter.</span></li>
+                <li class="flex items-start gap-3"><span class="text-[#B9FF66] mt-0.5">→</span> <span><strong class="text-white">Navigation :</strong> Données techniques anonymes (type de navigateur, pages visitées) pour améliorer l'expérience du site. Aucun cookie traceur commercial n'est utilisé.</span></li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="text-white font-bold mb-2">Comment protégeons-nous vos informations ?</h3>
+              <ul class="space-y-2 text-sm">
+                <li class="flex items-start gap-3"><span class="text-[#B9FF66] mt-0.5">→</span> <span>Toutes les communications sont chiffrées (HTTPS).</span></li>
+                <li class="flex items-start gap-3"><span class="text-[#B9FF66] mt-0.5">→</span> <span>Vos données ne sont jamais vendues, louées ou partagées avec des tiers à des fins commerciales.</span></li>
+                <li class="flex items-start gap-3"><span class="text-[#B9FF66] mt-0.5">→</span> <span>Seul le responsable de l'agence y a accès, dans le cadre strict de votre demande.</span></li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="text-white font-bold mb-2">Durée de conservation</h3>
+              <p class="text-sm">Vos données de contact sont conservées le temps nécessaire au traitement de votre demande, et au maximum 12 mois, sauf obligation légale contraire.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 5. Vos droits -->
+        <div class="bg-[#1f202b] rounded-3xl border border-white/10 overflow-hidden">
+          <div class="px-8 py-5 border-b border-white/5 flex items-center gap-4">
+            <div class="w-10 h-10 bg-[#B9FF66]/10 rounded-xl flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-[#B9FF66]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+            </div>
+            <h2 class="text-xl font-bold text-white">5. Vos droits sur vos données</h2>
+          </div>
+          <div class="px-8 py-6">
+            <div class="grid md:grid-cols-3 gap-4">
+              <div class="bg-[#191A23] p-5 rounded-2xl border border-white/5">
+                <div class="text-2xl mb-3">👁</div>
+                <h3 class="text-white font-bold mb-2">Droit d'accès</h3>
+                <p class="text-gray-500 text-sm">Vous pouvez nous demander à tout moment quelles informations nous avons sur vous.</p>
+              </div>
+              <div class="bg-[#191A23] p-5 rounded-2xl border border-white/5">
+                <div class="text-2xl mb-3">✏️</div>
+                <h3 class="text-white font-bold mb-2">Droit de rectification</h3>
+                <p class="text-gray-500 text-sm">Vous pouvez demander la correction de toute information inexacte vous concernant.</p>
+              </div>
+              <div class="bg-[#191A23] p-5 rounded-2xl border border-white/5">
+                <div class="text-2xl mb-3">🗑</div>
+                <h3 class="text-white font-bold mb-2">Droit à l'oubli</h3>
+                <p class="text-gray-500 text-sm">Vous pouvez exiger la suppression définitive de toutes vos données, sans justification.</p>
+              </div>
+            </div>
+            <p class="text-gray-500 text-sm mt-6">Pour exercer l'un de ces droits, écrivez-nous à : <a href="mailto:contact@clicom.ch" class="text-[#B9FF66] hover:underline font-bold">contact@clicom.ch</a>. Nous traiterons votre demande dans un délai de 30 jours, conformément à l'art. 25 nLPD.</p>
+          </div>
+        </div>
+
+        <!-- 6. Cookies -->
+        <div class="bg-[#1f202b] rounded-3xl border border-white/10 overflow-hidden">
+          <div class="px-8 py-5 border-b border-white/5 flex items-center gap-4">
+            <div class="w-10 h-10 bg-[#B9FF66]/10 rounded-xl flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-[#B9FF66]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <h2 class="text-xl font-bold text-white">6. Cookies</h2>
+          </div>
+          <div class="px-8 py-6 text-gray-400 leading-relaxed space-y-4">
+            <p>Ce site est conçu avec une politique de <strong class="text-white">zéro cookie traceur</strong>. Nous n'utilisons ni Google Analytics, ni pixels publicitaires, ni aucun outil de suivi commercial.</p>
+            <p>Les seuls cookies techniques utilisés sont strictement nécessaires au bon fonctionnement du site (session, préférences d'affichage). Ils ne collectent aucune donnée personnelle identifiable.</p>
+          </div>
+        </div>
+
+        <!-- 7. Droit applicable -->
+        <div class="bg-[#1f202b] rounded-3xl border border-white/10 overflow-hidden">
+          <div class="px-8 py-5 border-b border-white/5 flex items-center gap-4">
+            <div class="w-10 h-10 bg-[#B9FF66]/10 rounded-xl flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-[#B9FF66]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg>
+            </div>
+            <h2 class="text-xl font-bold text-white">7. Droit applicable et for judiciaire</h2>
+          </div>
+          <div class="px-8 py-6 text-gray-400 leading-relaxed">
+            <p>Les présentes mentions légales sont régies par le <strong class="text-white">droit suisse</strong>. En cas de litige, les tribunaux du canton de <strong class="text-white">Vaud</strong> sont seuls compétents, sous réserve des dispositions impératives du droit fédéral.</p>
+            <p class="mt-4 text-sm">Textes de référence : <span class="text-gray-500">Loi fédérale sur la protection des données (LPD/nLPD — RS 235.1) · Loi sur le droit d'auteur (LDA — RS 231.1) · Code des obligations (CO)</span></p>
+          </div>
+        </div>
+
+        <!-- 8. Contact DPO -->
+        <div class="bg-gradient-to-br from-[#B9FF66]/10 to-[#1f202b] rounded-3xl border border-[#B9FF66]/20 p-8 text-center">
+          <h2 class="text-2xl font-bold text-white mb-4">Une question sur vos données ?</h2>
+          <p class="text-gray-400 mb-8 max-w-lg mx-auto">Nous nous engageons à vous répondre personnellement et rapidement. Écrivez-nous directement à l'adresse ci-dessous.</p>
+          <a href="mailto:contact@clicom.ch" class="inline-block bg-[#B9FF66] text-[#191A23] font-bold px-10 py-4 rounded-xl hover:bg-[#a3e655] transition-colors text-lg">
+            contact@clicom.ch
           </a>
-          <p class="text-gray-500 text-sm mt-6">Nous traiterons votre demande personnellement et rapidement, conformément à nos obligations légales.</p>
+          <p class="text-gray-600 text-xs mt-6">Réponse garantie sous 30 jours — art. 25 nLPD</p>
         </div>
 
       </div>
