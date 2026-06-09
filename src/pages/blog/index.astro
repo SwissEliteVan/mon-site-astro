@@ -1,0 +1,119 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+);
+
+const tagColors: Record<string, string> = {
+  'nLPD': 'bg-red-500/10 text-red-400 border-red-500/20',
+  'Légal': 'bg-red-500/10 text-red-400 border-red-500/20',
+  'Suisse': 'bg-blue-500/10 text-blue-400 border-blue-500/20',
+  'Performance': 'bg-[#B9FF66]/10 text-[#B9FF66] border-[#B9FF66]/20',
+  'Local': 'bg-purple-500/10 text-purple-400 border-purple-500/20',
+  'Vaud': 'bg-purple-500/10 text-purple-400 border-purple-500/20',
+  'Agence': 'bg-gray-500/10 text-gray-400 border-gray-500/20',
+  'default': 'bg-white/5 text-gray-400 border-white/10',
+};
+
+function getTagColor(tag: string): string {
+  return tagColors[tag] ?? tagColors['default'];
+}
+
+const featuredPost = posts[0];
+const otherPosts = posts.slice(1);
+---
+
+<Layout title="Blog | CLICOM — Conseils pour les patrons de PME romandes" description="Des articles concrets, zéro jargon. Visibilité, budget, loi suisse (nLPD) : tout ce que le patron d'une PME romande doit vraiment savoir.">
+
+  <section class="pt-32 pb-24 bg-[#191A23] min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <a href="/" class="inline-flex items-center text-gray-400 hover:text-[#B9FF66] transition-colors mb-12">
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+        Retour à l'accueil
+      </a>
+
+      <!-- En-tête -->
+      <div class="mb-16">
+        <span class="text-[#B9FF66] font-bold tracking-wider uppercase text-sm mb-4 block">Le coin du patron</span>
+        <h1 class="text-[clamp(2.5rem,4vw,4rem)] font-bold text-white mb-6">Conseils concrets,<br/>zéro jargon.</h1>
+        <p class="text-xl text-gray-400 max-w-2xl">Des articles rédigés pour les commerçants et artisans de Suisse romande. Du concret, des chiffres, des exemples locaux.</p>
+      </div>
+
+      <!-- Article à la une -->
+      {featuredPost && (
+        <a href={`/blog/${featuredPost.slug}`} class="group block mb-16">
+          <article class="bg-[#1f202b] rounded-3xl overflow-hidden border border-white/10 hover:border-[#B9FF66]/30 transition-all duration-300 md:flex">
+            <div class="md:w-2/5 h-64 md:h-auto bg-gradient-to-br from-[#B9FF66]/10 to-[#191A23] flex items-center justify-center relative">
+              <svg class="w-24 h-24 text-[#B9FF66]/30 group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+              <div class="absolute top-4 left-4">
+                <span class="bg-[#B9FF66] text-[#191A23] text-xs font-black uppercase tracking-widest px-3 py-1.5 rounded-full">À la une</span>
+              </div>
+            </div>
+            <div class="md:w-3/5 p-8 md:p-12 flex flex-col justify-center">
+              <div class="flex flex-wrap gap-2 mb-4">
+                {featuredPost.data.tags?.map((tag: string) => (
+                  <span class={`text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full border ${getTagColor(tag)}`}>{tag}</span>
+                ))}
+              </div>
+              <h2 class="text-2xl md:text-3xl font-bold text-white mb-4 group-hover:text-[#B9FF66] transition-colors leading-tight">
+                {featuredPost.data.title}
+              </h2>
+              <p class="text-gray-400 mb-6 leading-relaxed">{featuredPost.data.description}</p>
+              <div class="flex items-center gap-4">
+                <time class="text-gray-600 text-sm">
+                  {new Date(featuredPost.data.pubDate).toLocaleDateString('fr-CH', { year: 'numeric', month: 'long', day: 'numeric' })}
+                </time>
+                <span class="text-[#B9FF66] font-bold group-hover:underline">Lire l'article &rarr;</span>
+              </div>
+            </div>
+          </article>
+        </a>
+      )}
+
+      <!-- Grille des autres articles -->
+      {otherPosts.length > 0 && (
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {otherPosts.map((post) => (
+            <a href={`/blog/${post.slug}`} class="group block">
+              <article class="bg-[#1f202b] rounded-3xl overflow-hidden border border-white/5 hover:border-[#B9FF66]/20 transition-all duration-300 flex flex-col h-full">
+                <div class="h-48 bg-gradient-to-br from-white/5 to-[#191A23] flex items-center justify-center relative">
+                  <svg class="w-16 h-16 text-white/10 group-hover:text-[#B9FF66]/30 group-hover:scale-110 transition-all duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                </div>
+                <div class="p-6 flex flex-col flex-1">
+                  <div class="flex flex-wrap gap-2 mb-3">
+                    {post.data.tags?.map((tag: string) => (
+                      <span class={`text-xs font-bold uppercase tracking-widest px-2 py-0.5 rounded-full border ${getTagColor(tag)}`}>{tag}</span>
+                    ))}
+                  </div>
+                  <h2 class="text-xl font-bold text-white mb-3 group-hover:text-[#B9FF66] transition-colors leading-snug flex-1">
+                    {post.data.title}
+                  </h2>
+                  <p class="text-gray-500 text-sm mb-4 line-clamp-2">{post.data.description}</p>
+                  <div class="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
+                    <time class="text-gray-600 text-xs">
+                      {new Date(post.data.pubDate).toLocaleDateString('fr-CH', { year: 'numeric', month: 'short', day: 'numeric' })}
+                    </time>
+                    <span class="text-[#B9FF66] text-sm font-bold group-hover:underline">Lire &rarr;</span>
+                  </div>
+                </div>
+              </article>
+            </a>
+          ))}
+        </div>
+      )}
+
+      <!-- CTA bas de page -->
+      <div class="mt-20 text-center border-t border-white/5 pt-16">
+        <p class="text-xl text-gray-400 mb-6">Vous avez une question sur votre situation spécifique ?</p>
+        <a href="/#contact" class="inline-block bg-[#B9FF66] text-[#191A23] font-bold px-10 py-5 rounded-xl hover:bg-[#a3e655] transition-colors text-lg shadow-lg shadow-[#B9FF66]/10">
+          L'argent est déjà sur la table. Parlons-en.
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</Layout>
