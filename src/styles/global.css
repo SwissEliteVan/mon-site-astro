@@ -1,249 +1,85 @@
 /* ============================================================
-   CLICOM — Design System Global
-   Tailwind v4 / @theme — Variables CSS centralisées
+   CLICOM — Design System  |  Tailwind v4  |  @theme propre
    ============================================================ */
 
 @import "tailwindcss";
 
-/* ────────────────────────────────────────────────────────────
-   1. PALETTE DE COULEURS
-   ──────────────────────────────────────────────────────────── */
+/* ──────────────────────────────────────────────────────────────
+   TOKENS DE MARQUE
+   Seules les valeurs simples (hex, rgb, nombre, chaîne) sont
+   acceptées dans @theme en Tailwind v4.
+   Les rgba() complexes sont déclarées en dehors dans :root.
+   ────────────────────────────────────────────────────────────── */
 @theme {
+  /* Couleurs */
+  --color-brand-dark:       #191A23;
+  --color-brand-dark-2:     #1f202b;
+  --color-brand-dark-3:     #2a2b38;
+  --color-brand-lime:       #B9FF66;
+  --color-brand-lime-hover: #a3e655;
+  --color-whatsapp:         #25D366;
+  --color-danger:           #f87171;
+  --color-success:          #4ade80;
+  --color-warning:          #facc15;
 
-  /* Couleurs de marque */
-  --color-brand-dark:       #191A23;   /* Fond principal */
-  --color-brand-dark-2:     #1f202b;   /* Fond secondaire (cartes) */
-  --color-brand-dark-3:     #2a2b38;   /* Fond tertiaire (hover) */
-  --color-brand-lime:       #B9FF66;   /* Vert lime (CTA / accent) */
-  --color-brand-lime-hover: #a3e655;   /* Vert lime hover */
-  --color-brand-lime-muted: rgba(185,255,102,0.10); /* Lime translucide */
-
-  /* Textes */
-  --color-text-primary:   #ffffff;
-  --color-text-secondary: #d1d5db;   /* gray-300 */
-  --color-text-muted:     #9ca3af;   /* gray-400 */
-  --color-text-faint:     #4b5563;   /* gray-600 */
-
-  /* Alertes */
-  --color-danger:        #f87171;   /* red-400 */
-  --color-danger-bg:     rgba(239,68,68,0.15);
-  --color-danger-border: rgba(239,68,68,0.25);
-  --color-success:       #4ade80;   /* green-400 */
-  --color-warning:       #facc15;   /* yellow-400 */
-
-  /* Bordures */
-  --color-border:        rgba(255,255,255,0.07);
-  --color-border-strong: rgba(255,255,255,0.15);
-  --color-border-lime:   rgba(185,255,102,0.20);
-
-  /* WhatsApp */
-  --color-whatsapp:      #25D366;
-  --color-whatsapp-bg:   rgba(37,211,102,0.10);
-
-  /* ────────────────────────────────────────────────────────
-     2. TYPOGRAPHIE
-     ──────────────────────────────────────────────────────── */
+  /* Polices */
   --font-sans: 'Inter', 'Outfit', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
-  --text-xs:   0.75rem;    /* 12px */
-  --text-sm:   0.875rem;   /* 14px */
-  --text-base: 1rem;       /* 16px */
-  --text-lg:   1.125rem;   /* 18px */
-  --text-xl:   1.25rem;    /* 20px */
-  --text-2xl:  1.5rem;     /* 24px */
-  --text-3xl:  1.875rem;   /* 30px */
-  --text-4xl:  2.25rem;    /* 36px */
-  --text-5xl:  3rem;       /* 48px */
+  /* Tailles fluid (clamp) — Tailwind ne génère pas de classes pour elles
+     mais elles sont utilisables via var() dans le CSS */
   --text-hero: clamp(2.5rem, 5vw, 4.5rem);
   --text-h2:   clamp(2rem, 3vw, 3rem);
 
-  --font-weight-normal:    400;
-  --font-weight-medium:    500;
-  --font-weight-semibold:  600;
-  --font-weight-bold:      700;
-  --font-weight-extrabold: 800;
-  --font-weight-black:     900;
+  /* Hauteur du header (scroll-padding-top) */
+  --header-height: 4.5rem;
 
-  --line-height-tight:   1.2;
-  --line-height-snug:    1.375;
-  --line-height-normal:  1.5;
-  --line-height-relaxed: 1.7;
-
-  --letter-spacing-tight:  -0.02em;
-  --letter-spacing-normal:  0em;
-  --letter-spacing-wide:    0.05em;
-  --letter-spacing-widest:  0.1em;
-
-  /* ────────────────────────────────────────────────────────
-     3. ESPACEMENT & LAYOUT
-     ──────────────────────────────────────────────────────── */
-  --spacing-section:  6rem;    /* py-24 */
-  --spacing-section-lg: 8rem;  /* py-32 */
-  --container-max:   80rem;    /* max-w-7xl */
-  --container-prose: 48rem;    /* max-w-3xl */
-  --container-copy:  56rem;    /* max-w-4xl */
-
-  /* ────────────────────────────────────────────────────────
-     4. RAYONS DE BORDURE
-     ──────────────────────────────────────────────────────── */
-  --radius-sm:  0.5rem;    /* 8px */
-  --radius-md:  0.75rem;   /* 12px */
-  --radius-lg:  1rem;      /* 16px */
-  --radius-xl:  1.25rem;   /* 20px */
-  --radius-2xl: 1.5rem;    /* 24px */
-  --radius-3xl: 1.875rem;  /* 30px */
+  /* Rayons de bordure */
+  --radius-sm:   0.5rem;
+  --radius-md:   0.75rem;
+  --radius-lg:   1rem;
+  --radius-xl:   1.25rem;
+  --radius-2xl:  1.5rem;
+  --radius-3xl:  1.875rem;
   --radius-full: 9999px;
 
-  /* ────────────────────────────────────────────────────────
-     5. OMBRES
-     ──────────────────────────────────────────────────────── */
-  --shadow-sm:   0 2px 8px rgba(0,0,0,0.25);
-  --shadow-md:   0 8px 24px rgba(0,0,0,0.35);
-  --shadow-lg:   0 20px 60px rgba(0,0,0,0.45);
-  --shadow-lime: 0 8px 32px rgba(185,255,102,0.15);
+  /* Transitions */
+  --transition-base: all 0.2s ease;
+  --transition-slow: all 0.4s ease;
+  --ease-spring:     cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth:     cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Ombres */
+  --shadow-lime:        0 8px 32px rgba(185,255,102,0.15);
   --shadow-lime-strong: 0 0 60px rgba(185,255,102,0.25);
-
-  /* ────────────────────────────────────────────────────────
-     6. TRANSITIONS & ANIMATIONS
-     ──────────────────────────────────────────────────────── */
-  --transition-fast:   all 0.15s ease;
-  --transition-base:   all 0.2s ease;
-  --transition-slow:   all 0.4s ease;
-
-  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-
-  /* ────────────────────────────────────────────────────────
-     7. HEADER
-     ──────────────────────────────────────────────────────── */
-  --header-height: 4.5rem;
-  --header-bg:     rgba(25,26,35,0.92);
 }
 
-/* ============================================================
-   UTILITAIRES PERSONNALISÉS — utilisables avec @reference
-   ============================================================ */
-@layer utilities {
-  .text-gradient-lime {
-    background: linear-gradient(135deg, var(--color-brand-lime), #78ff00);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .card-dark {
-    background-color: var(--color-brand-dark-2);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-3xl);
-  }
-
-  .card-dark:hover {
-    border-color: var(--color-border-lime);
-  }
-
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    background-color: var(--color-brand-lime);
-    color: var(--color-brand-dark);
-    font-weight: var(--font-weight-bold);
-    padding: 0.75rem 1.5rem;
-    border-radius: var(--radius-xl);
-    border: none;
-    cursor: pointer;
-    transition: var(--transition-base);
-    text-decoration: none;
-    font-size: var(--text-base);
-  }
-
-  .btn-primary:hover {
-    background-color: var(--color-brand-lime-hover);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-lime);
-  }
-
-  .btn-ghost {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    background-color: transparent;
-    color: var(--color-text-muted);
-    font-weight: var(--font-weight-medium);
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius-xl);
-    border: 1px solid var(--color-border);
-    cursor: pointer;
-    transition: var(--transition-base);
-    text-decoration: none;
-    font-size: var(--text-sm);
-  }
-
-  .btn-ghost:hover {
-    color: var(--color-text-primary);
-    border-color: var(--color-border-strong);
-    background-color: rgba(255,255,255,0.04);
-  }
-
-  .section-label {
-    display: inline-block;
-    color: var(--color-brand-lime);
-    font-weight: var(--font-weight-bold);
-    font-size: var(--text-xs);
-    letter-spacing: var(--letter-spacing-widest);
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
-
-  .stat-badge {
-    display: inline-block;
-    background-color: var(--color-brand-lime-muted);
-    color: var(--color-brand-lime);
-    font-weight: var(--font-weight-bold);
-    border: 1px solid var(--color-border-lime);
-    padding: 0.25rem 0.75rem;
-    border-radius: var(--radius-full);
-    font-size: var(--text-xs);
-  }
-
-  .focus-ring {
-    outline: 2px solid var(--color-brand-lime);
-    outline-offset: 3px;
-  }
-
-  .scrollbar-hidden {
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-
-  .scrollbar-hidden::-webkit-scrollbar {
-    display: none;
-  }
+/* ──────────────────────────────────────────────────────────────
+   VARIABLES RGBA — déclarées dans :root, pas dans @theme
+   ────────────────────────────────────────────────────────────── */
+:root {
+  --color-brand-lime-muted: rgba(185, 255, 102, 0.10);
+  --color-border:           rgba(255, 255, 255, 0.07);
+  --color-border-strong:    rgba(255, 255, 255, 0.15);
+  --color-border-lime:      rgba(185, 255, 102, 0.20);
+  --color-danger-bg:        rgba(239, 68, 68, 0.15);
+  --color-danger-border:    rgba(239, 68, 68, 0.25);
+  --color-whatsapp-bg:      rgba(37, 211, 102, 0.10);
 }
 
-/* ============================================================
-   STYLES GLOBAUX
-   ============================================================ */
+/* ──────────────────────────────────────────────────────────────
+   BASE
+   ────────────────────────────────────────────────────────────── */
 @layer base {
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
-
   html {
     scroll-behavior: smooth;
     scroll-padding-top: var(--header-height);
-    -webkit-text-size-adjust: 100%;
   }
 
   body {
     background-color: var(--color-brand-dark);
-    color: var(--color-text-primary);
+    color: #fff;
     font-family: var(--font-sans);
-    font-size: var(--text-base);
-    line-height: var(--line-height-normal);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     min-height: 100dvh;
@@ -251,177 +87,244 @@
     flex-direction: column;
   }
 
-  /* Sélection de texte — couleur marque */
-  ::selection {
-    background-color: var(--color-brand-lime);
-    color: var(--color-brand-dark);
-  }
-
-  /* Focus visible accessible */
-  :focus-visible {
-    outline: 2px solid var(--color-brand-lime);
-    outline-offset: 3px;
-    border-radius: 4px;
-  }
-
-  /* Scrollbar personnalisée (navigateurs Webkit) */
-  ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-  }
-  ::-webkit-scrollbar-track {
-    background: var(--color-brand-dark);
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #3a3b48;
-    border-radius: 999px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-brand-lime);
-  }
-
-  /* Headings */
   h1, h2, h3, h4, h5, h6 {
-    font-weight: var(--font-weight-bold);
-    line-height: var(--line-height-tight);
-    letter-spacing: var(--letter-spacing-tight);
-    color: var(--color-text-primary);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: #fff;
   }
 
-  /* Liens par défaut */
   a {
     color: inherit;
     text-decoration: none;
   }
 
-  /* Images */
   img, video {
     max-width: 100%;
     height: auto;
     display: block;
   }
 
-  /* Formulaires */
   input, textarea, select, button {
     font-family: inherit;
   }
 
-  /* Prose (articles de blog) */
-  .prose-clicom {
-    color: var(--color-text-secondary);
-    max-width: var(--container-prose);
+  ::selection {
+    background-color: var(--color-brand-lime);
+    color: var(--color-brand-dark);
   }
 
-  .prose-clicom h2 {
-    font-size: var(--text-2xl);
-    font-weight: var(--font-weight-bold);
-    color: var(--color-text-primary);
-    margin-top: 2.5rem;
+  :focus-visible {
+    outline: 2px solid var(--color-brand-lime);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar       { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--color-brand-dark); }
+  ::-webkit-scrollbar-thumb { background: #3a3b48; border-radius: 999px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-brand-lime); }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   UTILITAIRES
+   ────────────────────────────────────────────────────────────── */
+@layer utilities {
+
+  /* Texte dégradé */
+  .text-gradient-lime {
+    background: linear-gradient(135deg, var(--color-brand-lime), #78ff00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Carte standard */
+  .card-dark {
+    background-color: var(--color-brand-dark-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-3xl);
+    transition: border-color 0.2s ease;
+  }
+  .card-dark:hover {
+    border-color: var(--color-border-lime);
+  }
+
+  /* Bouton primaire */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: var(--color-brand-lime);
+    color: var(--color-brand-dark);
+    font-weight: 700;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-xl);
+    border: none;
+    cursor: pointer;
+    transition: var(--transition-base);
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  .btn-primary:hover {
+    background-color: var(--color-brand-lime-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lime);
+  }
+
+  /* Bouton fantôme */
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: transparent;
+    color: #9ca3af;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border);
+    cursor: pointer;
+    transition: var(--transition-base);
+    text-decoration: none;
+    font-size: 0.875rem;
+  }
+  .btn-ghost:hover {
+    color: #fff;
+    border-color: var(--color-border-strong);
+    background-color: rgba(255,255,255,0.04);
+  }
+
+  /* Label de section */
+  .section-label {
+    display: inline-block;
+    color: var(--color-brand-lime);
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     margin-bottom: 1rem;
   }
 
+  /* Badge statistique */
+  .stat-badge {
+    display: inline-block;
+    background-color: var(--color-brand-lime-muted);
+    color: var(--color-brand-lime);
+    font-weight: 700;
+    border: 1px solid var(--color-border-lime);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+  }
+
+  /* Masquer scrollbar */
+  .scrollbar-hidden {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   PROSE — Articles de blog
+   ────────────────────────────────────────────────────────────── */
+@layer base {
+  .prose-clicom {
+    color: #d1d5db;
+    max-width: 48rem;
+    line-height: 1.7;
+  }
+  .prose-clicom h2 {
+    font-size: 1.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
   .prose-clicom h3 {
-    font-size: var(--text-xl);
-    font-weight: var(--font-weight-bold);
-    color: var(--color-text-primary);
+    font-size: 1.25rem;
     margin-top: 2rem;
     margin-bottom: 0.75rem;
+    color: #fff;
   }
-
   .prose-clicom p {
-    line-height: var(--line-height-relaxed);
     margin-bottom: 1.25rem;
   }
-
   .prose-clicom strong {
-    color: var(--color-text-primary);
-    font-weight: var(--font-weight-semibold);
+    color: #fff;
+    font-weight: 600;
   }
-
   .prose-clicom a {
     color: var(--color-brand-lime);
     text-decoration: underline;
     text-underline-offset: 3px;
   }
-
   .prose-clicom a:hover {
     color: var(--color-brand-lime-hover);
   }
-
   .prose-clicom blockquote {
     border-left: 4px solid var(--color-brand-lime);
-    padding-left: 1.25rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding: 0.5rem 1.25rem;
     background-color: var(--color-brand-lime-muted);
-    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    border-radius: 0 0.75rem 0.75rem 0;
     color: var(--color-brand-lime);
-    font-weight: var(--font-weight-semibold);
-    font-size: var(--text-lg);
+    font-weight: 600;
+    font-size: 1.125rem;
     margin: 1.5rem 0;
   }
-
   .prose-clicom ul {
     list-style: none;
     padding: 0;
-    space-y: 0.5rem;
+    margin-bottom: 1.25rem;
   }
-
+  .prose-clicom ul li {
+    padding-left: 1.5rem;
+    position: relative;
+    margin-bottom: 0.5rem;
+  }
   .prose-clicom ul li::before {
     content: "→";
     color: var(--color-brand-lime);
-    font-weight: var(--font-weight-bold);
-    margin-right: 0.5rem;
+    font-weight: 700;
+    position: absolute;
+    left: 0;
   }
-
   .prose-clicom code {
     background-color: var(--color-brand-dark-2);
     color: var(--color-brand-lime);
     padding: 0.125rem 0.375rem;
-    border-radius: var(--radius-sm);
+    border-radius: 0.5rem;
     font-family: var(--font-mono);
     font-size: 0.875em;
   }
 }
 
-/* ============================================================
+/* ──────────────────────────────────────────────────────────────
    ANIMATIONS
-   ============================================================ */
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+   ────────────────────────────────────────────────────────────── */
+@layer utilities {
+  @keyframes fade-in-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  @keyframes pulse-lime {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(185,255,102,0.4); }
+    50%       { box-shadow: 0 0 0 8px rgba(185,255,102,0); }
   }
-}
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-8px); }
+  }
 
-@keyframes pulse-lime {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(185,255,102,0.4); }
-  50%       { box-shadow: 0 0 0 8px rgba(185,255,102,0); }
-}
+  .animate-fade-in-up  { animation: fade-in-up 0.6s var(--ease-smooth) both; }
+  .animate-pulse-lime  { animation: pulse-lime 2s infinite; }
+  .animate-float       { animation: float 3s ease-in-out infinite; }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-8px); }
+  .delay-100 { animation-delay: 0.1s; }
+  .delay-200 { animation-delay: 0.2s; }
+  .delay-300 { animation-delay: 0.3s; }
+  .delay-400 { animation-delay: 0.4s; }
 }
-
-.animate-fade-in-up {
-  animation: fade-in-up 0.6s var(--ease-smooth) both;
-}
-
-.animate-pulse-lime {
-  animation: pulse-lime 2s infinite;
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
-/* Délais d'animation */
-.delay-100 { animation-delay: 0.1s; }
-.delay-200 { animation-delay: 0.2s; }
-.delay-300 { animation-delay: 0.3s; }
-.delay-400 { animation-delay: 0.4s; }

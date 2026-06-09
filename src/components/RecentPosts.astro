@@ -1,63 +1,249 @@
 ---
 import { getCollection } from 'astro:content';
 
-// Récupérer et trier les articles du plus récent au plus ancien
 const allPosts = await getCollection('blog');
-const recentPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()).slice(0, 3);
+const recentPosts = allPosts
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
 ---
-<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 rounded-t-3xl border-t border-slate-200">
-  <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-12 gap-4">
-    <div>
-      <h2 class="text-3xl font-bold text-slate-900 tracking-tight">Derniers articles</h2>
-      <p class="mt-2 text-slate-600">Restez informé de nos dernières actualités et astuces.</p>
-    </div>
-    <a href="/blog" class="hidden sm:inline-flex items-center font-medium text-indigo-600 hover:text-indigo-500 transition-colors">
-      Voir tout le blog <span aria-hidden="true" class="ml-1">&rarr;</span>
-    </a>
-  </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    {recentPosts.map((post) => (
-      <article class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-xl hover:shadow-indigo-500/10 transition-all duration-300 transform hover:-translate-y-1 group flex flex-col relative">
-        <div class="h-48 bg-slate-200 relative overflow-hidden">
-          {/* Si pas d'image, on affiche un dégradé par défaut */}
-          <div class="absolute inset-0 bg-gradient-to-br from-indigo-500 to-purple-600 opacity-90 group-hover:scale-110 transition-transform duration-700"></div>
-          <div class="absolute bottom-4 left-4 z-10">
-            <span class="bg-white/95 backdrop-blur-sm px-3 py-1 text-xs font-bold text-indigo-700 uppercase tracking-wider rounded-full shadow-sm">
-              {post.data.tags?.[0] || 'Général'}
-            </span>
+<section class="posts-section">
+  <div class="posts-inner">
+
+    <div class="posts-header">
+      <div>
+        <span class="section-label">Le coin du patron</span>
+        <h2 class="posts-title">Conseils concrets,<br/>zéro jargon.</h2>
+      </div>
+      <a href="/blog" class="posts-see-all">
+        Tous les articles →
+      </a>
+    </div>
+
+    <div class="posts-grid">
+      {recentPosts.map((post, i) => (
+        <article class="post-card">
+          <!-- Vignette -->
+          <div class={`post-thumb post-thumb-${i}`}>
+            <span class="post-tag">{post.data.tags?.[0] ?? 'Conseil'}</span>
           </div>
-        </div>
-        <div class="p-6 flex flex-col flex-grow">
-          <div class="flex items-center text-xs text-slate-500 mb-4 font-medium uppercase tracking-wide">
-            <time datetime={post.data.pubDate.toISOString()}>
-              {post.data.pubDate.toLocaleDateString('fr-FR', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
+
+          <!-- Contenu -->
+          <div class="post-body">
+            <time
+              class="post-date"
+              datetime={new Date(post.data.pubDate).toISOString()}
+            >
+              {new Date(post.data.pubDate).toLocaleDateString('fr-CH', {
+                year: 'numeric', month: 'long', day: 'numeric',
               })}
             </time>
+
+            <h3 class="post-title">
+              <a href={`/blog/${post.slug}`} class="post-link">
+                <span class="post-link-overlay" aria-hidden="true"></span>
+                {post.data.title}
+              </a>
+            </h3>
+
+            <p class="post-excerpt">{post.data.description}</p>
+
+            <div class="post-cta" aria-hidden="true">
+              Lire l'article →
+            </div>
           </div>
-          <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors leading-tight">
-            <a href={`/blog/${post.id}`}>
-              <span class="absolute inset-0 z-20"></span>
-              {post.data.title}
-            </a>
-          </h3>
-          <p class="text-slate-600 line-clamp-3 text-sm flex-grow leading-relaxed">
-            {post.data.description}
-          </p>
-          <div class="mt-4 flex items-center text-indigo-600 text-sm font-semibold group-hover:translate-x-1 transition-transform duration-300">
-            Lire l'article <span aria-hidden="true" class="ml-1">&rarr;</span>
-          </div>
-        </div>
-      </article>
-    ))}
-  </div>
-  
-  <div class="mt-10 text-center sm:hidden">
-    <a href="/blog" class="inline-flex justify-center w-full rounded-xl bg-slate-50 px-8 py-3.5 text-sm font-semibold text-slate-900 shadow-sm ring-1 ring-inset ring-slate-200 hover:bg-slate-100 transition-colors">
-      Voir tout le blog
-    </a>
+        </article>
+      ))}
+    </div>
+
+    <!-- Lien mobile -->
+    <div class="posts-see-all-mobile">
+      <a href="/blog" class="posts-see-all-btn">Voir tous les articles</a>
+    </div>
+
   </div>
 </section>
+
+<style>
+  .posts-section {
+    padding: 6rem 1rem;
+    background-color: var(--color-brand-dark);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .posts-inner {
+    max-width: 80rem;
+    margin: 0 auto;
+  }
+
+  /* En-tête */
+  .posts-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .posts-title {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 800;
+    color: #fff;
+    margin-top: 0.25rem;
+    line-height: 1.2;
+  }
+
+  .posts-see-all {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-brand-lime);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity 0.2s;
+  }
+
+  .posts-see-all:hover { opacity: 0.75; }
+
+  @media (max-width: 640px) { .posts-see-all { display: none; } }
+
+  /* Grille */
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    gap: 1.5rem;
+  }
+
+  /* Carte */
+  .post-card {
+    background-color: var(--color-brand-dark-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-3xl);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .post-card:hover {
+    border-color: var(--color-border-lime);
+    transform: translateY(-3px);
+  }
+
+  /* Vignette couleur par index */
+  .post-thumb {
+    height: 10rem;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem;
+  }
+
+  .post-thumb-0 { background: linear-gradient(135deg, rgba(185,255,102,0.15), rgba(25,26,35,0.9)); }
+  .post-thumb-1 { background: linear-gradient(135deg, rgba(239,68,68,0.15), rgba(25,26,35,0.9)); }
+  .post-thumb-2 { background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(25,26,35,0.9)); }
+
+  .post-tag {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-brand-lime);
+    background-color: var(--color-brand-lime-muted);
+    border: 1px solid var(--color-border-lime);
+    padding: 0.2rem 0.625rem;
+    border-radius: var(--radius-full);
+  }
+
+  /* Corps */
+  .post-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .post-date {
+    font-size: 0.75rem;
+    color: #4b5563;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .post-title {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.35;
+    margin-bottom: 0.75rem;
+    transition: color 0.2s;
+  }
+
+  .post-card:hover .post-title { color: var(--color-brand-lime); }
+
+  .post-link {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* Overlay pour rendre toute la carte cliquable */
+  .post-link-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .post-excerpt {
+    font-size: 0.875rem;
+    color: #6b7280;
+    line-height: 1.6;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+  }
+
+  .post-cta {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-brand-lime);
+    margin-top: auto;
+    transition: gap 0.2s;
+  }
+
+  .post-card:hover .post-cta { letter-spacing: 0.01em; }
+
+  /* Mobile CTA */
+  .posts-see-all-mobile {
+    display: none;
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  @media (max-width: 640px) { .posts-see-all-mobile { display: block; } }
+
+  .posts-see-all-btn {
+    display: inline-block;
+    width: 100%;
+    padding: 0.875rem 2rem;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border);
+    color: #9ca3af;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    transition: var(--transition-base);
+  }
+
+  .posts-see-all-btn:hover {
+    color: #fff;
+    border-color: var(--color-border-strong);
+    background-color: rgba(255,255,255,0.04);
+  }
+</style>
