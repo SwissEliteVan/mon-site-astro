@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Signature mail — CLICOM / Mohamed Saber</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: #f1f5f9;
+      min-height: 100vh;
+      padding: 3rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
+    .page-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #64748b;
+    }
+
+    /* ── Signature Preview ──────────────────────────── */
+    .preview-box {
+      background: #fff;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08), 0 8px 32px rgba(0,0,0,0.06);
+      max-width: 640px;
+      width: 100%;
+    }
+
+    /* ════════════════════════════════════════════════
+       LA SIGNATURE (table-based pour compatibilité mail)
+       ════════════════════════════════════════════════ */
+    #signature-content {
+      font-family: Arial, sans-serif; /* Arial = police universelle clients mail */
+    }
+
+    /* ── Actions ────────────────────────────────────── */
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      padding: 0.625rem 1.25rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      text-decoration: none;
+    }
+
+    .btn:hover { opacity: 0.85; }
+
+    .btn-copy {
+      background: #191A23;
+      color: #B9FF66;
+    }
+
+    .btn-html {
+      background: #f1f5f9;
+      color: #334155;
+    }
+
+    /* Feedback */
+    #copy-feedback {
+      font-size: 0.8rem;
+      color: #22c55e;
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity 0.3s;
+      text-align: center;
+    }
+
+    #copy-feedback.visible { opacity: 1; }
+
+    /* Notice */
+    .notice {
+      max-width: 640px;
+      width: 100%;
+      background: #fefce8;
+      border: 1px solid #fde68a;
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      font-size: 0.8125rem;
+      color: #92400e;
+      line-height: 1.6;
+    }
+
+    .notice strong { color: #78350f; }
+
+    ol { padding-left: 1.25rem; margin-top: 0.5rem; }
+    ol li { margin-bottom: 0.25rem; }
+  </style>
+</head>
+<body>
+
+  <p class="page-title">Signature mail CLICOM — Mohamed Saber</p>
+
+  <!-- ── Aperçu ──────────────────────────────────── -->
+  <div class="preview-box">
+    <div id="signature-content">
+
+      <!--
+        ⚠ SIGNATURE HTML (table-based pour compatibilité Gmail/Outlook/Apple Mail)
+        Tous les styles sont inline — requis pour les clients mail.
+      -->
+      <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; font-family:Arial,sans-serif; font-size:13px; color:#374151; line-height:1.5;">
+        <tr>
+          <td style="padding:0;">
+
+            <!-- Ligne de séparation top -->
+            <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; width:100%; margin-bottom:16px;">
+              <tr>
+                <td style="border-top:2px solid #B9FF66; width:40px;">&nbsp;</td>
+                <td style="border-top:1px solid #e5e7eb;">&nbsp;</td>
+              </tr>
+            </table>
+
+            <!-- Corps principal -->
+            <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+              <tr valign="top">
+
+                <!-- Colonne gauche : Logo badge -->
+                <td style="padding-right:16px; padding-top:2px;">
+                  <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+                    <tr>
+                      <td style="
+                        width:48px; height:48px;
+                        background-color:#191A23;
+                        border-radius:10px;
+                        text-align:center;
+                        vertical-align:middle;
+                        font-size:10px;
+                        font-weight:900;
+                        color:#B9FF66;
+                        letter-spacing:0.05em;
+                      ">
+                        <!-- Fallback texte si les images sont bloquées -->
+                        <span style="font-family:Arial,sans-serif; font-size:10px; font-weight:900; color:#B9FF66; letter-spacing:0.06em;">CLI<br/>COM</span>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+
+                <!-- Colonne droite : Infos -->
+                <td style="padding-left:4px;">
+
+                  <!-- Nom -->
+                  <div style="font-family:Arial,sans-serif; font-size:16px; font-weight:800; color:#111827; letter-spacing:-0.01em; margin-bottom:1px;">
+                    Mohamed Saber
+                  </div>
+
+                  <!-- Rôle -->
+                  <div style="font-family:Arial,sans-serif; font-size:11px; font-weight:700; color:#B9FF66; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:8px;">
+                    Stratège Digital · CLICOM
+                  </div>
+
+                  <!-- Coordonnées -->
+                  <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+
+                    <tr>
+                      <td style="padding-bottom:4px;">
+                        <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+                          <tr valign="middle">
+                            <td style="padding-right:6px;">
+                              <svg width="11" height="11" fill="none" stroke="#9ca3af" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                            </td>
+                            <td><a href="tel:+41788238950" style="font-family:Arial,sans-serif; font-size:12px; color:#374151; text-decoration:none; font-weight:600;">+41 78 823 89 50</a></td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td style="padding-bottom:4px;">
+                        <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+                          <tr valign="middle">
+                            <td style="padding-right:6px;">
+                              <svg width="11" height="11" fill="none" stroke="#9ca3af" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            </td>
+                            <td><a href="mailto:contact@clicom.ch" style="font-family:Arial,sans-serif; font-size:12px; color:#191A23; text-decoration:underline; font-weight:600;">contact@clicom.ch</a></td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td style="padding-bottom:4px;">
+                        <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+                          <tr valign="middle">
+                            <td style="padding-right:6px;">
+                              <svg width="11" height="11" fill="none" stroke="#9ca3af" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+                            </td>
+                            <td><a href="https://www.clicom.ch" target="_blank" style="font-family:Arial,sans-serif; font-size:12px; color:#191A23; text-decoration:underline; font-weight:600;">www.clicom.ch</a></td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td style="padding-bottom:4px;">
+                        <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+                          <tr valign="middle">
+                            <td style="padding-right:6px;">
+                              <svg width="11" height="11" fill="none" stroke="#9ca3af" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            </td>
+                            <td><span style="font-family:Arial,sans-serif; font-size:12px; color:#6b7280;">Corseaux, Vaud · Suisse</span></td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+
+                  </table>
+
+                  <!-- Bouton WhatsApp -->
+                  <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; margin-top:10px;">
+                    <tr>
+                      <td style="
+                        background-color:#25D366;
+                        border-radius:6px;
+                        padding:6px 12px;
+                      ">
+                        <a href="https://wa.me/41788238950?text=Bonjour%20Mohamed%2C%20je%20vous%20contacte%20via%20votre%20signature%20mail."
+                           target="_blank"
+                           style="font-family:Arial,sans-serif; font-size:11px; font-weight:700; color:#fff; text-decoration:none; white-space:nowrap;">
+                          WhatsApp
+                        </a>
+                      </td>
+                      <td style="width:8px;">&nbsp;</td>
+                      <td style="
+                        background-color:#191A23;
+                        border-radius:6px;
+                        padding:6px 12px;
+                      ">
+                        <a href="https://www.clicom.ch/#contact"
+                           target="_blank"
+                           style="font-family:Arial,sans-serif; font-size:11px; font-weight:700; color:#B9FF66; text-decoration:none; white-space:nowrap;">
+                          Audit gratuit
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+
+                </td>
+              </tr>
+            </table>
+
+            <!-- Tagline + séparateur bas -->
+            <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; width:100%; margin-top:14px;">
+              <tr>
+                <td style="border-top:1px solid #e5e7eb; padding-top:10px;">
+                  <span style="font-family:Arial,sans-serif; font-size:10px; color:#9ca3af; font-style:italic; letter-spacing:0.03em;">
+                    L'Humain orchestre, l'IA exécute. · Agence Marketing Digital · Suisse Romande
+                  </span>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- FIN SIGNATURE -->
+
+    </div>
+  </div>
+
+  <!-- ── Actions ───────────────────────────────── -->
+  <div class="actions">
+    <button class="btn btn-copy" onclick="copySignatureHTML()">
+      <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+      </svg>
+      Copier le HTML (Outlook / Apple Mail)
+    </button>
+    <button class="btn btn-html" onclick="copyRichText()">
+      <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+      </svg>
+      Copier (Gmail / collage direct)
+    </button>
+  </div>
+
+  <p id="copy-feedback">Copie effectuée — collez directement dans votre client mail.</p>
+
+  <!-- ── Instructions ──────────────────────────── -->
+  <div class="notice">
+    <strong>Comment intégrer la signature dans votre client mail :</strong>
+    <ol>
+      <li><strong>Gmail :</strong> Cliquez "Copier (Gmail)" → Paramètres → Signature → Coller dans la zone de texte.</li>
+      <li><strong>Outlook :</strong> Cliquez "Copier le HTML" → Fichier → Options → Courrier → Signatures → Nouveau → coller dans l'éditeur HTML.</li>
+      <li><strong>Apple Mail :</strong> Cliquez "Copier (Gmail)" → Mail → Préférences → Signatures → coller dans la zone.</li>
+    </ol>
+  </div>
+
+  <script>
+    // Copie le HTML brut de la signature (pour Outlook)
+    function copySignatureHTML() {
+      const html = document.getElementById('signature-content').innerHTML;
+      navigator.clipboard.writeText(html).then(() => showFeedback()).catch(() => fallbackCopy(html));
+    }
+
+    // Copie le rendu riche (pour Gmail / Apple Mail)
+    function copyRichText() {
+      const el = document.getElementById('signature-content');
+      const range = document.createRange();
+      range.selectNodeContents(el);
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      document.execCommand('copy');
+      sel.removeAllRanges();
+      showFeedback();
+    }
+
+    function showFeedback() {
+      const fb = document.getElementById('copy-feedback');
+      fb.classList.add('visible');
+      setTimeout(() => fb.classList.remove('visible'), 3000);
+    }
+
+    function fallbackCopy(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showFeedback();
+    }
+  </script>
+
+</body>
+</html>

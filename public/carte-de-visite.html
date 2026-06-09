@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carte de visite — CLICOM / Mohamed Saber</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset ──────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --lime:      #B9FF66;
+      --lime-dark: #a3e655;
+      --dark:      #191A23;
+      --dark-2:    #1f202b;
+      --border:    rgba(255,255,255,0.08);
+
+      /* Format carte de visite ISO : 85 × 54 mm */
+      --card-w: 85mm;
+      --card-h: 54mm;
+      --radius: 3mm;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f1f5f9;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3rem;
+      padding: 3rem 1rem;
+    }
+
+    /* ── Titre ──────────────────────────────────────── */
+    .page-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #64748b;
+      text-align: center;
+    }
+
+    .cards-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .card-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #94a3b8;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    /* ── Carte commune ───────────────────────────────── */
+    .card {
+      width: var(--card-w);
+      height: var(--card-h);
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+      box-shadow:
+        0 4px 6px rgba(0,0,0,0.07),
+        0 10px 40px rgba(0,0,0,0.12);
+      flex-shrink: 0;
+      font-size: 2.5mm;
+    }
+
+    /* ═══════════════════════════════════════════════
+       RECTO
+       ═══════════════════════════════════════════════ */
+    .card-front {
+      background-color: var(--dark);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 5mm;
+    }
+
+    /* Motif de grille subtil */
+    .card-front::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(185,255,102,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(185,255,102,0.03) 1px, transparent 1px);
+      background-size: 4mm 4mm;
+      pointer-events: none;
+    }
+
+    /* Halo */
+    .card-front::after {
+      content: '';
+      position: absolute;
+      top: -8mm;
+      right: -8mm;
+      width: 30mm;
+      height: 30mm;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(185,255,102,0.12), transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Logo CLICOM */
+    .front-logo {
+      display: flex;
+      align-items: center;
+      gap: 1.5mm;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo-icon {
+      width: 6mm;
+      height: 6mm;
+      background-color: var(--lime);
+      border-radius: 1.2mm;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .logo-icon svg {
+      width: 3.5mm;
+      height: 3.5mm;
+    }
+
+    .logo-text {
+      font-weight: 900;
+      font-size: 4mm;
+      color: #fff;
+      letter-spacing: 0.05em;
+    }
+
+    /* Contenu central */
+    .front-body {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8mm;
+    }
+
+    .front-name {
+      font-size: 4.5mm;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .front-role {
+      font-size: 2.8mm;
+      font-weight: 600;
+      color: var(--lime);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .front-tagline {
+      font-size: 2.2mm;
+      color: rgba(255,255,255,0.4);
+      margin-top: 1mm;
+      font-style: italic;
+    }
+
+    /* Accent — barre verte */
+    .front-accent {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1mm;
+      background: linear-gradient(90deg, var(--lime) 0%, transparent 100%);
+    }
+
+    /* ═══════════════════════════════════════════════
+       VERSO
+       ═══════════════════════════════════════════════ */
+    .card-back {
+      background-color: var(--lime);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 5mm;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Cercle décoratif */
+    .card-back::before {
+      content: '';
+      position: absolute;
+      bottom: -12mm;
+      right: -12mm;
+      width: 36mm;
+      height: 36mm;
+      border-radius: 50%;
+      background-color: rgba(25,26,35,0.10);
+    }
+
+    .card-back::after {
+      content: '';
+      position: absolute;
+      top: -8mm;
+      left: -8mm;
+      width: 22mm;
+      height: 22mm;
+      border-radius: 50%;
+      background-color: rgba(25,26,35,0.07);
+    }
+
+    .back-logo {
+      display: flex;
+      align-items: center;
+      gap: 1.5mm;
+      position: relative;
+      z-index: 1;
+    }
+
+    .back-logo-icon {
+      width: 5mm;
+      height: 5mm;
+      background-color: var(--dark);
+      border-radius: 1mm;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .back-logo-icon svg {
+      width: 3mm;
+      height: 3mm;
+    }
+
+    .back-logo-text {
+      font-weight: 900;
+      font-size: 3.5mm;
+      color: var(--dark);
+      letter-spacing: 0.05em;
+    }
+
+    /* Contacts */
+    .back-contacts {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2mm;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 1.5mm;
+    }
+
+    .contact-row svg {
+      width: 2.8mm;
+      height: 2.8mm;
+      flex-shrink: 0;
+      color: rgba(25,26,35,0.6);
+    }
+
+    .contact-row span {
+      font-size: 2.4mm;
+      font-weight: 600;
+      color: var(--dark);
+      letter-spacing: 0.01em;
+    }
+
+    /* Tagline bas */
+    .back-tagline {
+      position: relative;
+      z-index: 1;
+      font-size: 2mm;
+      font-weight: 700;
+      color: rgba(25,26,35,0.5);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ── Bouton impression ───────────────────────── */
+    .print-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: #191A23;
+      color: #B9FF66;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 700;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+
+    .print-btn:hover { background-color: #2a2b38; }
+
+    /* ── Impression ─────────────────────────────── */
+    @media print {
+      body {
+        background: white;
+        gap: 10mm;
+        padding: 10mm;
+        justify-content: flex-start;
+      }
+      .print-btn, .page-title { display: none; }
+      .card {
+        box-shadow: none;
+        border: 0.3mm solid #ddd;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <p class="page-title">Carte de visite CLICOM · Format ISO 85 × 54 mm</p>
+
+  <div class="cards-wrapper">
+
+    <!-- RECTO -->
+    <div>
+      <p class="card-label">Recto</p>
+      <div class="card card-front">
+        <!-- Logo -->
+        <div class="front-logo">
+          <div class="logo-icon">
+            <svg fill="none" stroke="#191A23" viewBox="0 0 24 24" stroke-width="3">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <span class="logo-text">CLICOM</span>
+        </div>
+
+        <!-- Nom & rôle -->
+        <div class="front-body">
+          <p class="front-name">Mohamed Saber</p>
+          <p class="front-role">Stratège Digital</p>
+          <p class="front-tagline">L'Humain orchestre, l'IA exécute.</p>
+        </div>
+
+        <!-- Accentuation -->
+        <div class="front-accent"></div>
+      </div>
+    </div>
+
+    <!-- VERSO -->
+    <div>
+      <p class="card-label">Verso</p>
+      <div class="card card-back">
+        <!-- Logo inversé -->
+        <div class="back-logo">
+          <div class="back-logo-icon">
+            <svg fill="none" stroke="#B9FF66" viewBox="0 0 24 24" stroke-width="3">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <span class="back-logo-text">CLICOM</span>
+        </div>
+
+        <!-- Coordonnées -->
+        <div class="back-contacts">
+          <div class="contact-row">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+            </svg>
+            <span>+41 78 823 89 50</span>
+          </div>
+          <div class="contact-row">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+            <span>hello@clicom.ch</span>
+          </div>
+          <div class="contact-row">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+            </svg>
+            <span>www.clicom.ch</span>
+          </div>
+          <div class="contact-row">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            <span>Corseaux, Vaud · Suisse</span>
+          </div>
+        </div>
+
+        <!-- Tagline bas -->
+        <p class="back-tagline">Agence Marketing Digital · Suisse Romande</p>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="print-btn" onclick="window.print()">
+    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
+    </svg>
+    Imprimer / Exporter en PDF
+  </button>
+
+</body>
+</html>

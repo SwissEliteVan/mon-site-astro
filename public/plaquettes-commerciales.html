@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plaquettes commerciales — CLICOM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet" />
+  <style>
+
+    /* ── Reset ────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --lime:      #B9FF66;
+      --lime-dim:  rgba(185,255,102,0.12);
+      --dark:      #191A23;
+      --dark-2:    #1f202b;
+      --gray-1:    #374151;
+      --gray-2:    #6b7280;
+      --gray-3:    #9ca3af;
+      --border:    #e5e7eb;
+      --danger:    #dc2626;
+    }
+
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: #e2e8f0;
+      color: var(--gray-1);
+    }
+
+    /* ── Navigation index ─────────────────────────────────── */
+    .nav-index {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--dark);
+      border-bottom: 2px solid var(--lime);
+      padding: 0.75rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      print-color-adjust: exact;
+    }
+
+    .nav-logo {
+      font-weight: 900;
+      font-size: 1rem;
+      color: var(--lime);
+      letter-spacing: 0.08em;
+      margin-right: 1rem;
+      white-space: nowrap;
+    }
+
+    .nav-link {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #9ca3af;
+      text-decoration: none;
+      padding: 0.25rem 0.75rem;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      white-space: nowrap;
+      transition: all 0.15s;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--lime);
+      border-color: rgba(185,255,102,0.2);
+      background: rgba(185,255,102,0.06);
+    }
+
+    .nav-print {
+      margin-left: auto;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--dark);
+      background: var(--lime);
+      border: none;
+      padding: 0.35rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    /* ── Conteneur pages ──────────────────────────────────── */
+    .pages {
+      padding-top: 3.5rem;
+    }
+
+    /* ── Page A4 ──────────────────────────────────────────── */
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      background: #fff;
+      margin: 2rem auto;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.06), 0 12px 40px rgba(0,0,0,0.10);
+      display: flex;
+      flex-direction: column;
+      page-break-after: always;
+    }
+
+    /* ── En-tête de plaquette ─────────────────────────────── */
+    .page-header {
+      background: var(--dark);
+      padding: 12mm 14mm 10mm;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    /* Grille décorative */
+    .page-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(185,255,102,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(185,255,102,0.04) 1px, transparent 1px);
+      background-size: 8mm 8mm;
+    }
+
+    /* Halo */
+    .page-header::after {
+      content: '';
+      position: absolute;
+      top: -20mm;
+      right: -20mm;
+      width: 80mm;
+      height: 80mm;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(185,255,102,0.10), transparent 70%);
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8mm;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 2.5mm;
+    }
+
+    .logo-mark {
+      width: 8mm;
+      height: 8mm;
+      background: var(--lime);
+      border-radius: 1.5mm;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-mark svg { width: 5mm; height: 5mm; }
+
+    .logo-name {
+      font-size: 5mm;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: 0.06em;
+    }
+
+    .header-ref {
+      font-size: 2.8mm;
+      font-weight: 600;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.04em;
+    }
+
+    .header-body {
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-tag {
+      display: inline-block;
+      font-size: 2.5mm;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--dark);
+      background: var(--lime);
+      padding: 1mm 3mm;
+      border-radius: 1mm;
+      margin-bottom: 3mm;
+    }
+
+    .header-title {
+      font-size: 9mm;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 3mm;
+    }
+
+    .header-title span {
+      color: var(--lime);
+    }
+
+    .header-sub {
+      font-size: 3.8mm;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.5;
+      max-width: 140mm;
+    }
+
+    /* ── Barre stat ──────────────────────────────────────── */
+    .stat-bar {
+      background: var(--lime);
+      padding: 5mm 14mm;
+      display: flex;
+      gap: 0;
+      flex-shrink: 0;
+    }
+
+    .stat-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5mm;
+      padding: 0 5mm;
+      border-right: 1px solid rgba(25,26,35,0.15);
+    }
+
+    .stat-item:first-child { padding-left: 0; }
+    .stat-item:last-child  { border-right: none; }
+
+    .stat-num {
+      font-size: 6mm;
+      font-weight: 900;
+      color: var(--dark);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .stat-lbl {
+      font-size: 2.2mm;
+      font-weight: 600;
+      color: rgba(25,26,35,0.55);
+      line-height: 1.3;
+    }
+
+    /* ── Corps de la plaquette ────────────────────────────── */
+    .page-body {
+      padding: 10mm 14mm;
+      display: flex;
+      flex-direction: column;
+      gap: 8mm;
+      flex: 1;
+    }
+
+    /* ── Section intro ────────────────────────────────────── */
+    .intro-text {
+      font-size: 3.8mm;
+      line-height: 1.7;
+      color: var(--gray-1);
+      border-left: 1mm solid var(--lime);
+      padding-left: 4mm;
+    }
+
+    /* ── Grille 2 colonnes ────────────────────────────────── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6mm;
+    }
+
+    /* ── Bloc "Ce que nous faisons" ──────────────────────── */
+    .block-title {
+      font-size: 2.8mm;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray-2);
+      margin-bottom: 3mm;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5mm;
+    }
+
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 2.5mm;
+      font-size: 3.2mm;
+      color: var(--gray-1);
+      line-height: 1.45;
+    }
+
+    .feature-list li::before {
+      content: '';
+      flex-shrink: 0;
+      margin-top: 1.2mm;
+      width: 1.5mm;
+      height: 1.5mm;
+      border-radius: 50%;
+      background: var(--lime);
+    }
+
+    /* ── Box alerte / mise en garde ─────────────────────── */
+    .alert-box {
+      background: #fff7ed;
+      border: 0.5mm solid #fdba74;
+      border-left: 2mm solid #f97316;
+      border-radius: 2mm;
+      padding: 4mm 5mm;
+    }
+
+    .alert-box.danger {
+      background: #fef2f2;
+      border-color: #fca5a5;
+      border-left-color: var(--danger);
+    }
+
+    .alert-title {
+      font-size: 2.8mm;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 1.5mm;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .alert-text {
+      font-size: 3mm;
+      color: var(--gray-1);
+      line-height: 1.55;
+    }
+
+    .alert-text strong { font-weight: 700; }
+
+    /* ── Tarif ───────────────────────────────────────────── */
+    .price-box {
+      background: var(--dark);
+      border-radius: 3mm;
+      padding: 5mm 6mm;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4mm;
+    }
+
+    .price-label {
+      font-size: 2.5mm;
+      font-weight: 700;
+      color: var(--gray-3);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 1mm;
+    }
+
+    .price-amount {
+      font-size: 8mm;
+      font-weight: 900;
+      color: var(--lime);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .price-unit {
+      font-size: 3mm;
+      font-weight: 500;
+      color: var(--gray-3);
+    }
+
+    .price-includes {
+      list-style: none;
+      font-size: 2.8mm;
+      color: rgba(255,255,255,0.55);
+      display: flex;
+      flex-direction: column;
+      gap: 1.2mm;
+    }
+
+    .price-includes li::before {
+      content: '+ ';
+      color: var(--lime);
+      font-weight: 700;
+    }
+
+    /* ── Timeline process ────────────────────────────────── */
+    .process-steps {
+      display: flex;
+      gap: 0;
+      position: relative;
+    }
+
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 4mm;
+      left: 4mm;
+      right: 4mm;
+      height: 0.3mm;
+      background: var(--border);
+    }
+
+    .step {
+      flex: 1;
+      text-align: center;
+      padding: 0 2mm;
+      position: relative;
+    }
+
+    .step-num {
+      width: 8mm;
+      height: 8mm;
+      border-radius: 50%;
+      background: var(--dark);
+      color: var(--lime);
+      font-size: 3mm;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2mm;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-title {
+      font-size: 2.8mm;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 1mm;
+    }
+
+    .step-desc {
+      font-size: 2.5mm;
+      color: var(--gray-2);
+      line-height: 1.4;
+    }
+
+    /* ── Engagement / garanties ──────────────────────────── */
+    .guarantee-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3mm;
+    }
+
+    .guarantee-item {
+      border: 0.3mm solid var(--border);
+      border-radius: 2mm;
+      padding: 3.5mm;
+      text-align: center;
+    }
+
+    .guarantee-icon {
+      width: 6mm;
+      height: 6mm;
+      margin: 0 auto 1.5mm;
+      color: var(--dark);
+    }
+
+    .guarantee-title {
+      font-size: 2.6mm;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 0.8mm;
+    }
+
+    .guarantee-text {
+      font-size: 2.3mm;
+      color: var(--gray-2);
+      line-height: 1.4;
+    }
+
+    /* ── CTA bas de plaquette ────────────────────────────── */
+    .page-footer {
+      background: var(--lime);
+      padding: 5mm 14mm;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4mm;
+      flex-shrink: 0;
+      margin-top: auto;
+    }
+
+    .footer-cta-text {
+      font-size: 3.5mm;
+      font-weight: 800;
+      color: var(--dark);
+      line-height: 1.3;
+    }
+
+    .footer-contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 1mm;
+      align-items: flex-end;
+    }
+
+    .footer-contact-line {
+      font-size: 3mm;
+      font-weight: 600;
+      color: rgba(25,26,35,0.7);
+    }
+
+    .footer-contact-line strong {
+      color: var(--dark);
+      font-weight: 800;
+    }
+
+    /* ── Impression ──────────────────────────────────────── */
+    @media print {
+      .nav-index { display: none; }
+      .pages { padding-top: 0; }
+      body { background: white; }
+      .page {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 0;
+        box-shadow: none;
+        page-break-after: always;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- Navigation index -->
+<nav class="nav-index">
+  <span class="nav-logo">CLICOM</span>
+  <a href="#plaquette-1" class="nav-link">Sites Web</a>
+  <a href="#plaquette-2" class="nav-link">Visibilite Locale</a>
+  <a href="#plaquette-3" class="nav-link">Publicite</a>
+  <a href="#plaquette-4" class="nav-link">Fidelisation</a>
+  <a href="#plaquette-5" class="nav-link">nLPD</a>
+  <button class="nav-print" onclick="window.print()">Imprimer toutes les plaquettes</button>
+</nav>
+
+<div class="pages">
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PLAQUETTE 1 — CREATION DE SITES WEB
+     ══════════════════════════════════════════════════════════ -->
+<div class="page" id="plaquette-1">
+
+  <div class="page-header">
+    <div class="header-top">
+      <div class="header-logo">
+        <div class="logo-mark">
+          <svg fill="none" stroke="#191A23" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <span class="logo-name">CLICOM</span>
+      </div>
+      <span class="header-ref">Fiche produit N°1 — 2026</span>
+    </div>
+    <div class="header-body">
+      <span class="header-tag">Creation de sites web</span>
+      <h1 class="header-title">Votre site,<br/><span>livré en 21 jours.</span></h1>
+      <p class="header-sub">Un site professionnel, ultra-rapide et conforme a la loi suisse. Construit sur une technologie qui charge en moins d'une seconde.</p>
+    </div>
+  </div>
+
+  <!-- Stat bar -->
+  <div class="stat-bar">
+    <div class="stat-item">
+      <span class="stat-num">-50 %</span>
+      <span class="stat-lbl">de poids vs WordPress<br/>a fonctionnalites egales</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">&lt; 1 s</span>
+      <span class="stat-lbl">temps de chargement<br/>moyen de nos sites</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">100 %</span>
+      <span class="stat-lbl">conformes nLPD<br/>des la livraison</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">21 j</span>
+      <span class="stat-lbl">delai moyen<br/>de livraison</span>
+    </div>
+  </div>
+
+  <div class="page-body">
+
+    <p class="intro-text">
+      En Suisse, le prix moyen d'un site web professionnel est entre 3 000 et 8 000 CHF. Ce n'est pas le prix qui est eleve — c'est la majorite des agences qui livrent un produit mediocre pour ce budget. Chez CLICOM, chaque site est construit a la main, sur une architecture statique moderne (Astro), qui elimine les failles de securite et garantit une vitesse incomparable.
+    </p>
+
+    <div class="two-col">
+      <div>
+        <p class="block-title">Ce que comprend votre site</p>
+        <ul class="feature-list">
+          <li>Design sur-mesure adapte a votre activite et a votre clientele locale</li>
+          <li>Textes de vente rediges par nos soins — zéro copie generique</li>
+          <li>Optimisation complete pour Google (structure, vitesse, donnees locales)</li>
+          <li>Formulaire de contact chiffre et conforme nLPD</li>
+          <li>Hebergement securise inclus la premiere annee</li>
+          <li>Version mobile parfaite — 73 % de votre clientele visite via telephone</li>
+          <li>Certificat SSL, sitemap, robots.txt configures</li>
+          <li>Formation de 1 heure pour gerer votre contenu</li>
+        </ul>
+      </div>
+      <div>
+        <p class="block-title">Ce que vous n'aurez pas</p>
+        <ul class="feature-list">
+          <li>Pas de WordPress — trop lourd, trop vulnerable, trop lent</li>
+          <li>Pas de plugin a 300 CHF/an qui tombe en panne</li>
+          <li>Pas de design copie-colle d'un template generique</li>
+          <li>Pas de textes ecrits a la va-vite sans connaitre votre metier</li>
+          <li>Pas de frais caches apres livraison</li>
+          <li>Pas de contrat d'abonnement force</li>
+        </ul>
+
+        <div class="alert-box" style="margin-top: 4mm;">
+          <p class="alert-title">Le vrai cout d'un site lent</p>
+          <p class="alert-text">Google a mesure qu'<strong>une seconde de chargement en plus entraine 7 % de ventes en moins</strong>. Avec WordPress, la moyenne est a 3-5 secondes. Avec nos sites, moins d'une seconde.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Process -->
+    <div>
+      <p class="block-title">Notre methode de travail</p>
+      <div class="process-steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <p class="step-title">Bilan en 1h</p>
+          <p class="step-desc">Audit de votre situation actuelle et definition des objectifs</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <p class="step-title">Maquette J+5</p>
+          <p class="step-desc">Premiere version visuelle soumise a votre validation</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <p class="step-title">Redaction J+10</p>
+          <p class="step-desc">Tous les textes de vente rediges par notre equipe</p>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <p class="step-title">Mise en ligne J+21</p>
+          <p class="step-desc">Livraison, formation et remise des acces</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Prix -->
+    <div class="price-box">
+      <div>
+        <p class="price-label">Investissement</p>
+        <p class="price-amount">3 000 <span class="price-unit">— 8 000 CHF</span></p>
+        <p style="font-size:2.5mm; color:#6b7280; margin-top:1mm;">Selon la taille et les fonctionnalites requises — devis gratuit en 24h</p>
+      </div>
+      <ul class="price-includes">
+        <li>Design + developpement complet</li>
+        <li>Textes de vente inclus</li>
+        <li>Hebergement annee 1 inclus</li>
+        <li>Formation utilisation incluse</li>
+        <li>Conformite nLPD incluse</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <p class="footer-cta-text">Demandez votre devis<br/>gratuit sous 24 heures.</p>
+    <div class="footer-contacts">
+      <p class="footer-contact-line"><strong>+41 78 823 89 50</strong></p>
+      <p class="footer-contact-line"><strong>contact@clicom.ch</strong></p>
+      <p class="footer-contact-line">www.clicom.ch · Corseaux, Vaud</p>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PLAQUETTE 2 — VISIBILITE LOCALE (GOOGLE MAPS)
+     ══════════════════════════════════════════════════════════ -->
+<div class="page" id="plaquette-2">
+
+  <div class="page-header">
+    <div class="header-top">
+      <div class="header-logo">
+        <div class="logo-mark">
+          <svg fill="none" stroke="#191A23" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <span class="logo-name">CLICOM</span>
+      </div>
+      <span class="header-ref">Fiche produit N°2 — 2026</span>
+    </div>
+    <div class="header-body">
+      <span class="header-tag">Visibilite locale — Google Maps</span>
+      <h1 class="header-title">73 % de vos clients<br/><span>vous cherchent sur Maps.</span></h1>
+      <p class="header-sub">En Suisse romande, la majorite des decisions d'achat locales commencent par une recherche Google Maps. Si votre fiche est incomplete ou mal geree, ce sont vos concurrents qui repondent a la place.</p>
+    </div>
+  </div>
+
+  <div class="stat-bar">
+    <div class="stat-item">
+      <span class="stat-num">73 %</span>
+      <span class="stat-lbl">des Suisses consultent<br/>Google Maps avant de venir</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">6-12 m</span>
+      <span class="stat-lbl">pour des resultats<br/>stables et durables</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">1 000</span>
+      <span class="stat-lbl">CHF/mois minimum<br/>pour rester visible</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">0 CHF</span>
+      <span class="stat-lbl">de frais publicitaires<br/>supplementaires requis</span>
+    </div>
+  </div>
+
+  <div class="page-body">
+
+    <p class="intro-text">
+      Apparaitre dans les trois premiers resultats Google Maps de votre ville est aujourd'hui l'equivalent d'un emplacement en vitrine sur la rue principale. Ce n'est pas de la publicite payante — c'est de la presence organique, durable et gratuite une fois acquise. Mais elle s'obtient et se maintient avec un travail precis et regulier.
+    </p>
+
+    <div class="two-col">
+      <div>
+        <p class="block-title">Ce que nous gerons pour vous</p>
+        <ul class="feature-list">
+          <li>Optimisation complete de votre fiche Google Business Profile</li>
+          <li>Categories, horaires, photos professionnelles, attributs</li>
+          <li>Publication hebdomadaire de posts et offres sur votre fiche</li>
+          <li>Strategie d'obtention d'avis clients verifies</li>
+          <li>Reponse aux avis positifs et negatifs en votre nom</li>
+          <li>Suivi des appels et des itineraires generes chaque mois</li>
+          <li>Rapport mensuel lisible — sans jargon technique</li>
+          <li>Alignement avec votre site web (cohérence NAP)</li>
+        </ul>
+      </div>
+      <div>
+        <p class="block-title">Les erreurs que nous corrigeons</p>
+        <ul class="feature-list">
+          <li>Fiche non reclamee ou partiellement completee</li>
+          <li>Horaires incorrects ou jamais mis a jour</li>
+          <li>Photos de mauvaise qualite ou absentes</li>
+          <li>Zero avis client ou avis negatifs sans reponse</li>
+          <li>Categories mal choisies — vous n'apparaissez pas dans les bonnes recherches</li>
+          <li>Incohérence entre adresse sur Maps et adresse sur votre site</li>
+        </ul>
+
+        <div class="alert-box" style="margin-top: 4mm;">
+          <p class="alert-title">Pourquoi 1 000 CHF/mois minimum ?</p>
+          <p class="alert-text">En dessous de ce seuil, le travail est trop partiel pour creer une progression mesurable. Les agences qui prometent des resultats pour 200 CHF/mois ne vous montrent que des graphiques — pas des appels reels.</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p class="block-title">Notre engagement chiffre</p>
+      <div class="guarantee-grid">
+        <div class="guarantee-item">
+          <svg class="guarantee-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          <p class="guarantee-title">Rapport mensuel</p>
+          <p class="guarantee-text">Nombre d'appels, d'itineraires et de vues generes — chaque mois</p>
+        </div>
+        <div class="guarantee-item">
+          <svg class="guarantee-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+          <p class="guarantee-title">Acces direct</p>
+          <p class="guarantee-text">Mohamed Saber disponible par message pour toute question</p>
+        </div>
+        <div class="guarantee-item">
+          <svg class="guarantee-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          <p class="guarantee-title">Pas d'engagement long</p>
+          <p class="guarantee-text">Mensuel — vous restez libre de continuer ou d'arreter</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="price-box">
+      <div>
+        <p class="price-label">Investissement mensuel</p>
+        <p class="price-amount">des 1 000 <span class="price-unit">CHF / mois</span></p>
+        <p style="font-size:2.5mm; color:#6b7280; margin-top:1mm;">Sans engagement · Premier rapport a 30 jours · Annulable a tout moment</p>
+      </div>
+      <ul class="price-includes">
+        <li>Audit initial de votre fiche</li>
+        <li>Optimisation complete du profil</li>
+        <li>Suivi hebdomadaire</li>
+        <li>Rapport mensuel lisible</li>
+        <li>Strategie avis clients</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <p class="footer-cta-text">Votre fiche Maps est-elle<br/>vraiment optimisee ?</p>
+    <div class="footer-contacts">
+      <p class="footer-contact-line"><strong>+41 78 823 89 50</strong></p>
+      <p class="footer-contact-line"><strong>contact@clicom.ch</strong></p>
+      <p class="footer-contact-line">www.clicom.ch · Corseaux, Vaud</p>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PLAQUETTE 3 — PUBLICITE EN LIGNE
+     ══════════════════════════════════════════════════════════ -->
+<div class="page" id="plaquette-3">
+
+  <div class="page-header">
+    <div class="header-top">
+      <div class="header-logo">
+        <div class="logo-mark">
+          <svg fill="none" stroke="#191A23" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <span class="logo-name">CLICOM</span>
+      </div>
+      <span class="header-ref">Fiche produit N°3 — 2026</span>
+    </div>
+    <div class="header-body">
+      <span class="header-tag">Publicite en ligne</span>
+      <h1 class="header-title">3,29 CHF par visiteur<br/><span>qualifie. Des le jour 1.</span></h1>
+      <p class="header-sub">La publicite en ligne est le seul levier qui genere des resultats immediatement. Mais disperse sans methode, elle brule votre budget sans produire un seul appel.</p>
+    </div>
+  </div>
+
+  <div class="stat-bar">
+    <div class="stat-item">
+      <span class="stat-num">3,29</span>
+      <span class="stat-lbl">CHF / visiteur cible<br/>en Suisse romande</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">J+1</span>
+      <span class="stat-lbl">premiers resultats<br/>des l'activation</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">2 000</span>
+      <span class="stat-lbl">CHF/mois minimum<br/>pour etre competitif</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">100 %</span>
+      <span class="stat-lbl">budget media<br/>verse directement a Google</span>
+    </div>
+  </div>
+
+  <div class="page-body">
+
+    <p class="intro-text">
+      En Suisse romande, le cout moyen d'un clic sur Google Ads dans les secteurs competitifs (artisans, professionnels de sante, services B2B) est compris entre 2 et 8 CHF. Notre role : cibler uniquement les personnes qui ont une intention d'achat reelle — et maximiser le nombre d'appels pour chaque franc depense.
+    </p>
+
+    <div class="two-col">
+      <div>
+        <p class="block-title">Notre methode</p>
+        <ul class="feature-list">
+          <li>Audit de votre marche local et de vos concurrents directs</li>
+          <li>Choix des mots-cles a fort potentiel — exclusion des requetes inutiles</li>
+          <li>Redaction des annonces orientees conversion (pas du "joli texte")</li>
+          <li>Page de destination optimisee pour generer des appels</li>
+          <li>Suivi des conversions : chaque appel est trace et attributable</li>
+          <li>Optimisation hebdomadaire — pas de campagne laissee en pilote automatique</li>
+          <li>Rapport mensuel : cout par appel, nombre de contacts, depense exacte</li>
+        </ul>
+      </div>
+      <div>
+        <p class="block-title">Ce que nous refusons de faire</p>
+        <ul class="feature-list">
+          <li>Lancer une campagne sans page de destination dédiee</li>
+          <li>Cibler des mots-cles trop larges qui epuisent le budget sans resultat</li>
+          <li>Promettre un nombre de clics sans garantir des appels reels</li>
+          <li>Prendre une commission sur votre budget media — vous le versez directement</li>
+          <li>Cacher les performances dans un tableau incomprehensible</li>
+        </ul>
+
+        <div class="alert-box" style="margin-top: 4mm;">
+          <p class="alert-title">Pourquoi 2 000 CHF/mois minimum ?</p>
+          <p class="alert-text">En dessous de ce montant (gestion + media), votre campagne n'a pas assez de donnees pour s'optimiser. Le reseau Google penalise les petits budgets en leur donnant les emplacements les moins performants.</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p class="block-title">Transparence totale sur votre budget</p>
+      <div class="guarantee-grid">
+        <div class="guarantee-item">
+          <svg class="guarantee-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <p class="guarantee-title">Budget verse a Google</p>
+          <p class="guarantee-text">Votre budget media va directement sur votre compte Google — zero marge cachee</p>
+        </div>
+        <div class="guarantee-item">
+          <svg class="guarantee-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          <p class="guarantee-title">Appels traces</p>
+          <p class="guarantee-text">Chaque appel genere par la publicite est identifie et compte dans votre rapport</p>
+        </div>
+        <div class="guarantee-item">
+          <svg class="guarantee-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+          <p class="guarantee-title">Rapport mensuel clair</p>
+          <p class="guarantee-text">Depense exacte, nombre de clics, appels obtenus — en une page lisible</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="price-box">
+      <div>
+        <p class="price-label">Honoraires de gestion</p>
+        <p class="price-amount">des 800 <span class="price-unit">CHF / mois</span></p>
+        <p style="font-size:2.5mm; color:#6b7280; margin-top:1mm;">+ votre budget media (minimum recommande : 1 200 CHF/mois verses directement a Google)</p>
+      </div>
+      <ul class="price-includes">
+        <li>Configuration complete des campagnes</li>
+        <li>Optimisation hebdomadaire</li>
+        <li>Suivi des appels et conversions</li>
+        <li>Rapport mensuel detaille</li>
+        <li>Page de destination incluse</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <p class="footer-cta-text">Combien vous coutent<br/>vos clics actuellement ?</p>
+    <div class="footer-contacts">
+      <p class="footer-contact-line"><strong>+41 78 823 89 50</strong></p>
+      <p class="footer-contact-line"><strong>contact@clicom.ch</strong></p>
+      <p class="footer-contact-line">www.clicom.ch · Corseaux, Vaud</p>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PLAQUETTE 4 — FIDELISATION (SMS + NFC)
+     ══════════════════════════════════════════════════════════ -->
+<div class="page" id="plaquette-4">
+
+  <div class="page-header">
+    <div class="header-top">
+      <div class="header-logo">
+        <div class="logo-mark">
+          <svg fill="none" stroke="#191A23" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <span class="logo-name">CLICOM</span>
+      </div>
+      <span class="header-ref">Fiche produit N°4 — 2026</span>
+    </div>
+    <div class="header-body">
+      <span class="header-tag">Fidelisation — SMS et plaquette NFC</span>
+      <h1 class="header-title">98 % de taux de lecture.<br/><span>Le SMS gagne encore.</span></h1>
+      <p class="header-sub">Un client existant coutait 5 fois moins cher a conserver qu'un nouveau client a acquerir. Pourtant, la plupart des PME n'ont aucun systeme de fidelisation en place.</p>
+    </div>
+  </div>
+
+  <div class="stat-bar">
+    <div class="stat-item">
+      <span class="stat-num">98 %</span>
+      <span class="stat-lbl">taux de lecture<br/>d'un SMS en 3 min</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">22 %</span>
+      <span class="stat-lbl">taux de lecture<br/>d'un email en 24h</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">x5</span>
+      <span class="stat-lbl">moins cher de garder<br/>un client que d'en acquerir un</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">NFC</span>
+      <span class="stat-lbl">plaquette bois pour<br/>recueillir des avis Google</span>
+    </div>
+  </div>
+
+  <div class="page-body">
+
+    <p class="intro-text">
+      Vos clients qui ont achete une fois sont vos meilleurs prospects. Ils vous font deja confiance. Un message bien envoye, au bon moment, les fait revenir. Notre systeme automatise fait ce travail a votre place — sans que vous ayez a y penser.
+    </p>
+
+    <div class="two-col">
+      <div>
+        <p class="block-title">Systeme SMS automatise</p>
+        <ul class="feature-list">
+          <li>Message de remerciement envoye apres chaque achat ou visite</li>
+          <li>Relance automatique a J+30 avec une offre personnalisee</li>
+          <li>SMS d'anniversaire ou d'evenement saisonnier</li>
+          <li>Alerte en cas d'inactivite prolongee (client qui n'est pas revenu)</li>
+          <li>Respect strict de la loi suisse sur les communications commerciales</li>
+          <li>Desabonnement en un clic — base juridiquement protegee</li>
+        </ul>
+      </div>
+      <div>
+        <p class="block-title">Plaquette NFC en bois grave</p>
+        <ul class="feature-list">
+          <li>Objet physique elegant pose sur votre comptoir ou table</li>
+          <li>Le client approche son telephone — redirection immediate vers votre fiche Google</li>
+          <li>Augmentation significative du nombre d'avis clients verifies</li>
+          <li>Fonctionne sans application, sans connexion speciale</li>
+          <li>Grave au laser avec votre logo ou le nom de votre enseigne</li>
+          <li>Durabilite garantie — resistance a l'eau, aux chocs</li>
+        </ul>
+
+        <div class="alert-box" style="margin-top: 4mm;">
+          <p class="alert-title">Pourquoi les avis Google sont decisifs</p>
+          <p class="alert-text">Une fiche avec moins de 10 avis est ignoree par 60 % des clients potentiels. Notre plaquette NFC multiplie par 3 en moyenne le rythme d'obtention des avis en 60 jours.</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p class="block-title">Ce systeme travaille pendant que vous dormez</p>
+      <div class="process-steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <p class="step-title">Configuration</p>
+          <p class="step-desc">Nous integrons votre liste clients et programmons les scenarios</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <p class="step-title">Envoi automatique</p>
+          <p class="step-desc">Le bon message au bon client au bon moment — sans action de votre part</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <p class="step-title">Recueil d'avis</p>
+          <p class="step-desc">La plaquette NFC capte les avis Google en continu</p>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <p class="step-title">Rapport mensuel</p>
+          <p class="step-desc">SMS envoyes, taux de retour, nouveaux avis obtenus</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="price-box">
+      <div>
+        <p class="price-label">Pack fidelisation complet</p>
+        <p class="price-amount">des 500 <span class="price-unit">CHF / mois</span></p>
+        <p style="font-size:2.5mm; color:#6b7280; margin-top:1mm;">Configuration initiale : 800 CHF une seule fois. Plaquette NFC offerte des le 3e mois.</p>
+      </div>
+      <ul class="price-includes">
+        <li>Systeme SMS automatise complet</li>
+        <li>Scenarios personnalises a votre metier</li>
+        <li>Plaquette NFC bois grave (offerte M+3)</li>
+        <li>Rapport mensuel de fidelisation</li>
+        <li>Conformite loi suisse incluse</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <p class="footer-cta-text">Combien de clients perdez-vous<br/>faute d'une relance simple ?</p>
+    <div class="footer-contacts">
+      <p class="footer-contact-line"><strong>+41 78 823 89 50</strong></p>
+      <p class="footer-contact-line"><strong>contact@clicom.ch</strong></p>
+      <p class="footer-contact-line">www.clicom.ch · Corseaux, Vaud</p>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PLAQUETTE 5 — CONFORMITE nLPD
+     ══════════════════════════════════════════════════════════ -->
+<div class="page" id="plaquette-5">
+
+  <div class="page-header" style="background: #1a0505;">
+    <div class="header-top">
+      <div class="header-logo">
+        <div class="logo-mark">
+          <svg fill="none" stroke="#191A23" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <span class="logo-name">CLICOM</span>
+      </div>
+      <span class="header-ref">Fiche produit N°5 — 2026</span>
+    </div>
+    <div class="header-body">
+      <span class="header-tag" style="background: #dc2626; color: #fff;">Securite et conformite nLPD</span>
+      <h1 class="header-title">250 000 CHF d'amende.<br/><span style="color: #f87171;">Votre site est-il en regle ?</span></h1>
+      <p class="header-sub">Depuis le 1er septembre 2023, la nouvelle loi federale suisse sur la protection des donnees (nLPD) expose le dirigeant personnellement — pas l'entreprise — a des sanctions penales.</p>
+    </div>
+  </div>
+
+  <div class="stat-bar" style="background: #dc2626;">
+    <div class="stat-item">
+      <span class="stat-num">250 000</span>
+      <span class="stat-lbl">CHF d'amende maximale<br/>personnelle pour le patron</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">2023</span>
+      <span class="stat-lbl">date d'entree en vigueur<br/>de la nLPD en Suisse</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">80 %</span>
+      <span class="stat-lbl">des sites PME suisses<br/>non conformes aujourd'hui</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">30 j</span>
+      <span class="stat-lbl">pour mettre votre site<br/>en conformite complete</span>
+    </div>
+  </div>
+
+  <div class="page-body">
+
+    <p class="intro-text">
+      La nLPD ne punit pas "l'entreprise" — elle punit le dirigeant a titre personnel. Un pharmacien, un architecte, un restaurateur dont le site collecte des donnees sans mention legale conforme peut recevoir une convocation penale. Ce n'est pas une hypothese : les premieres procedures sont en cours en Suisse.
+    </p>
+
+    <div class="two-col">
+      <div>
+        <p class="block-title">Ce que nous verifions sur votre site</p>
+        <ul class="feature-list">
+          <li>Presence et conformite de la politique de confidentialite</li>
+          <li>Consentement explicite aux cookies (bandeau non suffisant seul)</li>
+          <li>Absence de traceurs tiers non declares (Google Analytics, Meta Pixel)</li>
+          <li>Formulaires de contact avec mention RGPD/nLPD et base legale</li>
+          <li>Chiffrement des donnees en transit (HTTPS valide)</li>
+          <li>Polices et ressources chargees depuis serveurs suisses ou adequats</li>
+          <li>Mentions legales completes avec IDE de l'entreprise</li>
+          <li>Procedure de suppression des donnees sur demande</li>
+        </ul>
+      </div>
+      <div>
+        <p class="block-title">Ce que nous livrons</p>
+        <ul class="feature-list">
+          <li>Rapport d'audit complet de votre site actuel</li>
+          <li>Liste des non-conformites classees par niveau de risque</li>
+          <li>Correction technique de l'ensemble des points identifies</li>
+          <li>Politique de confidentialite redigee en langage clair</li>
+          <li>Mentions legales conformes avec vos informations exactes</li>
+          <li>Attestation de conformite CLICOM remise a la fin</li>
+        </ul>
+
+        <div class="alert-box danger" style="margin-top: 4mm;">
+          <p class="alert-title">Attention au "faux bandeau cookies"</p>
+          <p class="alert-text">Afficher un bandeau sans gestion reelle du consentement est une infraction. <strong>90 % des bandeaux install&eacute;s par des non-sp&eacute;cialistes ne sont pas conformes</strong> et constituent une fausse securite plus dangereuse que l'absence de bandeau.</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p class="block-title">Notre approche "Privacy by Design"</p>
+      <div class="guarantee-grid">
+        <div class="guarantee-item">
+          <svg class="guarantee-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          <p class="guarantee-title">Zero traceur cache</p>
+          <p class="guarantee-text">Nos sites n'embarquent aucun outil de surveillance non declare</p>
+        </div>
+        <div class="guarantee-item">
+          <svg class="guarantee-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/></svg>
+          <p class="guarantee-title">Hebergement adequat</p>
+          <p class="guarantee-text">Serveurs certifies conformes aux exigences du PFPDT suisse</p>
+        </div>
+        <div class="guarantee-item">
+          <svg class="guarantee-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+          <p class="guarantee-title">Attestation fournie</p>
+          <p class="guarantee-text">Document ecrit confirme la mise en conformite de votre site</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="price-box">
+      <div>
+        <p class="price-label">Audit + mise en conformite complete</p>
+        <p class="price-amount">des 1 200 <span class="price-unit">CHF</span></p>
+        <p style="font-size:2.5mm; color:#6b7280; margin-top:1mm;">Forfait unique — inclus dans tout nouveau site CLICOM · Veille legale annuelle disponible</p>
+      </div>
+      <ul class="price-includes">
+        <li>Audit complet de votre site</li>
+        <li>Rapport de non-conformites</li>
+        <li>Corrections techniques incluses</li>
+        <li>Politique de confidentialite redigee</li>
+        <li>Attestation de conformite</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="page-footer" style="background: #dc2626;">
+    <p class="footer-cta-text" style="color: #fff;">Votre site vous expose-t-il<br/>a une amende aujourd'hui ?</p>
+    <div class="footer-contacts">
+      <p class="footer-contact-line" style="color: rgba(255,255,255,0.7);"><strong style="color:#fff;">+41 78 823 89 50</strong></p>
+      <p class="footer-contact-line" style="color: rgba(255,255,255,0.7);"><strong style="color:#fff;">contact@clicom.ch</strong></p>
+      <p class="footer-contact-line" style="color: rgba(255,255,255,0.6);">www.clicom.ch · Corseaux, Vaud</p>
+    </div>
+  </div>
+
+</div>
+
+
+</div><!-- /.pages -->
+</body>
+</html>
