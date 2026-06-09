@@ -1,3 +1,11 @@
 @import "tailwindcss";
-@plugin "@tailwindcss/typography";
-@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-clicom-dark: #191A23;
+  --color-clicom-lime: #B9FF66;
+}
+
+body {
+  background-color: var(--color-clicom-dark);
+  color: white;
+}
