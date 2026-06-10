@@ -6,7 +6,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   // URL de production indispensable pour la génération du sitemap
-  site: 'https://www.votredomaine.com',
+  site: 'https://clicom.ch',
   
   integrations: [sitemap()],
   // 1. Configuration du Prefetching (Préchargement des pages)
