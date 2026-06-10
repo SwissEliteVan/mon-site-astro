@@ -34,6 +34,9 @@
       justify-content: center;
       gap: 3rem;
       padding: 3rem 1rem;
+      /* FORCER L'IMPRESSION DES COULEURS DE FOND */
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
     }
 
     /* ── Titre ──────────────────────────────────────── */
@@ -114,7 +117,6 @@
       pointer-events: none;
     }
 
-    /* Logo CLICOM */
     .front-logo {
       display: flex;
       align-items: center;
@@ -134,10 +136,7 @@
       flex-shrink: 0;
     }
 
-    .logo-icon svg {
-      width: 3.5mm;
-      height: 3.5mm;
-    }
+    .logo-icon svg { width: 3.5mm; height: 3.5mm; }
 
     .logo-text {
       font-weight: 900;
@@ -146,7 +145,6 @@
       letter-spacing: 0.05em;
     }
 
-    /* Contenu central */
     .front-body {
       position: relative;
       z-index: 1;
@@ -178,7 +176,6 @@
       font-style: italic;
     }
 
-    /* Accent — barre verte */
     .front-accent {
       position: absolute;
       bottom: 0;
@@ -201,7 +198,6 @@
       overflow: hidden;
     }
 
-    /* Cercle décoratif */
     .card-back::before {
       content: '';
       position: absolute;
@@ -242,10 +238,7 @@
       justify-content: center;
     }
 
-    .back-logo-icon svg {
-      width: 3mm;
-      height: 3mm;
-    }
+    .back-logo-icon svg { width: 3mm; height: 3mm; }
 
     .back-logo-text {
       font-weight: 900;
@@ -254,7 +247,6 @@
       letter-spacing: 0.05em;
     }
 
-    /* Contacts */
     .back-contacts {
       position: relative;
       z-index: 1;
@@ -283,7 +275,6 @@
       letter-spacing: 0.01em;
     }
 
-    /* Tagline bas */
     .back-tagline {
       position: relative;
       z-index: 1;
@@ -314,18 +305,44 @@
 
     .print-btn:hover { background-color: #2a2b38; }
 
-    /* ── Impression ─────────────────────────────── */
+    /* ── Impression Optimisée (PDF) ───────────────── */
     @media print {
-      body {
-        background: white;
-        gap: 10mm;
-        padding: 10mm;
-        justify-content: flex-start;
+      /* Format exact du PDF = taille de la carte */
+      @page {
+        size: 85mm 54mm;
+        margin: 0;
       }
-      .print-btn, .page-title { display: none; }
+      
+      body {
+        background: transparent;
+        padding: 0;
+        margin: 0;
+        display: block; /* Retire le flex pour l'export */
+      }
+      
+      /* Cacher les éléments d'interface web */
+      .print-btn, .page-title, .card-label { 
+        display: none !important; 
+      }
+      
+      .cards-wrapper {
+        display: block;
+        gap: 0;
+      }
+
+      /* Séparer le Recto et le Verso sur 2 pages différentes dans le PDF */
+      .card-container {
+        page-break-after: always;
+        break-after: page;
+      }
+
+      /* Retirer les ombres et les arrondis pour le fichier de découpe */
       .card {
         box-shadow: none;
-        border: 0.3mm solid #ddd;
+        border-radius: 0; /* L'imprimeur fera la découpe lui-même */
+        width: 85mm;
+        height: 54mm;
+        margin: 0;
       }
     }
   </style>
@@ -337,10 +354,9 @@
   <div class="cards-wrapper">
 
     <!-- RECTO -->
-    <div>
+    <div class="card-container">
       <p class="card-label">Recto</p>
       <div class="card card-front">
-        <!-- Logo -->
         <div class="front-logo">
           <div class="logo-icon">
             <svg fill="none" stroke="#191A23" viewBox="0 0 24 24" stroke-width="3">
@@ -350,23 +366,20 @@
           <span class="logo-text">CLICOM</span>
         </div>
 
-        <!-- Nom & rôle -->
         <div class="front-body">
           <p class="front-name">Mohamed Saber</p>
           <p class="front-role">Stratège Digital</p>
           <p class="front-tagline">L'Humain orchestre, l'IA exécute.</p>
         </div>
 
-        <!-- Accentuation -->
         <div class="front-accent"></div>
       </div>
     </div>
 
     <!-- VERSO -->
-    <div>
+    <div class="card-container">
       <p class="card-label">Verso</p>
       <div class="card card-back">
-        <!-- Logo inversé -->
         <div class="back-logo">
           <div class="back-logo-icon">
             <svg fill="none" stroke="#B9FF66" viewBox="0 0 24 24" stroke-width="3">
@@ -376,7 +389,6 @@
           <span class="back-logo-text">CLICOM</span>
         </div>
 
-        <!-- Coordonnées -->
         <div class="back-contacts">
           <div class="contact-row">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
@@ -405,7 +417,6 @@
           </div>
         </div>
 
-        <!-- Tagline bas -->
         <p class="back-tagline">Agence Marketing Digital · Suisse Romande</p>
       </div>
     </div>
