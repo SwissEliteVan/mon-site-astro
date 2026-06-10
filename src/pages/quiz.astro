@@ -276,6 +276,9 @@ import Layout from '../layouts/Layout.astro';
           Nous avons identifié l'Agent IA et le plan d'action qu'il vous faut pour dominer votre marché. Laissez votre e-mail pour découvrir votre résultat complet.
         </p>
 
+        <!-- Verdict personnalisé affiché dynamiquement -->
+        <div id="result-verdict" class="result-verdict" aria-live="polite"></div>
+
         <!-- Formulaire lead magnet -->
         <form
           class="lead-form"
@@ -441,10 +444,17 @@ import Layout from '../layouts/Layout.astro';
     // Stocke dans le champ caché
     const hiddenField = document.getElementById('lead-result');
     hiddenField.value = `${agent.name} — ${agent.verdict}`;
+
+    // Affiche le verdict visuellement avant la soumission email
+    const verdictEl = document.getElementById('result-verdict');
+    if (verdictEl) {
+      verdictEl.textContent = agent.verdict;
+      verdictEl.style.borderLeftColor = agent.color;
+    }
   }
 
   // ── Soumission formulaire ────────────────────────────
-  function submitLead(e) {
+  async function submitLead(e) {
     e.preventDefault();
     const emailInput = document.getElementById('lead-email');
     const email      = emailInput.value.trim();
@@ -459,15 +469,35 @@ import Layout from '../layouts/Layout.astro';
     emailInput.classList.remove('input-error');
     emailInput.removeAttribute('aria-invalid');
 
-    // Simule envoi (remplacer par fetch vers votre endpoint)
     const btn = document.getElementById('btn-lead');
     btn.disabled    = true;
     btn.textContent = 'Envoi en cours…';
 
-    setTimeout(() => {
-      document.getElementById('lead-form').classList.add('hidden');
-      document.getElementById('lead-success').classList.remove('hidden');
-    }, 800);
+    try {
+      const formData = new FormData();
+      formData.append('access_key', '460032a2-b3c6-4cbc-8673-345e26a6e7a2');
+      formData.append('subject', 'Nouveau lead CLICOM — Résultat Quiz');
+      formData.append('email', email);
+      formData.append('agent_result', document.getElementById('lead-result').value);
+      formData.append('botcheck', '');
+
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        document.getElementById('lead-form').classList.add('hidden');
+        document.getElementById('lead-success').classList.remove('hidden');
+      } else {
+        throw new Error(result.message || 'Erreur');
+      }
+    } catch (err) {
+      btn.disabled    = false;
+      btn.textContent = 'Réessayer';
+    }
   }
 
   // ── Breadcrumb ───────────────────────────────────────
@@ -937,6 +967,21 @@ import Layout from '../layouts/Layout.astro';
   }
   .btn-back:hover { color: #9ca3af; background-color: var(--color-border); }
 
+  /* ── Verdict personnalisé ────────────────────────── */
+  .result-verdict {
+    font-size: 0.9375rem;
+    color: #d1d5db;
+    line-height: 1.7;
+    max-width: 28rem;
+    text-align: left;
+    border-left: 3px solid var(--color-brand-lime);
+    padding: 0.875rem 1.25rem;
+    background-color: rgba(185,255,102,0.05);
+    border-radius: 0 0.75rem 0.75rem 0;
+    margin-bottom: 2rem;
+    transition: border-left-color 0.3s ease;
+  }
+  .result-verdict:empty { display: none; }
+
   /* ── Utilitaires ─────────────────────────────────── */
-  .hidden { display: none !important; }
 </style>
