@@ -1,71 +1,76 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Breadcrumb from '../components/Breadcrumb.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FloatingContact from '../components/FloatingContact.astro';
 
-const title = "Politique de confidentialité - CLICOM";
-const description = "Politique de confidentialité et protection des données personnelles de CLICOM SA, Genève";
+export interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+}
+
+const { title, description = "CLICOM - Solutions informatiques professionnelles à Genève", canonical } = Astro.props;
 ---
 
-<Layout title={title} description={description}>
-  <div class="container mx-auto px-4 py-12 max-w-4xl">
-    <Breadcrumb />
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
     
-    <h1 class="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-      Politique de confidentialité
-    </h1>
+    <title>{title}</title>
+    <link rel="canonical" href={canonical || `https://clicom.ch${Astro.url.pathname}`} />
     
-    <div class="prose prose-invert prose-lg max-w-none">
-      <p class="text-gray-300 mb-6">
-        Dernière mise à jour : <time datetime="2025-04-01">1er avril 2025</time>
-      </p>
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical || `https://clicom.ch${Astro.url.pathname}`} />
+    <meta property="og:image" content="https://clicom.ch/og-image.jpg" />
+    <meta property="og:locale" content="fr_FR" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://clicom.ch/og-image.jpg" />
+    
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <style is:global>
+      @import "tailwindcss";
       
-      <section class="mb-8">
-        <h2 class="text-2xl font-semibold mb-4 text-primary">1. Collecte des données</h2>
-        <p>CLICOM SA collecte les données suivantes :</p>
-        <ul class="list-disc pl-6 space-y-2">
-          <li>Nom, prénom, email, numéro de téléphone (via formulaire de contact)</li>
-          <li>Adresse IP (anonymisée, durée 30 jours)</li>
-          <li>Cookies fonctionnels (session, préférences)</li>
-        </ul>
-      </section>
+      .text-gray-400 {
+        color: #d1d5db !important;
+      }
       
-      <section class="mb-8">
-        <h2 class="text-2xl font-semibold mb-4 text-primary">2. Utilisation des données</h2>
-        <p>Vos données sont utilisées exclusivement pour :</p>
-        <ul class="list-disc pl-6 space-y-2">
-          <li>Répondre à vos demandes de contact</li>
-          <li>Améliorer nos services (analyses anonymes)</li>
-          <li>Respecter nos obligations légales</li>
-        </ul>
-      </section>
+      .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: #000;
+        color: white;
+        padding: 8px;
+        z-index: 100;
+        text-decoration: none;
+      }
       
-      <section class="mb-8">
-        <h2 class="text-2xl font-semibold mb-4 text-primary">3. Protection des données</h2>
-        <p>
-          Nous utilisons des mesures de sécurité techniques et organisationnelles pour protéger vos données 
-          contre tout accès non autorisé, perte ou destruction.
-        </p>
-      </section>
-      
-      <section class="mb-8">
-        <h2 class="text-2xl font-semibold mb-4 text-primary">4. Vos droits (RGPD)</h2>
-        <p>Conformément au RGPD, vous disposez des droits suivants :</p>
-        <ul class="list-disc pl-6 space-y-2">
-          <li>Droit d'accès à vos données</li>
-          <li>Droit de rectification</li>
-          <li>Droit à l'effacement ("droit à l'oubli")</li>
-          <li>Droit à la limitation du traitement</li>
-          <li>Droit à la portabilité des données</li>
-        </ul>
-        <p class="mt-4">
-          Pour exercer vos droits, contactez : <a href="mailto:dpo@clicom.ch" class="text-primary hover:underline">dpo@clicom.ch</a>
-        </p>
-      </section>
-      
-      <section class="mb-8">
-        <h2 class="text-2xl font-semibold mb-4 text-primary">5. Cookies</h2>
-        <p>Notre site utilise uniquement des cookies fonctionnels et techniques nécessaires à son bon fonctionnement.</p>
-      </section>
-    </div>
-  </div>
-</Layout>
+      .skip-link:focus {
+        top: 0;
+      }
+    </style>
+  </head>
+  
+  <body class="bg-dark-bg text-gray-100 font-sans antialiased">
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+    
+    <Header />
+    
+    <main id="main-content">
+      <slot />
+    </main>
+    
+    <FloatingContact />
+    <Footer />
+  </body>
+</html>
