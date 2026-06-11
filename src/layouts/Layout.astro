@@ -54,12 +54,17 @@ const {
   <meta name="google-site-verification" content="google8b86f05b9d056ea8.html" />
 
     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H5FZKELW28" is:inline></script>
     <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-H5FZKELW28');
+      if (localStorage.getItem('clicom_cookie_consent') === 'accepted') {
+        const ga = document.createElement('script');
+        ga.async = true;
+        ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-H5FZKELW28';
+        document.head.appendChild(ga);
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-H5FZKELW28');
+      }
     </script>
   </head>
 
