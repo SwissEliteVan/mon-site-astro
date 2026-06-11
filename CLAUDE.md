@@ -1,1 +1,12 @@
-Back on PyPI + background-behavior disclosure. PyPI Security cleared the quarantine and reactivated the account 2026-06-10; root cause per their email: the package "sets up a persistent service that is not apparent to the user, nor disclosed in the README" (the watch-install login service + default-on savings telemetry, neither README-disclosed). Docs-only release: (1) new README section "Background behavior, fully disclosed" (after "How it works") enumerating file watching, the watch-install login service (explicit opt-in, watch-uninstall reverses), anonymous savings telemetry (+ opt-out), init/install hooks, and the ~/.code-index/ store — keep this section current whenever ANY new background/persistent/network behavior ships; it's the PyPI-compliance surface; (2) reverted ALL quarantine-era doc repointing in README/QUICKSTART/USER_GUIDE (badges incl. the base64 Cursor payload back to bare uvx jcodemunch-mcp, hero commands lead with PyPI, Codex venv back to -U jcodemunch-mcp, Antigravity example back to bare args; git+https stays documented as the PyPI-independent B2B channel per the 2026-05-29 distribution policy); speedreview pins bumped to v1.108.52. First jcm PyPI upload since 1.108.20. Sibling sweep same day: jdoc README already disclosed its meter (OK); jdata didn't → jdata v1.13.1 shipped the disclosure. Issue #308 closed.
+RÈGLE ABSOLUE : CONFORMITÉ PYPI (Exigence de Sécurité)
+Il est STRICTEMENT INTERDIT d'ajouter ou de modifier l'un des éléments suivants sans mettre à jour immédiatement la section "Background behavior, fully disclosed" du README :
+
+Services en arrière-plan (Background services)
+
+Processus persistants (ex: file watching, hooks, login services)
+
+Télémétrie (même anonyme) ou appels réseau cachés
+
+Stockage de fichiers locaux (ex: ~/.code-index/)
+
+Motif : Non-négociable. Le défaut de divulgation a déjà entraîné une mise en quarantaine par la sécurité de PyPI.
