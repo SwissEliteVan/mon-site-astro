@@ -1,5 +1,5 @@
 # ======================================================================
-# CONFIGURATION DE SÉCURITÉ SERVEUR (CLICOM SUISSE)
+# CONFIGURATION DE SÉCURITÉ SERVEUR (CLICOM SUISSE) - VERSION FINALE
 # ======================================================================
 
 # 1. Empêcher le listage des répertoires (Sécurité de base)
@@ -17,24 +17,59 @@ Options -Indexes
     # Strict-Transport-Security : Force les navigateurs à utiliser uniquement HTTPS pendant 1 an
     Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
     
-    # X-Content-Type-Options : Empêche le navigateur de "deviner" le type de fichier (MIME-sniffing)
+    # X-Content-Type-Options : Empêche le navigateur de "deviner" le type de fichier
     Header always set X-Content-Type-Options "nosniff"
     
-    # X-Frame-Options : Empêche un site tiers d'intégrer le vôtre via iframe (Clickjacking)
+    # X-Frame-Options : Empêche l'intégration en iframe (Clickjacking)
     Header always set X-Frame-Options "SAMEORIGIN"
     
-    # X-XSS-Protection : Protection basique contre le Cross-Site Scripting sur les anciens navigateurs
+    # X-XSS-Protection : Protection anti-XSS pour anciens navigateurs
     Header always set X-XSS-Protection "1; mode=block"
+    
+    # Referrer-Policy : Limite les infos transmises aux sites externes
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Permissions-Policy : Désactive les APIs navigateur non utilisées
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=()"
+    
+    # Content-Security-Policy : La règle la plus importante (anti-XSS moderne)
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://api.web3forms.com; upgrade-insecure-requests; block-all-mixed-content"
     
     # Masquer les informations du serveur aux attaquants
     Header unset X-Powered-By
     Header unset Server
+    
+    # Cache des ressources statiques (améliore les performances)
+    <FilesMatch "\.(jpg|jpeg|png|gif|ico|css|js|svg|webp|woff|woff2|ttf|eot)$">
+        Header set Cache-Control "max-age=31536000, public, immutable"
+    </FilesMatch>
+    
+    # Cache court pour HTML (pour voir les mises à jour rapidement)
+    <FilesMatch "\.(html|htm)$">
+        Header set Cache-Control "max-age=3600, must-revalidate"
+    </FilesMatch>
 </IfModule>
 
-# 4. Gérer l'extension .html pour Astro en mode statique (Optionnel mais recommandé)
+# 4. Gérer l'extension .html pour Astro en mode statique
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME}\.html -f
     RewriteRule ^(.*)$ $1.html [NC,L]
+</IfModule>
+
+# 5. Bloquer l'accès aux fichiers sensibles
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "(composer\.json|package\.json|\.env|\.gitignore|README\.md|LICENSE)">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# 6. Compression Gzip (accélère le chargement)
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
 </IfModule>
