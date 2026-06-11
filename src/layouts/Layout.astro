@@ -84,7 +84,89 @@ const {
 +  description = "CLICOM révolutionne le marketing B2B. Mohamed Saber et ses agents IA (Lumina, Koda, Synergia) allient vitesse fulgurante et sécurité suisse (nLPD).",
 +  noindex = false,
  } = Astro.props;   <meta name="google-site-verification" content="google8b86f05b9d056ea8.html" />
-+  {noindex && <meta name="robots" content="noindex, nofollow" />}in class="flex-grow w-full">
++  {noindex && <meta name="robots" content="noindex, nofollow" />}---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+
+const { 
+  title = "CLICOM | L'Agence Digitale Hybride (Humain + IA) en Suisse Romande", 
+  description = "CLICOM révolutionne le marketing B2B. Mohamed Saber et ses agents IA (Lumina, Koda, Synergia) allient vitesse fulgurante et sécurité suisse (nLPD).",
+  noindex = false,
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    
+    <!-- AIO : Schema.org JSON-LD pour les moteurs IA et Google -->
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "LocalBusiness",
+            "name": "CLICOM",
+            "url": "https://clicom.ch",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Corseaux",
+              "addressRegion": "VD",
+              "addressCountry": "CH"
+            },
+            "description": "Agence de marketing digital B2B hybride en Suisse romande.",
+            "founder": {
+              "@type": "Person",
+              "name": "Mohamed Saber"
+            }
+          },
+          {
+            "@type": "WebPage",
+            "name": "CLICOM | Accueil",
+            "url": "https://clicom.ch"
+          }
+        ]
+      }
+    </script>
+
+    <meta name="google-site-verification" content="google8b86f05b9d056ea8.html" />
+
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Google Analytics -->
+    <script is:inline>
+      if (localStorage.getItem('clicom_cookie_consent') === 'accepted') {
+        const ga = document.createElement('script');
+        ga.async = true;
+        ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-H5FZKELW28';
+        document.head.appendChild(ga);
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-H5FZKELW28');
+      }
+    </script>
+  </head>
+
+  <body class="bg-[var(--color-clicom-dark)] text-white font-sans antialiased min-h-screen flex flex-col selection:bg-[var(--color-clicom-lime)] selection:text-[var(--color-clicom-dark)]">
+    <Header />
+    <main class="flex-grow w-full">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>in class="flex-grow w-full">
       <slot />
     </main>
     <Footer />
