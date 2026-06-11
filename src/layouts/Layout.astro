@@ -70,7 +70,21 @@ const {
 
   <body class="bg-[var(--color-clicom-dark)] text-white font-sans antialiased min-h-screen flex flex-col selection:bg-[var(--color-clicom-lime)] selection:text-[var(--color-clicom-dark)]">
     <Header />
-    <main class="flex-grow w-full">
+    <ma- Sitemap: https://clicom.ch/sitemap-index.xml
++ Sitemap: https://clicom.ch/sitemap-0.xml @import "tailwindcss";
++@plugin "@tailwindcss/typography"; interface Props {
+   title?: string;
+   description?: string;
++  noindex?: boolean;
+ }
+ 
+ const { 
+   title = "CLICOM | L'Agence Digitale Hybride (Humain + IA) en Suisse Romande", 
+-  description = "CLICOM révolutionne le marketing B2B. Mohamed Saber et ses agents IA (Lumina, Koda, Synergia) allient vitesse fulgurante et sécurité suisse (nLPD)."
++  description = "CLICOM révolutionne le marketing B2B. Mohamed Saber et ses agents IA (Lumina, Koda, Synergia) allient vitesse fulgurante et sécurité suisse (nLPD).",
++  noindex = false,
+ } = Astro.props;   <meta name="google-site-verification" content="google8b86f05b9d056ea8.html" />
++  {noindex && <meta name="robots" content="noindex, nofollow" />}in class="flex-grow w-full">
       <slot />
     </main>
     <Footer />

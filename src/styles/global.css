@@ -1,4 +1,18 @@
-/* ============================================================
+ interface Props {
+   title?: string;
+   description?: string;
++  noindex?: boolean;
+ }
+ 
+ const { 
+   title = "CLICOM | L'Agence Digitale Hybride (Humain + IA) en Suisse Romande", 
+-  description = "CLICOM révolutionne le marketing B2B. Mohamed Saber et ses agents IA (Lumina, Koda, Synergia) allient vitesse fulgurante et sécurité suisse (nLPD)."
++  description = "CLICOM révolutionne le marketing B2B. Mohamed Saber et ses agents IA (Lumina, Koda, Synergia) allient vitesse fulgurante et sécurité suisse (nLPD).",
++  noindex = false,
+ } = Astro.props;
+ 
+   <meta name="google-site-verification" content="google8b86f05b9d056ea8.html" />
++  {noindex && <meta name="robots" content="noindex, nofollow" />}/* ============================================================
    CLICOM — Design System  |  Tailwind v4  |  @theme propre
    ============================================================ */
 
