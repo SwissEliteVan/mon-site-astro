@@ -5,8 +5,8 @@ import Layout from '../../layouts/Layout.astro';
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
   return posts.map(post => ({
-    params: { slug: post.slug }, // Doit correspondre exactement au nom du fichier [slug].astro
-    props: { post } // On passe l'article complet en prop
+    params: { slug: post.id }, // Utilise post.id pour Astro 5+
+    props: { post } 
   }));
 }
 
