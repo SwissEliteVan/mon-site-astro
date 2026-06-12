@@ -1,3 +1,4 @@
+
 import { defineCollection, z } from 'astro:content';
 
 const blogCollection = defineCollection({

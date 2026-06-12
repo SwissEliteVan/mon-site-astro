@@ -6,13 +6,16 @@ export async function getStaticPaths() {
   const posts = await getCollection('blog');
   return posts.map(post => ({
     params: { slug: post.slug },
-    props: { post },
   }));
 }
 
 const { slug } = Astro.params;
+const post = (await getCollection('blog')).find(p => p.slug === slug);
 
-const { post } = Astro.props;
+if (!post) {
+  return Astro.redirect('/404');
+}
+
 const { Content } = await post.render();
 ---
 <Layout title={post.data.title} description={post.data.description}>
