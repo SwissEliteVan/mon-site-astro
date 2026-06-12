@@ -1,35 +1,38 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
   return posts.map(post => ({
-    params: { slug: post.id }, // Utilise post.id pour Astro 5+
-    props: { post } 
+    params: { slug: post.id },
+    props: { id: post.id } // On passe seulement l'ID
   }));
 }
 
 const { slug } = Astro.params;
-const { post } = Astro.props; // On récupère l'article depuis les props
+const { id } = Astro.props;
 
+// Récupérer l'article complet avec getEntry
+const post = await getEntry('blog', id);
 if (!post) {
   return Astro.redirect('/404');
 }
 
-const { Content } = await post.render();
+// Rendre le contenu avec la fonction render()
+const { Content } = await render(post);
 ---
 <Layout title={post.data.title} description={post.data.description}>
   <article class="blog-post">
     <header class="post-header">
       <h1 class="post-title">{post.data.title}</h1>
-      <time class="post-date" datetime={post.data.date.toISOString()}>
-        {post.data.date.toLocaleDateString('fr-CH', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric'
-        })}
-      </time>
+<time class="post-date" datetime={post.data.pubDate.toISOString()}>
+  {post.data.pubDate.toLocaleDateString('fr-CH', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  })}
+</time>
       {post.data.tags && (
         <div class="post-tags">
           {post.data.tags.map(tag => (
