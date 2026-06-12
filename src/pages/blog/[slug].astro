@@ -5,12 +5,13 @@ import Layout from '../../layouts/Layout.astro';
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
   return posts.map(post => ({
-    params: { slug: post.slug },
+    params: { slug: post.slug }, // Doit correspondre exactement au nom du fichier [slug].astro
+    props: { post } // On passe l'article complet en prop
   }));
 }
 
 const { slug } = Astro.params;
-const post = (await getCollection('blog')).find(p => p.slug === slug);
+const { post } = Astro.props; // On récupère l'article depuis les props
 
 if (!post) {
   return Astro.redirect('/404');
