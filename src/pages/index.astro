@@ -201,33 +201,33 @@ import RecentPosts from '../components/blog/RecentPosts.astro';
   <section id="equipe" class="py-24 bg-[#1f202b] border-t border-white/5">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <h2 class="text-[clamp(2rem,3vw,3rem)] font-bold text-white mb-4">L'Humain augmenté par la technologie.</h2>
-        <p class="text-xl text-gray-400 max-w-3xl mx-auto">L'expertise locale couplée à la puissance technologique. Nos outils IA économisent 30 heures par mois, un gain directement répercuté sur votre facture.</p>
+        <h2 class="text-[clamp(2rem,3vw,3rem)] font-bold text-white mb-4 opacity-0 reveal">L'Humain augmenté par la technologie.</h2>
+        <p class="text-xl text-gray-400 max-w-3xl mx-auto opacity-0 reveal [animation-delay:200ms]">L'expertise locale couplée à la puissance technologique. Nos outils IA économisent 30 heures par mois, un gain directement répercuté sur votre facture.</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Mohamed Saber -->
-        <div class="bg-[#191A23] p-6 rounded-2xl border border-white/5 hover:border-[#B9FF66]/20 transition-colors">
+        <div class="bg-[#191A23] p-6 rounded-2xl border border-white/5 hover:border-[#B9FF66]/20 transition-colors opacity-0 reveal [animation-delay:200ms]">
           <img src="/assets/images/mohamed-saber-stratege-agence-suisse.avif" alt="Mohamed Saber — Stratège et expert marketing digital PME Suisse romande" width="400" height="400" loading="lazy" decoding="async" class="w-full aspect-square object-cover rounded-xl mb-6 shadow-lg" />
           <h3 class="text-xl font-bold text-white">Mohamed Saber</h3>
           <p class="text-[#B9FF66] font-semibold text-sm tracking-wider uppercase mb-3">L'Expert Humain</p>
           <p class="text-gray-400 text-sm">Garant de la stratégie et de l'authenticité. Il comprend votre marché et vos défis locaux.</p>
         </div>
         <!-- Lumina -->
-        <div class="bg-[#191A23] p-6 rounded-2xl border border-white/5 hover:border-[#B9FF66]/20 transition-colors">
+        <div class="bg-[#191A23] p-6 rounded-2xl border border-white/5 hover:border-[#B9FF66]/20 transition-colors opacity-0 reveal [animation-delay:400ms]">
           <img src="/assets/images/lumina-agent-ia-webdesign.avif" alt="Lumina — Agent IA webdesign CLICOM" width="400" height="400" loading="lazy" decoding="async" class="w-full aspect-square object-cover rounded-xl mb-6 opacity-90" />
           <h3 class="text-xl font-bold text-white">Lumina</h3>
           <p class="text-[#B9FF66] font-semibold text-sm tracking-wider uppercase mb-3">Agent Visuel</p>
           <p class="text-gray-400 text-sm">Génère les maquettes design pour guider la prise de contact facilement sur téléphone.</p>
         </div>
         <!-- Koda -->
-        <div class="bg-[#191A23] p-6 rounded-2xl border border-white/5 hover:border-[#B9FF66]/20 transition-colors">
+        <div class="bg-[#191A23] p-6 rounded-2xl border border-white/5 hover:border-[#B9FF66]/20 transition-colors opacity-0 reveal [animation-delay:600ms]">
           <img src="/assets/images/koda-agent-ia-developpement.webp" alt="Koda — Agent IA développement web CLICOM" width="400" height="400" loading="lazy" decoding="async" class="w-full aspect-square object-cover rounded-xl mb-6 opacity-90" />
           <h3 class="text-xl font-bold text-white">Koda</h3>
           <p class="text-[#B9FF66] font-semibold text-sm tracking-wider uppercase mb-3">Agent Informatique</p>
           <p class="text-gray-400 text-sm">Produit un code allégé et ultra-rapide pour éviter les fuites de visiteurs liées à la lenteur.</p>
         </div>
         <!-- Synergia -->
-        <div class="bg-[#191A23] p-6 rounded-2xl border border-white/5 hover:border-[#B9FF66]/20 transition-colors">
+        <div class="bg-[#191A23] p-6 rounded-2xl border border-white/5 hover:border-[#B9FF66]/20 transition-colors opacity-0 reveal [animation-delay:800ms]">
           <img src="/assets/images/synergia-agent-ia-acquisition.avif" alt="Synergia — Agent IA data et acquisition CLICOM" width="400" height="400" loading="lazy" decoding="async" class="w-full aspect-square object-cover rounded-xl mb-6 opacity-90" />
           <h3 class="text-xl font-bold text-white">Synergia</h3>
           <p class="text-[#B9FF66] font-semibold text-sm tracking-wider uppercase mb-3">Agent Data</p>
@@ -241,14 +241,16 @@ import RecentPosts from '../components/blog/RecentPosts.astro';
   <section id="tarifs" class="py-24 bg-[#191A23] border-t border-white/5">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <span class="inline-block bg-[#B9FF66]/10 text-[#B9FF66] text-sm font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-[#B9FF66]/20 mb-6">Investissement</span>
-        <h2 class="text-[clamp(2rem,3vw,3rem)] font-bold text-white mb-4">Des tarifs clairs, sans mauvaise surprise.</h2>
-        <p class="text-xl text-gray-400 max-w-2xl mx-auto">Pas de coûts cachés. Choisissez le partenariat qui correspond à l'ambition de votre entreprise en Suisse romande.</p>
+        <div class="opacity-0 reveal">
+          <span class="inline-block bg-[#B9FF66]/10 text-[#B9FF66] text-sm font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-[#B9FF66]/20 mb-6">Investissement</span>
+        </div>
+        <h2 class="text-[clamp(2rem,3vw,3rem)] font-bold text-white mb-4 opacity-0 reveal [animation-delay:200ms]">Des tarifs clairs, sans mauvaise surprise.</h2>
+        <p class="text-xl text-gray-400 max-w-2xl mx-auto opacity-0 reveal [animation-delay:400ms]">Pas de coûts cachés. Choisissez le partenariat qui correspond à l'ambition de votre entreprise en Suisse romande.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
         <!-- Pack 1 : Visibilité Locale -->
-        <div class="bg-[#1f202b] p-8 rounded-3xl border border-white/10 hover:border-[#B9FF66]/20 transition-all flex flex-col">
+        <div class="bg-[#1f202b] p-8 rounded-3xl border border-white/10 hover:border-[#B9FF66]/20 transition-all flex flex-col opacity-0 reveal [animation-delay:200ms]">
           <div class="mb-8 flex-1">
             <h3 class="text-xl font-bold text-white mb-2">Présence Locale</h3>
             <p class="text-gray-500 text-sm mb-6">Pour être trouvé sur Google Maps et ne plus perdre de clients.</p>
@@ -280,7 +282,7 @@ import RecentPosts from '../components/blog/RecentPosts.astro';
         </div>
 
         <!-- Pack 2 : Performance (Recommandé) -->
-        <div class="bg-[#B9FF66] p-8 rounded-3xl shadow-2xl shadow-[#B9FF66]/20 flex flex-col relative transform md:-translate-y-4">
+        <div class="bg-[#B9FF66] p-8 rounded-3xl shadow-2xl shadow-[#B9FF66]/20 flex flex-col relative transform md:-translate-y-4 opacity-0 reveal [animation-delay:400ms]">
           <div class="absolute -top-4 left-1/2 -translate-x-1/2">
             <span class="bg-[#191A23] text-[#B9FF66] text-xs font-bold uppercase tracking-wider py-1.5 px-4 rounded-full border border-[#B9FF66]/30">Le plus populaire</span>
           </div>
@@ -319,7 +321,7 @@ import RecentPosts from '../components/blog/RecentPosts.astro';
         </div>
 
         <!-- Pack 3 : Sur-mesure -->
-        <div class="bg-[#1f202b] p-8 rounded-3xl border border-white/10 hover:border-[#B9FF66]/20 transition-all flex flex-col">
+        <div class="bg-[#1f202b] p-8 rounded-3xl border border-white/10 hover:border-[#B9FF66]/20 transition-all flex flex-col opacity-0 reveal [animation-delay:600ms]">
           <div class="mb-8 flex-1">
             <h3 class="text-xl font-bold text-white mb-2">Sur-mesure & Site Web</h3>
             <p class="text-gray-500 text-sm mb-6">Pour la création d'un vrai site professionnel rapide et sécurisé.</p>
@@ -413,6 +415,19 @@ import RecentPosts from '../components/blog/RecentPosts.astro';
   </section>
 
 </Layout>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-[fadeInUp_1s_ease-out_forwards]');
+        observer.unobserve(entry.target); // Ne joue l'animation qu'une seule fois
+      }
+    });
+  }, { threshold: 0.1 }); // Se déclenche quand au moins 10% de l'élément est visible
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 
 <style>
   @keyframes fadeInUp {
