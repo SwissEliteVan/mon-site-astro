@@ -205,7 +205,19 @@ import RecentPosts from '../components/blog/RecentPosts.astro';
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Mohamed Saber -->
         <div class="bg-[#191A23] p-6 rounded-2xl border border-white/5 hover:border-[#B9FF66]/20 transition-colors">
-          <img src="/assets/images/mohamed-saber-stratege-agence-suisse.avif" alt="Mohamed Saber — Stratège et expert marketing digital PME Suisse romande" width="400" height="400" loading="lazy" decoding="async" class="w-full aspect-square object-cover rounded-xl mb-6 shadow-lg" />
+          <img src="/assets/images/mohamed-saber-stratege-agence-suisse.avif" alt="Mohamed Saber — Stratège et expert marketing digital PME Suisse romande" width="400" height="400" loading="lazy" decoding="async" class="w-full aspect-square object-<section class="relative min-h-[90vh] flex items-center justify-center">
+            <div class="absolute inset-0 z-0">
+              <video autoplay muted loop playsinline class="w-full h-full object-cover">
+                <source src="/assets/videos/agence-web-clicom-suisse-romande.webm" type="video/webm" />
+              </video>
+              <div class="absolute inset-0 bg-[#191A23]/70"></div>
+            </div>
+            
+            <div class="relative z-20">
+              <!-- Votre contenu (titre, texte, boutons) viendra ici -->
+            </div>
+          </section>
+          cover rounded-xl mb-6 shadow-lg" />
           <h3 class="text-xl font-bold text-white">Mohamed Saber</h3>
           <p class="text-[#B9FF66] font-semibold text-sm tracking-wider uppercase mb-3">L'Expert Humain</p>
           <p class="text-gray-400 text-sm">Garant de la stratégie et de l'authenticité. Il comprend votre marché et vos défis locaux.</p>
