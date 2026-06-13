@@ -8,7 +8,7 @@ import RecentPosts from '../components/blog/RecentPosts.astro';
   <!-- PROMPT 01: LA PAGE D'ACCUEIL -->
   <section class="relative min-h-[90vh] flex items-center justify-center pt-20 pb-16 overflow-hidden">
     <div class="absolute inset-0 z-0">
-      <video autoplay muted loop playsinline class="w-full h-full object-cover brightness-110 contrast-125">
+      <video id="hero-video" autoplay muted loop playsinline class="w-full h-full object-cover brightness-110 contrast-125 scale-[1.15]">
         <source src="/assets/videos/agence-web-clicom-suisse-romande.webm" type="video/webm" />
       </video>
       <div class="absolute inset-0 bg-gradient-to-b from-[#191A23]/90 via-[#191A23]/40 to-[#191A23]"></div>
@@ -37,6 +37,12 @@ import RecentPosts from '../components/blog/RecentPosts.astro';
           Découvrir comment récupérer votre argent
         </a>
       </div>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 opacity-0 animate-[fadeInUp_1s_ease-out_forwards] [animation-delay:1500ms]">
+      <a href="#creation" class="block text-white/50 hover:text-[#B9FF66] transition-colors animate-bounce" aria-label="Défiler vers la suite">
+        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+      </a>
     </div>
   </section>
 
@@ -427,6 +433,21 @@ import RecentPosts from '../components/blog/RecentPosts.astro';
   }, { threshold: 0.1 }); // Se déclenche quand au moins 10% de l'élément est visible
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Effet Parallaxe fluide sur la vidéo Hero
+  const heroVideo = document.getElementById('hero-video');
+  if (heroVideo) {
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          heroVideo.style.transform = `translateY(${window.scrollY * 0.3}px) scale(1.15)`;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  }
 </script>
 
 <style>
@@ -439,5 +460,29 @@ import RecentPosts from '../components/blog/RecentPosts.astro';
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  :global(html) {
+    scroll-behavior: smooth;
+    scrollbar-color: #B9FF66 #191A23; /* Firefox */
+  }
+
+  /* Personnalisation de la barre de défilement (Chrome, Safari, Edge) */
+  :global(::-webkit-scrollbar) {
+    width: 12px;
+  }
+
+  :global(::-webkit-scrollbar-track) {
+    background: #191A23;
+  }
+
+  :global(::-webkit-scrollbar-thumb) {
+    background-color: #B9FF66;
+    border-radius: 10px;
+    border: 3px solid #191A23; /* Crée un bel espace autour du curseur */
+  }
+
+  :global(::-webkit-scrollbar-thumb:hover) {
+    background-color: #a3e655;
   }
 </style>
