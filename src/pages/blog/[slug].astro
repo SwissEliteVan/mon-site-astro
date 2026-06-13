@@ -1,109 +1,51 @@
 ---
-import { getCollection, getEntry, render } from 'astro:content';
+import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 
+// Indique à Astro quelles URL générer à partir des fichiers Markdown
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
-  return posts.map(post => ({
-    params: { slug: post.id },
-    props: { id: post.id } // On passe seulement l'ID
+  const blogEntries = await getCollection('blog');
+  return blogEntries.map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
   }));
 }
 
-const { slug } = Astro.params;
-const { id } = Astro.props;
-
-// Récupérer l'article complet avec getEntry
-const post = await getEntry('blog', id);
-if (!post) {
-  return Astro.redirect('/404');
-}
-
-// Rendre le contenu avec la fonction render()
-const { Content } = await render(post);
+const { entry } = Astro.props;
+const { Content } = await entry.render();
 ---
-<Layout title={post.data.title} description={post.data.description}>
-  <article class="blog-post">
-    <header class="post-header">
-      <h1 class="post-title">{post.data.title}</h1>
-<time class="post-date" datetime={post.data.pubDate.toISOString()}>
-  {post.data.pubDate.toLocaleDateString('fr-CH', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  })}
-</time>
-      {post.data.tags && (
-        <div class="post-tags">
-          {post.data.tags.map(tag => (
-            <span class="tag">{tag}</span>
-          ))}
-        </div>
-      )}
+
+<Layout title={`${entry.data.title} | Blog CLICOM`} description={entry.data.description}>
+  <article class="pt-32 pb-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <a href="/blog" class="inline-flex items-center text-gray-400 hover:text-[#B9FF66] transition-colors mb-8 font-medium">
+      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+      Retour aux articles
+    </a>
+    
+    <header class="mb-12">
+      <div class="flex flex-wrap gap-2 mb-6">
+        {entry.data.tags?.map((tag: string) => (
+          <span class="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-white/10 bg-white/5 text-gray-300">
+            {tag}
+          </span>
+        ))}
+      </div>
+      <h1 class="text-[clamp(2rem,4vw,3.5rem)] font-bold text-white mb-6 leading-tight">{entry.data.title}</h1>
+      <div class="flex items-center text-gray-400 gap-4 font-medium">
+        <span>Par {entry.data.author || 'CLICOM'}</span>
+        <span>•</span>
+        <time>{new Date(entry.data.pubDate).toLocaleDateString('fr-CH', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+      </div>
     </header>
 
-    <div class="post-content">
+    {entry.data.image && (
+      <div class="w-full h-64 md:h-96 rounded-3xl overflow-hidden mb-12 shadow-2xl border border-white/5">
+        <img src={entry.data.image} alt={entry.data.title} class="w-full h-full object-cover" />
+      </div>
+    )}
+
+    <div class="prose-clicom mx-auto text-lg">
       <Content />
     </div>
   </article>
 </Layout>
-
-<style>
-  .blog-post {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-  }
-  
-  .post-header {
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-  
-  .post-title {
-    font-size: 2.5rem;
-    color: #fff;
-    margin-bottom: 0.5rem;
-  }
-  
-  .post-date {
-    display: block;
-    color: #9ca3af;
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-  }
-  
-  .post-tags {
-    display: flex;
-    gap: 0.5rem;
-    justify-content: center;
-  }
-  
-  .tag {
-    background-color: #B9FF66;
-    color: #191A23;
-    padding: 0.25rem 0.75rem;
-    border-radius: 9999px;
-    font-size: 0.8rem;
-    font-weight: 600;
-  }
-  
-  .post-content {
-    line-height: 1.6;
-    color: #e5e7eb;
-  }
-  
-  .post-content h2 {
-    font-size: 1.8rem;
-    color: #fff;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-  }
-  
-  .post-content h3 {
-    font-size: 1.4rem;
-    color: #fff;
-    margin-top: 1.5rem;
-    margin-bottom: 0.75rem;
-  }
-</style>
