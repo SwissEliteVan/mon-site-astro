@@ -8,12 +8,14 @@ import RecentPosts from '../components/blog/RecentPosts.astro';
   <!-- PROMPT 01: LA PAGE D'ACCUEIL -->
   <section class="relative min-h-[90vh] flex items-center justify-center pt-20 pb-16 overflow-hidden">
     <div class="absolute inset-0 z-0">
-      <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-20" src="/assets/videos/agence-web-clicom-suisse-romande.webm"></video>
-      <div class="absolute inset-0 bg-gradient-to-b from-[#191A23]/80 via-[#191A23]/95 to-[#191A23]"></div>
+      <video autoplay muted loop playsinline class="w-full h-full object-cover">
+        <source src="/assets/videos/agence-web-clicom-suisse-romande.webm" type="video/webm" />
+      </video>
+      <div class="absolute inset-0 bg-gradient-to-b from-[#191A23]/90 via-[#191A23]/40 to-[#191A23]"></div>
     </div>
 
-    <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h1 class="text-[clamp(2.5rem,5vw,4.5rem)] font-extrabold text-white leading-tight mb-8">
+    <div class="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-[clamp(2.5rem,5vw,4.5rem)] font-extrabold text-white leading-tight mb-8 opacity-0 animate-[fadeInUp_1s_ease-out_forwards]">
         Avoir un site internet ne sert à rien...<br class="hidden lg:block" />
         <span class="text-[#B9FF66]">si personne ne le visite.</span>
       </h1>
@@ -205,19 +207,7 @@ import RecentPosts from '../components/blog/RecentPosts.astro';
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Mohamed Saber -->
         <div class="bg-[#191A23] p-6 rounded-2xl border border-white/5 hover:border-[#B9FF66]/20 transition-colors">
-          <img src="/assets/images/mohamed-saber-stratege-agence-suisse.avif" alt="Mohamed Saber — Stratège et expert marketing digital PME Suisse romande" width="400" height="400" loading="lazy" decoding="async" class="w-full aspect-square object-<section class="relative min-h-[90vh] flex items-center justify-center">
-            <div class="absolute inset-0 z-0">
-              <video autoplay muted loop playsinline class="w-full h-full object-cover">
-                <source src="/assets/videos/agence-web-clicom-suisse-romande.webm" type="video/webm" />
-              </video>
-              <div class="absolute inset-0 bg-[#191A23]/30"></div>
-            </div>
-            
-            <div class="relative z-20">
-              <!-- Votre contenu (titre, texte, boutons) viendra ici -->
-            </div>
-          </section>
-          cover rounded-xl mb-6 shadow-lg" />
+          <img src="/assets/images/mohamed-saber-stratege-agence-suisse.avif" alt="Mohamed Saber — Stratège et expert marketing digital PME Suisse romande" width="400" height="400" loading="lazy" decoding="async" class="w-full aspect-square object-cover rounded-xl mb-6 shadow-lg" />
           <h3 class="text-xl font-bold text-white">Mohamed Saber</h3>
           <p class="text-[#B9FF66] font-semibold text-sm tracking-wider uppercase mb-3">L'Expert Humain</p>
           <p class="text-gray-400 text-sm">Garant de la stratégie et de l'authenticité. Il comprend votre marché et vos défis locaux.</p>
@@ -423,3 +413,16 @@ import RecentPosts from '../components/blog/RecentPosts.astro';
   </section>
 
 </Layout>
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
