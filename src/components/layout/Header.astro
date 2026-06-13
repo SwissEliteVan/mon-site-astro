@@ -6,16 +6,11 @@ const currentPath = Astro.url.pathname;
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-18 py-4">
 
-      <a href="/" aria-label="CLICOM — Retour à l'accueil" class="flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-[#B9FF66] rounded-lg">
-        <span class="w-8 h-8 bg-[#B9FF66] rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-          <svg class="w-5 h-5 text-[#191A23]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-          </svg>
-        </span>
-        <span class="font-extrabold text-xl text-white tracking-tight group-hover:text-[#B9FF66] transition-colors">
-          CLICOM
-        </span>
-      </a>
+<a href="/" aria-label="CLICOM — Retour à l'accueil" class="flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-[#B9FF66] rounded-lg">
+  <span class="font-extrabold text-xl text-white tracking-tight group-hover:text-[#B9FF66] transition-colors font-sans">
+    CLI<span class="text-[#B9FF66]">•</span>COM
+  </span>
+</a>
 
       <nav class="hidden lg:flex items-center gap-1" aria-label="Menu principal">
         <a href="/creation"        class="nav-link" aria-current={currentPath === '/creation' ? 'page' : undefined}>Sites Web</a>
