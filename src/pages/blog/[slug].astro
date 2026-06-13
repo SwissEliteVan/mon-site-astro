@@ -2,7 +2,6 @@
 import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 
-// Indique à Astro quelles URL générer à partir des fichiers Markdown
 export async function getStaticPaths() {
   const blogEntries = await getCollection('blog');
   return blogEntries.map(entry => ({
@@ -12,7 +11,7 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 ---
 
 <Layout title={`${entry.data.title} | Blog CLICOM`} description={entry.data.description}>
