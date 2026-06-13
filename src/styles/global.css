@@ -1,6 +1,13 @@
 /* CLICOM — Design System  |  Tailwind v4  |  @theme propre */
 @import "tailwindcss";
 
+@theme {
+  /* Intégration des polices locales dans Tailwind v4 */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-montserrat: 'Montserrat', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
 /* ──────────────────────────────────────────────────────────────
    TOKENS DE MARQUE
    Seules les valeurs simples (hex, rgb, nombre, chaîne) sont
@@ -18,10 +25,6 @@
   --color-danger:           #f87171;
   --color-success:          #4ade80;
   --color-warning:          #facc15;
-
-  /* Polices */
-  --font-sans: 'Inter', 'Outfit', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
   /* Tailles fluid (clamp) — Tailwind ne génère pas de classes pour elles
      mais elles sont utilisables via var() dans le CSS */
@@ -85,6 +88,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-montserrat);
     font-weight: 700;
     line-height: 1.2;
     letter-spacing: -0.02em;

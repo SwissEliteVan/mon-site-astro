@@ -3,6 +3,15 @@ import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 import FloatingContact from '../components/FloatingContact.astro';
 
+// Polices auto-hébergées (Conformité 100% nLPD)
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/inter/700.css';
+import '@fontsource/montserrat/600.css';
+import '@fontsource/montserrat/700.css';
+import '@fontsource/montserrat/800.css';
+
 export interface Props {
   title: string;
   description?: string;
@@ -35,7 +44,6 @@ const { title, description = "CLICOM - Solutions informatiques professionnelles 
     <meta name="twitter:image" content="https://clicom.ch/assets/images/agence-marketing-digital-pme-suisse.webp" />
     
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     
     <style is:global>
       @import "tailwindcss";
