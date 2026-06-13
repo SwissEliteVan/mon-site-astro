@@ -26,6 +26,27 @@ const { title, description = "CLICOM - Solutions informatiques professionnelles 
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Script Anti-FOUC pour le Dark Mode -->
+    <script is:inline>
+      const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        // Par défaut, on peut forcer le mode sombre si vous préférez, 
+        // ou écouter le système avec window.matchMedia
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'dark'; // Votre design actuel est pensé en Dark mode par défaut
+      })();
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
+
     <meta name="description" content={description} />
     
     <title>{title}</title>
@@ -69,7 +90,7 @@ const { title, description = "CLICOM - Solutions informatiques professionnelles 
     </style>
   </head>
   
-  <body class="bg-dark-bg text-gray-100 font-sans antialiased">
+  <body class="font-sans antialiased transition-colors duration-300">
     <a href="#main-content" class="skip-link">Aller au contenu principal</a>
     
     <Header />

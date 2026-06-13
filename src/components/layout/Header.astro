@@ -2,12 +2,12 @@
 const currentPath = Astro.url.pathname;
 ---
 
-<header id="site-header" class="bg-[#191A23]/90 backdrop-blur-md border-b border-[#B9FF66]/10 sticky top-0 z-50 transition-all duration-300">
+<header id="site-header" class="bg-white/90 dark:bg-[#191A23]/90 backdrop-blur-md border-b border-gray-200 dark:border-[#B9FF66]/10 sticky top-0 z-50 transition-all duration-300">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-18 py-4">
 
 <a href="/" aria-label="CLICOM — Retour à l'accueil" class="flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-[#B9FF66] rounded-lg">
-  <span class="font-extrabold text-xl text-white tracking-tight group-hover:text-[#B9FF66] transition-colors font-sans">
+  <span class="font-extrabold text-xl text-gray-900 dark:text-white tracking-tight group-hover:text-[#B9FF66] transition-colors font-sans">
     CLI<span class="text-[#B9FF66]">•</span>COM
   </span>
 </a>
@@ -44,6 +44,16 @@ const currentPath = Astro.url.pathname;
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
           </svg>
+        </button>
+
+        <!-- Bouton Toggle Dark/Light Mode -->
+        <button
+          id="theme-toggle"
+          aria-label="Basculer le thème"
+          class="w-10 h-10 flex items-center justify-center rounded-xl bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/10 dark:hover:text-white transition-all duration-200"
+        >
+          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
         </button>
 
         <a
@@ -395,6 +405,27 @@ const currentPath = Astro.url.pathname;
     }
     return defaultReply;
   }
+
+  // ─── THEME TOGGLE (DARK/LIGHT MODE) ────────────
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  const darkIcon = document.getElementById('theme-toggle-dark-icon');
+  const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+  if (document.documentElement.classList.contains('dark')) {
+    lightIcon?.classList.remove('hidden');
+  } else {
+    darkIcon?.classList.remove('hidden');
+  }
+
+  themeToggleBtn?.addEventListener('click', () => {
+    darkIcon?.classList.toggle('hidden');
+    lightIcon?.classList.toggle('hidden');
+    
+    document.documentElement.classList.toggle('dark');
+    
+    const isDark = document.documentElement.classList.contains('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  });
 
   // Quick replies
   document.querySelectorAll('.quick-reply').forEach(btn => {

@@ -1,6 +1,9 @@
 /* CLICOM — Design System  |  Tailwind v4  |  @theme propre */
 @import "tailwindcss";
 
+/* Activation du Dark Mode manuel (par classe) dans Tailwind v4 */
+@custom-variant dark (&:is(.dark *));
+
 @theme {
   /* Intégration des polices locales dans Tailwind v4 */
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
@@ -77,14 +80,20 @@
   }
 
   body {
-    background-color: var(--color-brand-dark);
-    color: #fff;
+    background-color: #ffffff; /* Fond clair par défaut */
+    color: #111827; /* Texte sombre par défaut */
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
+  }
+
+  /* Application du fond sombre si la classe .dark est présente */
+  :is(.dark body) {
+    background-color: var(--color-brand-dark);
+    color: #ffffff;
   }
 
   h1, h2, h3, h4, h5, h6 {
