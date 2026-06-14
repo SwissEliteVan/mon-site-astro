@@ -2,13 +2,14 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
+import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
   // URL de production indispensable pour la génération du sitemap
   site: 'https://clicom.ch',
   
-  integrations: [sitemap()],
+  integrations: [sitemap(), react()],
   // 1. Configuration du Prefetching (Préchargement des pages)
   prefetch: {
     // Active le préchargement sur tous les liens internes du site
