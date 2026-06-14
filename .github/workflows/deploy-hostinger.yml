@@ -1,0 +1,53 @@
+name: Deploy to Hostinger
+
+on:
+  push:
+    branches: [main, production]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy to Hostinger via FTP
+        uses: SamKirkland/FTP-Deploy-Action@4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist
+          server-dir: /
+          # Exclusions pour réduire la taille du déploiement
+          exclude: |
+            .git*
+            .github/*
+            node_modules/*
+            src/*
+            tests/*
+            *.md
+            *.log
+            *.lock
+
+      - name: Notification
+        if: ${{ always() }}
+        run: |
+          echo "Déploiement terminé avec le statut: ${{ job.status }}"
+
+# Secrets requis (à configurer dans les secrets GitHub):
+#   FTP_SERVER: Adresse du serveur FTP (ex: ftp.clicom.ch)
+#   FTP_USERNAME: Nom d'utilisateur FTP
+#   FTP_PASSWORD: Mot de passe FTP
