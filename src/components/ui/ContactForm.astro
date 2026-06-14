@@ -1,5 +1,8 @@
 ---
-interface Props {
+import { useForm } from 'react-hook-form';
+import type { ContactFormProps } from '../../types/components';
+
+interface Props extends ContactFormProps {
   title?: string;
   subtitle?: string;
 }
@@ -7,7 +10,19 @@ interface Props {
 const {
   title = "L'argent est déjà sur la table. En 1 heure, découvrez exactement combien vous perdez et comment le récupérer.",
   subtitle = "Remplissez le formulaire. Mohamed Saber vous rappelle sous 2h.",
-} = Astro.props;
+  onSubmit,
+} = Astro.props as Props;
+
+const { register, handleSubmit, formState: { errors } } = useForm();
+
+const handleFormSubmit = (data: any) => {
+  if (onSubmit) {
+    onSubmit(data);
+  } else {
+    // Logique de soumission par défaut
+    console.log('Form data:', data);
+  }
+};
 ---
 
 <section id="contact" class="contact-section">
@@ -24,6 +39,7 @@ const {
     <form
       id="contact-form"
       class="contact-form"
+      onSubmit={handleSubmit(handleFormSubmit)}
       novalidate
     >
       <div class="form-row">
@@ -34,15 +50,15 @@ const {
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
               <circle cx="12" cy="7" r="4"/>
             </svg>
-            <input
-              type="text"
-              id="cf-name"
-              name="name"
-              class="form-input"
-              placeholder="Jean Dupont"
-              required
-              autocomplete="name"
-            />
+              <input
+                type="text"
+                id="cf-name"
+                class={`form-input ${errors.name ? 'error' : ''}`}
+                placeholder="Jean Dupont"
+                autocomplete="name"
+                {...register('name', { required: 'Ce champ est requis' })}
+              />
+              {errors.name && <span class="error-message">{errors.name.message}</span>}
           </div>
         </div>
 
@@ -53,15 +69,21 @@ const {
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
               <polyline points="22,6 12,13 2,6"/>
             </svg>
-            <input
-              type="email"
-              id="cf-email"
-              name="email"
-              class="form-input"
-              placeholder="jean@monentreprise.ch"
-              required
-              autocomplete="email"
-            />
+              <input
+                type="email"
+                id="cf-email"
+                class={`form-input ${errors.email ? 'error' : ''}`}
+                placeholder="jean@monentreprise.ch"
+                autocomplete="email"
+                {...register('email', { 
+                  required: 'Email requis',
+                  pattern: {
+                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    message: 'Email invalide'
+                  }
+                })}
+              />
+              {errors.email && <span class="error-message">{errors.email.message}</span>}
           </div>
         </div>
       </div>
@@ -346,8 +368,19 @@ const {
     background-color: var(--color-brand-dark);
   }
 
-  .form-input:focus + .input-icon {
-    color: var(--color-brand-lime);
+  .form-input:focus {
+    border-color: var(--color-danger);
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15);
+  }
+
+  .form-input.error {
+    border-color: var(--color-danger);
+  }
+
+  .error-message {
+    color: var(--color-danger);
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
   }
 
   /* Select personnalisé */

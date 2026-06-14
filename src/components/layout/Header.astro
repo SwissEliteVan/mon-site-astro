@@ -1,7 +1,13 @@
 ---
-// Header.astro - CLICOM Design System v4
-// Compatible Tailwind v4 avec Dark Mode
-// Nécessite @custom-variant dark (&:is(.dark *)) dans le CSS global
+import type { HeaderProps } from '../../types/components';
+
+/**
+ * Composant Header - Barre de navigation principale
+ * 
+ * @prop {string} title - Titre principal affiché dans le header (défaut: 'Titre par défaut')
+ * @prop {NavItem[]} navigation - Tableau d'éléments de navigation { label: string, href: string }
+ */
+const { title = 'Titre par défaut', navigation = [] } = Astro.props as HeaderProps;
 ---
 
 <header class="header" x-data="{ mobileMenuOpen: false }">
