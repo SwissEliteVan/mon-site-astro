@@ -1,7 +1,9 @@
 <footer class="site-footer">
   <div class="footer-inner">
 
-    <!-- Logo + tagline -->
+    <!-- ======================================================= -->
+    <!-- BRAND : Logo + tagline                                  -->
+    <!-- ======================================================= -->
     <div class="footer-brand">
       <a href="/" class="footer-logo" aria-label="CLICOM — Accueil">
         <span class="footer-logo-mark">
@@ -14,9 +16,12 @@
       <p class="footer-tagline">L'Humain orchestre, l'IA exécute.</p>
     </div>
 
-    <!-- Navigation -->
+    <!-- ======================================================= -->
+    <!-- NAVIGATION PRINCIPALE : Liens organisés par colonnes    -->
+    <!-- ======================================================= -->
     <nav class="footer-nav" aria-label="Liens du bas de page">
 
+      <!-- Colonne 1 : Services -->
       <div class="footer-col">
         <p class="footer-col-title">Services</p>
         <a href="/creation"   class="footer-link">Création de sites</a>
@@ -25,26 +30,29 @@
         <a href="/equipe"     class="footer-link">L'Équipe</a>
       </div>
 
+      <!-- Colonne 2 : Ressources -->
       <div class="footer-col">
         <p class="footer-col-title">Ressources</p>
         <a href="/blog"       class="footer-link">Blog</a>
         <a href="/#contact"   class="footer-link">Contact</a>
       </div>
 
+      <!-- Colonne 3 : SEO Local (villes) -->
       <div class="footer-col">
         <p class="footer-col-title">SEO Local</p>
-        <a href="/lausanne" class="footer-link">Lausanne</a>
-        <a href="/geneve" class="footer-link">Genève</a>
-        <a href="/vevey" class="footer-link">Vevey</a>
-        <a href="/montreux" class="footer-link">Montreux</a>
-        <a href="/nyon" class="footer-link">Nyon</a>
-        <a href="/yverdon" class="footer-link">Yverdon</a>
-        <a href="/fribourg" class="footer-link">Fribourg</a>
-        <a href="/neuchatel" class="footer-link">Neuchâtel</a>
-        <a href="/sion" class="footer-link">Sion</a>
-        <a href="/martigny" class="footer-link">Martigny</a>
+        <a href="/lausanne"    class="footer-link">Lausanne</a>
+        <a href="/geneve"      class="footer-link">Genève</a>
+        <a href="/vevey"       class="footer-link">Vevey</a>
+        <a href="/montreux"    class="footer-link">Montreux</a>
+        <a href="/nyon"        class="footer-link">Nyon</a>
+        <a href="/yverdon"     class="footer-link">Yverdon</a>
+        <a href="/fribourg"    class="footer-link">Fribourg</a>
+        <a href="/neuchatel"   class="footer-link">Neuchâtel</a>
+        <a href="/sion"        class="footer-link">Sion</a>
+        <a href="/martigny"    class="footer-link">Martigny</a>
       </div>
 
+      <!-- Colonne 4 : Légal -->
       <div class="footer-col">
         <p class="footer-col-title">Légal</p>
         <a href="/mentions-legales"          class="footer-link">Mentions légales</a>
@@ -53,7 +61,9 @@
 
     </nav>
 
-    <!-- Contact direct -->
+    <!-- ======================================================= -->
+    <!-- CONTACT DIRECT : Téléphone, email, adresse              -->
+    <!-- ======================================================= -->
     <div class="footer-contact">
       <a href="tel:+41788238950" class="footer-contact-link">+41 78 823 89 50</a>
       <a href="mailto:contact@clicom.ch" class="footer-contact-link">contact@clicom.ch</a>
@@ -62,7 +72,9 @@
 
   </div>
 
-  <!-- Copyright -->
+  <!-- ======================================================= -->
+  <!-- COPYRIGHT & LIENS LÉGAUX                                -->
+  <!-- ======================================================= -->
   <div class="footer-bottom">
     <span>&copy; {new Date().getFullYear()} CLICOM · Agence Marketing Digital · Suisse Romande</span>
     <span class="footer-sep" aria-hidden="true">·</span>
@@ -73,11 +85,17 @@
 </footer>
 
 <style>
+  /* ======================================================= */
+  /* FOOTER PRINCIPAL                                        */
+  /* ======================================================= */
   .site-footer {
     background-color: #191A23;
     border-top: 1px solid #B9FF66;
   }
 
+  /* ======================================================= */
+  /* GRILLE PRINCIPALE (Desktop : Logo | Nav | Contact)      */
+  /* ======================================================= */
   .footer-inner {
     max-width: 80rem;
     margin: 0 auto;
@@ -88,19 +106,31 @@
     align-items: start;
   }
 
+  /* ======================================================= */
+  /* RESPONSIVE : Tablette                                   */
+  /* ======================================================= */
   @media (max-width: 900px) {
     .footer-inner {
       grid-template-columns: 1fr 1fr;
       gap: 2rem;
     }
-    .footer-brand { grid-column: 1 / -1; }
+    .footer-brand {
+      grid-column: 1 / -1;
+    }
   }
 
+  /* ======================================================= */
+  /* RESPONSIVE : Mobile                                     */
+  /* ======================================================= */
   @media (max-width: 540px) {
-    .footer-inner { grid-template-columns: 1fr; }
+    .footer-inner {
+      grid-template-columns: 1fr;
+    }
   }
 
-  /* Brand */
+  /* ======================================================= */
+  /* BRAND : Logo et tagline                                 */
+  /* ======================================================= */
   .footer-brand {
     display: flex;
     flex-direction: column;
@@ -113,13 +143,15 @@
     gap: 0.5rem;
     font-weight: 900;
     font-size: 1.125rem;
-    color: #fff;
+    color: #ffffff;
     text-decoration: none;
     letter-spacing: 0.04em;
-    transition: color 0.2s;
+    transition: color var(--transition-base);
   }
 
-  .footer-logo:hover { color: #B9FF66; }
+  .footer-logo:hover {
+    color: #B9FF66;
+  }
 
   .footer-logo-mark {
     width: 1.75rem;
@@ -140,7 +172,9 @@
     max-width: 16rem;
   }
 
-  /* Navigation colonnes */
+  /* ======================================================= */
+  /* NAVIGATION : Grille des colonnes                        */
+  /* ======================================================= */
   .footer-nav {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -166,11 +200,11 @@
     font-size: 0.875rem;
     color: #6b7280;
     text-decoration: none;
-    transition: color 0.15s;
+    transition: color var(--transition-base);
   }
 
   .footer-link:hover {
-    color: #fff;
+    color: #ffffff;
   }
 
   .footer-link:focus-visible {
@@ -179,7 +213,9 @@
     border-radius: 2px;
   }
 
-  /* Contact */
+  /* ======================================================= */
+  /* CONTACT : Téléphone, email, localisation                */
+  /* ======================================================= */
   .footer-contact {
     display: flex;
     flex-direction: column;
@@ -191,10 +227,12 @@
     font-weight: 600;
     color: #9ca3af;
     text-decoration: none;
-    transition: color 0.15s;
+    transition: color var(--transition-base);
   }
 
-  .footer-contact-link:hover { color: #fff; }
+  .footer-contact-link:hover {
+    color: #ffffff;
+  }
 
   .footer-location {
     font-size: 0.8rem;
@@ -202,7 +240,9 @@
     margin-top: 0.25rem;
   }
 
-  /* Bas de page */
+  /* ======================================================= */
+  /* COPYRIGHT : Barre du bas                                */
+  /* ======================================================= */
   .footer-bottom {
     border-top: 1px solid #1f202b;
     padding: 1.25rem 1.5rem;
@@ -216,13 +256,17 @@
     color: #4b5563;
   }
 
-  .footer-sep { color: #374151; }
+  .footer-sep {
+    color: #374151;
+  }
 
   .footer-bottom-link {
     color: #4b5563;
     text-decoration: none;
-    transition: color 0.15s;
+    transition: color var(--transition-base);
   }
 
-  .footer-bottom-link:hover { color: #B9FF66; }
+  .footer-bottom-link:hover {
+    color: #B9FF66;
+  }
 </style>
