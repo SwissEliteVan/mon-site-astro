@@ -2,6 +2,7 @@
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 import FloatingContact from '../components/FloatingContact.astro';
+import Chatbot from '../components/Chatbot.astro';
 
 // Polices auto-hébergées (Conformité 100% nLPD)
 import '@fontsource/inter/400.css';
@@ -27,7 +28,6 @@ const { title, description = "CLICOM - Solutions informatiques professionnelles 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <!-- Script Anti-FOUC pour le Dark Mode -->
     <script is:inline>
       const theme = (() => {
         if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
@@ -100,6 +100,7 @@ const { title, description = "CLICOM - Solutions informatiques professionnelles 
     </main>
     
     <FloatingContact />
+    <Chatbot />
     <Footer />
   </body>
 </html>
