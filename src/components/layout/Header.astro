@@ -1,468 +1,571 @@
 ---
-const currentPath = Astro.url.pathname;
+// Header.astro - CLICOM Design System v4
+// Compatible Tailwind v4 avec Dark Mode
+// Nécessite @custom-variant dark (&:is(.dark *)) dans le CSS global
 ---
 
-<header id="site-header" class="bg-white/90 dark:bg-[#191A23]/90 backdrop-blur-md border-b border-gray-200 dark:border-[#B9FF66]/10 sticky top-0 z-50 transition-all duration-300">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-18 py-4">
+<header class="header" x-data="{ mobileMenuOpen: false }">
+  <div class="header-container">
+    
+    <!-- Logo -->
+    <a href="/" class="logo" aria-label="CLICOM — Accueil">
+      <span class="logo-mark">
+        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+        </svg>
+      </span>
+      <span class="logo-text">CLICOM</span>
+    </a>
 
-<a href="/" aria-label="CLICOM — Retour à l'accueil" class="flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-[#B9FF66] rounded-lg">
-  <span class="font-extrabold text-xl text-gray-900 dark:text-white tracking-tight group-hover:text-[#B9FF66] transition-colors font-sans">
-    CLI<span class="text-[#B9FF66]">•</span>COM
-  </span>
-</a>
+    <!-- Navigation Desktop -->
+    <nav class="nav-desktop" aria-label="Navigation principale">
+      <a href="/" class="nav-link" aria-current="page">Accueil</a>
+      <a href="/creation" class="nav-link">Création de sites</a>
+      <a href="/visibilite" class="nav-link">Visibilité locale</a>
+      <a href="/blog" class="nav-link">Blog</a>
+      <a href="/tarifs" class="nav-link">Tarifs</a>
+      <a href="/equipe" class="nav-link">L'Équipe</a>
+    </nav>
 
-      <nav class="hidden lg:flex items-center gap-1" aria-label="Menu principal">
-        <a href="/creation"        class="nav-link" aria-current={currentPath === '/creation' ? 'page' : undefined}>Sites Web</a>
-        <a href="/visibilite"      class="nav-link" aria-current={currentPath === '/visibilite' ? 'page' : undefined}>Visibilité</a>
-        <a href="/tarifs"          class="nav-link" aria-current={currentPath === '/tarifs' ? 'page' : undefined}>Tarifs</a>
-        <a href="/blog"            class="nav-link" aria-current={currentPath.startsWith('/blog') ? 'page' : undefined}>Blog</a>
-        <a href="/equipe"          class="nav-link" aria-current={currentPath === '/equipe' ? 'page' : undefined}>L'Équipe</a>
-      </nav>
-
-      <div class="hidden lg:flex items-center gap-3">
-
-        <a
-          href="https://wa.me/41788238950?text=Bonjour%20CLICOM%2C%20je%20souhaite%20un%20audit%20gratuit."
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Nous contacter sur WhatsApp"
-          class="w-10 h-10 flex items-center justify-center rounded-xl bg-[#25D366]/10 border border-[#25D366]/20 text-[#25D366] hover:bg-[#25D366] hover:text-white hover:border-[#25D366] transition-all duration-200 group"
-          title="WhatsApp"
-        >
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-          </svg>
-        </a>
-
-        <button
-          id="open-chatbot"
-          aria-label="Ouvrir le chat avec notre assistant"
-          class="w-10 h-10 flex items-center justify-center rounded-xl bg-[#B9FF66]/10 border border-[#B9FF66]/20 text-[#B9FF66] hover:bg-[#B9FF66] hover:text-[#191A23] hover:border-[#B9FF66] transition-all duration-200"
-          title="Chat avec notre assistant"
-        >
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
-          </svg>
-        </button>
-
-        <button
-          id="theme-toggle"
-          aria-label="Basculer le thème"
-          class="w-10 h-10 flex items-center justify-center rounded-xl bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/10 dark:hover:text-white transition-all duration-200"
-        >
-          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-        </button>
-
-        <a
-          href="/#contact"
-          class="flex items-center gap-2 bg-[#B9FF66] text-[#191A23] font-bold px-5 py-2.5 rounded-xl hover:bg-[#a3e655] transition-all focus:ring-2 focus:ring-[#B9FF66] focus:ring-offset-2 focus:ring-offset-[#191A23] shadow-lg shadow-[#B9FF66]/10 text-sm"
-        >
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-          </svg>
-          Audit Gratuit
-        </a>
-      </div>
-
-      <button
-        id="menu-toggle"
-        aria-expanded="false"
-        aria-controls="mobile-menu"
-        aria-label="Ouvrir le menu"
-        class="lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 rounded-xl border border-white/10 hover:border-[#B9FF66]/30 transition-colors"
-      >
-        <span class="burger-line w-5 h-0.5 bg-gray-900 dark:bg-white rounded-full transition-all duration-300 origin-center"></span>
-        <span class="burger-line w-5 h-0.5 bg-gray-900 dark:bg-white rounded-full transition-all duration-300 origin-center"></span>
-        <span class="burger-line w-5 h-0.5 bg-gray-900 dark:bg-white rounded-full transition-all duration-300 origin-center"></span>
+    <!-- Actions (Dark mode + Contact) -->
+    <div class="header-actions">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Changer le thème">
+        <svg class="theme-icon sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="theme-icon moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
       </button>
+      
+      <a href="/#contact" class="btn-contact">
+        <span>Nous contacter</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
 
+      <!-- Burger Button (Mobile) -->
+      <button 
+        class="burger" 
+        :class="{ 'is-active': mobileMenuOpen }"
+        @click="mobileMenuOpen = !mobileMenuOpen"
+        aria-label="Menu"
+        aria-expanded="false"
+        :aria-expanded="mobileMenuOpen.toString()"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div 
+      class="mobile-menu" 
+      x-show="mobileMenuOpen"
+      x-transition:enter="transition ease-out duration-300"
+      x-transition:enter-start="opacity-0 -translate-y-4"
+      x-transition:enter-end="opacity-100 translate-y-0"
+      x-transition:leave="transition ease-in duration-200"
+      x-transition:leave-start="opacity-100 translate-y-0"
+      x-transition:leave-end="opacity-0 -translate-y-4"
+      x-cloak
+    >
+      <nav class="mobile-nav" aria-label="Navigation mobile">
+        <a href="/" class="mobile-nav-link" @click="mobileMenuOpen = false">Accueil</a>
+        <a href="/creation" class="mobile-nav-link" @click="mobileMenuOpen = false">Création de sites</a>
+        <a href="/visibilite" class="mobile-nav-link" @click="mobileMenuOpen = false">Visibilité locale</a>
+        <a href="/blog" class="mobile-nav-link" @click="mobileMenuOpen = false">Blog</a>
+        <a href="/tarifs" class="mobile-nav-link" @click="mobileMenuOpen = false">Tarifs</a>
+        <a href="/equipe" class="mobile-nav-link" @click="mobileMenuOpen = false">L'Équipe</a>
+      </nav>
+      <div class="mobile-footer">
+        <a href="tel:+41788238950" class="mobile-phone">+41 78 823 89 50</a>
+        <a href="mailto:contact@clicom.ch" class="mobile-email">contact@clicom.ch</a>
+      </div>
     </div>
   </div>
 </header>
 
-<div
-  id="mobile-menu"
-  class="hidden lg:hidden fixed inset-0 z-40 pt-[73px]"
-  aria-hidden="true"
->
-  <div id="menu-overlay" class="absolute inset-0 bg-[#191A23]/95 backdrop-blur-xl"></div>
-
-  <nav class="relative z-10 max-w-sm mx-auto px-6 py-8 flex flex-col h-full" aria-label="Menu mobile">
+<script>
+  // Theme management - Dark Mode avec localStorage + préférences système
+  (function() {
+    const STORAGE_KEY = 'clicom-theme';
+    const DARK_CLASS = 'dark';
     
-    <div class="space-y-1 flex-1">
-      <a href="/creation"   class="mobile-link" onclick="closeMenu()">
-        <svg class="w-5 h-5 text-[#B9FF66]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-        Sites Web
-      </a>
-      <a href="/visibilite"  class="mobile-link" onclick="closeMenu()">
-        <svg class="w-5 h-5 text-[#B9FF66]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
-        Visibilité Locale
-      </a>
-      <a href="/tarifs"      class="mobile-link" onclick="closeMenu()">
-        <svg class="w-5 h-5 text-[#B9FF66]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        Tarifs
-      </a>
-      <a href="/blog"        class="mobile-link" onclick="closeMenu()">
-        <svg class="w-5 h-5 text-[#B9FF66]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
-        Blog
-      </a>
-      <a href="/equipe"      class="mobile-link" onclick="closeMenu()">
-        <svg class="w-5 h-5 text-[#B9FF66]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-        L'Équipe IA
-      </a>
-    </div>
-
-    <div class="space-y-3 mt-8 pt-8 border-t border-white/10">
-      <a
-        href="https://wa.me/41788238950?text=Bonjour%20CLICOM%2C%20je%20souhaite%20un%20audit%20gratuit."
-        target="_blank"
-        rel="noopener noreferrer"
-        class="flex items-center justify-center gap-3 w-full py-4 rounded-xl bg-[#25D366]/10 border border-[#25D366]/20 text-[#25D366] font-bold hover:bg-[#25D366] hover:text-white transition-all"
-        onclick="closeMenu()"
-      >
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
-        Écrire sur WhatsApp
-      </a>
-      <button
-        id="open-chatbot-mobile"
-        class="flex items-center justify-center gap-3 w-full py-4 rounded-xl bg-[#B9FF66]/10 border border-[#B9FF66]/20 text-[#B9FF66] font-bold hover:bg-[#B9FF66] hover:text-[#191A23] transition-all"
-        onclick="closeMenu(); document.getElementById('open-chatbot').click()"
-      >
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
-        </svg>
-        Chat avec notre assistant
-      </button>
-      <a
-        href="/#contact"
-        class="flex items-center justify-center gap-2 w-full py-4 rounded-xl bg-[#B9FF66] text-[#191A23] font-bold hover:bg-[#a3e655] transition-all text-lg shadow-lg shadow-[#B9FF66]/10"
-        onclick="closeMenu()"
-      >
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-        </svg>
-        Audit Gratuit — Rappel immédiat
-      </a>
-    </div>
-  </nav>
-</div>
-
-<div
-  id="chatbot-modal"
-  class="hidden fixed bottom-6 right-6 z-50 w-[360px] max-w-[calc(100vw-2rem)]"
-  role="dialog"
-  aria-modal="true"
-  aria-label="Assistant CLICOM"
->
-  <div class="bg-[#1f202b] rounded-3xl border border-[#B9FF66]/20 shadow-2xl shadow-black/50 overflow-hidden flex flex-col" style="max-height: 520px;">
+    // Éléments
+    const toggleBtn = document.getElementById('theme-toggle');
     
-    <div class="bg-[#191A23] px-5 py-4 flex items-center gap-3 border-b border-white/5">
-      <div class="w-9 h-9 bg-[#B9FF66] rounded-xl flex items-center justify-center flex-shrink-0">
-        <svg class="w-5 h-5 text-[#191A23]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-        </svg>
-      </div>
-      <div class="flex-1">
-        <p class="text-white font-bold text-sm">Assistant CLICOM</p>
-        <div class="flex items-center gap-1.5">
-          <span class="w-1.5 h-1.5 bg-[#B9FF66] rounded-full animate-pulse"></span>
-          <span class="text-gray-500 text-xs">En ligne</span>
-        </div>
-      </div>
-      <button id="close-chatbot" class="w-8 h-8 rounded-lg text-gray-500 hover:text-white hover:bg-white/5 flex items-center justify-center transition-colors" aria-label="Fermer le chat">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
-    </div>
+    // Vérifier si le dark mode est actif
+    function isDarkMode() {
+      return document.documentElement.classList.contains(DARK_CLASS);
+    }
+    
+    // Appliquer le thème
+    function setTheme(isDark) {
+      if (isDark) {
+        document.documentElement.classList.add(DARK_CLASS);
+      } else {
+        document.documentElement.classList.remove(DARK_CLASS);
+      }
+    }
+    
+    // Sauvegarder la préférence
+    function saveThemePreference(isDark) {
+      localStorage.setItem(STORAGE_KEY, isDark ? 'dark' : 'light');
+    }
+    
+    // Lire la préférence sauvegardée
+    function getSavedThemePreference() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved === 'dark') return true;
+      if (saved === 'light') return false;
+      return null; // Pas de préférence sauvegardée
+    }
+    
+    // Lire la préférence système
+    function getSystemThemePreference() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+    
+    // Initialiser le thème
+    function initTheme() {
+      const saved = getSavedThemePreference();
+      
+      if (saved !== null) {
+        // Utiliser la préférence sauvegardée
+        setTheme(saved);
+      } else {
+        // Utiliser la préférence système
+        setTheme(getSystemThemePreference());
+      }
+    }
+    
+    // Toggle le thème
+    function toggleTheme() {
+      const newTheme = !isDarkMode();
+      setTheme(newTheme);
+      saveThemePreference(newTheme);
+    }
+    
+    // Écouter les changements de préférence système
+    function listenToSystemThemeChanges() {
+      const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      
+      // Détecter si une préférence utilisateur existe
+      const hasUserPreference = localStorage.getItem(STORAGE_KEY) !== null;
+      
+      // Ne réagir aux changements système que si l'utilisateur n'a pas de préférence
+      if (!hasUserPreference) {
+        darkModeMediaQuery.addEventListener('change', (e) => {
+          setTheme(e.matches);
+        });
+      }
+    }
+    
+    // Initialisation
+    if (typeof window !== 'undefined') {
+      initTheme();
+      listenToSystemThemeChanges();
+      
+      // Ajouter l'event listener au bouton toggle
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', toggleTheme);
+      }
+    }
+  })();
+</script>
 
-    <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-3" style="min-height: 280px;">
-      <div class="flex gap-2">
-        <div class="w-7 h-7 bg-[#B9FF66] rounded-full flex items-center justify-center flex-shrink-0 text-[#191A23] text-xs font-black">C</div>
-        <div class="bg-[#191A23] rounded-2xl rounded-tl-sm px-4 py-3 max-w-[85%]">
-          <p class="text-white text-sm leading-relaxed">Bonjour ! 👋 Je suis l'assistant de CLICOM.</p>
-          <p class="text-gray-400 text-sm mt-2">Comment puis-je vous aider ? Choisissez une option ou tapez votre question :</p>
-        </div>
-      </div>
+<style is:global>
+  /* ======================================================= */
+  /* HEADER PRINCIPAL                                        */
+  /* ======================================================= */
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border);
+    transition: var(--transition-base);
+  }
 
-      <div id="quick-replies" class="flex flex-col gap-2 pl-9">
-        <button class="quick-reply text-left px-4 py-2 rounded-xl border border-[#B9FF66]/20 bg-[#B9FF66]/5 text-[#B9FF66] text-xs font-medium hover:bg-[#B9FF66]/10 transition-colors">💰 Combien coûte un site ?</button>
-        <button class="quick-reply text-left px-4 py-2 rounded-xl border border-[#B9FF66]/20 bg-[#B9FF66]/5 text-[#B9FF66] text-xs font-medium hover:bg-[#B9FF66]/10 transition-colors">📍 Comment apparaître sur Google Maps ?</button>
-        <button class="quick-reply text-left px-4 py-2 rounded-xl border border-[#B9FF66]/20 bg-[#B9FF66]/5 text-[#B9FF66] text-xs font-medium hover:bg-[#B9FF66]/10 transition-colors">⚖️ Mon site est-il conforme à la nLPD ?</button>
-        <button class="quick-reply text-left px-4 py-2 rounded-xl border border-[#B9FF66]/20 bg-[#B9FF66]/5 text-[#B9FF66] text-xs font-medium hover:bg-[#B9FF66]/10 transition-colors">📞 Parler à Mohamed Saber</button>
-      </div>
-    </div>
+  /* Dark mode header */
+  :is(.dark .header) {
+    background-color: rgba(25, 26, 35, 0.95);
+    border-bottom-color: var(--color-border);
+  }
 
-    <div class="p-4 border-t border-white/5 bg-[#191A23]">
-      <form id="chat-form" class="flex gap-2">
-        <input
-          id="chat-input"
-          type="text"
-          placeholder="Votre question..."
-          autocomplete="off"
-          class="flex-1 bg-[#1f202b] border border-white/10 rounded-xl px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#B9FF66] focus:ring-1 focus:ring-[#B9FF66] transition-colors"
-        />
-        <button
-          type="submit"
-          class="w-10 h-10 bg-[#B9FF66] text-[#191A23] rounded-xl flex items-center justify-center hover:bg-[#a3e655] transition-colors flex-shrink-0"
-          aria-label="Envoyer"
-        >
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-          </svg>
-        </button>
-      </form>
-    </div>
+  /* ======================================================= */
+  /* CONTAINER                                              */
+  /* ======================================================= */
+  .header-container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
 
-  </div>
-</div>
+  @media (max-width: 768px) {
+    .header-container {
+      padding: 0.75rem 1rem;
+      gap: 1rem;
+    }
+  }
 
-<button
-  id="chat-fab"
-  aria-label="Ouvrir l'assistant CLICOM"
-  class="fixed bottom-6 right-6 z-40 w-14 h-14 bg-[#B9FF66] text-[#191A23] rounded-2xl shadow-lg shadow-[#B9FF66]/30 flex items-center justify-center hover:bg-[#a3e655] hover:scale-110 transition-all duration-200"
->
-  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
-  </svg>
-  <span class="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full border-2 border-[#191A23] animate-pulse"></span>
-</button>
-
-<style>
-  .nav-link {
-    color: #9ca3af;
-    font-weight: 500;
-    font-size: 0.875rem;
-    padding: 0.5rem 1rem;
-    border-radius: 0.75rem;
-    transition: all 0.2s;
+  /* ======================================================= */
+  /* LOGO                                                    */
+  /* ======================================================= */
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
     text-decoration: none;
-    display: inline-block;
-  }
-  .nav-link:hover {
-    color: #fff;
-    background-color: rgba(255,255,255,0.05);
-  }
-  .nav-link:focus {
-    outline: 2px solid #B9FF66;
-    outline-offset: 2px;
-  }
-  
-  /* Ajout pour marquer la page active */
-  .nav-link[aria-current="page"] {
-    color: #fff;
-    background-color: rgba(185, 255, 102, 0.1);
-    border: 1px solid rgba(185, 255, 102, 0.2);
+    font-weight: 900;
+    font-size: 1.25rem;
+    letter-spacing: 0.04em;
+    color: #111827;
+    transition: var(--transition-base);
+    flex-shrink: 0;
   }
 
-  .mobile-link {
+  :is(.dark .logo) {
+    color: #ffffff;
+  }
+
+  .logo:hover {
+    color: var(--color-brand-lime);
+  }
+
+  .logo-mark {
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--color-brand-lime);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-base);
+  }
+
+  .logo-mark svg {
+    stroke: var(--color-brand-dark);
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .logo-text {
+    font-family: var(--font-montserrat);
+  }
+
+  /* ======================================================= */
+  /* NAVIGATION DESKTOP                                      */
+  /* ======================================================= */
+  .nav-desktop {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  @media (max-width: 900px) {
+    .nav-desktop {
+      display: none;
+    }
+  }
+
+  .nav-link {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #4b5563;
+    text-decoration: none;
+    transition: var(--transition-base);
+    position: relative;
+  }
+
+  :is(.dark .nav-link) {
+    color: #9ca3af;
+  }
+
+  .nav-link:hover {
+    color: var(--color-brand-lime);
+  }
+
+  /* Active link indicator */
+  .nav-link[aria-current="page"] {
+    color: var(--color-brand-lime);
+    font-weight: 600;
+  }
+
+  .nav-link[aria-current="page"]::after {
+    content: '';
+    position: absolute;
+    bottom: -0.375rem;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--color-brand-lime);
+    border-radius: 2px;
+  }
+
+  /* ======================================================= */
+  /* ACTIONS (Theme Toggle + Contact Button)                */
+  /* ======================================================= */
+  .header-actions {
     display: flex;
     align-items: center;
     gap: 1rem;
-    color: #d1d5db;
-    font-weight: 500;
-    font-size: 1.125rem;
-    padding: 1rem;
-    border-radius: 1rem;
-    border: 1px solid transparent;
+    flex-shrink: 0;
+  }
+
+  /* Theme Toggle Button */
+  .theme-toggle {
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    padding: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-base);
+    color: #4b5563;
+  }
+
+  :is(.dark .theme-toggle) {
+    color: #9ca3af;
+  }
+
+  .theme-toggle:hover {
+    border-color: var(--color-brand-lime);
+    color: var(--color-brand-lime);
+    transform: scale(1.05);
+  }
+
+  .theme-icon {
+    transition: var(--transition-base);
+  }
+
+  /* Sun/Moon visibility */
+  .sun-icon {
+    display: block;
+  }
+  
+  .moon-icon {
+    display: none;
+  }
+  
+  :is(.dark .sun-icon) {
+    display: none;
+  }
+  
+  :is(.dark .moon-icon) {
+    display: block;
+  }
+
+  /* Contact Button */
+  .btn-contact {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--color-brand-lime);
+    color: var(--color-brand-dark);
+    font-weight: 700;
+    font-size: 0.875rem;
+    padding: 0.5rem 1.25rem;
+    border-radius: var(--radius-xl);
     text-decoration: none;
-    transition: all 0.2s;
-  }
-  .mobile-link:hover {
-    color: #fff;
-    background-color: rgba(255,255,255,0.05);
-    border-color: rgba(255,255,255,0.05);
+    transition: var(--transition-base);
+    white-space: nowrap;
   }
 
-  /* Burger animation */
-  #menu-toggle.is-open .burger-line:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
+  .btn-contact:hover {
+    background-color: var(--color-brand-lime-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lime);
   }
-  #menu-toggle.is-open .burger-line:nth-child(2) {
+
+  @media (max-width: 640px) {
+    .btn-contact span {
+      display: none;
+    }
+    
+    .btn-contact {
+      padding: 0.5rem;
+    }
+  }
+
+  /* ======================================================= */
+  /* BURGER MENU (Mobile)                                   */
+  /* ======================================================= */
+  .burger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 1.75rem;
+    height: 1.25rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 60;
+  }
+
+  @media (max-width: 900px) {
+    .burger {
+      display: flex;
+    }
+  }
+
+  .burger span {
+    width: 100%;
+    height: 2px;
+    background-color: #111827;
+    border-radius: 2px;
+    transition: var(--transition-base);
+  }
+
+  :is(.dark .burger span) {
+    background-color: #ffffff;
+  }
+
+  .burger.is-active span:nth-child(1) {
+    transform: translateY(0.5625rem) rotate(45deg);
+  }
+
+  .burger.is-active span:nth-child(2) {
     opacity: 0;
-    transform: scaleX(0);
-  }
-  #menu-toggle.is-open .burger-line:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
   }
 
-  /* Header scroll effect */
-  #site-header.scrolled {
+  .burger.is-active span:nth-child(3) {
+    transform: translateY(-0.5625rem) rotate(-45deg);
+  }
+
+  /* ======================================================= */
+  /* MOBILE MENU (Overlay)                                  */
+  /* ======================================================= */
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    z-index: 50;
+    padding: 5rem 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: auto;
+  }
+
+  :is(.dark .mobile-menu) {
     background-color: rgba(25, 26, 35, 0.98);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+
+  /* Alpine.js cloak */
+  [x-cloak] {
+    display: none !important;
+  }
+
+  /* Transition classes */
+  .transition {
+    transition-property: opacity, transform;
+  }
+  
+  .duration-300 {
+    transition-duration: 300ms;
+  }
+  
+  .duration-200 {
+    transition-duration: 200ms;
+  }
+  
+  .ease-out {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .ease-in {
+    transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+  }
+  
+  .opacity-0 {
+    opacity: 0;
+  }
+  
+  .opacity-100 {
+    opacity: 1;
+  }
+  
+  .-translate-y-4 {
+    transform: translateY(-1rem);
+  }
+  
+  .translate-y-0 {
+    transform: translateY(0);
+  }
+
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .mobile-nav-link {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    text-decoration: none;
+    transition: var(--transition-base);
+    padding: 0.5rem;
+  }
+
+  :is(.dark .mobile-nav-link) {
+    color: #ffffff;
+  }
+
+  .mobile-nav-link:hover {
+    color: var(--color-brand-lime);
+    transform: translateX(4px);
+  }
+
+  .mobile-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .mobile-phone,
+  .mobile-email {
+    font-size: 0.875rem;
+    color: #6b7280;
+    text-decoration: none;
+    transition: var(--transition-base);
+  }
+
+  :is(.dark .mobile-phone, .dark .mobile-email) {
+    color: #9ca3af;
+  }
+
+  .mobile-phone:hover,
+  .mobile-email:hover {
+    color: var(--color-brand-lime);
   }
 </style>
-
-<script>
-  // ─── BURGER MENU ───────────────────────────────
-  const toggle   = document.getElementById('menu-toggle')!;
-  const mobileMenu = document.getElementById('mobile-menu')!;
-
-  function closeMenu() {
-    toggle.setAttribute('aria-expanded', 'false');
-    toggle.classList.remove('is-open');
-    mobileMenu.classList.add('hidden');
-    mobileMenu.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  }
-
-  toggle.addEventListener('click', () => {
-    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
-    if (isOpen) {
-      closeMenu();
-    } else {
-      toggle.setAttribute('aria-expanded', 'true');
-      toggle.classList.add('is-open');
-      mobileMenu.classList.remove('hidden');
-      mobileMenu.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    }
-  });
-
-  // Close on ESC
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeMenu();
-  });
-
-  // ─── SCROLL EFFECT ─────────────────────────────
-  const header = document.getElementById('site-header')!;
-  window.addEventListener('scroll', () => {
-    header.classList.toggle('scrolled', window.scrollY > 20);
-  }, { passive: true });
-
-  // ─── CHATBOT ───────────────────────────────────
-  const chatbot     = document.getElementById('chatbot-modal')!;
-  const fab         = document.getElementById('chat-fab')!;
-  const openBtn     = document.getElementById('open-chatbot')!;
-  const closeBtn    = document.getElementById('close-chatbot')!;
-  const chatForm    = document.getElementById('chat-form')!;
-  const chatInput   = document.getElementById('chat-input') as HTMLInputElement;
-  const chatMessages = document.getElementById('chat-messages')!;
-
-  // Réponses automatiques par mots-clés
-  const botReplies: Record<string, string> = {
-    'site': "Un site professionnel en Suisse romande coûte entre <strong>3 000 et 8 000 CHF</strong>. Les sites au rabais sont lourds et invisibles. Contactez-nous pour un devis net et transparent.",
-    'coûte': "Un site professionnel coûte entre <strong>3 000 et 8 000 CHF</strong>. En dessous de 1 000 CHF/mois de budget marketing, votre entreprise reste invisible.",
-    'google': "73 % des Suisses consultent Google Maps avant de visiter un commerce. Un vrai travail durable coûte entre <strong>1 000 et 3 500 CHF/mois</strong>. Il faut 6 à 12 mois pour des résultats réguliers.",
-    'maps': "73 % des Suisses consultent Google Maps avant de visiter un commerce. Il faut 6 à 12 mois pour des résultats réguliers. Contactez-nous pour évaluer votre marché local.",
-    'nlpd': "Un site non sécurisé expose le patron à des amendes jusqu'à <strong>250 000 CHF</strong>. CLICOM sécurise votre site aux normes suisses. Contactez-nous pour vérifier votre conformité.",
-    'loi': "Depuis la nLPD, le patron peut être condamné personnellement jusqu'à <strong>250 000 CHF</strong>. CLICOM prend ce fardeau sur ses épaules.",
-    'prix': "Nos tarifs : dès <strong>1 000 CHF/mois</strong> pour la visibilité locale, dès <strong>2 000 CHF/mois</strong> pour la performance complète. Site web : entre 3 000 et 8 000 CHF.",
-    'tarif': "Nos tarifs : dès <strong>1 000 CHF/mois</strong> pour la visibilité locale, dès <strong>2 000 CHF/mois</strong> pour la performance complète. Site web : entre 3 000 et 8 000 CHF.",
-    'contact': "Pour parler directement à Mohamed Saber, appelez le <strong>078 823 89 50</strong> ou écrivez à <strong>contact@clicom.ch</strong>. Vous pouvez aussi remplir le <a href='/#contact' class='text-[#B9FF66] underline'>formulaire de contact</a>.",
-    'mohamed': "Mohamed Saber est le stratège en chef de CLICOM. Pour le joindre directement : <a href='https://wa.me/41788238950' class='text-[#B9FF66] underline' target='_blank'>WhatsApp →</a>",
-    'sms': "Le SMS a <strong>98 % de taux de lecture</strong> contre 22 % pour l'email. Notre système de fidélisation envoie le bon message au bon client au bon moment.",
-    'automatisation': "Nos outils intelligents font gagner <strong>30 heures par mois</strong> aux patrons, soit environ 15 000 CHF d'économie par an.",
-    'whatsapp': "Écrivez-nous directement sur <a href='https://wa.me/41788238950' class='text-[#B9FF66] underline' target='_blank'>WhatsApp →</a>",
-  };
-
-  const defaultReply = "Bonne question ! Pour une réponse personnalisée, je vous invite à remplir notre <a href='/#contact' class='text-[#B9FF66] underline'>formulaire de contact</a> ou à nous écrire sur <a href='https://wa.me/41788238950' class='text-[#B9FF66] underline' target='_blank'>WhatsApp</a>. Mohamed Saber vous répondra sous 2h.";
-
-  function openChat() {
-    chatbot.classList.remove('hidden');
-    fab.classList.add('hidden');
-    chatInput.focus();
-  }
-
-  function closeChat() {
-    chatbot.classList.add('hidden');
-    fab.classList.remove('hidden');
-  }
-
-  fab.addEventListener('click', openChat);
-  openBtn.addEventListener('click', openChat);
-  closeBtn.addEventListener('click', closeChat);
-
-  function addMessage(text: string, role: 'user' | 'bot') {
-    const wrap = document.createElement('div');
-    wrap.className = 'flex gap-2' + (role === 'user' ? ' flex-row-reverse' : '');
-
-    const avatar = document.createElement('div');
-    avatar.className = role === 'bot'
-      ? 'w-7 h-7 bg-[#B9FF66] rounded-full flex items-center justify-center flex-shrink-0 text-[#191A23] text-xs font-black'
-      : 'w-7 h-7 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0 text-white text-xs font-black';
-    avatar.textContent = role === 'bot' ? 'C' : 'V';
-
-    const bubble = document.createElement('div');
-    bubble.className = role === 'bot'
-      ? 'bg-[#191A23] rounded-2xl rounded-tl-sm px-4 py-3 max-w-[85%] text-white text-sm leading-relaxed'
-      : 'bg-[#B9FF66] rounded-2xl rounded-tr-sm px-4 py-3 max-w-[85%] text-[#191A23] text-sm font-medium leading-relaxed';
-    bubble.innerHTML = text;
-
-    wrap.appendChild(avatar);
-    wrap.appendChild(bubble);
-    chatMessages.appendChild(wrap);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-  }
-
-  function getBotReply(input: string): string {
-    const lower = input.toLowerCase();
-    for (const [key, reply] of Object.entries(botReplies)) {
-      if (lower.includes(key)) return reply;
-    }
-    return defaultReply;
-  }
-
-  // ─── THEME TOGGLE (DARK/LIGHT MODE) ────────────
-  const themeToggleBtn = document.getElementById('theme-toggle');
-  const darkIcon = document.getElementById('theme-toggle-dark-icon');
-  const lightIcon = document.getElementById('theme-toggle-light-icon');
-
-  // 1. Lire la préférence au chargement ou utiliser la préférence du système
-  const savedTheme = localStorage.getItem('theme');
-  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const isDark = savedTheme === 'dark' || (!savedTheme && systemPrefersDark);
-
-  // 2. Appliquer les icônes initiales correctement
-  if (isDark) {
-    document.documentElement.classList.add('dark');
-    lightIcon?.classList.remove('hidden');
-    darkIcon?.classList.add('hidden');
-  } else {
-    document.documentElement.classList.remove('dark');
-    darkIcon?.classList.remove('hidden');
-    lightIcon?.classList.add('hidden');
-  }
-
-  // 3. Gérer le clic
-  themeToggleBtn?.addEventListener('click', () => {
-    const isCurrentlyDark = document.documentElement.classList.contains('dark');
-    
-    if (isCurrentlyDark) {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-      lightIcon?.classList.add('hidden');
-      darkIcon?.classList.remove('hidden');
-    } else {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-      darkIcon?.classList.add('hidden');
-      lightIcon?.classList.remove('hidden');
-    }
-  });
-
-  // Quick replies
-  document.querySelectorAll('.quick-reply').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const text = btn.textContent?.trim() ?? '';
-      document.getElementById('quick-replies')?.remove();
-      addMessage(text, 'user');
-      setTimeout(() => addMessage(getBotReply(text), 'bot'), 600);
-    });
-  });
-
-  // Form submit
-  chatForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const val = chatInput.value.trim();
-    if (!val) return;
-    addMessage(val, 'user');
-    chatInput.value = '';
-    setTimeout(() => addMessage(getBotReply(val), 'bot'), 700);
-  });
-
-  // Make closeMenu accessible globally (used in onclick attributes)
-  (window as any).closeMenu = closeMenu;
-</script>
