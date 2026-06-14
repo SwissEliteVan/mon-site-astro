@@ -9,12 +9,14 @@
 /* ──────────────────────────────────────────────────────────────
    DARK MODE (activation manuelle par classe)
    ────────────────────────────────────────────────────────────── */
+/* stylelint-disable at-rule-no-unknown */
 @custom-variant dark (&:is(.dark *));
+/* stylelint-enable at-rule-no-unknown */
 
 /* ──────────────────────────────────────────────────────────────
    THÈME TAILWIND — Variables accessibles dans @apply
    ────────────────────────────────────────────────────────────── */
-@theme {
+:root {
   /* TYPOGRAPHIE — Polices locales */
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-montserrat: 'Montserrat', system-ui, -apple-system, sans-serif;
