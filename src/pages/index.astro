@@ -23,10 +23,21 @@ import RecentPosts from '../components/blog/RecentPosts.astro';
         Aujourd'hui en Suisse romande, 95 % des petites entreprises possèdent un site web. Pourtant, moins de 15 % d'entre elles investissent le moindre centime pour y amener du monde. Résultat ? Votre site est comme un magnifique prospectus oublié au fond d'un tiroir que personne ne lit. C'est une perte de temps et un gaspillage d'argent total.
       </p>
       
-      <div class="bg-[#1f202b] border border-[#B9FF66]/20 p-8 md:p-12 rounded-3xl mb-12 max-w-4xl mx-auto text-left shadow-2xl opacity-0 animate-[fadeInUp_1s_ease-out_forwards] [animation-delay:400ms]">
-        <h3 class="text-2xl font-bold text-white mb-4">Le piège des petits budgets dispersés</h3>
-        <p class="text-gray-300 mb-6 text-lg">Beaucoup d'indépendants essaient de tout faire eux-mêmes. Ils mettent 200 CHF sur un réseau social par-ci, 300 CHF sur une publicité par-là, en espérant attirer de nouveaux clients.</p>
-        <p class="text-[#B9FF66] font-bold text-lg border-l-4 border-[#B9FF66] pl-6">C'est une erreur coûteuse. La règle sur le marché suisse est mathématique : en dessous de 1 000 CHF investis par mois au total, votre entreprise reste invisible au milieu de la concurrence. L'argent dépensé est purement et simplement gaspillé.</p>
+      <div class="flex flex-col md:flex-row gap-8 items-center bg-[#1f202b] border border-[#B9FF66]/20 p-8 md:p-12 rounded-3xl mb-12 max-w-4xl mx-auto text-left shadow-2xl opacity-0 animate-[fadeInUp_1s_ease-out_forwards] [animation-delay:400ms]">
+        <div class="md:w-2/3">
+          <h3 class="text-2xl font-bold text-white mb-4">Le piège des petits budgets dispersés</h3>
+          <p class="text-gray-300 mb-6 text-lg">Beaucoup d'indépendants essaient de tout faire eux-mêmes. Ils mettent 200 CHF sur un réseau social par-ci, 300 CHF sur une publicité par-là, en espérant attirer de nouveaux clients.</p>
+          <p class="text-[#B9FF66] font-bold text-lg border-l-4 border-[#B9FF66] pl-6">C'est une erreur coûteuse. La règle sur le marché suisse est mathématique : en dessous de 1 000 CHF investis par mois au total, votre entreprise reste invisible au milieu de la concurrence. L'argent dépensé est purement et simplement gaspillé.</p>
+        </div>
+        <div class="md:w-1/3">
+          <img 
+            src="/assets/images/audit-gratuit-visibilite-digitale.webp" 
+            alt="Analyse de budget marketing pour PME suisse" 
+            width="400"
+            loading="lazy"
+            class="rounded-2xl shadow-xl w-full object-cover aspect-square"
+          />
+        </div>
       </div>
 
       <h2 class="text-3xl font-bold text-white mb-6 opacity-0 animate-[fadeInUp_1s_ease-out_forwards] [animation-delay:600ms]">Notre promesse : faire sonner votre téléphone</h2>
@@ -289,13 +300,26 @@ import RecentPosts from '../components/blog/RecentPosts.astro';
   <!-- L'ÉQUIPE -->
   <section id="equipe" class="py-24 bg-[#1f202b] border-t border-white/5">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-      <img 
-        src="/assets/images/equipe-clicom-agence-suisse.webp" 
-        alt="Équipe CLICOM agence digitale Suisse" 
-        width="1200"
-        loading="lazy"
-        class="rounded-3xl shadow-2xl w-full object-cover aspect-video"
-      />
+      <div class="flex flex-col md:flex-row gap-8 items-center">
+        <div class="md:w-2/3">
+          <img 
+            src="/assets/images/equipe-clicom-agence-suisse.webp" 
+            alt="Équipe CLICOM agence digitale Suisse" 
+            width="1200"
+            loading="lazy"
+            class="rounded-3xl shadow-2xl w-full object-cover aspect-video"
+          />
+        </div>
+        <div class="md:w-1/3">
+          <img 
+            src="/assets/images/mohamed-saber-stratege-agence-suisse.avif" 
+            alt="Mohamed Saber - Expert marketing digital pour PME Suisse" 
+            width="600"
+            loading="lazy"
+            class="rounded-3xl shadow-2xl w-full object-cover aspect-square"
+          />
+        </div>
+      </div>
     </div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
