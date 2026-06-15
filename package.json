@@ -23,7 +23,8 @@
     "astro": "^6.4.4",
     "react-hook-form": "^7.79.0",
     "resend": "^2.0.0",
-    "tailwindcss": "^4.3.0"
+    "tailwindcss": "^4.3.0",
+    "xss": "^1.0.15"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.9.1",
