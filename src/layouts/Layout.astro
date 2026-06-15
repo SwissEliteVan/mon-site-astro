@@ -4,15 +4,7 @@ import Footer from '../components/layout/Footer.astro';
 import FloatingContact from '../components/FloatingContact.astro';
 import Chatbot from '../components/Chatbot.astro';
 
-// Polices auto-hébergées (Conformité 100% nLPD)
-import '@fontsource/inter/400.css';
-import '@fontsource/inter/500.css';
-import '@fontsource/inter/600.css';
-import '@fontsource/inter/700.css';
-import '@fontsource/montserrat/600.css';
-import '@fontsource/montserrat/700.css';
-import '@fontsource/montserrat/800.css';
-
+// Polices Google Fonts
 export interface Props {
   title: string;
   description?: string;
@@ -66,6 +58,11 @@ const { title, description = "CLICOM - Solutions informatiques professionnelles 
     
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
     <style is:global>
       @import "tailwindcss";
       
