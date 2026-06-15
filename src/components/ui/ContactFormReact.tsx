@@ -22,6 +22,7 @@ const ContactFormReact: React.FC<ContactFormProps> = () => {
 
   const validate = (): FormErrors => {
     const newErrors: FormErrors = {};
+    console.log('Validation avec les valeurs:', { name, email, message });
     if (!name) newErrors.name = 'Le nom est requis';
     if (!email) {
       newErrors.email = 'L\'email est requis';
@@ -29,6 +30,7 @@ const ContactFormReact: React.FC<ContactFormProps> = () => {
       newErrors.email = 'Email invalide';
     }
     if (!message) newErrors.message = 'Le message est requis';
+    console.log('Erreurs trouvées:', newErrors);
     return newErrors;
   };
 
