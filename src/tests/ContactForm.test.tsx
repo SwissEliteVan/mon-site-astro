@@ -17,7 +17,8 @@ describe('ContactForm', () => {
     render(<ContactFormReact />);
     const submitButton = screen.getByRole('button', { name: /envoyer/i });
     
-    fireEvent.click(submitButton);
+    // Ajout de await pour l'événement de soumission
+    await fireEvent.click(submitButton);
     
     expect(await screen.findByText('Le nom est requis')).toBeInTheDocument();
     expect(await screen.findByText('L\'email est requis')).toBeInTheDocument();
@@ -50,30 +51,24 @@ describe('ContactForm', () => {
     const emailInput = screen.getByLabelText(/adresse email \*/i);
     fireEvent.change(emailInput, { target: { value: 'email-invalide' } });
     
-    // Soumettre le formulaire
-    fireEvent.click(screen.getByRole('button', { name: /envoyer/i }));
+    // Soumettre le formulaire avec await
+    await fireEvent.click(screen.getByRole('button', { name: /envoyer/i }));
     
-    // Vérifier l'erreur avec une requête plus robuste
-    const errorMessage = await screen.findByText(
-      /Email invalide/i, 
-      { exact: false },
-      { timeout: 5000 }
-    );
-    expect(errorMessage).toBeInTheDocument();
+    // Utilisation de findByText pour attendre l'apparition du message
+    expect(await screen.findByText(/email invalide/i)).toBeInTheDocument();
   });
 
   it('affiche les erreurs de validation avec la nouvelle structure Zod', async () => {
     render(<ContactFormReact />);
     const submitButton = screen.getByRole('button', { name: /envoyer/i });
     
-    fireEvent.click(submitButton);
+    // Ajout de await pour l'événement de soumission
+    await fireEvent.click(submitButton);
     
-    // Vérifier la structure des erreurs
-    await waitFor(() => {
-      expect(screen.getByText('Le nom est requis')).toBeInTheDocument();
-      expect(screen.getByText('L\'email est requis')).toBeInTheDocument();
-      expect(screen.getByText('Le message est requis')).toBeInTheDocument();
-    });
+    // Remplacer waitFor/getByText par findByText
+    expect(await screen.findByText('Le nom est requis')).toBeInTheDocument();
+    expect(await screen.findByText('L\'email est requis')).toBeInTheDocument();
+    expect(await screen.findByText('Le message est requis')).toBeInTheDocument();
   });
 
   it('soumet avec succès lorsque les données sont valides', async () => {
