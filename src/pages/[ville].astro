@@ -3,27 +3,68 @@ import Layout from '../layouts/Layout.astro';
 
 // Génération dynamique de toutes les pages villes existantes
 export function getStaticPaths() {
-  const villes = [
-    'lausanne', 'geneve', 'vevey', 'montreux', 'nyon', 
-    'yverdon', 'fribourg', 'neuchatel', 'sion', 'martigny'
-  ];
-  
-  return villes.map(ville => ({
+  const villesData = {
+    lausanne: { cp: "1000", lat: 46.519653, lng: 6.632273 },
+    geneve: { cp: "1200", lat: 46.204391, lng: 6.143158 },
+    vevey: { cp: "1800", lat: 46.462803, lng: 6.843058 },
+    montreux: { cp: "1820", lat: 46.431221, lng: 6.910680 },
+    nyon: { cp: "1260", lat: 46.383268, lng: 6.234796 },
+    yverdon: { cp: "1400", lat: 46.778474, lng: 6.641183 },
+    fribourg: { cp: "1700", lat: 46.806477, lng: 7.161972 },
+    neuchatel: { cp: "2000", lat: 46.989587, lng: 6.929264 },
+    sion: { cp: "1950", lat: 46.233122, lng: 7.360626 },
+    martigny: { cp: "1920", lat: 46.103117, lng: 7.072736 }
+  };
+
+  return Object.keys(villesData).map(ville => ({
     params: { ville },
     props: { 
-      nomVille: ville.charAt(0).toUpperCase() + ville.slice(1) 
+      nomVille: ville.charAt(0).toUpperCase() + ville.slice(1),
+      geoData: villesData[ville]
     },
   }));
 }
 
 const { ville } = Astro.params;
-const { nomVille } = Astro.props;
+const { nomVille, geoData } = Astro.props;
+
+// Création du schéma JSON-LD
+const schemaLD = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": `CLICOM - Agence Web à ${nomVille}`,
+  "description": `Agence web spécialisée dans la création de sites internet et le référencement local (SEO) pour les PME de ${nomVille} et environs.`,
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": nomVille,
+    "postalCode": geoData.cp,
+    "addressCountry": "CH"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": geoData.lat,
+    "longitude": geoData.lng
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "08:00",
+      "closes": "18:00"
+    }
+  ],
+  "telephone": "+41234567890",
+  "url": `https://clicom.pro/${ville}`,
+  "priceRange": "$$",
+  "image": "https://clicom.pro/logo.png"
+};
 ---
 
 <Layout 
   title={`Création de site internet et SEO à ${nomVille} | CLICOM`} 
   description={`Agence web experte en création de site internet et référencement local (SEO) à ${nomVille}. Attirez plus de clients dans votre région.`}
 >
+  <script type="application/ld+json" set:html={JSON.stringify(schemaLD)} />
   <section class="pt-32 pb-24 bg-[#191A23] min-h-screen">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       
