@@ -1,1 +1,15 @@
-<h1 style="color: red; font-size: 50px;">TEST LOCAL</h1>
+<h1 style="color: red; font-size: 50px;">TEST LOCAL</h1>---
+interface Props { title: string; }
+const { title } = Astro.props;
+import '../styles/global.css'; // Vérifie que ce chemin est bon !
+---
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot /> <!-- C'est ici que tes pages se chargent -->
+	</body>
+</html>
