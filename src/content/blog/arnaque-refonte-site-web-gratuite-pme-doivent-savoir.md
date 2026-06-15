@@ -1,10 +1,10 @@
 ---
 title: "L'arnaque à la refonte de site web gratuite : ce que les PME doivent savoir"
 description: "Des offres de site internet gratuit fleurissent en Suisse romande. Derrière la façade se cache un modèle économique qui peut coûter très cher à votre PME."
-pubDate: 2026-06-14
+pubDate: 2026-06-28
 author: "Mohamed Saber"
 tags: ["Agences", "Budget", "Arnaques"]
-image: "https://picsum.photos/800/400"
+image: "/assets/blog/arnaque-refonte.jpg"
 ---
 
 L'offre est séduisante : un site internet professionnel, gratuit, avec maintenance incluse. Pour une PME au budget serré, c'est une aubaine. Mais en réalité, ce modèle économique est un piège.

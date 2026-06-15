@@ -1,10 +1,10 @@
 ---
 title: "Référencement low cost : les mensonges que les agences web racontent aux PME"
 description: "200 CHF par mois pour être premier sur Google ? Découvrez pourquoi ces offres de SEO low cost sont une illusion dangereuse pour votre entreprise."
-pubDate: 2026-06-14
+pubDate: 2026-06-21
 author: "Mohamed Saber"
 tags: ["SEO", "Agences", "PME"]
-image: "https://picsum.photos/800/400"
+image: "/assets/blog/referencement-low-cost.jpg"
 ---
 
 Un patron de PME reçoit chaque semaine des emails qui lui promettent la première page de Google pour 200 CHF par mois. La promesse est alléchante. Le budget est dérisoire. Et pourtant, six mois plus tard, le téléphone ne sonne toujours pas.

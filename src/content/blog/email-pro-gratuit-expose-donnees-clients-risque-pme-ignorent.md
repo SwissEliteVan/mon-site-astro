@@ -4,7 +4,7 @@ description: "Utiliser une adresse Gmail ou Bluewin pour son entreprise semble a
 pubDate: 2026-06-14
 author: "Mohamed Saber"
 tags: ["Sécurité", "nLPD", "PME"]
-image: "https://picsum.photos/800/400"
+image: "/assets/blog/email-pro.jpg"
 ---
 Un artisan nous contacte après avoir perdu un appel d'offres public. Son devis était compétitif, ses références solides. Mais le responsable du marché nous a confié la raison du rejet : l'adresse email de l'artisan se terminait par @bluewin.ch.
 
