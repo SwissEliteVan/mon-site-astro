@@ -4,12 +4,15 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
 
+import vercel from '@astrojs/vercel';
+
 // https://astro.build/config
 export default defineConfig({
   // URL de production indispensable pour la génération du sitemap
   site: 'https://clicom.ch',
-  
+
   integrations: [sitemap(), react()],
+
   // 1. Configuration du Prefetching (Préchargement des pages)
   prefetch: {
     // Active le préchargement sur tous les liens internes du site
@@ -17,7 +20,7 @@ export default defineConfig({
     // Le préchargement s'active automatiquement lorsqu'on survole un lien (hover)
     defaultStrategy: 'hover' 
   },
-  
+
   // Astro minifie le HTML par défaut en production, mais on le déclare explicitement
   compressHTML: true,
 
@@ -28,5 +31,7 @@ export default defineConfig({
       minify: 'esbuild',    // Minification JavaScript ultra-rapide
       cssMinify: 'esbuild', // Minification CSS
     }
-  }
+  },
+
+  adapter: vercel()
 });
