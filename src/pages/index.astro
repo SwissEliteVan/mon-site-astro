@@ -5,6 +5,25 @@ import RecentPosts from '../components/blog/RecentPosts.astro';
 
 <Layout title="CLICOM | Agence de Marketing Digital en Suisse" description="L'Humain orchestre, l'IA exécute. Propulsez votre PME suisse avec la vitesse de nos agents intelligents et la sécurité de notre expert local.">
   
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "CLICOM",
+    "url": "https://clicom.ch",
+    "logo": "https://example.com/logo-clicom.png",
+    "sameAs": [
+      "https://linkedin.com/company/clicom",
+      "https://facebook.com/clicom"
+    ],
+    "description": "Agence de marketing digital suisse spécialisée dans l'acquisition client par IA et stratégies locales",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "CH"
+    }
+  }
+  </script>
+  
   <!-- PROMPT 01: LA PAGE D'ACCUEIL -->
   <section class="relative min-h-[90vh] flex items-center justify-center pt-20 pb-16 overflow-hidden">
     <div class="absolute inset-0 z-0">
