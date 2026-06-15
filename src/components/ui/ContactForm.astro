@@ -8,7 +8,12 @@ interface Props {
 const { title = "Parlons de votre projet", subtitle = "Remplissez le formulaire ci-dessous et je vous recontacte dans les plus brefs délais." } = Astro.props;
 ---
 
-<ContactFormReact title={title} subtitle={subtitle} client:load />
+<div className="contact-header">
+  <span className="contact-badge">Consultation Stratégique Offerte</span>
+  <h2 className="contact-title">{title}</h2>
+  <p className="contact-subtitle">{subtitle}</p>
+</div>
+<ContactFormReact client:visible />
 
 <style>
   /* Conteneur principal */

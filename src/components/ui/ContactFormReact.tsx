@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import type { FormEvent, ChangeEvent } from 'react';
 
 interface ContactFormProps {
-  title?: string;
-  subtitle?: string;
 }
 
 interface FormErrors {
@@ -13,10 +11,7 @@ interface FormErrors {
   submit?: string;
 }
 
-const ContactFormReact: React.FC<ContactFormProps> = ({ 
-  title = "Parlons de votre projet", 
-  subtitle = "Remplissez le formulaire ci-dessous et je vous recontacte dans les plus brefs délais."
-}) => {
+const ContactFormReact: React.FC<ContactFormProps> = () => {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [message, setMessage] = useState<string>('');
@@ -71,11 +66,6 @@ const ContactFormReact: React.FC<ContactFormProps> = ({
 
   return (
     <div className="contact-container">
-      <div className="contact-header">
-        <span className="contact-badge">Consultation Stratégique Offerte</span>
-        <h2 className="contact-title">{title}</h2>
-        <p className="contact-subtitle">{subtitle}</p>
-      </div>
 
       {success ? (
         <div className="message-box success">
