@@ -1,21 +1,26 @@
 ---
 import ContactFormReact from './ContactFormReact';
+
 interface Props {
   title?: string;
   subtitle?: string;
 }
 
-const { title = "Parlons de votre projet", subtitle = "Remplissez le formulaire ci-dessous et je vous recontacte dans les plus brefs délais." } = Astro.props;
+const { 
+  title = "Parlons de votre projet", 
+  subtitle = "Remplissez le formulaire ci-dessous et je vous recontacte dans les plus brefs délais." 
+} = Astro.props;
 ---
 
-<div className="contact-header">
-  <span className="contact-badge">Consultation Stratégique Offerte</span>
-  <h2 className="contact-title">{title}</h2>
-  <p className="contact-subtitle">{subtitle}</p>
+<div class="contact-header">
+  <span class="contact-badge">Consultation Stratégique Offerte</span>
+  <h2 class="contact-title">{title}</h2>
+  <p class="contact-subtitle">{subtitle}</p>
 </div>
+
 <ContactFormReact client:visible />
 
-<style>
+<style is:global>
   /* Conteneur principal */
   .contact-container {
     padding: 6rem 1.5rem;
