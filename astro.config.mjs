@@ -3,12 +3,12 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
-import vercel from '@astrojs/vercel'; // ← Changement : plus de "/serverless"
+import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://clicom.ch',
-  output: 'hybrid',
+  output: 'server', // ← Changement : 'server' au lieu de 'hybrid'
   integrations: [sitemap(), react()],
   prefetch: {
     prefetchAll: true,
