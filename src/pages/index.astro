@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import RecentPosts from '../components/blog/RecentPosts.astro';
+import { getCollection } from 'astro:content';
+
+const allBlogPosts = await getCollection('blog');
 ---
 
 <Layout title="CLICOM | Agence de Marketing Digital en Suisse" description="L'Humain orchestre, l'IA exécute. Propulsez votre PME suisse avec la vitesse de nos agents intelligents et la sécurité de notre expert local.">
@@ -489,10 +491,21 @@ import RecentPosts from '../components/blog/RecentPosts.astro';
     </div>
   </section>
 
-  <!-- BLOG — Dynamique via RecentPosts.astro + Content Collections -->
-  <div id="blog">
-    <RecentPosts />
-  </div>
+  <!-- BLOG — Dynamique via Content Collections -->
+  <section id="blog" class="py-24 bg-[#1f202b] border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-4xl font-bold text-white mb-12 text-center">Nos derniers articles</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {allBlogPosts.map((post) => (
+          <div class="bg-[#191A23] p-8 rounded-3xl border border-white/5 hover:border-[#B9FF66]/30 transition-all flex flex-col">
+            <h3 class="text-xl font-bold text-white mb-4">{post.data.title}</h3>
+            <p class="text-gray-400 mb-6 flex-grow">{post.data.description}</p>
+            <a href={`/blog/${post.slug}`} class="text-[#B9FF66] font-bold hover:underline mt-auto">Lire la suite &rarr;</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 
   <!-- PROMPT 09: CONTACT FINAL -->
   <section id="contact" class="py-32 bg-[#191A23] relative overflow-hidden">
