@@ -93,41 +93,7 @@ const plans = [
   </section>
 
   <!-- ── PLANS ──────────────────────────────────────── -->
-  <section id="plans" class="plans-section">
-    <div class="section-inner">
-      <div class="section-header centered">
-        <span class="section-label">Nos forfaits</span>
-        <h2 class="section-title">Choisissez votre niveau d'engagement.</h2>
-        <p class="section-sub">Chaque forfait est un investissement — pas une dépense. Vous payez pour des résultats mesurables, pas pour des heures de réunion.</p>
-      </div>
-
-      <div class="plans-grid">
-        {plans.map(plan => (
-          <div class={`plan-card ${plan.highlight ? 'plan-highlight' : ''}`}>
-            {plan.highlight && <div class="plan-popular">Le plus choisi</div>}
-            <div class="plan-header">
-              <p class="plan-tag">{plan.tag}</p>
-              <p class="plan-name">{plan.name}</p>
-              <div class="plan-price">
-                <span class="price-amount">{plan.price}</span>
-                {plan.unit && <span class="price-unit"> {plan.unit}</span>}
-              </div>
-              <p class="plan-note">{plan.note}</p>
-            </div>
-            <ul class="plan-features">
-              {plan.features.map(f => (
-                <li class="plan-feature">
-                  <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                  {f}
-                </li>
-              ))}
-            </ul>
-            <a href="#contact" class={`plan-cta ${plan.highlight ? 'plan-cta-primary' : 'plan-cta-ghost'}`}>{plan.cta}</a>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+  <Pricing {plans} />
 
   <!-- ── FAQ PRIX ───────────────────────────────────── -->
   <section class="faq-section">
