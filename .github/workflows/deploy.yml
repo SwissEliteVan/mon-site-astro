@@ -1,0 +1,25 @@
+name: Deploy to FTP
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Build Astro
+        run: |
+          npm ci
+          npm run build
+      
+      - name: Deploy via FTP
+        uses: samkirkland/ftp-deploy-action@v4.3.0  # ← Version corrigée
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: ./public_html/
