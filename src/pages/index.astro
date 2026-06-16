@@ -2,28 +2,52 @@
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
+export const metadata = {
+  title: "Clicom - Agence Web & Marketing Digital en Suisse Romande",
+  description: "Agence web à Lausanne, Genève et Vevey. Création de sites performants, SEO, marketing digital. Audit gratuit et tarifs transparents.",
+  keywords: "agence web suisse, création site internet, marketing digital, SEO lausanne"
+};
+
 const allBlogPosts = await getCollection('blog');
 ---
 
-<Layout title="CLICOM | Agence de Marketing Digital en Suisse" description="L'Humain orchestre, l'IA exécute. Propulsez votre PME suisse avec la vitesse de nos agents intelligents et la sécurité de notre expert local.">
+<Layout title={metadata.title} description={metadata.description}>
   
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "CLICOM",
-    "url": "https://clicom.ch",
-    "logo": "https://example.com/logo-clicom.png",
-    "sameAs": [
-      "https://linkedin.com/company/clicom",
-      "https://facebook.com/clicom"
-    ],
-    "description": "Agence de marketing digital suisse spécialisée dans l'acquisition client par IA et stratégies locales",
-    "address": {
-      "@type": "PostalAddress",
-      "addressCountry": "CH"
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "CLICOM",
+      "url": "https://clicom.ch",
+      "logo": "https://example.com/logo-clicom.png",
+      "sameAs": [
+        "https://linkedin.com/company/clicom",
+        "https://facebook.com/clicom"
+      ],
+      "description": "Agence de marketing digital suisse spécialisée dans l'acquisition client par IA et stratégies locales",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "CH"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "CLICOM",
+      "image": "https://example.com/logo-clicom.png",
+      "@id": "https://clicom.ch",
+      "url": "https://clicom.ch",
+      "description": "Agence web à Lausanne, Genève et Vevey. Création de sites performants, SEO, marketing digital.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Lausanne",
+        "addressRegion": "VD",
+        "addressCountry": "CH"
+      },
+      "areaServed": ["Lausanne", "Genève", "Vevey", "Suisse Romande"]
     }
-  }
+  ]
   </script>
   
   <!-- PROMPT 01: LA PAGE D'ACCUEIL -->
@@ -198,39 +222,49 @@ const allBlogPosts = await getCollection('blog');
     </div>
   </section>
   
-  <!-- PROMPT 07: AUTOMATISATION AVEC IA -->
-  <section id="automatisation" class="py-24 bg-[#1f202b] border-t border-white/5">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col md:flex-row-reverse gap-12 items-center mb-16">
-        <div class="md:w-1/2">
-          <img 
-            src="/assets/images/lumina-agent-ia-webdesign.avif" 
-            alt="Lumina - Agent IA webdesign CLICOM" 
-            width="600"
-            loading="lazy"
-            class="rounded-3xl shadow-2xl w-full object-cover aspect-video"
-          />
-        </div>
-        <div class="md:w-1/2">
-          <h2 class="text-4xl font-bold text-white mb-6">Automatisez vos processus avec nos agents IA</h2>
-          <p class="text-xl text-gray-300 mb-8">Nos agents IA Lumina et Koda optimisent vos workflows pour vous faire gagner du temps et de l'argent.</p>
-          <ul class="space-y-4 mb-8">
-            <li class="flex items-start gap-3">
-              <svg class="w-6 h-6 text-[#B9FF66] flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              <span class="text-gray-400"><strong class="text-white">Lumina</strong> crée vos designs et maquettes en temps réel</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <svg class="w-6 h-6 text-[#B9FF66] flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              <span class="text-gray-400"><strong class="text-white">Koda</strong> développe et optimise votre code automatiquement</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <svg class="w-6 h-6 text-[#B9FF66] flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              <span class="text-gray-400"><strong class="text-white">Synergia</strong> analyse vos données pour optimiser vos campagnes</span>
-            </li>
+  <!-- SECTION: AGENTS IA -->
+  <section id="agents-ia" class="py-24 bg-[#1f202b] border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-white mb-6 reveal opacity-0">Nos Agents IA au Service de Votre Croissance</h2>
+        <p class="text-xl text-gray-400 max-w-3xl mx-auto reveal opacity-0 [animation-delay:200ms]">Automatisez vos processus, réduisez vos coûts et maximisez vos résultats grâce à notre équipe d'intelligences artificielles spécialisées.</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Lumina -->
+        <div class="bg-[#191A23] p-8 rounded-3xl border border-white/5 hover:border-[#B9FF66]/30 transition-all reveal opacity-0 [animation-delay:200ms]">
+          <img src="/assets/images/lumina-agent-ia-webdesign.avif" alt="Lumina Agent Webdesign" class="w-16 h-16 rounded-full object-cover mb-6 border-2 border-[#B9FF66]">
+          <h3 class="text-2xl font-bold text-white mb-2">Lumina</h3>
+          <p class="text-[#B9FF66] font-semibold text-sm tracking-wider uppercase mb-4">Agent Webdesign</p>
+          <p class="text-gray-400 mb-6">Lumina conçoit des interfaces utilisateur modernes et intuitives. Elle garantit un parcours client fluide et optimisé pour la conversion sur tous les appareils.</p>
+          <ul class="space-y-2 text-sm text-gray-300">
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-[#B9FF66]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Maquettes sur-mesure</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-[#B9FF66]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Design Mobile-First</li>
           </ul>
-          <a href="#contact" class="inline-block bg-[#B9FF66] text-[#191A23] font-bold px-8 py-4 rounded-xl hover:bg-[#a3e655] transition-colors text-lg">
-            Découvrez nos solutions d'automatisation
-          </a>
+        </div>
+
+        <!-- Koda -->
+        <div class="bg-[#191A23] p-8 rounded-3xl border border-white/5 hover:border-[#B9FF66]/30 transition-all reveal opacity-0 [animation-delay:400ms]">
+          <img src="/assets/images/koda-agent-ia-developpement.webp" alt="Koda Agent Développement" class="w-16 h-16 rounded-full object-cover mb-6 border-2 border-[#B9FF66]">
+          <h3 class="text-2xl font-bold text-white mb-2">Koda</h3>
+          <p class="text-[#B9FF66] font-semibold text-sm tracking-wider uppercase mb-4">Agent Informatique</p>
+          <p class="text-gray-400 mb-6">Koda génère un code propre, allégé et ultra-performant. Il assure que votre site se charge instantanément, réduisant drastiquement le taux de rebond.</p>
+          <ul class="space-y-2 text-sm text-gray-300">
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-[#B9FF66]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Code ultra-rapide</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-[#B9FF66]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Sécurité renforcée</li>
+          </ul>
+        </div>
+
+        <!-- Synergia -->
+        <div class="bg-[#191A23] p-8 rounded-3xl border border-white/5 hover:border-[#B9FF66]/30 transition-all reveal opacity-0 [animation-delay:600ms]">
+          <img src="/assets/images/synergia-agent-ia-acquisition.avif" alt="Synergia Agent Acquisition" class="w-16 h-16 rounded-full object-cover mb-6 border-2 border-[#B9FF66]">
+          <h3 class="text-2xl font-bold text-white mb-2">Synergia</h3>
+          <p class="text-[#B9FF66] font-semibold text-sm tracking-wider uppercase mb-4">Agent Data & Acquisition</p>
+          <p class="text-gray-400 mb-6">Synergia analyse vos données pour cibler vos futurs clients. Elle optimise vos campagnes publicitaires en continu pour baisser votre coût d'acquisition.</p>
+          <ul class="space-y-2 text-sm text-gray-300">
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-[#B9FF66]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Ciblage ultra-précis</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-[#B9FF66]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Optimisation du ROI</li>
+          </ul>
         </div>
       </div>
     </div>
