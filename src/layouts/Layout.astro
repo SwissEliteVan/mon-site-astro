@@ -17,7 +17,7 @@ import AntiGravity from '../components/AntiGravity.astro';
 import Footer from '../components/layout/Footer.astro';
 ---
 <!doctype html>
-<html lang="fr">
+<html lang="fr" class="overflow-x-hidden w-full bg-white">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -39,9 +39,11 @@ import Footer from '../components/layout/Footer.astro';
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/x-icon"  href="/favicon.ico" />
   </head>
-  <body>
+  <!-- BING : Les classes anti-barres blanches (overflow-x-hidden, max-w-[100vw], etc.) ont été injectées ici -->
+  <body class="overflow-x-hidden w-full max-w-[100vw] min-h-screen flex flex-col m-0 p-0 text-gray-900 antialiased">
     <Navbar />
-    <main class="grid grid-cols-1 gap-y-24 pt-20">
+    <!-- flex-1 pousse le footer vers le bas, overflow-x-hidden blinde le conteneur central -->
+    <main class="flex-1 w-full max-w-[100vw] overflow-x-hidden grid grid-cols-1 gap-y-24 pt-20">
       <slot />
     </main>
 
