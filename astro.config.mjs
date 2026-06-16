@@ -8,7 +8,7 @@ import vercel from '@astrojs/vercel';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://clicom.ch',
-  output: 'server', // ← Changement : 'server' au lieu de 'hybrid'
+  output: 'server',
   integrations: [sitemap(), react()],
   prefetch: {
     prefetchAll: true,
@@ -26,8 +26,6 @@ export default defineConfig({
     webAnalytics: {
       enabled: true,
     },
-    speedInsights: {
-      enabled: true,
-    },
+    // speedInsights supprimé
   })
 });
