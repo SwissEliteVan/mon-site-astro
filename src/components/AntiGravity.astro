@@ -1,0 +1,709 @@
+---
+// ============================================================
+// 🪐  ANTI-GRAVITY ENGINE — CLICOM
+// ============================================================
+// DÉPENDANCES (déjà installées) :
+//   npm install matter-js
+//   npm install -D @types/matter-js
+// ============================================================
+// INTÉGRATION dans Layout.astro :
+//   import AntiGravity from '../components/AntiGravity.astro';
+//   <AntiGravity /> (juste avant </body>)
+// ============================================================
+// RACCOURCIS : touche [G] pour activer · [Échap] pour atterrir
+// SÉLECTEURS : .card · .btn-primary · h2 · .badge-lime
+//              + tout élément marqué data-float="true"
+// ============================================================
+---
+
+<!-- ── Bouton de bascule ── -->
+<button id="ag-toggle" aria-label="Anti-Gravity Mode" title="Activer l'apesanteur (G)">
+  <span class="ag-orbit-dot" aria-hidden="true"></span>
+  <svg class="ag-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+       viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="3.5"/>
+    <path d="M12 2v2.5M12 19.5V22M4.22 4.22l1.77 1.77M18.01 18.01l1.77 1.77
+             M2 12h2.5M19.5 12H22M4.22 19.78l1.77-1.77M18.01 5.99l1.77-1.77"/>
+  </svg>
+  <span id="ag-label">Anti-Gravity</span>
+</button>
+
+<!-- ── Canvas transparent : capture uniquement les événements souris pour Matter.js ── -->
+<canvas id="ag-canvas" aria-hidden="true"></canvas>
+
+<!-- ── Toast hint ── -->
+<div id="ag-hint" role="status" aria-live="polite" aria-atomic="true"></div>
+
+<!-- ── Compteur de corps ── -->
+<div id="ag-counter" aria-hidden="true"></div>
+
+<style is:global>
+  /* ─────────────────────────────────────────────────────────
+     BOUTON TOGGLE
+  ───────────────────────────────────────────────────────── */
+  #ag-toggle {
+    position: fixed;
+    bottom: 1.75rem;
+    left: 1.75rem;
+    z-index: 2147483640;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.6rem 1.1rem 0.6rem 0.85rem;
+    background: rgba(12, 13, 20, 0.92);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(185, 255, 102, 0.22);
+    border-radius: 9999px;
+    color: #B9FF66;
+    font-family: inherit;
+    font-size: 0.775rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition:
+      transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+      border-color 0.3s ease,
+      box-shadow 0.3s ease,
+      background 0.3s ease;
+    box-shadow:
+      0 2px 16px rgba(0, 0, 0, 0.5),
+      0 0 0 0 rgba(185, 255, 102, 0),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    overflow: visible;
+    isolation: isolate;
+  }
+
+  #ag-toggle:hover {
+    border-color: rgba(185, 255, 102, 0.55);
+    transform: translateY(-3px) scale(1.03);
+    box-shadow:
+      0 8px 28px rgba(0, 0, 0, 0.55),
+      0 0 24px rgba(185, 255, 102, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  }
+
+  #ag-toggle:active {
+    transform: translateY(0) scale(0.97);
+  }
+
+  /* État actif */
+  #ag-toggle.ag-on {
+    border-color: rgba(185, 255, 102, 0.65);
+    background: rgba(14, 20, 10, 0.95);
+    animation: ag-pulse-btn 2.8s ease-in-out infinite;
+  }
+
+  @keyframes ag-pulse-btn {
+    0%, 100% {
+      box-shadow:
+        0 0 0 3px rgba(185, 255, 102, 0.1),
+        0 6px 32px rgba(185, 255, 102, 0.18),
+        0 12px 48px rgba(0, 0, 0, 0.45);
+    }
+    50% {
+      box-shadow:
+        0 0 0 7px rgba(185, 255, 102, 0.06),
+        0 6px 50px rgba(185, 255, 102, 0.3),
+        0 12px 48px rgba(0, 0, 0, 0.45);
+    }
+  }
+
+  /* Icône */
+  .ag-icon {
+    flex-shrink: 0;
+    transition: transform 0.6s ease;
+  }
+
+  #ag-toggle.ag-on .ag-icon {
+    animation: ag-spin 7s linear infinite;
+  }
+
+  @keyframes ag-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* Orbiting dot (visible uniquement en mode actif) */
+  .ag-orbit-dot {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: #B9FF66;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    box-shadow: 0 0 8px #B9FF66, 0 0 16px rgba(185, 255, 102, 0.6);
+    pointer-events: none;
+    transform-origin: 0 0;
+    transition: opacity 0.4s ease;
+  }
+
+  #ag-toggle.ag-on .ag-orbit-dot {
+    opacity: 1;
+    animation: ag-orbit-anim 2.2s linear infinite;
+  }
+
+  @keyframes ag-orbit-anim {
+    from { transform: translate(-50%, -50%) rotate(0deg) translateX(26px) translateY(-1px); }
+    to   { transform: translate(-50%, -50%) rotate(360deg) translateX(26px) translateY(-1px); }
+  }
+
+  /* ─────────────────────────────────────────────────────────
+     CANVAS (transparent — capture souris uniquement)
+  ───────────────────────────────────────────────────────── */
+  #ag-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 2147483630;
+    background: transparent;
+    opacity: 0;        /* invisible mais présent pour événements */
+    display: block;
+  }
+
+  #ag-canvas.ag-on {
+    pointer-events: all;
+    cursor: crosshair;
+  }
+
+  /* ─────────────────────────────────────────────────────────
+     ÉLÉMENTS FLOTTANTS (classe ajoutée dynamiquement)
+  ───────────────────────────────────────────────────────── */
+  .ag-floating {
+    position: fixed !important;
+    margin: 0 !important;
+    pointer-events: none !important;
+    z-index: 2147483635 !important;
+    will-change: transform, box-shadow;
+    transform-origin: center center;
+    cursor: inherit;
+    user-select: none;
+    -webkit-user-select: none;
+    /* Glassmorphism subtil pendant la lévitation */
+    filter: drop-shadow(0 0 0 transparent);
+  }
+
+  .ag-floating.ag-grabbed {
+    z-index: 2147483638 !important;
+    filter: brightness(1.08) saturate(1.15);
+  }
+
+  /* Placeholder : conserve la place dans le flux HTML */
+  .ag-placeholder {
+    display: block !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    flex-shrink: 0 !important;
+    box-sizing: border-box;
+  }
+
+  /* ─────────────────────────────────────────────────────────
+     BODY EN MODE ANTI-GRAVITY
+  ───────────────────────────────────────────────────────── */
+  body.ag-active {
+    overflow: hidden !important;
+  }
+
+  /* Halo ambiant subtil sur le fond */
+  body.ag-active::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(
+      ellipse at 50% 50%,
+      rgba(185, 255, 102, 0.025) 0%,
+      transparent 65%
+    );
+    pointer-events: none;
+    z-index: 2147483600;
+    animation: ag-ambient 5s ease-in-out infinite;
+  }
+
+  @keyframes ag-ambient {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50%       { opacity: 1;   transform: scale(1.05); }
+  }
+
+  /* ─────────────────────────────────────────────────────────
+     TOAST HINT
+  ───────────────────────────────────────────────────────── */
+  #ag-hint {
+    position: fixed;
+    top: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(-130%);
+    z-index: 2147483641;
+    background: rgba(12, 13, 20, 0.94);
+    border: 1px solid rgba(185, 255, 102, 0.28);
+    border-radius: 9999px;
+    padding: 0.48rem 1.2rem;
+    color: #B9FF66;
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+    white-space: nowrap;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 16px rgba(185, 255, 102, 0.08);
+  }
+
+  #ag-hint.ag-show {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* ─────────────────────────────────────────────────────────
+     COMPTEUR CORPS PHYSIQUES
+  ───────────────────────────────────────────────────────── */
+  #ag-counter {
+    position: fixed;
+    bottom: 1.75rem;
+    right: 1.75rem;
+    z-index: 2147483640;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: rgba(185, 255, 102, 0.45);
+    letter-spacing: 0.08em;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    font-variant-numeric: tabular-nums;
+  }
+
+  #ag-counter.ag-show {
+    opacity: 1;
+  }
+</style>
+
+<script>
+  import Matter from 'matter-js';
+
+  const {
+    Engine,
+    Runner,
+    Bodies,
+    Body,
+    Composite,
+    Mouse,
+    MouseConstraint,
+    Events,
+  } = Matter;
+
+  // ──────────────────────────────────────────────────────────
+  // CONFIG
+  // ──────────────────────────────────────────────────────────
+  const CFG = {
+    // Sélecteurs CSS ciblés (ordre de priorité)
+    selectors: [
+      '[data-float]',
+      '.card-dark',
+      '.card',
+      '.btn-primary',
+      '.btn-secondary',
+      '.badge-lime',
+      '.badge',
+      '.stat-badge',
+      '.section-label',
+      'h2',
+      'h1',
+    ],
+    maxBodies:   20,       // Limite pour les performances
+    frictionAir: 0.0006,   // Résistance de l'air (0 = vide sidéral)
+    restitution: 0.75,     // Élasticité des rebonds
+    wallBounce:  0.55,     // Élasticité des murs
+    floatForce:  0.000014, // Force de dérive aléatoire
+    forceMs:     85,       // Intervalle entre les forces (ms)
+    impulse:     0.0028,   // Impulsion initiale au lancement
+    angularImp:  0.055,    // Vitesse angulaire initiale
+    wallThick:   90,       // Épaisseur des murs invisibles
+  };
+
+  // ──────────────────────────────────────────────────────────
+  // INTERFACES INTERNES
+  // ──────────────────────────────────────────────────────────
+  interface FloatItem {
+    el:    HTMLElement;
+    ph:    HTMLElement;       // placeholder
+    body:  Matter.Body;
+    ox:    number;            // fixed left d'origine
+    oy:    number;            // fixed top d'origine
+    ow:    number;            // largeur d'origine
+    oh:    number;            // hauteur d'origine
+    saved: Record<string, string>;
+  }
+
+  // ──────────────────────────────────────────────────────────
+  // ÉTAT
+  // ──────────────────────────────────────────────────────────
+  let active     = false;
+  let items:     FloatItem[] = [];
+  let engine:    Matter.Engine;
+  let runner:    Matter.Runner;
+  let mc:        Matter.MouseConstraint;
+  let rafId:     number;
+  let forceId:   ReturnType<typeof setInterval>;
+  let resizeId:  ReturnType<typeof setTimeout>;
+  let hintTimer: ReturnType<typeof setTimeout>;
+
+  // ── Refs DOM ──
+  const btn     = document.getElementById('ag-toggle')   as HTMLButtonElement;
+  const lbl     = document.getElementById('ag-label')    as HTMLSpanElement;
+  const canvas  = document.getElementById('ag-canvas')   as HTMLCanvasElement;
+  const hint    = document.getElementById('ag-hint')     as HTMLDivElement;
+  const counter = document.getElementById('ag-counter')  as HTMLDivElement;
+
+  // ──────────────────────────────────────────────────────────
+  // CONTRÔLES
+  // ──────────────────────────────────────────────────────────
+  btn.addEventListener('click', () => (active ? deactivate() : activate()));
+
+  window.addEventListener('keydown', (e) => {
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    const tag = (document.activeElement as HTMLElement | null)?.tagName ?? '';
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+    if (e.key === 'g' || e.key === 'G') btn.click();
+    if (e.key === 'Escape' && active) deactivate();
+  });
+
+  window.addEventListener('resize', () => {
+    if (!active) return;
+    clearTimeout(resizeId);
+    resizeId = setTimeout(() => {
+      canvas.width  = window.innerWidth;
+      canvas.height = window.innerHeight;
+      refreshWalls();
+    }, 200);
+  });
+
+  // ──────────────────────────────────────────────────────────
+  // ACTIVATE
+  // ──────────────────────────────────────────────────────────
+  function activate() {
+    active = true;
+
+    // UI
+    btn.classList.add('ag-on');
+    lbl.textContent = 'Retour au sol';
+    document.body.classList.add('ag-active');
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+    canvas.classList.add('ag-on');
+    showHint('🪐 Glisse et lance les éléments  ·  Échap pour atterrir');
+
+    // Moteur physique — gravité nulle
+    engine = Engine.create({
+      gravity: { x: 0, y: 0, scale: 0 },
+      positionIterations: 10,
+      velocityIterations: 10,
+    });
+
+    // Collecter les éléments cibles et créer les corps
+    const targets = collectElements();
+    items = targets.map(createItem);
+    Composite.add(engine.world, items.map((i) => i.body));
+    updateCounter(items.length);
+
+    // Murs invisibles
+    addWalls();
+
+    // Contrainte souris (canvas transparent)
+    const mouse = Mouse.create(canvas);
+    mc = MouseConstraint.create(engine, {
+      mouse,
+      constraint: {
+        stiffness: 0.18,
+        damping:   0.12,
+        render:    { visible: false },
+      },
+    });
+    Composite.add(engine.world, mc);
+
+    // Feedback curseur lors du drag
+    Events.on(mc, 'startdrag', ({ body }: { body: Matter.Body }) => {
+      canvas.style.cursor = 'grabbing';
+      items.forEach((i) => {
+        if (i.body === body) i.el.classList.add('ag-grabbed');
+      });
+    });
+
+    Events.on(mc, 'enddrag', () => {
+      canvas.style.cursor = 'crosshair';
+      items.forEach((i) => i.el.classList.remove('ag-grabbed'));
+    });
+
+    // Impulsion initiale — dispersion explosive contrôlée
+    items.forEach(({ body }, idx) => {
+      const delay = idx * 35; // cascade visuelle
+      setTimeout(() => {
+        if (!active) return;
+        Body.applyForce(body, body.position, {
+          x: (Math.random() - 0.5) * CFG.impulse * body.mass,
+          y: (Math.random() - 0.5) * CFG.impulse * body.mass,
+        });
+        Body.setAngularVelocity(body, (Math.random() - 0.5) * CFG.angularImp);
+      }, delay);
+    });
+
+    // Démarrer le moteur et les boucles
+    runner  = Runner.create();
+    Runner.run(runner, engine);
+    forceId = setInterval(applyFloatForces, CFG.forceMs);
+    rafId   = requestAnimationFrame(syncDOM);
+  }
+
+  // ──────────────────────────────────────────────────────────
+  // DEACTIVATE
+  // ──────────────────────────────────────────────────────────
+  function deactivate() {
+    active = false;
+
+    cancelAnimationFrame(rafId);
+    clearInterval(forceId);
+    Runner.stop(runner);
+    Engine.clear(engine);
+
+    canvas.classList.remove('ag-on');
+    canvas.style.cursor = '';
+    btn.classList.remove('ag-on');
+    lbl.textContent = 'Anti-Gravity';
+    document.body.classList.remove('ag-active');
+    counter.classList.remove('ag-show');
+    hideHint();
+
+    // Atterrissage animé
+    items.forEach(({ el, ph, saved }) => {
+      el.style.transition =
+        'transform 0.75s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.5s ease';
+      el.style.transform  = 'translate(0,0) rotate(0rad)';
+      el.style.boxShadow  = saved['boxShadow'] ?? '';
+
+      setTimeout(() => {
+        el.classList.remove('ag-floating', 'ag-grabbed');
+        // Restaurer les styles inline d'origine
+        for (const [k, v] of Object.entries(saved)) {
+          (el.style as unknown as Record<string, string>)[k] = v;
+        }
+        ph.remove();
+      }, 820);
+    });
+
+    items = [];
+  }
+
+  // ──────────────────────────────────────────────────────────
+  // COLLECTE DES ÉLÉMENTS CIBLES
+  // ──────────────────────────────────────────────────────────
+  function collectElements(): HTMLElement[] {
+    const seen = new Set<HTMLElement>();
+    const out:  HTMLElement[] = [];
+    const vw    = window.innerWidth;
+    const vh    = window.innerHeight;
+
+    for (const sel of CFG.selectors) {
+      if (out.length >= CFG.maxBodies) break;
+
+      document.querySelectorAll<HTMLElement>(sel).forEach((el) => {
+        if (out.length >= CFG.maxBodies) return;
+        if (seen.has(el)) return;
+        if (btn.contains(el) || el === btn) return;
+
+        const r = el.getBoundingClientRect();
+
+        // Ignorer les éléments trop petits ou hors viewport étendu
+        if (r.width < 32 || r.height < 14) return;
+        if (r.bottom < -150 || r.top > vh + 300) return;
+        if (r.right  < -150 || r.left > vw + 300) return;
+
+        // Ignorer les éléments invisibles
+        const cs = getComputedStyle(el);
+        if (cs.display === 'none' || cs.visibility === 'hidden' || cs.opacity === '0') return;
+
+        seen.add(el);
+        out.push(el);
+      });
+    }
+
+    return out;
+  }
+
+  // ──────────────────────────────────────────────────────────
+  // CRÉER UN FLOAT ITEM (corps + placeholder)
+  // ──────────────────────────────────────────────────────────
+  function createItem(el: HTMLElement): FloatItem {
+    const r  = el.getBoundingClientRect();
+    const cs = getComputedStyle(el);
+
+    // Sauvegarder les styles inline pour restauration fidèle
+    const props = [
+      'position', 'left', 'top', 'width', 'height', 'margin', 'marginTop',
+      'marginBottom', 'marginLeft', 'marginRight', 'zIndex', 'transform',
+      'boxShadow', 'willChange', 'transition', 'pointerEvents',
+      'backdropFilter', 'webkitBackdropFilter', 'filter',
+    ];
+    const saved: Record<string, string> = {};
+    props.forEach((p) => {
+      saved[p] = (el.style as unknown as Record<string, string>)[p] ?? '';
+    });
+
+    // Placeholder : maintient le flux HTML
+    const ph = document.createElement('div');
+    ph.className = 'ag-placeholder';
+    Object.assign(ph.style, {
+      width:         r.width  + 'px',
+      height:        r.height + 'px',
+      display:       cs.display,
+      flexShrink:    cs.flexShrink,
+      flexGrow:      cs.flexGrow,
+      gridColumn:    cs.gridColumn,
+      gridRow:       cs.gridRow,
+      marginTop:     cs.marginTop,
+      marginBottom:  cs.marginBottom,
+      marginLeft:    cs.marginLeft,
+      marginRight:   cs.marginRight,
+    });
+    el.parentNode!.insertBefore(ph, el);
+
+    // Fixer l'élément au viewport à sa position actuelle
+    el.classList.add('ag-floating');
+    Object.assign(el.style, {
+      left:   r.left   + 'px',
+      top:    r.top    + 'px',
+      width:  r.width  + 'px',
+      height: r.height + 'px',
+    });
+
+    // Corps Matter.js centré sur l'élément
+    // Hitbox légèrement réduite pour meilleure sensation
+    const cx   = r.left + r.width  / 2;
+    const cy   = r.top  + r.height / 2;
+    const body = Bodies.rectangle(cx, cy, r.width * 0.86, r.height * 0.86, {
+      restitution:  CFG.restitution,
+      friction:     0.05,
+      frictionAir:  CFG.frictionAir,
+      frictionStatic: 0.04,
+      // Densité inversement proportionnelle à la taille (petits éléments = plus légers)
+      density: Math.max(0.0006, 0.0022 - (r.width * r.height) / 2_200_000),
+    });
+
+    return {
+      el, ph, body,
+      ox: r.left, oy: r.top,
+      ow: r.width, oh: r.height,
+      saved,
+    };
+  }
+
+  // ──────────────────────────────────────────────────────────
+  // MURS INVISIBLES
+  // ──────────────────────────────────────────────────────────
+  let wallBodies: Matter.Body[] = [];
+
+  function addWalls() {
+    const W = window.innerWidth;
+    const H = window.innerHeight;
+    const T = CFG.wallThick;
+    const o = { isStatic: true, restitution: CFG.wallBounce, friction: 0.08 };
+
+    wallBodies = [
+      Bodies.rectangle(W / 2,  H + T / 2, W * 3, T, o), // sol
+      Bodies.rectangle(W / 2,    -T / 2,  W * 3, T, o), // plafond
+      Bodies.rectangle(-T / 2, H / 2,     T, H * 3, o), // gauche
+      Bodies.rectangle(W + T / 2, H / 2,  T, H * 3, o), // droite
+    ];
+
+    Composite.add(engine.world, wallBodies);
+  }
+
+  function refreshWalls() {
+    if (wallBodies.length) Composite.remove(engine.world, wallBodies);
+    addWalls();
+  }
+
+  // ──────────────────────────────────────────────────────────
+  // MICRO-FORCES DE DÉRIVE (simule l'apesanteur)
+  // ──────────────────────────────────────────────────────────
+  function applyFloatForces() {
+    items.forEach(({ body }) => {
+      // Ne pas perturber l'élément en cours de drag
+      if (mc?.body === body) return;
+
+      Body.applyForce(body, body.position, {
+        x: (Math.random() - 0.5) * CFG.floatForce * body.mass,
+        y: (Math.random() - 0.5) * CFG.floatForce * body.mass,
+      });
+    });
+  }
+
+  // ──────────────────────────────────────────────────────────
+  // BOUCLE DE SYNCHRONISATION DOM ↔ PHYSIQUE
+  // ──────────────────────────────────────────────────────────
+  function syncDOM() {
+    if (!active) return;
+
+    const W  = window.innerWidth;
+    const H  = window.innerHeight;
+    const cx = W / 2;
+    const cy = H / 2;
+
+    items.forEach(({ el, body, ox, oy, ow, oh }) => {
+      const { x, y } = body.position;
+      const angle = body.angle;
+
+      // Translation depuis la position fixe initiale
+      const dx = x - (ox + ow / 2);
+      const dy = y - (oy + oh / 2);
+
+      el.style.transform = `translate(${dx}px,${dy}px) rotate(${angle}rad)`;
+
+      // ── Ombre dynamique ──
+      // L'ombre grossit + brille quand l'élément s'éloigne du centre
+      const distFromCenter = Math.hypot(x - cx, y - cy) / Math.max(W, H);
+      const speed          = body.speed;
+      const grabbed        = mc?.body === body;
+
+      const lift    = 6 + distFromCenter * 44 + speed * 1.8 + (grabbed ? 20 : 0);
+      const glowAmt = 0.06 + distFromCenter * 0.28 + (grabbed ? 0.2 : 0);
+      const darkAmt = 0.18 + distFromCenter * 0.22 + (grabbed ? 0.1 : 0);
+      const spread  = lift * 0.5;
+
+      el.style.boxShadow = [
+        // Ombre portée (réalisme)
+        `0 ${(lift * 0.7).toFixed(1)}px ${lift.toFixed(1)}px rgba(0,0,0,${darkAmt.toFixed(2)})`,
+        // Halo lime (lévitation)
+        `0 0 ${spread.toFixed(1)}px rgba(185,255,102,${glowAmt.toFixed(2)})`,
+        // Micro-glow intérieur
+        `0 0 ${(spread * 0.4).toFixed(1)}px rgba(185,255,102,${(glowAmt * 0.4).toFixed(2)}) inset`,
+      ].join(', ');
+    });
+
+    rafId = requestAnimationFrame(syncDOM);
+  }
+
+  // ──────────────────────────────────────────────────────────
+  // TOAST HINT
+  // ──────────────────────────────────────────────────────────
+  function showHint(msg: string) {
+    hint.textContent = msg;
+    hint.classList.add('ag-show');
+    clearTimeout(hintTimer);
+    hintTimer = setTimeout(hideHint, 4500);
+  }
+
+  function hideHint() {
+    hint.classList.remove('ag-show');
+  }
+
+  // ──────────────────────────────────────────────────────────
+  // COMPTEUR
+  // ──────────────────────────────────────────────────────────
+  function updateCounter(n: number) {
+    counter.textContent = `${n} corps • Matter.js`;
+    counter.classList.add('ag-show');
+  }
+</script>

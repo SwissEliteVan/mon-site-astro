@@ -1,26 +1,50 @@
 ---
-interface Props { title: string; }
-const { title } = Astro.props;
+interface Props {
+  title:        string;
+  description?: string;
+  image?:       string;
+}
+
+const {
+  title,
+  description = 'Agence web stratégique à Genève — Sites performants, visibilité locale, croissance mesurable.',
+  image,
+} = Astro.props;
+
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
+import AntiGravity from '../components/AntiGravity.astro';
 ---
 <!doctype html>
 <html lang="fr">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>{title}</title>
-		<link rel="preload" href="/fonts/Inter.woff2" as="font" type="font/woff2" crossorigin>
-	</head>
-<body>
-  <Navbar />
-  <main class="grid grid-cols-1 gap-y-24 pt-20">
-    <slot />
-  </main>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {image && <meta property="og:image" content={image} />}
+    <meta property="og:title"       content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type"        content="website" />
 
-		<script defer src="/scripts/lazyload.js" fetchpriority="low"></script>
-		<script defer src="/scripts/validation-form.js" fetchpriority="low"></script>
-		<script defer src="/scripts/analytics.js" crossorigin="anonymous"></script>
-		<script defer src="/scripts/chat-widget.js" crossorigin="anonymous"></script>
-	</body>
+    <!-- Polices Google (remplace le preload /fonts/Inter.woff2 inexistant) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon"  href="/favicon.ico" />
+  </head>
+  <body>
+    <Navbar />
+    <main class="grid grid-cols-1 gap-y-24 pt-20">
+      <slot />
+    </main>
+
+    <!-- 🪐 Moteur Anti-Gravity — s'exécute uniquement côté client -->
+    <AntiGravity />
+  </body>
 </html>
