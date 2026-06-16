@@ -15,9 +15,10 @@ import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import AntiGravity from '../components/AntiGravity.astro';
 import Footer from '../components/layout/Footer.astro';
+import { Image } from 'astro:assets';
 ---
 <!doctype html>
-<html lang="fr" class="overflow-x-hidden w-full bg-white">
+<html lang="fr" class="overflow-x-hidden w-full max-w-[100vw] m-0 p-0 bg-white">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -50,5 +51,17 @@ import Footer from '../components/layout/Footer.astro';
     <!-- 🪐 Moteur Anti-Gravity — s'exécute uniquement côté client -->
     <AntiGravity />
     <Footer />
+
+    <!-- Image de fond pour le cache navigateur -->
+    <Image 
+      src="/assets/tarifs-agence-marketing-suisse.webp" 
+      alt="" 
+      aria-hidden="true" 
+      style="display: none;" 
+      loading="eager"
+      width={1920}
+      height={1080}
+      format="webp"
+    />
   </body>
 </html>
