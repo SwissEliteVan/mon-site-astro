@@ -171,12 +171,20 @@
    STYLES DE BASE
    ────────────────────────────────────────────────────────────── */
 @layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
   html {
+    overflow-x: hidden;
     scroll-behavior: smooth;
     scroll-padding-top: var(--header-height);
   }
 
   body {
+    overflow-x: hidden;
     background-color: var(--color-bg);
     color: var(--color-text);
     font-family: var(--font-sans);

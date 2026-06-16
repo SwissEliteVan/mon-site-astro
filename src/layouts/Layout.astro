@@ -15,10 +15,9 @@ import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import AntiGravity from '../components/AntiGravity.astro';
 import Footer from '../components/layout/Footer.astro';
-import { Image } from 'astro:assets';
 ---
 <!doctype html>
-<html lang="fr" class="overflow-x-hidden w-full max-w-[100vw] m-0 p-0 bg-white">
+<html lang="fr" class="overflow-x-hidden w-full m-0 p-0">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -40,28 +39,14 @@ import { Image } from 'astro:assets';
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/x-icon"  href="/favicon.ico" />
   </head>
-  <!-- BING : Les classes anti-barres blanches (overflow-x-hidden, max-w-[100vw], etc.) ont été injectées ici -->
-  <body class="overflow-x-hidden w-full max-w-[100vw] min-h-screen flex flex-col m-0 p-0 text-gray-900 antialiased">
+  <body class="overflow-x-hidden w-full min-h-screen flex flex-col m-0 p-0">
     <Navbar />
-    <!-- flex-1 pousse le footer vers le bas, overflow-x-hidden blinde le conteneur central -->
-    <main class="flex-1 w-full max-w-[100vw] overflow-x-hidden grid grid-cols-1 gap-y-24 pt-20">
+    <main class="flex-1 w-full overflow-x-hidden pt-20">
       <slot />
     </main>
 
     <!-- 🪐 Moteur Anti-Gravity — s'exécute uniquement côté client -->
     <AntiGravity />
     <Footer />
-
-    <!-- Image de fond pour le cache navigateur -->
-    <Image 
-      src="/assets/tarifs-agence-marketing-suisse.webp" 
-      alt="" 
-      aria-hidden="true" 
-      style="display: none;" 
-      loading="eager"
-      width={1920}
-      height={1080}
-      format="webp"
-    />
   </body>
 </html>
