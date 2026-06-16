@@ -13,7 +13,9 @@ export function getStaticPaths() {
     fribourg: { cp: "1700", lat: 46.806477, lng: 7.161972 },
     neuchatel: { cp: "2000", lat: 46.989587, lng: 6.929264 },
     sion: { cp: "1950", lat: 46.233122, lng: 7.360626 },
-    martigny: { cp: "1920", lat: 46.103117, lng: 7.072736 }
+    martigny: { cp: "1920", lat: 46.103117, lng: 7.072736 },
+    renens: { cp: "1020", lat: 46.539722, lng: 6.587500 },
+    pully: { cp: "1009", lat: 46.510000, lng: 6.661944 }
   };
 
   return Object.keys(villesData).map(ville => ({
@@ -84,7 +86,7 @@ const schemaLD = {
       </div>
 
       <div class="w-full h-64 md:h-96 rounded-3xl overflow-hidden mb-16 shadow-2xl border border-white/5">
-        <img src="https://picsum.photos/800/400" alt={`Visibilité digitale et SEO à ${nomVille}`} class="w-full h-full object-cover" />
+      <img src="/assets/images/clicom-agence-web-suisse-romande.webp" alt={`Visibilité digitale et SEO à ${nomVille}`} class="w-full h-full object-cover" />
       </div>
 
       <div class="grid md:grid-cols-2 gap-12 items-center mb-24">
