@@ -1,7 +1,7 @@
 /* CLICOM — Design System
  * Tailwind v4
  * Thème personnalisé avec support Dark Mode
- * @version 2.0.0
+ * @version 2.1.0
  */
 
 @import "tailwindcss";
@@ -29,7 +29,7 @@
   --font-weight-bold: 700;
   --font-weight-extrabold: 800;
 
-  /* COULEURS (valeurs simples) */
+  /* COULEURS MARQUE */
   --color-brand-dark: #191A23;
   --color-brand-dark-2: #1f202b;
   --color-brand-dark-3: #2a2b38;
@@ -55,17 +55,6 @@
   --color-danger-border: rgba(239, 68, 68, 0.15);
   --color-whatsapp-bg: rgba(37, 211, 102, 0.08);
   --color-shadow: rgba(0, 0, 0, 0.05);
-
-  /* MODE SOMBRE (surchargé par .dark) */
-  --color-bg-dark: var(--color-brand-dark);
-  --color-bg-secondary-dark: var(--color-brand-dark-2);
-  --color-text-dark: #ffffff;
-  --color-text-secondary-dark: #d1d5db;
-  --color-text-muted-dark: #9ca3af;
-  --color-heading-dark: #ffffff;
-  --color-border-dark: rgba(255, 255, 255, 0.07);
-  --color-border-strong-dark: rgba(255, 255, 255, 0.15);
-  --color-shadow-dark: rgba(0, 0, 0, 0.3);
 
   /* TAILES FLUIDES (clamp) */
   --text-hero: clamp(2.5rem, 5vw, 4.5rem);
@@ -125,8 +114,8 @@
    DARK MODE — Surcharge des variables
    ────────────────────────────────────────────────────────────── */
 .dark {
-  --color-bg: var(--color-brand-dark);
-  --color-bg-secondary: var(--color-brand-dark-2);
+  --color-bg: #191A23;
+  --color-bg-secondary: #1f202b;
   --color-text: #ffffff;
   --color-text-secondary: #d1d5db;
   --color-text-muted: #9ca3af;
@@ -139,10 +128,10 @@
   --color-danger-border: rgba(239, 68, 68, 0.25);
   --color-whatsapp-bg: rgba(37, 211, 102, 0.10);
   --color-shadow: rgba(0, 0, 0, 0.3);
-  --shadow-sm: 0 1px 2px var(--color-shadow);
-  --shadow-md: 0 4px 6px -1px var(--color-shadow);
-  --shadow-lg: 0 10px 15px -3px var(--color-shadow);
-  --shadow-xl: 0 20px 25px -5px var(--color-shadow);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
 }
 
 /* ──────────────────────────────────────────────────────────────
@@ -150,8 +139,8 @@
    ────────────────────────────────────────────────────────────── */
 @media (prefers-color-scheme: dark) {
   :root:not(.light) {
-    --color-bg: var(--color-brand-dark);
-    --color-bg-secondary: var(--color-brand-dark-2);
+    --color-bg: #191A23;
+    --color-bg-secondary: #1f202b;
     --color-text: #ffffff;
     --color-text-secondary: #d1d5db;
     --color-text-muted: #9ca3af;
@@ -164,10 +153,10 @@
     --color-danger-border: rgba(239, 68, 68, 0.25);
     --color-whatsapp-bg: rgba(37, 211, 102, 0.10);
     --color-shadow: rgba(0, 0, 0, 0.3);
-    --shadow-sm: 0 1px 2px var(--color-shadow);
-    --shadow-md: 0 4px 6px -1px var(--color-shadow);
-    --shadow-lg: 0 10px 15px -3px var(--color-shadow);
-    --shadow-xl: 0 20px 25px -5px var(--color-shadow);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -175,7 +164,6 @@
    STYLES DE BASE
    ────────────────────────────────────────────────────────────── */
 @layer base {
-  /* HTML & BODY */
   html {
     scroll-behavior: smooth;
     scroll-padding-top: var(--header-height);
@@ -193,7 +181,6 @@
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 
-  /* TYPOGRAPHIE */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-montserrat);
     font-weight: var(--font-weight-bold);
@@ -208,12 +195,6 @@
   h3 { font-size: var(--text-h3); }
   h4 { font-size: var(--text-h4); }
 
-  /* TEXT BALANCE pour un meilleur rendu des titres */
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  /* ÉLÉMENTS DE BASE */
   a {
     color: inherit;
     text-decoration: none;
@@ -229,7 +210,6 @@
     font-family: inherit;
   }
 
-  /* INTERACTIONS */
   ::selection {
     background-color: var(--color-brand-lime);
     color: var(--color-brand-dark);
@@ -241,7 +221,7 @@
     border-radius: 4px;
   }
 
-  /* SCROLLBAR PERSONNALISÉE */
+  /* Scrollbar personnalisée */
   ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
@@ -259,6 +239,12 @@
   ::-webkit-scrollbar-thumb:hover {
     background: var(--color-brand-lime);
   }
+
+  /* Firefox scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-text-muted) var(--color-bg-secondary);
+  }
 }
 
 /* ──────────────────────────────────────────────────────────────
@@ -271,6 +257,60 @@
     margin: 0 auto;
     padding: 0 var(--container-padding);
     width: 100%;
+  }
+
+  /* SECTION PADDING - Uniformise les espacements */
+  .section-padding {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-8);
+  }
+
+  @media (min-width: 768px) {
+    .section-padding {
+      padding-top: var(--space-9);
+      padding-bottom: var(--space-9);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-padding {
+      padding-top: var(--space-10);
+      padding-bottom: var(--space-10);
+    }
+  }
+
+  /* TEXT BALANCE */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* COULEURS UTILITAIRES */
+  .text-lime {
+    color: var(--color-brand-lime);
+  }
+
+  .bg-dark {
+    background-color: var(--color-brand-dark);
+  }
+
+  .bg-dark-2 {
+    background-color: var(--color-brand-dark-2);
+  }
+
+  .border-lime {
+    border-color: var(--color-border-lime);
+  }
+
+  .text-muted {
+    color: var(--color-text-muted);
+  }
+
+  .text-secondary {
+    color: var(--color-text-secondary);
   }
 
   /* TEXTE DÉGRADÉ */
@@ -387,7 +427,7 @@
     font-size: 1.125rem;
   }
 
-  /* BADGES & TAGS */
+  /* BADGES */
   .badge {
     display: inline-flex;
     align-items: center;
@@ -435,7 +475,7 @@
     font-size: 0.75rem;
   }
 
-  /* LABELS */
+  /* SECTION LABEL */
   .section-label {
     display: inline-block;
     color: var(--color-brand-lime);
@@ -547,7 +587,7 @@
     gap: var(--space-6);
   }
 
-  /* MASQUER SCROLLBAR */
+  /* SCROLLBAR HIDDEN */
   .scrollbar-hidden {
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -555,23 +595,6 @@
 
   .scrollbar-hidden::-webkit-scrollbar {
     display: none;
-  }
-
-  /* TEXT UTILITIES */
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  .text-pretty {
-    text-wrap: pretty;
-  }
-
-  .text-muted {
-    color: var(--color-text-muted);
-  }
-
-  .text-secondary {
-    color: var(--color-text-secondary);
   }
 }
 
@@ -713,7 +736,6 @@
    ANIMATIONS
    ────────────────────────────────────────────────────────────── */
 @layer utilities {
-  /* KEYFRAMES */
   @keyframes fade-in-up {
     from {
       opacity: 0;
@@ -795,18 +817,22 @@
   /* CLASSES D'ANIMATION */
   .animate-fade-in-up {
     animation: fade-in-up 0.6s var(--ease-smooth) both;
+    will-change: transform, opacity;
   }
 
   .animate-fade-in {
     animation: fade-in 0.4s var(--ease-smooth) both;
+    will-change: opacity;
   }
 
   .animate-slide-in-left {
     animation: slide-in-left 0.5s var(--ease-smooth) both;
+    will-change: transform, opacity;
   }
 
   .animate-slide-in-right {
     animation: slide-in-right 0.5s var(--ease-smooth) both;
+    will-change: transform, opacity;
   }
 
   .animate-pulse-lime {
@@ -815,6 +841,7 @@
 
   .animate-float {
     animation: float 3s ease-in-out infinite;
+    will-change: transform;
   }
 
   .animate-spin-slow {
@@ -851,7 +878,6 @@
    RESPONSIVE HELPERS
    ────────────────────────────────────────────────────────────── */
 @layer utilities {
-  /* Visibility helpers */
   .visible-xs { display: block; }
   .visible-sm { display: none; }
   .visible-md { display: none; }
