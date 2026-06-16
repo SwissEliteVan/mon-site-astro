@@ -1,0 +1,102 @@
+---
+// src/components/Navbar.astro
+const navItems = [
+  { name: "Accueil", href: "/" },
+  { name: "Création", href: "#creation" },
+  { name: "Visibilité", href: "#visibilite" },
+  { name: "Publicité", href: "#publicite" },
+  { name: "Fidélisation", href: "#fidelisation" },
+  { name: "Équipe", href: "#equipe" },
+  { name: "Tarifs", href: "#tarifs" },
+  { name: "Blog", href: "/blog" },
+  { name: "Contact", href: "#contact" },
+];
+---
+
+<nav class="navbar">
+  <div class="navbar-container">
+    <a href="/" class="navbar-logo">CLICOM</a>
+    
+    <div class="navbar-menu">
+      {navItems.map(item => (
+        <a 
+          href={item.href} 
+          class="navbar-link"
+          data-active={Astro.url.pathname === item.href ? 'true' : 'false'}
+        >
+          {item.name}
+        </a>
+      ))}
+    </div>
+  </div>
+</nav>
+
+<style>
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background-color: rgba(25, 26, 35, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem 0;
+  }
+
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .navbar-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #B9FF66;
+    text-decoration: none;
+  }
+
+  .navbar-menu {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .navbar-link {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    transition: color 0.2s;
+    position: relative;
+  }
+
+  .navbar-link:hover {
+    color: #fff;
+  }
+
+  .navbar-link[data-active="true"] {
+    color: #B9FF66;
+  }
+
+  .navbar-link[data-active="true"]::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0.5rem;
+    right: 0.5rem;
+    height: 2px;
+    background-color: #B9FF66;
+    border-radius: 2px;
+  }
+
+  @media (max-width: 768px) {
+    .navbar-menu {
+      display: none;
+    }
+  }
+</style>

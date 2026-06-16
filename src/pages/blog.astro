@@ -1,0 +1,29 @@
+---
+// src/pages/blog.astro
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+const articles = await getCollection('blog');
+---
+
+<Layout title="Blog">
+  <main>
+    <h1>Blog</h1>
+    <ul>
+      {articles.map(article => (
+        <li>
+          <a href={`/blog/${article.slug}`}>
+            <h2>{article.data.title}</h2>
+          </a>
+          <p>
+            <small>
+              Publié le {article.data.pubDate.toLocaleDateString('fr-CH')} 
+              par {article.data.author}
+            </small>
+          </p>
+          <p>{article.data.description}</p>
+        </li>
+      ))}
+    </ul>
+  </main>
+</Layout>

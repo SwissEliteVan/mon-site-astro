@@ -2,8 +2,7 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 const blog = defineCollection({
-  // 'base' part du répertoire racine du projet, donc './src/content/blog' est correct
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/blog" }),
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "blog" }),
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
