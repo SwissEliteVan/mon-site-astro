@@ -1,15 +1,22 @@
-<h1 style="color: red; font-size: 50px;">TEST LOCAL</h1>---
+---
 interface Props { title: string; }
 const { title } = Astro.props;
-import '../styles/global.css'; // Vérifie que ce chemin est bon !
+import '../styles/global.css';
 ---
 <!doctype html>
 <html lang="fr">
 	<head>
 		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>{title}</title>
+		<link rel="preload" href="/fonts/Inter.woff2" as="font" type="font/woff2" crossorigin>
 	</head>
 	<body>
 		<slot /> <!-- C'est ici que tes pages se chargent -->
+
+		<script defer src="/scripts/lazyload.js" fetchpriority="low"></script>
+		<script defer src="/scripts/validation-form.js" fetchpriority="low"></script>
+		<script defer src="/scripts/analytics.js" crossorigin="anonymous"></script>
+		<script defer src="/scripts/chat-widget.js" crossorigin="anonymous"></script>
 	</body>
 </html>
