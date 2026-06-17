@@ -137,8 +137,7 @@ const featuredPosts = allBlogPosts.slice(0, 3);
             class="w-full h-auto object-cover aspect-square rounded-2xl shadow-2xl"
             loading="eager"
           >
-            <source src="/assets/videos/hero-video.mp4" type="video/mp4" />
-            <source src="/assets/videos/hero-video.webm" type="video/webm" />
+            <source src="/assets/videos/agence-web-clicom-suisse-romande.webm" type="video/webm" />
             <!-- Fallback pour navigateurs ne supportant pas la vidéo -->
             <img 
               src={imageHero} 
@@ -698,8 +697,8 @@ const featuredPosts = allBlogPosts.slice(0, 3);
     </div>
   </section>
 
-  <!-- 🤖 Chatbot CLICOM — hydraté au chargement (client:load) -->
-  <Chatbot client:load />
+  <!-- 🤖 Chatbot CLICOM — hydraté au chargement (via client:load interne) -->
+  <Chatbot />
 
 </Layout>
 
