@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import ContactFormReact from '../components/ui/ContactFormReact.tsx';
+import Chatbot from '../components/Chatbot.astro';
 
 // Métadonnées SEO enrichies
 export const metadata = {
@@ -655,38 +657,30 @@ const featuredPosts = allBlogPosts.slice(0, 3);
       <div class="absolute inset-0 bg-gradient-to-t from-[#1f202b] via-[#191A23]/80 to-transparent"></div>
     </div>
     
-    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-[clamp(2.5rem,4vw,3.5rem)] font-bold text-white mb-8 leading-tight">
-        L'argent est déjà sur la table. En 1 heure, découvrez exactement combien vous perdez et comment le récupérer.
-      </h2>
-      <p class="text-xl text-gray-300 mb-12">Remplissez simplement le formulaire ci-dessous pour fixer cet entretien décisif.</p>
-      
-      <div class="bg-[#1f202b] p-8 md:p-12 rounded-3xl border border-white/10 shadow-2xl text-left">
-        <form class="space-y-6">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label for="name" class="block text-sm font-medium text-gray-400 mb-2">Nom & Prénom</label>
-              <input type="text" id="name" name="name" class="w-full bg-[#191A23] border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-[#B9FF66] focus:ring-1 focus:ring-[#B9FF66]" required>
-            </div>
-            <div>
-              <label for="email" class="block text-sm font-medium text-gray-400 mb-2">Email professionnel</label>
-              <input type="email" id="email" name="email" class="w-full bg-[#191A23] border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-[#B9FF66] focus:ring-1 focus:ring-[#B9FF66]" required>
-            </div>
-          </div>
-          <div>
-            <label for="website" class="block text-sm font-medium text-gray-400 mb-2">URL de votre site</label>
-            <input type="url" id="website" name="website" class="w-full bg-[#191A23] border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-[#B9FF66] focus:ring-1 focus:ring-[#B9FF66]">
-          </div>
-          <button type="submit" class="w-full bg-[#B9FF66] text-[#191A23] font-bold px-8 py-5 rounded-xl hover:bg-[#a3e655] transition-all text-xl mt-4 shadow-lg shadow-[#B9FF66]/20">
-            Envoyer
-          </button>
-          <p class="text-sm text-center text-gray-500 mt-6 font-medium">
-            Vos données sont protégées et traitées dans le strict respect de la nouvelle loi fédérale (nLPD).
-          </p>
-        </form>
+    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <h2 class="text-[clamp(2rem,4vw,3.25rem)] font-bold text-white mb-4 leading-tight">
+          L'argent est déjà sur la table. En 1 heure, découvrez exactement combien vous perdez et comment le récupérer.
+        </h2>
+        <p class="text-lg text-gray-300">Remplissez simplement le formulaire ci-dessous pour fixer cet entretien décisif.</p>
+      </div>
+
+      <!--
+        client:visible : ContactFormReact n'est hydraté que lorsque cette section
+        entre dans le viewport. Justification : le formulaire est sous la ligne de flottaison
+        sur toutes les résolutions. Cela réduit le JS au chargement initial et améliore le LCP.
+      -->
+      <div class="bg-[#1f202b] p-8 md:p-12 rounded-3xl border border-white/10 shadow-2xl">
+        <ContactFormReact
+          client:visible
+          submitText="Réserver mon audit gratuit"
+        />
       </div>
     </div>
   </section>
+
+  <!-- 🤖 Chatbot CLICOM — hydraté au chargement (client:load) -->
+  <Chatbot client:load />
 
 </Layout>
 

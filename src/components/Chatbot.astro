@@ -1,107 +1,13 @@
-
-
-New file: Chatbot.astro
-+103
 ---
 // src/components/Chatbot.astro
+// Wrapper Astro pour ChatbotReact — hydratation client:load
+// Le chatbot est visible immédiatement au chargement de la page
+import ChatbotReact from './ChatbotReact.tsx';
 ---
-<div id="chatbot-container" class="fixed bottom-4 right-4 z-50">
-  <!-- Bouton flottant -->
-  <button id="chatbot-toggle" class="bg-blue-600 hover:bg-blue-700 text-white rounded-full p-4 shadow-lg transition-transform hover:scale-105 cursor-pointer flex items-center justify-center">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-    </svg>
-  </button>
 
-  <!-- Modale de chat -->
-  <div id="chatbot-modal" class="hidden absolute bottom-16 right-0 w-80 bg-gray-900 border border-gray-800 rounded-xl shadow-2xl flex-col overflow-hidden">
-    <!-- Header -->
-    <div class="bg-gray-800 p-4 flex justify-between items-center border-b border-gray-700">
-      <h3 class="text-white font-semibold">Assistant CLICOM</h3>
-      <button id="chatbot-close" class="text-gray-400 hover:text-white cursor-pointer flex items-center justify-center">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
-    </div>
-
-    <!-- Zone des messages -->
-    <div id="chatbot-messages" class="p-4 h-64 overflow-y-auto flex flex-col gap-3 bg-gray-900">
-      <div class="bg-gray-800 text-gray-200 text-sm p-3 rounded-lg rounded-tl-none self-start max-w-[85%]">
-        Bonjour, comment puis-je vous aider aujourd'hui ?
-      </div>
-    </div>
-
-    <!-- Zone de saisie -->
-    <div class="p-3 bg-gray-800 border-t border-gray-700 flex gap-2">
-      <input type="text" id="chatbot-input" placeholder="Ecrivez votre message..." class="flex-1 bg-gray-900 text-white text-sm rounded-lg px-3 py-2 border border-gray-700 focus:outline-none focus:border-blue-500" />
-      <button id="chatbot-send" class="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-lg cursor-pointer flex items-center justify-center">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-        </svg>
-      </button>
-    </div>
-  </div>
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const toggleBtn = document.getElementById('chatbot-toggle');
-    const closeBtn = document.getElementById('chatbot-close');
-    const modal = document.getElementById('chatbot-modal');
-    const input = document.getElementById('chatbot-input') as HTMLInputElement;
-    const sendBtn = document.getElementById('chatbot-send');
-    const messagesContainer = document.getElementById('chatbot-messages');
-
-    if (!toggleBtn || !closeBtn || !modal || !input || !sendBtn || !messagesContainer) return;
-
-    // Ouvrir/Fermer la modale
-    toggleBtn.addEventListener('click', () => {
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    });
-
-    closeBtn.addEventListener('click', () => {
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    });
-
-    // Fonction pour ajouter un message
-    const addMessage = (text: string, isUser: boolean) => {
-      const msgDiv = document.createElement('div');
-      msgDiv.className = isUser 
-        ? 'bg-blue-600 text-white text-sm p-3 rounded-lg rounded-tr-none self-end max-w-[85%]'
-        : 'bg-gray-800 text-gray-200 text-sm p-3 rounded-lg rounded-tl-none self-start max-w-[85%]';
-      msgDiv.textContent = text;
-      messagesContainer.appendChild(msgDiv);
-      messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    };
-
-    // Logique de réponse automatique par mots-cles
-    const handleSend = () => {
-      const text = input.value.trim();
-      if (!text) return;
-
-      addMessage(text, true);
-      input.value = '';
-
-      setTimeout(() => {
-        const lowerText = text.toLowerCase();
-        let response = "Je suis desole, je ne comprends pas votre demande. Veuillez nous contacter via le formulaire.";
-        if (lowerText.includes('prix') || lowerText.includes('tarif')) {
-          response = "Nos tarifs pour un site vitrine commencent a 3'000 CHF. Souhaitez-vous un devis ?";
-        } else if (lowerText.includes('contact') || lowerText.includes('telephone')) {
-          response = "Vous pouvez nous contacter via la page Contact ou par telephone au numero indique en bas de page.";
-        } else if (lowerText.includes('bonjour') || lowerText.includes('salut')) {
-          response = "Bonjour. Que puis-je faire pour vous ?";
-        }
-        addMessage(response, false);
-      }, 600);
-    };
-
-    sendBtn.addEventListener('click', handleSend);
-    input.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') handleSend();
-    });
-  });
-</script>
+<!--
+  client:load : le composant est hydraté dès que le JS est disponible.
+  Justification : le chatbot est un widget flottant global, toujours visible,
+  qui doit répondre aux interactions utilisateur sans délai.
+-->
+<ChatbotReact client:load position="bottom-right" />
