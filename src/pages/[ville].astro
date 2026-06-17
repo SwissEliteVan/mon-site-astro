@@ -240,26 +240,15 @@ const services = [
 ];
 ---
 
-<Layout
-  title={pageTitle}
-  description={pageDescription}
-  image={pageImage}
-  canonical={pageCanonical}
->
-  <!-- JSON-LD LocalBusiness -->
-  <script type="application/ld+json" set:html={JSON.stringify(schemaLD)} />
+<Layout title={pageTitle} description={pageDescription} image={pageImage} canonical={pageCanonical}>
 
   <!-- Section Hero avec Vidéo (100% Responsive, B2B, sans avis) -->
   <section class="relative w-full h-[80vh] flex flex-col items-center justify-center overflow-hidden bg-gray-900">
-    <!-- Vidéo en arrière-plan -->
-    <video 
-      autoplay 
-      loop 
-      muted 
-      playsinline 
-      poster={geoData.imageHero} 
-      class="absolute inset-0 w-full h-full object-cover aspect-video opacity-40"
-    ></video>
+    
+    <!-- Vidéo en arrière-plan (avec la source corrigée !) -->
+    <video autoplay loop muted playsinline poster={geoData.imageHero} class="absolute inset-0 w-full h-full object-cover opacity-40">
+      <source src="/assets/videos/hero.mp4" type="video/mp4" />
+    </video>
     
     <!-- Contenu dynamique par-dessus la vidéo -->
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -273,7 +262,7 @@ const services = [
     </div>
   </section>
 
-  <!-- Section Services (Propre et sobre) -->
+  <!-- Section Services (Propre et sans emojis) -->
   <section class="py-16 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 class="text-3xl font-extrabold text-gray-900 mb-12">Nos solutions pour {nomVille}</h2>
@@ -286,115 +275,6 @@ const services = [
           </div>
         ))}
       </div>
-    </div>
-  </section>
-
-</Layout>
-  <!-- ═══════════════════════════════════════════════════════════════
-       AVIS NÉGATIFS
-  ═══════════════════════════════════════════════════════════════ -->
-  <BadReviews />
-
-  <!-- ═══════════════════════════════════════════════════════════════
-       SERVICES
-  ═══════════════════════════════════════════════════════════════ -->
-  <section class="w-full bg-brand-dark-2 border-t border-border py-20 px-4">
-    <div class="max-w-5xl mx-auto">
-
-      <div class="text-center mb-12">
-        <h2 class="font-heading text-2xl md:text-3xl font-extrabold text-white mb-3">
-          Nos services pour les PME de {nomVille}
-        </h2>
-        <p class="text-gray-500 text-sm max-w-xl mx-auto">
-          Chaque prestation est calibrée pour le marché local de {geoData.region}.
-        </p>
-      </div>
-
-      <div class="grid sm:grid-cols-2 gap-5">
-        {services.map(s => (
-          <div class="bg-brand-dark border border-border rounded-2xl p-6 hover:border-border-lime hover:-translate-y-0.5 transition-all duration-200 group">
-            <h3 class="font-heading text-base font-bold text-white mb-2 group-hover:text-lime transition-colors">{s.titre}</h3>
-            <p class="text-sm text-gray-500 leading-relaxed">{s.desc}</p>
-          </div>
-        ))}
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════════════════
-       ARGUMENTAIRE LOCAL
-  ═══════════════════════════════════════════════════════════════ -->
-  <section class="w-full bg-brand-dark py-20 px-4">
-    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-start">
-
-      <!-- Argument éditorial -->
-      <div>
-        <span class="text-xs font-bold tracking-widest uppercase text-lime mb-4 block">Pourquoi CLICOM à {nomVille} ?</span>
-        <h2 class="font-heading text-2xl md:text-3xl font-extrabold text-white mb-6 leading-tight">
-          La visibilité locale,<br/>notre spécialité en {geoData.region}
-        </h2>
-        <div class="space-y-4 text-gray-400 text-base leading-relaxed">
-          <p>
-            À {nomVille}, la grande majorité des consommateurs cherchent un artisan ou un commerce de proximité sur Google avant de se déplacer.
-            Si votre entreprise n'apparaît pas dans les premiers résultats ou sur Google Maps, vous laissez vos clients à la concurrence.
-          </p>
-          <p>
-            Nous travaillons exclusivement avec des PME et artisans de Suisse romande. Nous connaissons les comportements de recherche locaux, les saisons, les événements et les mots-clés qui font sonner votre téléphone dans votre ville.
-          </p>
-        </div>
-
-        <!-- Garanties -->
-        <ul class="mt-8 space-y-3">
-          {[
-            'Résultats mesurables sous 90 jours',
-            'Conformité nLPD garantie sur tous nos sites',
-            'Rapport mensuel clair, sans jargon',
-            'Sans engagement minimum — vous gardez le contrôle',
-          ].map(g => (
-            <li class="flex items-center gap-3 text-sm text-gray-300">
-              <svg class="w-5 h-5 text-lime flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              {g}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <!-- Bloc CTA -->
-      <div class="bg-brand-dark-2 border border-border rounded-3xl p-8 lg:p-10 sticky top-24">
-        <h3 class="font-heading text-xl font-extrabold text-white mb-2">
-          Commencez par l'audit
-        </h3>
-        <p class="text-gray-500 text-sm mb-6 leading-relaxed">
-          En 15 minutes, nous identifions exactement combien de clients vous perdez chaque mois à {nomVille} et comment inverser la tendance.
-        </p>
-
-        <!-- Points inclus -->
-        <ul class="space-y-2 mb-8">
-          {[
-            'Analyse de votre position Google Maps',
-            'Audit de vitesse de votre site actuel',
-            'Analyse de vos 3 concurrents directs',
-            'Feuille de route SEO locale personnalisée',
-          ].map(p => (
-            <li class="flex items-center gap-2.5 text-sm text-gray-400">
-              <span class="w-1.5 h-1.5 rounded-full bg-lime flex-shrink-0" aria-hidden="true"></span>
-              {p}
-            </li>
-          ))}
-        </ul>
-
-        <a
-          href="/#contact"
-          class="block text-center w-full bg-lime text-brand-dark font-extrabold px-8 py-4 rounded-xl hover:bg-lime-hover transition-all shadow-lime text-base mb-3"
-        >
-          Réserver mon audit gratuit →
-        </a>
-        <p class="text-center text-xs text-gray-600">
-          Sans engagement · Réponse garantie sous 2h ouvrées
-        </p>
-      </div>
-
     </div>
   </section>
 
