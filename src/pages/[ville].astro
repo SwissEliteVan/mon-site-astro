@@ -1,3 +1,8 @@
+D'accord, je te donne le fichier complet et définitif. J'ai intégré **absolument toutes tes données exactes** (les accroches et stats par ville), j'ai protégé les apostrophes pour que le code ne plante pas, supprimé tous les emojis, refermé les bonnes balises `---`, et mis la vidéo avec les bonnes classes Tailwind.
+
+Fais `Ctrl+A` dans ton fichier `src/pages/[ville].astro`, supprime tout, et **copie-colle exactement ce code** :
+
+```astro
 ---
 import Layout     from '../layouts/Layout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
@@ -21,98 +26,98 @@ export function getStaticPaths() {
     imageServices?: string;
   }> = {
     lausanne: {
-      cp: '1000', lat: 46.519653, lng: 6.632273, region:   'Canton de Vaud',
+      cp: '1000', lat: 46.519653, lng: 6.632273, region: 'Canton de Vaud',
       accroche: "Capitale olympique et pôle d'innovation — la concurrence digitale est féroce à Lausanne.",
-      stat:     '+73%', statDesc: 'des clients lausannois vérifient Google Maps avant de visiter un commerce local.',
-      image:    '/assets/images/creation-site-internet-performant-lausanne.webp',
+      stat: '+73%', statDesc: "des clients lausannois vérifient Google Maps avant de visiter un commerce local.",
+      image: '/assets/images/creation-site-internet-performant-lausanne.webp',
       imageHero: '/assets/images/creation-site-internet-performant-lausanne.webp',
       imageServices: '/assets/images/creation-site-internet-performant-lausanne.webp',
     },
     geneve: {
-      cp: '1200', lat: 46.204391, lng: 6.143158, region:   'Canton de Genève',
-      accroche: 'Place financière internationale — votre site doit inspirer autant confiance que vos services.',
-      stat:     '3,29 CHF', statDesc: 'coût moyen par visiteur ciblé sur Google à Genève. Un investissement maîtrisé.',
-      image:    '/assets/images/gestion-campagne-google-ads-geneve.webp',
+      cp: '1200', lat: 46.204391, lng: 6.143158, region: 'Canton de Genève',
+      accroche: "Place financière internationale — votre site doit inspirer autant confiance que vos services.",
+      stat: '3,29 CHF', statDesc: "coût moyen par visiteur ciblé sur Google à Genève. Un investissement maîtrisé.",
+      image: '/assets/images/gestion-campagne-google-ads-geneve.webp',
       imageHero: '/assets/images/gestion-campagne-google-ads-geneve.webp',
       imageServices: '/assets/images/gestion-campagne-google-ads-geneve.webp',
     },
     vevey: {
-      cp: '1800', lat: 46.462803, lng: 6.843058, region:   'Riviera vaudoise',
-      accroche: 'Entre lac et vignobles classés UNESCO — votre vitrine digitale doit être à la hauteur du décor.',
-      stat:     '68%', statDesc: "des PME de la Riviera n'ont pas de site optimisé pour mobile en 2024.",
-      image:    '/assets/images/optimisation-google-maps-seo-local-vevey.webp',
+      cp: '1800', lat: 46.462803, lng: 6.843058, region: 'Riviera vaudoise',
+      accroche: "Entre lac et vignobles classés UNESCO — votre vitrine digitale doit être à la hauteur du décor.",
+      stat: '68%', statDesc: "des PME de la Riviera n'ont pas de site optimisé pour mobile en 2024.",
+      image: '/assets/images/optimisation-google-maps-seo-local-vevey.webp',
       imageHero: '/assets/images/optimisation-google-maps-seo-local-vevey.webp',
       imageServices: '/assets/images/optimisation-google-maps-seo-local-vevey.webp',
     },
     montreux: {
-      cp: '1820', lat: 46.431221, lng: 6.910680, region:   'Riviera vaudoise',
-      accroche: 'Festival, tourisme et hôtellerie — capter les flux de visiteurs internationaux commence par le SEO.',
-      stat:     '89%', statDesc: 'des touristes de Montreux recherchent des prestataires locaux sur leur smartphone.',
-      image:    '/assets/images/clicom-agence-web-suisse-romande.webp',
+      cp: '1820', lat: 46.431221, lng: 6.910680, region: 'Riviera vaudoise',
+      accroche: "Festival, tourisme et hôtellerie — capter les flux de visiteurs internationaux commence par le SEO.",
+      stat: '89%', statDesc: "des touristes de Montreux recherchent des prestataires locaux sur leur smartphone.",
+      image: '/assets/images/clicom-agence-web-suisse-romande.webp',
       imageHero: '/assets/images/clicom-agence-web-suisse-romande.webp',
       imageServices: '/assets/images/clicom-agence-web-suisse-romande.webp',
     },
     nyon: {
-      cp: '1260', lat: 46.383268, lng: 6.234796, region:   'District de Nyon',
-      accroche: 'Entre Genève et Lausanne, Nyon attire une clientèle aisée et connectée. Soyez visible.',
-      stat:     '2× plus', statDesc: 'de demandes de devis générées par un site SEO optimisé vs. un site vitrine standard.',
-      image:    '/assets/images/clicom-agence-web-suisse-romande.webp',
+      cp: '1260', lat: 46.383268, lng: 6.234796, region: 'District de Nyon',
+      accroche: "Entre Genève et Lausanne, Nyon attire une clientèle aisée et connectée. Soyez visible.",
+      stat: '2× plus', statDesc: "de demandes de devis générées par un site SEO optimisé vs. un site vitrine standard.",
+      image: '/assets/images/clicom-agence-web-suisse-romande.webp',
       imageHero: '/assets/images/clicom-agence-web-suisse-romande.webp',
       imageServices: '/assets/images/clicom-agence-web-suisse-romande.webp',
     },
     yverdon: {
-      cp: '1400', lat: 46.778474, lng: 6.641183, region:   'Nord vaudois',
+      cp: '1400', lat: 46.778474, lng: 6.641183, region: 'Nord vaudois',
       accroche: "Capitale du Nord vaudois en plein essor technologique — le moment d'investir dans votre présence locale.",
-      stat:     '250 000 CHF', statDesc: 'amende nLPD maximale pour un site non conforme. Votre site est-il en règle ?',
-      image:    '/assets/images/clicom-agence-web-suisse-romande.webp',
+      stat: '250 000 CHF', statDesc: "amende nLPD maximale pour un site non conforme. Votre site est-il en règle ?",
+      image: '/assets/images/clicom-agence-web-suisse-romande.webp',
       imageHero: '/assets/images/clicom-agence-web-suisse-romande.webp',
       imageServices: '/assets/images/clicom-agence-web-suisse-romande.webp',
     },
     fribourg: {
-      cp: '1700', lat: 46.806477, lng: 7.161972, region:   'Canton de Fribourg',
-      accroche: 'Ville bilingue au carrefour romand — doublez votre reach avec un site FR/DE optimisé.',
-      stat:     '4 sur 5', statDesc: "PME fribourgeoises n'apparaissent pas sur la première page Google pour leurs services.",
-      image:    '/assets/images/clicom-agence-web-suisse-romande.webp',
+      cp: '1700', lat: 46.806477, lng: 7.161972, region: 'Canton de Fribourg',
+      accroche: "Ville bilingue au carrefour romand — doublez votre reach avec un site FR/DE optimisé.",
+      stat: '4 sur 5', statDesc: "PME fribourgeoises n'apparaissent pas sur la première page Google pour leurs services.",
+      image: '/assets/images/clicom-agence-web-suisse-romande.webp',
       imageHero: '/assets/images/clicom-agence-web-suisse-romande.webp',
       imageServices: '/assets/images/clicom-agence-web-suisse-romande.webp',
     },
     neuchatel: {
-      cp: '2000', lat: 46.989587, lng: 6.929264, region:   'Canton de Neuchâtel',
-      accroche: 'Industrie horlogère et technologique — votre réputation en ligne doit refléter votre excellence.',
-      stat:     '58%', statDesc: 'des consommateurs neuchâtelois abandonnent un site qui charge en plus de 3 secondes.',
-      image:    '/assets/images/clicom-agence-web-suisse-romande.webp',
+      cp: '2000', lat: 46.989587, lng: 6.929264, region: 'Canton de Neuchâtel',
+      accroche: "Industrie horlogère et technologique — votre réputation en ligne doit refléter votre excellence.",
+      stat: '58%', statDesc: "des consommateurs neuchâtelois abandonnent un site qui charge en plus de 3 secondes.",
+      image: '/assets/images/clicom-agence-web-suisse-romande.webp',
       imageHero: '/assets/images/clicom-agence-web-suisse-romande.webp',
       imageServices: '/assets/images/clicom-agence-web-suisse-romande.webp',
     },
     sion: {
-      cp: '1950', lat: 46.233122, lng: 7.360626, region:   'Canton du Valais',
+      cp: '1950', lat: 46.233122, lng: 7.360626, region: 'Canton du Valais',
       accroche: "Capitale valaisanne, porte des Alpes — touchez les clients avant qu'ils entrent dans une agence concurrente.",
-      stat:     '3 000+', statDesc: 'recherches Google/mois pour "agence web Sion" et services locaux connexes.',
-      image:    '/assets/images/clicom-agence-web-suisse-romande.webp',
+      stat: '3 000+', statDesc: "recherches Google/mois pour 'agence web Sion' et services locaux connexes.",
+      image: '/assets/images/clicom-agence-web-suisse-romande.webp',
       imageHero: '/assets/images/clicom-agence-web-suisse-romande.webp',
       imageServices: '/assets/images/clicom-agence-web-suisse-romande.webp',
     },
     martigny: {
-      cp: '1920', lat: 46.103117, lng: 7.072736, region:   'District de Martigny',
-      accroche: 'Carrefour franco-italo-suisse — une clientèle internationale qui cherche sur Google avant tout.',
-      stat:     '82%', statDesc: "des décisions d'achat locales à Martigny commencent par une recherche en ligne.",
-      image:    '/assets/images/clicom-agence-web-suisse-romande.webp',
+      cp: '1920', lat: 46.103117, lng: 7.072736, region: 'District de Martigny',
+      accroche: "Carrefour franco-italo-suisse — une clientèle internationale qui cherche sur Google avant tout.",
+      stat: '82%', statDesc: "des décisions d'achat locales à Martigny commencent par une recherche en ligne.",
+      image: '/assets/images/clicom-agence-web-suisse-romande.webp',
       imageHero: '/assets/images/clicom-agence-web-suisse-romande.webp',
       imageServices: '/assets/images/clicom-agence-web-suisse-romande.webp',
     },
     renens: {
-      cp: '1020', lat: 46.539722, lng: 6.587500, region:   'Agglomération lausannoise',
+      cp: '1020', lat: 46.539722, lng: 6.587500, region: 'Agglomération lausannoise',
       accroche: "Dans l'ombre de Lausanne ? Pas en ligne. Dominez les recherches de proximité dans l'Ouest lausannois.",
-      stat:     '×3', statDesc: 'plus de clics sur les fiches Google Business des PME de Renens avec un site optimisé.',
-      image:    '/assets/images/clicom-agence-web-suisse-romande.webp',
+      stat: '×3', statDesc: "plus de clics sur les fiches Google Business des PME de Renens avec un site optimisé.",
+      image: '/assets/images/clicom-agence-web-suisse-romande.webp',
       imageHero: '/assets/images/clicom-agence-web-suisse-romande.webp',
       imageServices: '/assets/images/clicom-agence-web-suisse-romande.webp',
     },
     pully: {
-      cp: '1009', lat: 46.510000, lng: 6.661944, region:   'Agglomération lausannoise',
-      accroche: 'Rive du lac, clientèle premium — votre site doit projeter la même qualité que vos prestations.',
-      stat:     '91%', statDesc: 'des habitants de Pully recherchent leurs prestataires de services sur smartphone.',
-      image:    '/assets/images/creation-site-internet-performant-lausanne.webp',
+      cp: '1009', lat: 46.510000, lng: 6.661944, region: 'Agglomération lausannoise',
+      accroche: "Rive du lac, clientèle premium — votre site doit projeter la même qualité que vos prestations.",
+      stat: '91%', statDesc: "des habitants de Pully recherchent leurs prestataires de services sur smartphone.",
+      image: '/assets/images/creation-site-internet-performant-lausanne.webp',
       imageHero: '/assets/images/creation-site-internet-performant-lausanne.webp',
       imageServices: '/assets/images/creation-site-internet-performant-lausanne.webp',
     },
@@ -218,7 +223,6 @@ const services = [
 
   <!-- Section Hero avec Vidéo -->
   <section class="relative w-full h-[80vh] flex flex-col items-center justify-center overflow-hidden bg-gray-900">
-    
     <!-- Vidéo en arrière-plan AVEC LA SOURCE -->
     <video autoplay loop muted playsinline poster={geoData.imageHero} class="absolute inset-0 w-full h-full object-cover opacity-40">
       <source src="/assets/videos/hero.mp4" type="video/mp4" />
@@ -253,3 +257,4 @@ const services = [
   </section>
 
 </Layout>
+```
