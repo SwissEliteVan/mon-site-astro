@@ -1,52 +1,23 @@
 ---
-import { getCollection, render } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
-
-export const prerender = true;
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BlogPost from '../../layouts/BlogPost.astro';
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection('blog');
-  return blogEntries.map(entry => ({
-    params: { slug: entry.slug || entry.id },
+  return blogEntries.map((entry) => ({
+    params: { slug: entry.slug },
     props: { entry },
   }));
 }
 
+interface Props {
+  entry: CollectionEntry<'blog'>;
+}
+
 const { entry } = Astro.props;
-const { Content } = await render(entry);
+const { Content } = await entry.render();
 ---
 
-<Layout title={`${entry.data.title} | Blog CLICOM`} description={entry.data.description}>
-  <article class="pt-32 pb-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    <a href="/blog" class="inline-flex items-center text-gray-400 hover:text-[#B9FF66] transition-colors mb-8 font-medium">
-      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-      Retour aux articles
-    </a>
-    
-    <header class="mb-12">
-      <div class="flex flex-wrap gap-2 mb-6">
-        {entry.data.tags?.map((tag: string) => (
-          <span class="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-white/10 bg-white/5 text-gray-300">
-            {tag}
-          </span>
-        ))}
-      </div>
-      <h1 class="text-[clamp(2rem,4vw,3.5rem)] font-bold text-white mb-6 leading-tight">{entry.data.title}</h1>
-      <div class="flex items-center text-gray-400 gap-4 font-medium">
-        <span>Par {entry.data.author || 'CLICOM'}</span>
-        <span>•</span>
-        <time>{new Date(entry.data.pubDate).toLocaleDateString('fr-CH', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
-      </div>
-    </header>
-
-    {entry.data.image && (
-      <div class="w-full h-64 md:h-96 rounded-3xl overflow-hidden mb-12 shadow-2xl border border-white/5">
-        <img src={entry.data.image} alt={entry.data.title} class="w-full h-full object-cover" />
-      </div>
-    )}
-
-    <div class="prose-clicom mx-auto text-lg">
-      <Content />
-    </div>
-  </article>
-</Layout>
+<BlogPost {...entry.data}>
+  <Content />
+</BlogPost>
