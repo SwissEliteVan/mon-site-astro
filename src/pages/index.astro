@@ -67,98 +67,40 @@ const featuredPosts = allBlogPosts.slice(0, 3);
   `} />
   
   <!-- ============================================= -->
-<!-- HERO : VERSION PROFESSIONNELLE -->
+<!-- HERO : VERSION ELITE B2B -->
 <!-- ============================================= -->
-<section class="relative min-h-[85vh] flex items-center overflow-hidden bg-[#191A23]">
-  <!-- Effet de fond subtil -->
-  <div class="absolute inset-0 bg-gradient-to-br from-[#191A23] via-[#191A23]/95 to-[#1f202b]"></div>
-  <div class="absolute top-0 right-0 w-1/2 h-full bg-[#B9FF66]/5 blur-3xl rounded-full"></div>
-  <div class="absolute bottom-0 left-0 w-1/3 h-1/2 bg-[#B9FF66]/10 blur-3xl rounded-full"></div>
+<section class="relative min-h-screen flex items-center overflow-hidden bg-gray-900">
+  <!-- Vidéo de fond -->
+  <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover opacity-40">
+    <source src="/assets/videos/hero.mp4" type="video/mp4" />
+  </video>
 
-  <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20">
-    <div class="grid lg:grid-cols-2 gap-12 items-center">
-      <!-- Colonne gauche : Texte -->
-      <div>
-        <!-- Badge -->
-        <div class="inline-flex items-center gap-2 bg-[#B9FF66]/10 border border-[#B9FF66]/20 rounded-full px-4 py-1.5 mb-6">
-          <span class="w-2 h-2 bg-[#B9FF66] rounded-full animate-pulse"></span>
-          <span class="text-[#B9FF66] text-xs font-semibold tracking-wider uppercase">Agence Web Suisse Romande</span>
-        </div>
+  <!-- Conteneur de texte avec respiration massive -->
+  <div class="relative z-10 max-w-4xl mx-auto px-6 py-32 text-center">
+    
+    <!-- Titre principal énorme -->
+    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-none tracking-tighter mb-8">
+      Votre visibilité digitale,<br />
+      <span class="text-lime-400">notre mission.</span>
+    </h1>
 
-        <!-- Titre principal -->
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-6">
-          Votre visibilité digitale,<br />
-          <span class="text-[#B9FF66]">notre mission.</span>
-        </h1>
+    <!-- Sous-titre optimisé -->
+    <p class="text-lg sm:text-xl text-gray-200 max-w-2xl mx-auto leading-relaxed mb-12">
+      Création de sites web performants, SEO et marketing digital pour les PME suisses. 
+      Des stratégies transparentes qui font sonner votre téléphone.
+    </p>
 
-        <!-- Description -->
-        <p class="text-lg sm:text-xl text-gray-400 max-w-lg mb-8 leading-relaxed">
-          Création de sites web, SEO et marketing digital pour les PME suisses. 
-          Des stratégies transparentes qui font sonner votre téléphone.
-        </p>
-
-        <!-- CTA Group -->
-        <div class="flex flex-wrap gap-4">
-          <a href="#contact" class="inline-flex items-center gap-2 bg-[#B9FF66] text-[#191A23] font-bold px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl hover:bg-[#a3e655] transition-all hover:scale-105 shadow-lg shadow-[#B9FF66]/20">
-            Audit gratuit
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-          </a>
-          <a href="#tarifs" class="inline-flex items-center gap-2 border border-white/20 text-white font-medium px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl hover:bg-white/5 transition-all hover:border-white/40">
-            Nos tarifs
-          </a>
-        </div>
-
-        <!-- Stats -->
-        <div class="grid grid-cols-3 gap-4 mt-12 pt-8 border-t border-white/5">
-          <div>
-            <p class="text-2xl font-bold text-white">95%</p>
-            <p class="text-xs text-gray-500">des PME ont un site</p>
-          </div>
-          <div>
-            <p class="text-2xl font-bold text-white">15%</p>
-            <p class="text-xs text-gray-500">investissent dans la visibilité</p>
-          </div>
-          <div>
-            <p class="text-2xl font-bold text-white">73%</p>
-            <p class="text-xs text-gray-500">consultent Google Maps</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Colonne droite : Vidéo Hero -->
-      <div class="hidden lg:block relative">
-        <div class="relative z-10">
-          <video 
-            autoplay 
-            loop 
-            muted 
-            playsinline 
-            poster={imageHero}
-            class="w-full h-auto object-cover aspect-square rounded-2xl shadow-2xl"
-            loading="eager"
-          >
-            <source src="/assets/videos/agence-web-clicom-suisse-romande.webm" type="video/webm" />
-            <!-- Fallback pour navigateurs ne supportant pas la vidéo -->
-            <img 
-              src={imageHero} 
-              alt="Agence Clicom - Création de sites web en Suisse"
-              class="w-full h-auto object-cover aspect-square rounded-2xl shadow-2xl"
-            />
-          </video>
-        </div>
-        <!-- Élément décoratif -->
-        <div class="absolute -bottom-6 -left-6 w-48 h-48 border-2 border-[#B9FF66]/20 rounded-full -z-10"></div>
-        <div class="absolute -top-6 -right-6 w-32 h-32 bg-[#B9FF66]/5 rounded-full -z-10"></div>
-      </div>
+    <!-- Boutons CTA -->
+    <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+      <a href="#contact" class="bg-lime-500 text-slate-900 font-bold px-10 py-5 rounded-xl hover:bg-lime-400 transition-colors text-lg shadow-xl">
+        Demander mon audit gratuit
+      </a>
+      <a href="#tarifs" class="text-white font-medium hover:text-lime-400 transition-colors text-lg flex items-center gap-2">
+        Découvrir nos tarifs
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
     </div>
-  </div>
 
-  <!-- Scroll indicator -->
-  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden md:block">
-    <a href="#creation" class="flex flex-col items-center gap-1 text-gray-500 hover:text-[#B9FF66] transition-colors group">
-      <span class="text-xs tracking-widest uppercase">Découvrir</span>
-      <svg class="w-5 h-5 group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
-    </a>
   </div>
 </section>
 

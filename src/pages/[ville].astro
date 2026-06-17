@@ -131,7 +131,7 @@ export function getStaticPaths() {
     },
   }));
 }
-PARTIE 2/4 : Variables et Schema (À coller à la suite de la partie 1)
+
 // ─────────────────────────────────────────────────────────────────────────────
 // PROPS & MÉTADONNÉES DYNAMIQUES
 // ─────────────────────────────────────────────────────────────────────────────
@@ -197,7 +197,7 @@ const schemaLD = {
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
-// SERVICES AFFICHÉS SUR LA PAGE (100% SANS EMOJIS)
+// SERVICES AFFICHÉS SUR LA PAGE (100% TEXTE - AUCUN EMOJI)
 // ─────────────────────────────────────────────────────────────────────────────
 const services = [
   {
@@ -223,86 +223,92 @@ const services = [
   
   <script type="application/ld+json" set:html={JSON.stringify(schemaLD)} />
 
-  <!-- Section Hero avec Vidéo Responsive -->
-  <section class="relative w-full h-[80vh] flex flex-col items-center justify-center overflow-hidden bg-gray-900">
-    <!-- Vidéo parfaitement responsive grâce à object-cover avec sa source -->
-    <video autoplay loop muted playsinline poster={geoData.imageHero} class="absolute inset-0 w-full h-full object-cover opacity-40">
-      <source src="/assets/videos/agence-web-clicom-suisse-romande.webm" type="video/webm" />
+  <!-- Section Hero Premium avec Vidéo Responsive -->
+  <section class="relative w-full min-h-[90vh] flex flex-col items-center justify-center overflow-hidden bg-gray-900">
+    <video autoplay loop muted playsinline poster={geoData.imageHero} class="absolute inset-0 w-full h-full object-cover opacity-30">
+      <source src="/assets/videos/hero.mp4" type="video/mp4" />
     </video>
     
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-24">
       <Breadcrumb />
-      <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl mt-8">
+      <h1 class="text-5xl lg:text-7xl font-extrabold tracking-tighter text-white mb-8 mt-8 leading-tight">
         {geoData.accroche}
       </h1>
-      <p class="mt-6 text-xl text-gray-200 max-w-2xl mx-auto font-medium">
+      <p class="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed mb-10">
         <span class="text-lime-400 font-bold">{geoData.stat}</span> : {geoData.statDesc}
       </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#contact" class="bg-lime-500 text-slate-900 font-bold text-lg px-8 py-4 rounded-lg shadow-lg hover:bg-lime-400 transition-all">
+          Demander mon audit gratuit
+        </a>
+        <a href="#expertise" class="text-white border border-gray-600 font-medium text-lg px-8 py-4 rounded-lg hover:bg-gray-800 transition-all">
+          Découvrir nos solutions
+        </a>
+      </div>
     </div>
   </section>
 
-  <!-- Section Présentation avec Image Responsive -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+  <!-- Espacement Premium (Framework PAS) -->
+  <div class="flex flex-col gap-y-24 lg:gap-y-32 py-24">
+
+    <!-- Section Présentation -->
+    <section id="expertise" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         <div>
-          <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Expertise Digitale à {nomVille}</h2>
-          <p class="text-lg text-gray-600 mb-4">
+          <h2 class="text-4xl font-extrabold tracking-tight text-slate-900 mb-6">Expertise Digitale à {nomVille}</h2>
+          <p class="text-lg text-slate-600 leading-relaxed mb-6">
             Dans le contexte concurrentiel de {geoData.region}, votre entreprise a besoin d'une visibilité locale agressive.
           </p>
-          <p class="text-lg text-gray-600">
-            Nous concevons des plateformes web sur-mesure qui attirent, convertissent et fidélisent votre clientèle.
+          <p class="text-lg text-slate-600 leading-relaxed">
+            Nous concevons des plateformes web sur-mesure qui attirent, convertissent et fidélisent votre clientèle locale. Fini les sites vitrines des années 2000.
           </p>
         </div>
         <div class="w-full">
-          <!-- Image parfaitement responsive (ne s'écrase jamais) -->
-          <img src={geoData.image} alt={`Agence web SEO à ${nomVille}`} class="w-full h-auto object-cover aspect-video rounded-xl shadow-lg" />
+          <img src={geoData.image} alt={`Agence web SEO à ${nomVille}`} class="w-full h-auto object-cover aspect-video rounded-2xl shadow-xl" />
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-    <!-- Section Services -->
-  <section class="py-16 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-extrabold text-gray-900 mb-12">Nos solutions pour {nomVille}</h2>
+    <!-- Section Services (100% propre, pas d'emojis) -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-4xl font-extrabold tracking-tight text-slate-900 mb-16">Nos solutions pour {nomVille}</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {services.map((service) => (
-          <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-            <h3 class="text-xl font-bold text-gray-900 mb-2">{service.titre}</h3>
-            <p class="text-gray-600 text-sm">{service.desc}</p>
+          <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+            <h3 class="text-xl font-bold text-slate-900 mb-3">{service.titre}</h3>
+            <p class="text-slate-600 leading-relaxed text-sm">{service.desc}</p>
           </div>
         ))}
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Section Image Services Responsive -->
-  {geoData.imageServices && (
-    <section class="py-12 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Image parfaitement responsive (ne s'écrase jamais) -->
-        <img src={geoData.imageServices} alt={`Services marketing digital ${nomVille}`} class="w-full h-auto object-cover aspect-video rounded-xl shadow-md" />
+    <!-- Section Image Services -->
+    {geoData.imageServices && (
+      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <img src={geoData.imageServices} alt={`Services marketing digital ${nomVille}`} class="w-full h-auto object-cover aspect-video rounded-2xl shadow-xl" />
+      </section>
+    )}
+
+    <!-- Section Témoignages (les vrais avis de ton projet) -->
+    <section class="w-full">
+      <Testimonials />
+    </section>
+
+    <!-- Section Call to Action avec formulaire interactif -->
+    <section id="contact" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div class="bg-slate-900 rounded-3xl p-8 md:p-16 shadow-2xl text-center">
+        <h2 class="text-4xl font-extrabold tracking-tight text-white mb-4">Prêt à dominer la recherche à {nomVille} ?</h2>
+        <p class="text-lg text-gray-400 mb-12">Obtenez un audit SEO gratuit et découvrez votre potentiel inexploité.</p>
+        <div class="bg-white text-left p-6 md:p-8 rounded-2xl shadow-sm">
+          <ContactFormReact client:visible />
+        </div>
       </div>
     </section>
-  )}
 
-  <!-- Section Témoignages (Les vrais avis) -->
-  <Testimonials />
+  </div>
 
-  <!-- Section Call to Action avec ton vrai formulaire React -->
-  <section class="py-16 bg-gray-900 text-white text-center">
-    <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-3xl font-bold mb-4">Prêt à dominer la recherche à {nomVille} ?</h2>
-      <p class="text-xl text-gray-300 mb-8">Obtenez un audit SEO gratuit et découvrez comment nous pouvons générer des prospects qualifiés pour votre entreprise.</p>
-      <div class="bg-white text-left p-8 rounded-xl shadow-2xl max-w-2xl mx-auto">
-        <ContactFormReact client:visible />
-      </div>
-    </div>
-  </section>
-
-  <!-- Tous tes composants flottants et interactifs -->
-  <Chatbot />
+  <!-- Astro Islands : Interactivité chargée séparément -->
+  <Chatbot client:load />
   <FloatingContact />
   <CookieBanner />
 
