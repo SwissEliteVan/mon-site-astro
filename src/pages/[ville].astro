@@ -10,14 +10,16 @@ export const prerender = true;
 // ─────────────────────────────────────────────────────────────────────────────
 export function getStaticPaths() {
   const villesData: Record<string, {
-    cp:       string;
-    lat:      number;
-    lng:      number;
-    region:   string;       // Canton / région pour le SEO
-    accroche: string;       // Phrase éditoriale locale unique
-    stat:     string;       // Chiffre local percutant
-    statDesc: string;       // Description de la stat
-    image:    string;       // Image OG spécifique ou fallback
+    cp:           string;
+    lat:          number;
+    lng:          number;
+    region:       string;       // Canton / région pour le SEO
+    accroche:     string;       // Phrase éditoriale locale unique
+    stat:         string;       // Chiffre local percutant
+    statDesc:     string;       // Description de la stat
+    image:        string;       // Image OG spécifique ou fallback (pour SEO)
+    imageHero?:   string;       // Image pour le haut de page (optionnelle)
+    imageServices?: string;     // Image pour la section services (optionnelle)
   }> = {
     lausanne: {
       cp: '1000', lat: 46.519653, lng: 6.632273,
@@ -26,6 +28,8 @@ export function getStaticPaths() {
       stat:     '+73%',
       statDesc: 'des clients lausannois vérifient Google Maps avant de visiter un commerce local.',
       image:    '/assets/images/creation-site-internet-performant-lausanne.webp',
+      imageHero: '/assets/images/creation-site-internet-performant-lausanne.webp',
+      imageServices: '/assets/images/creation-site-internet-performant-lausanne.webp',
     },
     geneve: {
       cp: '1200', lat: 46.204391, lng: 6.143158,
@@ -34,6 +38,8 @@ export function getStaticPaths() {
       stat:     '3,29 CHF',
       statDesc: 'coût moyen par visiteur ciblé sur Google à Genève. Un investissement maîtrisé.',
       image:    '/assets/images/gestion-campagne-google-ads-geneve.webp',
+      imageHero: '/assets/images/gestion-campagne-google-ads-geneve.webp',
+      imageServices: '/assets/images/gestion-campagne-google-ads-geneve.webp',
     },
     vevey: {
       cp: '1800', lat: 46.462803, lng: 6.843058,
@@ -42,6 +48,8 @@ export function getStaticPaths() {
       stat:     '68%',
       statDesc: 'des PME de la Riviera n\'ont pas de site optimisé pour mobile en 2024.',
       image:    '/assets/images/optimisation-google-maps-seo-local-vevey.webp',
+      imageHero: '/assets/images/optimisation-google-maps-seo-local-vevey.webp',
+      imageServices: '/assets/images/optimisation-google-maps-seo-local-vevey.webp',
     },
     montreux: {
       cp: '1820', lat: 46.431221, lng: 6.910680,
@@ -50,6 +58,8 @@ export function getStaticPaths() {
       stat:     '89%',
       statDesc: 'des touristes de Montreux recherchent des prestataires locaux sur leur smartphone.',
       image:    '/assets/images/clicom-agence-web-suisse-romande.webp',
+      imageHero: '/assets/images/clicom-agence-web-suisse-romande.webp',
+      imageServices: '/assets/images/clicom-agence-web-suisse-romande.webp',
     },
     nyon: {
       cp: '1260', lat: 46.383268, lng: 6.234796,
@@ -58,6 +68,8 @@ export function getStaticPaths() {
       stat:     '2× plus',
       statDesc: 'de demandes de devis générées par un site SEO optimisé vs. un site vitrine standard.',
       image:    '/assets/images/clicom-agence-web-suisse-romande.webp',
+      imageHero: '/assets/images/clicom-agence-web-suisse-romande.webp',
+      imageServices: '/assets/images/clicom-agence-web-suisse-romande.webp',
     },
     yverdon: {
       cp: '1400', lat: 46.778474, lng: 6.641183,
@@ -66,6 +78,8 @@ export function getStaticPaths() {
       stat:     '250 000 CHF',
       statDesc: 'amende nLPD maximale pour un site non conforme. Votre site est-il en règle ?',
       image:    '/assets/images/clicom-agence-web-suisse-romande.webp',
+      imageHero: '/assets/images/clicom-agence-web-suisse-romande.webp',
+      imageServices: '/assets/images/clicom-agence-web-suisse-romande.webp',
     },
     fribourg: {
       cp: '1700', lat: 46.806477, lng: 7.161972,
@@ -74,6 +88,8 @@ export function getStaticPaths() {
       stat:     '4 sur 5',
       statDesc: 'PME fribourgeoises n\'apparaissent pas sur la première page Google pour leurs services.',
       image:    '/assets/images/clicom-agence-web-suisse-romande.webp',
+      imageHero: '/assets/images/clicom-agence-web-suisse-romande.webp',
+      imageServices: '/assets/images/clicom-agence-web-suisse-romande.webp',
     },
     neuchatel: {
       cp: '2000', lat: 46.989587, lng: 6.929264,
@@ -82,6 +98,8 @@ export function getStaticPaths() {
       stat:     '58%',
       statDesc: 'des consommateurs neuchâtelois abandonnent un site qui charge en plus de 3 secondes.',
       image:    '/assets/images/clicom-agence-web-suisse-romande.webp',
+      imageHero: '/assets/images/clicom-agence-web-suisse-romande.webp',
+      imageServices: '/assets/images/clicom-agence-web-suisse-romande.webp',
     },
     sion: {
       cp: '1950', lat: 46.233122, lng: 7.360626,
@@ -90,6 +108,8 @@ export function getStaticPaths() {
       stat:     '3 000+',
       statDesc: 'recherches Google/mois pour "agence web Sion" et services locaux connexes.',
       image:    '/assets/images/clicom-agence-web-suisse-romande.webp',
+      imageHero: '/assets/images/clicom-agence-web-suisse-romande.webp',
+      imageServices: '/assets/images/clicom-agence-web-suisse-romande.webp',
     },
     martigny: {
       cp: '1920', lat: 46.103117, lng: 7.072736,
@@ -98,6 +118,8 @@ export function getStaticPaths() {
       stat:     '82%',
       statDesc: 'des décisions d\'achat locales à Martigny commencent par une recherche en ligne.',
       image:    '/assets/images/clicom-agence-web-suisse-romande.webp',
+      imageHero: '/assets/images/clicom-agence-web-suisse-romande.webp',
+      imageServices: '/assets/images/clicom-agence-web-suisse-romande.webp',
     },
     renens: {
       cp: '1020', lat: 46.539722, lng: 6.587500,
@@ -106,6 +128,8 @@ export function getStaticPaths() {
       stat:     '×3',
       statDesc: 'plus de clics sur les fiches Google Business des PME de Renens avec un site optimisé.',
       image:    '/assets/images/clicom-agence-web-suisse-romande.webp',
+      imageHero: '/assets/images/clicom-agence-web-suisse-romande.webp',
+      imageServices: '/assets/images/clicom-agence-web-suisse-romande.webp',
     },
     pully: {
       cp: '1009', lat: 46.510000, lng: 6.661944,
@@ -114,6 +138,8 @@ export function getStaticPaths() {
       stat:     '91%',
       statDesc: 'des habitants de Pully recherchent leurs prestataires de services sur smartphone.',
       image:    '/assets/images/creation-site-internet-performant-lausanne.webp',
+      imageHero: '/assets/images/creation-site-internet-performant-lausanne.webp',
+      imageServices: '/assets/images/creation-site-internet-performant-lausanne.webp',
     },
   };
 
@@ -227,15 +253,25 @@ const services = [
   <script type="application/ld+json" set:html={JSON.stringify(schemaLD)} />
 
   <!-- ═══════════════════════════════════════════════════════════════
-       HERO LOCAL
+       HERO LOCAL - VERSION AVEC VIDEO
   ═══════════════════════════════════════════════════════════════ -->
   <section class="relative overflow-hidden bg-brand-dark pt-28 pb-20 px-4">
-
     <!-- Halo décoratif -->
     <div aria-hidden="true" class="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-[radial-gradient(ellipse_at_center,rgba(185,255,102,0.09)_0%,transparent_65%)]"></div>
 
-    <div class="max-w-5xl mx-auto">
+    <!-- Video d'arrière-plan -->
+    <video 
+      autoplay 
+      loop 
+      muted 
+      playsinline 
+      poster={geoData.imageHero}
+      class="w-full h-auto object-cover aspect-video max-h-[80vh]"
+    >
+      <!-- Source vidéo à ajouter ultérieurement -->
+    </video>
 
+    <div class="max-w-5xl mx-auto relative z-10">
       <!-- Breadcrumb dynamique -->
       <div class="mb-10">
         <Breadcrumb items={[
@@ -244,9 +280,15 @@ const services = [
         ]} />
       </div>
 
-      <!-- Header -->
-      <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <!-- Titre principal -->
+      <div class="text-center mb-12">
+        <h1 class="font-heading text-[clamp(2rem,4vw,3.5rem)] font-extrabold text-white leading-tight tracking-tight">
+          {geoData.accroche}
+        </h1>
+      </div>
 
+      <!-- Contenu sous la vidéo -->
+      <div class="grid lg:grid-cols-2 gap-12 items-center mt-16">
         <!-- Texte -->
         <div>
           <!-- Badge région -->
@@ -254,15 +296,6 @@ const services = [
             <span class="w-2 h-2 rounded-full bg-lime animate-pulse" aria-hidden="true"></span>
             {geoData.region}
           </div>
-
-          <h1 class="font-heading text-[clamp(2rem,4vw,3.25rem)] font-extrabold text-white leading-tight tracking-tight mb-5">
-            Agence Web & SEO<br/>
-            <span class="text-gradient-lime">à {nomVille}</span>
-          </h1>
-
-          <p class="text-lg text-gray-400 leading-relaxed mb-8 max-w-lg">
-            {geoData.accroche}
-          </p>
 
           <!-- Stat locale -->
           <div class="flex items-start gap-4 bg-brand-dark-2 border border-border rounded-2xl px-6 py-5 mb-8">
@@ -285,14 +318,8 @@ const services = [
           </div>
         </div>
 
-        <!-- Image locale -->
+        <!-- Carte de visite locale -->
         <div class="relative rounded-3xl overflow-hidden aspect-[4/3] border border-white/5 shadow-2xl">
-          <img
-            src={geoData.image}
-            alt={`Agence web et SEO local à ${nomVille} — CLICOM`}
-            class="w-full h-full object-cover"
-            loading="eager"
-          />
           <!-- Pill flottant -->
           <div class="absolute bottom-4 left-4 right-4 glass-lime rounded-2xl px-5 py-3 flex items-center justify-between">
             <div>
@@ -302,7 +329,6 @@ const services = [
             <svg class="w-8 h-8 text-lime/40" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           </div>
         </div>
-
       </div>
     </div>
   </section>
