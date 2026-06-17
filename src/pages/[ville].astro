@@ -1,11 +1,11 @@
-D'accord, je te donne le fichier complet et définitif. J'ai intégré **absolument toutes tes données exactes** (les accroches et stats par ville), j'ai protégé les apostrophes pour que le code ne plante pas, supprimé tous les emojis, refermé les bonnes balises `---`, et mis la vidéo avec les bonnes classes Tailwind.
-
-Fais `Ctrl+A` dans ton fichier `src/pages/[ville].astro`, supprime tout, et **copie-colle exactement ce code** :
-
-```astro
 ---
-import Layout     from '../layouts/Layout.astro';
+import Layout from '../layouts/Layout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
+import ContactFormReact from '../components/ui/ContactFormReact';
+import Chatbot from '../components/Chatbot.astro';
+import Testimonials from '../components/Testimonials.astro';
+import FloatingContact from '../components/FloatingContact.astro';
+import CookieBanner from '../components/CookieBanner.astro';
 
 export const prerender = true;
 
@@ -131,7 +131,7 @@ export function getStaticPaths() {
     },
   }));
 }
-
+PARTIE 2/4 : Variables et Schema (À coller à la suite de la partie 1)
 // ─────────────────────────────────────────────────────────────────────────────
 // PROPS & MÉTADONNÉES DYNAMIQUES
 // ─────────────────────────────────────────────────────────────────────────────
@@ -220,15 +220,16 @@ const services = [
 ---
 
 <Layout title={pageTitle} description={pageDescription} image={pageImage} canonical={pageCanonical}>
+  
+  <script type="application/ld+json" set:html={JSON.stringify(schemaLD)} />
 
-  <!-- Section Hero avec Vidéo -->
+  <!-- Section Hero avec Vidéo Responsive -->
   <section class="relative w-full h-[80vh] flex flex-col items-center justify-center overflow-hidden bg-gray-900">
-    <!-- Vidéo en arrière-plan AVEC LA SOURCE -->
+    <!-- Vidéo parfaitement responsive grâce à object-cover avec sa source -->
     <video autoplay loop muted playsinline poster={geoData.imageHero} class="absolute inset-0 w-full h-full object-cover opacity-40">
       <source src="/assets/videos/hero.mp4" type="video/mp4" />
     </video>
     
-    <!-- Contenu dynamique par-dessus la vidéo -->
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <Breadcrumb />
       <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl mt-8">
@@ -240,11 +241,31 @@ const services = [
     </div>
   </section>
 
-  <!-- Section Services -->
+  <!-- Section Présentation avec Image Responsive -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Expertise Digitale à {nomVille}</h2>
+          <p class="text-lg text-gray-600 mb-4">
+            Dans le contexte concurrentiel de {geoData.region}, votre entreprise a besoin d'une visibilité locale agressive.
+          </p>
+          <p class="text-lg text-gray-600">
+            Nous concevons des plateformes web sur-mesure qui attirent, convertissent et fidélisent votre clientèle.
+          </p>
+        </div>
+        <div class="w-full">
+          <!-- Image parfaitement responsive (ne s'écrase jamais) -->
+          <img src={geoData.image} alt={`Agence web SEO à ${nomVille}`} class="w-full h-auto object-cover aspect-video rounded-xl shadow-lg" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- Section Services -->
   <section class="py-16 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 class="text-3xl font-extrabold text-gray-900 mb-12">Nos solutions pour {nomVille}</h2>
-      
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {services.map((service) => (
           <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
@@ -256,5 +277,33 @@ const services = [
     </div>
   </section>
 
+  <!-- Section Image Services Responsive -->
+  {geoData.imageServices && (
+    <section class="py-12 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Image parfaitement responsive (ne s'écrase jamais) -->
+        <img src={geoData.imageServices} alt={`Services marketing digital ${nomVille}`} class="w-full h-auto object-cover aspect-video rounded-xl shadow-md" />
+      </div>
+    </section>
+  )}
+
+  <!-- Section Témoignages (Les vrais avis) -->
+  <Testimonials />
+
+  <!-- Section Call to Action avec ton vrai formulaire React -->
+  <section class="py-16 bg-gray-900 text-white text-center">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-4">Prêt à dominer la recherche à {nomVille} ?</h2>
+      <p class="text-xl text-gray-300 mb-8">Obtenez un audit SEO gratuit et découvrez comment nous pouvons générer des prospects qualifiés pour votre entreprise.</p>
+      <div class="bg-white text-left p-8 rounded-xl shadow-2xl max-w-2xl mx-auto">
+        <ContactFormReact client:visible />
+      </div>
+    </div>
+  </section>
+
+  <!-- Tous tes composants flottants et interactifs -->
+  <Chatbot client:load />
+  <FloatingContact />
+  <CookieBanner />
+
 </Layout>
-```
