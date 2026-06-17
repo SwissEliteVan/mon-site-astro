@@ -253,94 +253,47 @@ const services = [
   <!-- JSON-LD LocalBusiness -->
   <script type="application/ld+json" set:html={JSON.stringify(schemaLD)} />
 
-  <!-- ═══════════════════════════════════════════════════════════════
-       HERO LOCAL - VERSION AVEC VIDEO
-  ═══════════════════════════════════════════════════════════════ -->
-  <section class="relative overflow-hidden bg-brand-dark pt-28 pb-20 px-4">
-    <!-- Halo décoratif -->
-    <div aria-hidden="true" class="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-[radial-gradient(ellipse_at_center,rgba(185,255,102,0.09)_0%,transparent_65%)]"></div>
-
-    <!-- Vidéo d'arrière-plan -->
+  <!-- Section Hero avec Vidéo (100% Responsive, B2B, sans avis) -->
+  <section class="relative w-full h-[80vh] flex flex-col items-center justify-center overflow-hidden bg-gray-900">
+    <!-- Vidéo en arrière-plan -->
     <video 
       autoplay 
       loop 
       muted 
       playsinline 
-      poster={geoData.imageHero}
-      class="w-full h-auto object-cover aspect-video max-h-[80vh] rounded-2xl shadow-2xl block max-w-full"
-    >
-      <source src="/assets/videos/hero-video.mp4" type="video/mp4" />
-      <source src="/assets/videos/hero-video.webm" type="video/webm" />
-      <!-- Fallback pour navigateurs ne supportant pas la vidéo -->
-      <img 
-        src={geoData.imageHero} 
-        alt={`Agence web ${nomVille} - Services digitaux`}
-        class="w-full h-auto object-cover aspect-video max-h-[80vh] rounded-2xl block max-w-full"
-      />
-    </video>
+      poster={geoData.imageHero} 
+      class="absolute inset-0 w-full h-full object-cover aspect-video opacity-40"
+    ></video>
+    
+    <!-- Contenu dynamique par-dessus la vidéo -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <Breadcrumb />
+      <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl mt-8">
+        {geoData.accroche}
+      </h1>
+      <p class="mt-6 text-xl text-gray-200 max-w-2xl mx-auto font-medium">
+        <span class="text-lime-400 font-bold">{geoData.stat}</span> : {geoData.statDesc}
+      </p>
+    </div>
+  </section>
 
-    <div class="max-w-5xl mx-auto relative z-10">
-      <!-- Breadcrumb dynamique -->
-      <div class="mb-10">
-        <Breadcrumb items={[
-          { label: 'SEO Local', href: '/#visibilite' },
-          { label: nomVille },
-        ]} />
-      </div>
-
-      <!-- Titre principal -->
-      <div class="text-center mb-12">
-        <h1 class="font-heading text-[clamp(2rem,4vw,3.5rem)] font-extrabold text-white leading-tight tracking-tight">
-          {geoData.accroche}
-        </h1>
-      </div>
-
-      <!-- Contenu sous la vidéo -->
-      <div class="grid lg:grid-cols-2 gap-12 items-center mt-16">
-        <!-- Texte -->
-        <div>
-          <!-- Badge région -->
-          <div class="inline-flex items-center gap-2 bg-lime-muted border border-lime/25 text-lime text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-6">
-            <span class="w-2 h-2 rounded-full bg-lime animate-pulse" aria-hidden="true"></span>
-            {geoData.region}
+  <!-- Section Services (Propre et sobre) -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-extrabold text-gray-900 mb-12">Nos solutions pour {nomVille}</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {services.map((service) => (
+          <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">{service.titre}</h3>
+            <p class="text-gray-600 text-sm">{service.desc}</p>
           </div>
-
-          <!-- Stat locale -->
-          <div class="flex items-start gap-4 bg-brand-dark-2 border border-border rounded-2xl px-6 py-5 mb-8">
-            <div class="flex-1">
-              <p class="text-3xl font-extrabold text-lime leading-none mb-1">{geoData.stat}</p>
-              <p class="text-sm text-gray-500 leading-snug">{geoData.statDesc}</p>
-            </div>
-          </div>
-
-          <!-- CTA pair -->
-          <div class="flex flex-wrap gap-3">
-            <a href="/#contact" class="inline-flex items-center gap-2 bg-lime text-brand-dark font-extrabold px-7 py-3.5 rounded-xl hover:bg-lime-hover hover:-translate-y-0.5 transition-all shadow-lime text-sm">
-              Audit gratuit à {nomVille}
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-            </a>
-            <a href="tel:+41788238950" class="inline-flex items-center gap-2 border border-border text-gray-300 font-semibold px-6 py-3.5 rounded-xl hover:border-border-strong hover:text-white transition-all text-sm">
-              <svg class="w-4 h-4 text-lime" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 015.19 12a19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-              Rappel sous 2h
-            </a>
-          </div>
-        </div>
-
-        <!-- Carte de visite locale -->
-        <div class="relative rounded-3xl overflow-hidden aspect-[4/3] border border-white/5 shadow-2xl">
-          <!-- Pill flottant -->
-          <div class="absolute bottom-4 left-4 right-4 glass-lime rounded-2xl px-5 py-3 flex items-center justify-between">
-            <div>
-              <p class="text-xs text-gray-400 font-medium">Code postal</p>
-              <p class="text-lime font-extrabold text-lg leading-none">{geoData.cp} {nomVille}</p>
-            </div>
-            <svg class="w-8 h-8 text-lime/40" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   </section>
 
+</Layout>
   <!-- ═══════════════════════════════════════════════════════════════
        AVIS NÉGATIFS
   ═══════════════════════════════════════════════════════════════ -->
