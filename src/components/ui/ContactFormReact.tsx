@@ -69,9 +69,9 @@ interface FieldProps {
   children:      React.ReactNode;
 }
 
-const Field: React.FC<FieldProps> = ({ label, required, error, errorId, children }) => (
+const Field: React.FC<FieldProps> = ({ id, label, required, error, errorId, children }) => (
   <div className="flex flex-col gap-1.5">
-    <label className="text-sm font-medium text-gray-400">
+    <label htmlFor={id} className="text-sm font-medium text-gray-400">
       {label}
       {required && <span className="text-lime ml-1" aria-hidden="true">*</span>}
     </label>
@@ -114,9 +114,9 @@ const ContactFormReact: React.FC<ContactFormProps> = ({
     (field: keyof ContactFormData) =>
       (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const value = e.target.value;
-        setFormData(prev => ({ ...prev, [field]: value }));
+        setFormData((prev: ContactFormData) => ({ ...prev, [field]: value }));
         if (errors[field as keyof ContactFormErrors]) {
-          setErrors(prev => ({ ...prev, [field]: undefined }));
+          setErrors((prev: ContactFormErrors) => ({ ...prev, [field]: undefined }));
         }
       },
     [errors],

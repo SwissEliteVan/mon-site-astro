@@ -258,7 +258,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     const { error } = await resend.emails.send({
       from: 'CLICOM <noreply@clicom.ch>',
       to: ['ms@clicom.ch'],
-      replyTo: sanitizedData.email,
+      reply_to: sanitizedData.email,
       subject: `Nouveau message de ${sanitizedData.name}`,
       text: `
 Nom: ${sanitizedData.name}

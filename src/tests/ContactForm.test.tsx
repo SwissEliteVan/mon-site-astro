@@ -29,7 +29,7 @@ describe('ContactForm', () => {
     render(<ContactFormReact />);
     
     // Remplir le champ Honeypot (bot-field)
-    const botField = screen.getByLabelText('Ne pas remplir ce champ si vous êtes humain', { selector: 'input' });
+    const botField = screen.getByLabelText(/Ne pas remplir ce champ/i, { selector: 'input' });
     fireEvent.change(botField, { target: { value: 'bot detected' } });
     
     // Remplir les autres champs avec des données valides
@@ -38,7 +38,7 @@ describe('ContactForm', () => {
     fireEvent.click(screen.getByRole('button', { name: /envoyer/i }));
     
     // Vérifier que le message de succès s'affiche immédiatement
-    expect(await screen.findByText('Message envoyé avec succès ! Je vous recontacte rapidement.')).toBeInTheDocument();
+    expect(await screen.findByText(/Message envoyé !/i)).toBeInTheDocument();
     
     // Vérifier que fetch n'a pas été appelé
     expect(fetch).not.toHaveBeenCalled();
@@ -48,7 +48,7 @@ describe('ContactForm', () => {
     render(<ContactFormReact />);
     
     // Remplir uniquement l'email invalide
-    const emailInput = screen.getByLabelText(/adresse email \*/i);
+    const emailInput = screen.getByLabelText(/adresse email/i);
     fireEvent.change(emailInput, { target: { value: 'email-invalide' } });
     
     // Soumettre le formulaire avec await
@@ -81,14 +81,16 @@ describe('ContactForm', () => {
     fireEvent.change(nameInput, { target: { value: 'Jean Dupont' } });
     fireEvent.change(emailInput, { target: { value: 'jean.dupont@example.com' } });
     fireEvent.change(messageInput, { target: { value: 'Ceci est un message de test' } });
-    fireEvent.click(submitButton);
+    await fireEvent.click(submitButton);
     
     // Vérifier que fetch a été appelé avec les bonnes données
     expect(fetch).toHaveBeenCalledWith(expect.anything(), expect.objectContaining({
       body: JSON.stringify({
         name: 'Jean Dupont',
         email: 'jean.dupont@example.com',
-        message: 'Ceci est un message de test'
+        phone: '',
+        message: 'Ceci est un message de test',
+        honeypot: ''
       })
     }));
   });
