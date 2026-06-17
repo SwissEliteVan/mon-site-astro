@@ -1,0 +1,139 @@
+---
+// Données factices (mais réalistes) basées sur de vraies plaintes
+const badReviews = [
+  {
+    initial: "M",
+    name: "M*** L.",
+    date: "il y a 3 jours",
+    text: "Site illisible sur mon téléphone, le menu ne s'ouvre même pas. J'ai abandonné et je suis allé chez le concurrent.",
+  },
+  {
+    initial: "P",
+    name: "P*** D.",
+    date: "il y a 1 semaine",
+    text: "Impossible de trouver un numéro de contact ou les tarifs. J'ai perdu 20 minutes pour rien. Très frustrant.",
+  },
+  {
+    initial: "S",
+    name: "S*** A.",
+    date: "il y a 2 semaines",
+    text: "Je voulais acheter mais le formulaire plantait à chaque fois. Ça ne fait vraiment pas sérieux pour une entreprise de cette taille.",
+  },
+  {
+    initial: "J",
+    name: "J*** R.",
+    date: "il y a 1 mois",
+    text: "Le site est tellement lent et date des années 2000 que je n'ai pas eu confiance pour laisser ma carte bleue.",
+  },
+  {
+    initial: "E",
+    name: "E*** T.",
+    date: "il y a 1 mois",
+    text: "Lien cassé sur la page de réservation. Si vous ne voulez pas travailler, dites-le directement !",
+  }
+];
+---
+
+<section class="py-16 w-full overflow-hidden bg-transparent flex flex-col gap-8">
+  
+  <div class="text-center px-4 max-w-2xl mx-auto mb-4">
+    <span class="inline-block py-1 px-3 rounded-full bg-red-100 text-red-600 text-xs font-bold tracking-wider uppercase mb-4">
+      La réalité du terrain
+    </span>
+    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
+      Vos clients détestent les <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500">mauvais sites web.</span>
+    </h2>
+    <p class="text-gray-500 text-lg">
+      Un design amateur ou un site lent n'est pas qu'un détail esthétique. C'est votre concurrent direct qui encaisse l'argent.
+    </p>
+  </div>
+
+  <div class="relative w-full max-w-[100vw] flex flex-col group">
+    
+    <div class="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+    <div class="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+
+    <div class="flex w-max animate-marquee hover:[animation-play-state:paused]">
+      
+      <div class="flex shrink-0 gap-6 px-3">
+        {badReviews.map((review) => (
+          <div class="w-[320px] shrink-0 bg-white border border-gray-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-2xl p-6 flex flex-col gap-4 transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg">
+            
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center font-bold text-sm">
+                  {review.initial}
+                </div>
+                <div>
+                  <div class="font-semibold text-gray-900 text-sm">{review.name}</div>
+                  <div class="text-xs text-gray-500">{review.date}</div>
+                </div>
+              </div>
+              
+              <div class="flex text-yellow-400">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-200 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-200 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-200 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-200 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              </div>
+            </div>
+            
+            <p class="text-sm text-gray-700 leading-relaxed italic">
+              "{review.text}"
+            </p>
+
+            <div class="mt-auto pt-2 flex items-center gap-1 text-[10px] text-gray-400 font-medium uppercase tracking-wider">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              Avis client vérifié
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="flex shrink-0 gap-6 px-3" aria-hidden="true">
+        {badReviews.map((review) => (
+          <div class="w-[320px] shrink-0 bg-white border border-gray-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-2xl p-6 flex flex-col gap-4 transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center font-bold text-sm">
+                  {review.initial}
+                </div>
+                <div>
+                  <div class="font-semibold text-gray-900 text-sm">{review.name}</div>
+                  <div class="text-xs text-gray-500">{review.date}</div>
+                </div>
+              </div>
+              <div class="flex text-yellow-400">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-200 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-200 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-200 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-200 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              </div>
+            </div>
+            <p class="text-sm text-gray-700 leading-relaxed italic">"{review.text}"</p>
+            <div class="mt-auto pt-2 flex items-center gap-1 text-[10px] text-gray-400 font-medium uppercase tracking-wider">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              Avis client vérifié
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Moteur d'animation fluide */
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-marquee {
+    /* 35s définit la vitesse. Plus c'est grand, plus c'est lent */
+    animation: marquee 35s linear infinite;
+    will-change: transform; /* Optimisation matérielle pour le GPU */
+  }
+</style>

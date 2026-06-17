@@ -1,6 +1,7 @@
 ---
 import Layout     from '../layouts/Layout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
+import BadReviews from '../components/BadReviews.astro';
 
 export const prerender = true;
 
@@ -339,6 +340,11 @@ const services = [
       </div>
     </div>
   </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       AVIS NÉGATIFS
+  ═══════════════════════════════════════════════════════════════ -->
+  <BadReviews />
 
   <!-- ═══════════════════════════════════════════════════════════════
        SERVICES

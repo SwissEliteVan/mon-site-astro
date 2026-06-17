@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import ContactFormReact from '../components/ui/ContactFormReact.tsx';
 import Chatbot from '../components/Chatbot.astro';
+import BadReviews from '../components/BadReviews.astro';
 
 // Métadonnées SEO enrichies
 export const metadata = {
@@ -185,6 +186,11 @@ const featuredPosts = allBlogPosts.slice(0, 3);
       </div>
     </div>
   </section>
+
+  <!-- ============================================= -->
+  <!-- SECTION : AVIS NÉGATIFS -->
+  <!-- ============================================= -->
+  <BadReviews />
 
   <!-- ============================================= -->
   <!-- SECTION : CREATION DE SITES -->
