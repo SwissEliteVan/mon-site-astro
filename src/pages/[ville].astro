@@ -222,22 +222,18 @@ const schemaLD = {
 // Services affichés sur la page
 const services = [
   {
-    icon: '🌐',
     titre: 'Site internet sur-mesure',
     desc:  `Création de sites rapides, sécurisés et conformes nLPD — conçus pour convertir les visiteurs de ${nomVille} en clients.`,
   },
   {
-    icon: '📍',
     titre: 'SEO local & Google Maps',
     desc:  `Positionnement dans le top 3 de Google Maps pour votre activité à ${nomVille}. 73 % des recherches locales aboutissent à une visite sous 24h.`,
   },
   {
-    icon: '🎯',
     titre: 'Google Ads & Meta Ads',
     desc:  `Campagnes publicitaires géolocalisées sur ${nomVille} et ${geoData.region}. Chaque franc CHF investi est tracé et optimisé.`,
   },
   {
-    icon: '🤖',
     titre: 'Agents IA & Automatisation',
     desc:  `Chatbot qualifiant, relances SMS, emailing automatisé — vos prospects de ${nomVille} reçoivent la bonne réponse au bon moment.`,
   },
@@ -317,7 +313,6 @@ const services = [
       <div class="grid sm:grid-cols-2 gap-5">
         {services.map(s => (
           <div class="bg-brand-dark border border-border rounded-2xl p-6 hover:border-border-lime hover:-translate-y-0.5 transition-all duration-200 group">
-            <span class="text-3xl mb-4 block" aria-hidden="true">{s.icon}</span>
             <h3 class="font-heading text-base font-bold text-white mb-2 group-hover:text-lime transition-colors">{s.titre}</h3>
             <p class="text-sm text-gray-500 leading-relaxed">{s.desc}</p>
           </div>
