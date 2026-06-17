@@ -16,6 +16,9 @@ export const metadata = {
   }
 };
 
+// Image Hero pour le poster de la vidéo
+const imageHero = "/assets/images/clicom-agence-web-suisse-romande.webp";
+
 const allBlogPosts = await getCollection('blog');
 const featuredPosts = allBlogPosts.slice(0, 3);
 ---
@@ -121,17 +124,27 @@ const featuredPosts = allBlogPosts.slice(0, 3);
         </div>
       </div>
 
-      <!-- Colonne droite : Image -->
+      <!-- Colonne droite : Vidéo Hero -->
       <div class="hidden lg:block relative">
         <div class="relative z-10">
-          <img 
-            src="/assets/images/clicom-agence-web-suisse-romande.webp" 
-            alt="Agence Clicom - Création de sites web en Suisse" 
-            width="600" 
-            height="600"
+          <video 
+            autoplay 
+            loop 
+            muted 
+            playsinline 
+            poster={imageHero}
             class="rounded-2xl shadow-2xl object-cover w-full aspect-square"
             loading="eager"
-          />
+          >
+            <source src="/assets/videos/hero-video.mp4" type="video/mp4" />
+            <source src="/assets/videos/hero-video.webm" type="video/webm" />
+            <!-- Fallback pour navigateurs ne supportant pas la vidéo -->
+            <img 
+              src={imageHero} 
+              alt="Agence Clicom - Création de sites web en Suisse"
+              class="rounded-2xl shadow-2xl object-cover w-full aspect-square"
+            />
+          </video>
         </div>
         <!-- Élément décoratif -->
         <div class="absolute -bottom-6 -left-6 w-48 h-48 border-2 border-[#B9FF66]/20 rounded-full -z-10"></div>

@@ -259,16 +259,23 @@ const services = [
     <!-- Halo décoratif -->
     <div aria-hidden="true" class="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-[radial-gradient(ellipse_at_center,rgba(185,255,102,0.09)_0%,transparent_65%)]"></div>
 
-    <!-- Video d'arrière-plan -->
+    <!-- Vidéo d'arrière-plan -->
     <video 
       autoplay 
       loop 
       muted 
       playsinline 
       poster={geoData.imageHero}
-      class="w-full h-auto object-cover aspect-video max-h-[80vh]"
+      class="w-full h-auto object-cover aspect-video max-h-[80vh] rounded-2xl shadow-2xl"
     >
-      <!-- Source vidéo à ajouter ultérieurement -->
+      <source src="/assets/videos/hero-video.mp4" type="video/mp4" />
+      <source src="/assets/videos/hero-video.webm" type="video/webm" />
+      <!-- Fallback pour navigateurs ne supportant pas la vidéo -->
+      <img 
+        src={geoData.imageHero} 
+        alt={`Agence web ${nomVille} - Services digitaux`}
+        class="w-full h-auto object-cover aspect-video max-h-[80vh] rounded-2xl"
+      />
     </video>
 
     <div class="max-w-5xl mx-auto relative z-10">
