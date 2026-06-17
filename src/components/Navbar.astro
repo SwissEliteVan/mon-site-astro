@@ -1,102 +1,151 @@
 ---
 // src/components/Navbar.astro
 const navItems = [
-  { name: "Accueil", href: "/" },
-  { name: "Création", href: "/#creation" },
-  { name: "Visibilité", href: "/#visibilite" },
-  { name: "Publicité", href: "/#publicite" },
+  { name: "Accueil",      href: "/" },
+  { name: "Création",     href: "/#creation" },
+  { name: "Visibilité",   href: "/#visibilite" },
+  { name: "Publicité",    href: "/#publicite" },
   { name: "Fidélisation", href: "/#fidelisation" },
-  { name: "Équipe", href: "/#equipe" },
-  { name: "Tarifs", href: "/#tarifs" },
-  { name: "Blog", href: "/blog" },
-  { name: "Contact", href: "/#contact" },
+  { name: "Équipe",       href: "/#equipe" },
+  { name: "Tarifs",       href: "/#tarifs" },
+  { name: "Blog",         href: "/blog" },
+  { name: "Contact",      href: "/#contact" },
 ];
 ---
 
-<nav class="navbar">
-  <div class="navbar-container">
-    <a href="/" class="navbar-logo">CLICOM</a>
-    
-    <div class="navbar-menu">
+<nav
+  id="navbar"
+  class="fixed top-0 inset-x-0 z-50 bg-brand-dark/95 backdrop-blur-md border-b border-white/10 transition-shadow duration-300"
+  aria-label="Navigation principale"
+>
+  <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2 font-heading font-black text-xl text-lime tracking-widest hover:text-lime-hover transition-colors" aria-label="CLICOM — Accueil">
+      <span class="w-7 h-7 bg-lime rounded-md flex items-center justify-center flex-shrink-0" aria-hidden="true">
+        <svg width="14" height="14" fill="none" stroke="#191A23" viewBox="0 0 24 24" stroke-width="3">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+        </svg>
+      </span>
+      CLICOM
+    </a>
+
+    <!-- Liens desktop -->
+    <div class="hidden md:flex items-center gap-1" role="list">
       {navItems.map(item => (
-        <a 
-          href={item.href} 
-          class="navbar-link"
+        <a
+          href={item.href}
+          role="listitem"
+          class="relative px-3 py-2 text-sm font-medium text-white/75 hover:text-white transition-colors rounded-lg hover:bg-white/5 group"
           data-active={Astro.url.pathname === item.href ? 'true' : 'false'}
+        >
+          {item.name}
+          <!-- Indicateur actif -->
+          <span
+            aria-hidden="true"
+            class="absolute bottom-0 left-3 right-3 h-0.5 bg-lime rounded-full scale-x-0 transition-transform duration-200 group-data-[active=true]:scale-x-100 data-[active=true]:scale-x-100"
+          ></span>
+        </a>
+      ))}
+    </div>
+
+    <!-- CTA desktop -->
+    <a
+      href="/#contact"
+      class="hidden md:inline-flex items-center gap-2 bg-lime text-brand-dark font-bold text-sm px-5 py-2.5 rounded-xl hover:bg-lime-hover transition-all hover:scale-105 shadow-lime"
+    >
+      Audit gratuit
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+      </svg>
+    </a>
+
+    <!-- Bouton hamburger mobile -->
+    <button
+      id="nav-toggle"
+      type="button"
+      aria-controls="mobile-menu"
+      aria-expanded="false"
+      aria-label="Ouvrir le menu"
+      class="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 rounded-lg hover:bg-white/10 transition-colors"
+    >
+      <span id="bar-1" class="block w-5 h-0.5 bg-white rounded-full transition-all duration-300"></span>
+      <span id="bar-2" class="block w-5 h-0.5 bg-white rounded-full transition-all duration-300"></span>
+      <span id="bar-3" class="block w-5 h-0.5 bg-white rounded-full transition-all duration-300"></span>
+    </button>
+
+  </div>
+
+  <!-- Menu mobile -->
+  <div
+    id="mobile-menu"
+    role="dialog"
+    aria-label="Menu mobile"
+    aria-modal="false"
+    class="md:hidden overflow-hidden max-h-0 transition-all duration-300 ease-in-out border-t border-white/0"
+  >
+    <div class="px-4 py-4 flex flex-col gap-1 bg-brand-dark">
+      {navItems.map(item => (
+        <a
+          href={item.href}
+          class="px-4 py-3 text-sm font-medium text-white/80 hover:text-white hover:bg-white/5 rounded-xl transition-colors data-[active=true]:text-lime data-[active=true]:bg-lime-muted"
+          data-active={Astro.url.pathname === item.href ? 'true' : 'false'}
+          data-mobile-link
         >
           {item.name}
         </a>
       ))}
+      <!-- CTA mobile -->
+      <a
+        href="/#contact"
+        data-mobile-link
+        class="mt-2 flex items-center justify-center gap-2 bg-lime text-brand-dark font-bold text-sm px-5 py-3 rounded-xl hover:bg-lime-hover transition-all"
+      >
+        Audit gratuit →
+      </a>
     </div>
   </div>
 </nav>
 
-<style>
-  .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 50;
-    background-color: rgba(25, 26, 35, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 1rem 0;
-  }
+<script>
+  const toggle    = document.getElementById('nav-toggle')!;
+  const menu      = document.getElementById('mobile-menu')!;
+  const bar1      = document.getElementById('bar-1')!;
+  const bar2      = document.getElementById('bar-2')!;
+  const bar3      = document.getElementById('bar-3')!;
+  const mobileLinks = document.querySelectorAll('[data-mobile-link]');
+  let open = false;
 
-  .navbar-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
+  function setOpen(value: boolean) {
+    open = value;
+    toggle.setAttribute('aria-expanded', String(value));
 
-  .navbar-logo {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: #B9FF66;
-    text-decoration: none;
-  }
-
-  .navbar-menu {
-    display: flex;
-    gap: 1.5rem;
-  }
-
-  .navbar-link {
-    color: rgba(255, 255, 255, 0.8);
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 0.9rem;
-    padding: 0.5rem;
-    transition: color 0.2s;
-    position: relative;
-  }
-
-  .navbar-link:hover {
-    color: #fff;
-  }
-
-  .navbar-link[data-active="true"] {
-    color: #B9FF66;
-  }
-
-  .navbar-link[data-active="true"]::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0.5rem;
-    right: 0.5rem;
-    height: 2px;
-    background-color: #B9FF66;
-    border-radius: 2px;
-  }
-
-  @media (max-width: 768px) {
-    .navbar-menu {
-      display: none;
+    if (value) {
+      menu.style.maxHeight = menu.scrollHeight + 'px';
+      menu.classList.replace('border-white/0', 'border-white/10');
+      // X animation
+      bar1.style.transform = 'translateY(8px) rotate(45deg)';
+      bar2.style.opacity   = '0';
+      bar3.style.transform = 'translateY(-8px) rotate(-45deg)';
+    } else {
+      menu.style.maxHeight = '0px';
+      menu.classList.replace('border-white/10', 'border-white/0');
+      bar1.style.transform = '';
+      bar2.style.opacity   = '1';
+      bar3.style.transform = '';
     }
   }
-</style>
+
+  toggle.addEventListener('click', () => setOpen(!open));
+
+  // Ferme le menu quand on clique sur un lien
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => setOpen(false));
+  });
+
+  // Scroll shadow
+  const navbar = document.getElementById('navbar')!;
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('shadow-glass', window.scrollY > 10);
+  }, { passive: true });
+</script>

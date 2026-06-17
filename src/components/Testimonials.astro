@@ -1,177 +1,78 @@
 ---
 const testimonials = [
   {
-    quote: "En 8 mois, mon restaurant apparaît en premier sur Google Maps à Vevey. Le téléphone sonne vraiment plus souvent.",
-    name: "Karim B.",
-    role: "Restaurateur, Vevey",
+    quote:    "En 8 mois, mon restaurant apparaît en premier sur Google Maps à Vevey. Le téléphone sonne vraiment plus souvent.",
+    name:     "Karim B.",
+    role:     "Restaurateur, Vevey",
     initials: "KB",
   },
   {
-    quote: "Le site charge en moins d'une seconde. Mes clients me le disent. Et depuis, j'ai clairement plus de demandes de devis.",
-    name: "Sandra M.",
-    role: "Architecte d'intérieur, Lausanne",
+    quote:    "Le site charge en moins d'une seconde. Mes clients me le disent. Et depuis, j'ai clairement plus de demandes de devis.",
+    name:     "Sandra M.",
+    role:     "Architecte d'intérieur, Lausanne",
     initials: "SM",
   },
   {
-    quote: "Mohamed a expliqué la nLPD en 10 minutes. J'ai compris ce que je risquais et maintenant je suis serein.",
-    name: "Patrick L.",
-    role: "Fiduciaire indépendant, Montreux",
+    quote:    "Mohamed a expliqué la nLPD en 10 minutes. J'ai compris ce que je risquais et maintenant je suis serein.",
+    name:     "Patrick L.",
+    role:     "Fiduciaire indépendant, Montreux",
     initials: "PL",
   },
 ];
 ---
 
-<section class="testi-section">
-  <div class="testi-inner">
+<section class="w-full bg-brand-dark-2 border-t border-border py-24 px-4">
+  <div class="max-w-7xl mx-auto">
 
-    <div class="testi-header">
-      <span class="section-label">Ils nous font confiance</span>
-      <h2 class="testi-title">Ce que disent les patrons de PME romandes</h2>
-      <p class="testi-sub">Des vrais clients, de vrais résultats. Zéro témoignage inventé.</p>
+    <!-- En-tête -->
+    <div class="text-center mb-14">
+      <span class="inline-block text-[0.6875rem] font-extrabold tracking-[0.10em] uppercase text-lime bg-lime-muted border border-lime/25 px-4 py-1.5 rounded-full mb-4">
+        Ils nous font confiance
+      </span>
+      <h2 class="font-heading text-[clamp(1.75rem,3vw,2.25rem)] font-extrabold text-white mb-3">
+        Ce que disent les patrons de PME romandes
+      </h2>
+      <p class="text-[0.9375rem] text-gray-500">
+        Des vrais clients, de vrais résultats. Zéro témoignage inventé.
+      </p>
     </div>
 
-    <div class="testi-grid">
-      {testimonials.map((t, i) => (
-        <figure class="testi-card">
+    <!-- Grille -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {testimonials.map((t) => (
+        <figure class="bg-brand-dark border border-border rounded-3xl p-8 flex flex-col gap-5 m-0 hover:border-border-lime hover:-translate-y-0.5 transition-all duration-200">
+
           <!-- Étoiles -->
-          <div class="testi-stars" aria-label="5 étoiles sur 5">
+          <div class="flex gap-1" aria-label="5 étoiles sur 5">
             {[1,2,3,4,5].map(() => (
-              <svg class="star-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <svg class="w-[1.125rem] h-[1.125rem] text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
               </svg>
             ))}
           </div>
 
-          <blockquote class="testi-quote">
-            <p>"{t.quote}"</p>
+          <!-- Citation -->
+          <blockquote class="flex-1 m-0">
+            <p class="text-[0.9375rem] text-gray-300 leading-[1.7] italic">"{t.quote}"</p>
           </blockquote>
 
-          <figcaption class="testi-author">
-            <div class="author-avatar">{t.initials}</div>
+          <!-- Auteur -->
+          <figcaption class="flex items-center gap-3.5 pt-5 border-t border-border">
+            <div
+              aria-hidden="true"
+              class="w-10 h-10 rounded-full bg-lime-muted border border-lime/25 text-lime text-xs font-extrabold flex items-center justify-center flex-shrink-0 tracking-wider"
+            >
+              {t.initials}
+            </div>
             <div>
-              <p class="author-name">{t.name}</p>
-              <p class="author-role">{t.role}</p>
+              <p class="text-sm font-bold text-white m-0">{t.name}</p>
+              <p class="text-xs text-gray-500 m-0">{t.role}</p>
             </div>
           </figcaption>
+
         </figure>
       ))}
     </div>
 
   </div>
 </section>
-
-<style>
-  .testi-section {
-    padding: 6rem 1rem;
-    background-color: var(--color-brand-dark-2);
-    border-top: 1px solid var(--color-border);
-  }
-
-  .testi-inner {
-    max-width: 80rem;
-    margin: 0 auto;
-  }
-
-  .testi-header {
-    text-align: center;
-    margin-bottom: 3.5rem;
-  }
-
-  .testi-title {
-    font-size: clamp(1.75rem, 3vw, 2.25rem);
-    font-weight: 800;
-    color: #fff;
-    margin-bottom: 0.75rem;
-  }
-
-  .testi-sub {
-    color: #6b7280;
-    font-size: 0.9375rem;
-  }
-
-  .testi-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
-    gap: 1.5rem;
-  }
-
-  .testi-card {
-    background-color: var(--color-brand-dark);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-3xl);
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    margin: 0;
-    transition: border-color 0.2s ease, transform 0.2s ease;
-  }
-
-  .testi-card:hover {
-    border-color: var(--color-border-lime);
-    transform: translateY(-2px);
-  }
-
-  /* Étoiles */
-  .testi-stars {
-    display: flex;
-    gap: 0.25rem;
-  }
-
-  .star-icon {
-    width: 1.125rem;
-    height: 1.125rem;
-    color: #facc15;
-  }
-
-  /* Citation */
-  .testi-quote {
-    flex: 1;
-    margin: 0;
-  }
-
-  .testi-quote p {
-    font-size: 0.9375rem;
-    color: #d1d5db;
-    line-height: 1.7;
-    font-style: italic;
-  }
-
-  /* Auteur */
-  .testi-author {
-    display: flex;
-    align-items: center;
-    gap: 0.875rem;
-    padding-top: 1.25rem;
-    border-top: 1px solid var(--color-border);
-  }
-
-  .author-avatar {
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 50%;
-    background-color: var(--color-brand-lime-muted);
-    border: 1px solid var(--color-border-lime);
-    color: var(--color-brand-lime);
-    font-size: 0.75rem;
-    font-weight: 800;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    letter-spacing: 0.05em;
-  }
-
-  .author-name {
-    font-weight: 700;
-    font-size: 0.875rem;
-    color: #fff;
-    margin: 0;
-  }
-
-  .author-role {
-    font-size: 0.75rem;
-    color: #6b7280;
-    margin: 0;
-  }
-</style>

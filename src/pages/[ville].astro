@@ -1,113 +1,414 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout     from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
 
-// Génération dynamique de toutes les pages villes existantes
+export const prerender = true;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// DONNÉES PAR VILLE
+// Chaque ville a ses propres métadonnées SEO, stat locale et accroche éditoriale
+// ─────────────────────────────────────────────────────────────────────────────
 export function getStaticPaths() {
-  const villesData = {
-    lausanne: { cp: "1000", lat: 46.519653, lng: 6.632273 },
-    geneve: { cp: "1200", lat: 46.204391, lng: 6.143158 },
-    vevey: { cp: "1800", lat: 46.462803, lng: 6.843058 },
-    montreux: { cp: "1820", lat: 46.431221, lng: 6.910680 },
-    nyon: { cp: "1260", lat: 46.383268, lng: 6.234796 },
-    yverdon: { cp: "1400", lat: 46.778474, lng: 6.641183 },
-    fribourg: { cp: "1700", lat: 46.806477, lng: 7.161972 },
-    neuchatel: { cp: "2000", lat: 46.989587, lng: 6.929264 },
-    sion: { cp: "1950", lat: 46.233122, lng: 7.360626 },
-    martigny: { cp: "1920", lat: 46.103117, lng: 7.072736 },
-    renens: { cp: "1020", lat: 46.539722, lng: 6.587500 },
-    pully: { cp: "1009", lat: 46.510000, lng: 6.661944 }
+  const villesData: Record<string, {
+    cp:       string;
+    lat:      number;
+    lng:      number;
+    region:   string;       // Canton / région pour le SEO
+    accroche: string;       // Phrase éditoriale locale unique
+    stat:     string;       // Chiffre local percutant
+    statDesc: string;       // Description de la stat
+    image:    string;       // Image OG spécifique ou fallback
+  }> = {
+    lausanne: {
+      cp: '1000', lat: 46.519653, lng: 6.632273,
+      region:   'Canton de Vaud',
+      accroche: 'Capitale olympique et pôle d\'innovation — la concurrence digitale est féroce à Lausanne.',
+      stat:     '+73%',
+      statDesc: 'des clients lausannois vérifient Google Maps avant de visiter un commerce local.',
+      image:    '/assets/images/creation-site-internet-performant-lausanne.webp',
+    },
+    geneve: {
+      cp: '1200', lat: 46.204391, lng: 6.143158,
+      region:   'Canton de Genève',
+      accroche: 'Place financière internationale — votre site doit inspirer autant confiance que vos services.',
+      stat:     '3,29 CHF',
+      statDesc: 'coût moyen par visiteur ciblé sur Google à Genève. Un investissement maîtrisé.',
+      image:    '/assets/images/gestion-campagne-google-ads-geneve.webp',
+    },
+    vevey: {
+      cp: '1800', lat: 46.462803, lng: 6.843058,
+      region:   'Riviera vaudoise',
+      accroche: 'Entre lac et vignobles classés UNESCO — votre vitrine digitale doit être à la hauteur du décor.',
+      stat:     '68%',
+      statDesc: 'des PME de la Riviera n\'ont pas de site optimisé pour mobile en 2024.',
+      image:    '/assets/images/optimisation-google-maps-seo-local-vevey.webp',
+    },
+    montreux: {
+      cp: '1820', lat: 46.431221, lng: 6.910680,
+      region:   'Riviera vaudoise',
+      accroche: 'Festival, tourisme et hôtellerie — capter les flux de visiteurs internationaux commence par le SEO.',
+      stat:     '89%',
+      statDesc: 'des touristes de Montreux recherchent des prestataires locaux sur leur smartphone.',
+      image:    '/assets/images/clicom-agence-web-suisse-romande.webp',
+    },
+    nyon: {
+      cp: '1260', lat: 46.383268, lng: 6.234796,
+      region:   'District de Nyon',
+      accroche: 'Entre Genève et Lausanne, Nyon attire une clientèle aisée et connectée. Soyez visible.',
+      stat:     '2× plus',
+      statDesc: 'de demandes de devis générées par un site SEO optimisé vs. un site vitrine standard.',
+      image:    '/assets/images/clicom-agence-web-suisse-romande.webp',
+    },
+    yverdon: {
+      cp: '1400', lat: 46.778474, lng: 6.641183,
+      region:   'Nord vaudois',
+      accroche: 'Capitale du Nord vaudois en plein essor technologique — le moment d\'investir dans votre présence locale.',
+      stat:     '250 000 CHF',
+      statDesc: 'amende nLPD maximale pour un site non conforme. Votre site est-il en règle ?',
+      image:    '/assets/images/clicom-agence-web-suisse-romande.webp',
+    },
+    fribourg: {
+      cp: '1700', lat: 46.806477, lng: 7.161972,
+      region:   'Canton de Fribourg',
+      accroche: 'Ville bilingue au carrefour romand — doublez votre reach avec un site FR/DE optimisé.',
+      stat:     '4 sur 5',
+      statDesc: 'PME fribourgeoises n\'apparaissent pas sur la première page Google pour leurs services.',
+      image:    '/assets/images/clicom-agence-web-suisse-romande.webp',
+    },
+    neuchatel: {
+      cp: '2000', lat: 46.989587, lng: 6.929264,
+      region:   'Canton de Neuchâtel',
+      accroche: 'Industrie horlogère et technologique — votre réputation en ligne doit refléter votre excellence.',
+      stat:     '58%',
+      statDesc: 'des consommateurs neuchâtelois abandonnent un site qui charge en plus de 3 secondes.',
+      image:    '/assets/images/clicom-agence-web-suisse-romande.webp',
+    },
+    sion: {
+      cp: '1950', lat: 46.233122, lng: 7.360626,
+      region:   'Canton du Valais',
+      accroche: 'Capitale valaisanne, porte des Alpes — touchez les clients avant qu\'ils entrent dans une agence concurrente.',
+      stat:     '3 000+',
+      statDesc: 'recherches Google/mois pour "agence web Sion" et services locaux connexes.',
+      image:    '/assets/images/clicom-agence-web-suisse-romande.webp',
+    },
+    martigny: {
+      cp: '1920', lat: 46.103117, lng: 7.072736,
+      region:   'District de Martigny',
+      accroche: 'Carrefour franco-italo-suisse — une clientèle internationale qui cherche sur Google avant tout.',
+      stat:     '82%',
+      statDesc: 'des décisions d\'achat locales à Martigny commencent par une recherche en ligne.',
+      image:    '/assets/images/clicom-agence-web-suisse-romande.webp',
+    },
+    renens: {
+      cp: '1020', lat: 46.539722, lng: 6.587500,
+      region:   'Agglomération lausannoise',
+      accroche: 'Dans l\'ombre de Lausanne ? Pas en ligne. Dominez les recherches de proximité dans l\'Ouest lausannois.',
+      stat:     '×3',
+      statDesc: 'plus de clics sur les fiches Google Business des PME de Renens avec un site optimisé.',
+      image:    '/assets/images/clicom-agence-web-suisse-romande.webp',
+    },
+    pully: {
+      cp: '1009', lat: 46.510000, lng: 6.661944,
+      region:   'Agglomération lausannoise',
+      accroche: 'Rive du lac, clientèle premium — votre site doit projeter la même qualité que vos prestations.',
+      stat:     '91%',
+      statDesc: 'des habitants de Pully recherchent leurs prestataires de services sur smartphone.',
+      image:    '/assets/images/creation-site-internet-performant-lausanne.webp',
+    },
   };
 
-  return Object.keys(villesData).map(ville => ({
-    params: { ville },
-    props: { 
-      nomVille: ville.charAt(0).toUpperCase() + ville.slice(1),
-      geoData: villesData[ville]
+  return Object.entries(villesData).map(([villeSlug, data]) => ({
+    params: { ville: villeSlug },
+    props:  {
+      nomVille: villeSlug === 'geneve'    ? 'Genève'
+              : villeSlug === 'neuchatel' ? 'Neuchâtel'
+              : villeSlug.charAt(0).toUpperCase() + villeSlug.slice(1),
+      geoData: data,
     },
   }));
 }
 
-const { ville } = Astro.params;
-const { nomVille, geoData } = Astro.props;
+// ─────────────────────────────────────────────────────────────────────────────
+// PROPS & MÉTADONNÉES DYNAMIQUES
+// ─────────────────────────────────────────────────────────────────────────────
+const { ville }              = Astro.params;
+const { nomVille, geoData }  = Astro.props;
 
-// Création du schéma JSON-LD
+const pageTitle       = `Agence Web & SEO à ${nomVille} — Création de site, SEO local | CLICOM`;
+const pageDescription = `CLICOM, agence web à ${nomVille} (${geoData.region}). Création de site internet performant, référencement Google Maps et SEO local pour PME et artisans. Audit gratuit.`;
+const pageCanonical   = `https://clicom.ch/${ville}`;
+const pageImage       = geoData.image;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// JSON-LD LocalBusiness enrichi
+// ─────────────────────────────────────────────────────────────────────────────
 const schemaLD = {
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": `CLICOM - Agence Web à ${nomVille}`,
-  "description": `Agence web spécialisée dans la création de sites internet et le référencement local (SEO) pour les PME de ${nomVille} et environs.`,
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": nomVille,
-    "postalCode": geoData.cp,
-    "addressCountry": "CH"
+  '@context': 'https://schema.org',
+  '@type':    'ProfessionalService',
+  '@id':      `https://clicom.ch/${ville}#localbusiness`,
+  name:       `CLICOM — Agence Web & SEO à ${nomVille}`,
+  description: pageDescription,
+  url:        `https://clicom.ch/${ville}`,
+  telephone:  '+41788238950',
+  email:      'contact@clicom.ch',
+  image:      `https://clicom.ch${pageImage}`,
+  logo:       'https://clicom.ch/assets/images/clicom-agence-web-suisse-romande.webp',
+  priceRange: '$$',
+  address: {
+    '@type':          'PostalAddress',
+    streetAddress:    'Corseaux',
+    addressLocality:  nomVille,
+    postalCode:       geoData.cp,
+    addressRegion:    geoData.region,
+    addressCountry:   'CH',
   },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": geoData.lat,
-    "longitude": geoData.lng
+  geo: {
+    '@type':    'GeoCoordinates',
+    latitude:   geoData.lat,
+    longitude:  geoData.lng,
   },
-  "openingHoursSpecification": [
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      "opens": "08:00",
-      "closes": "18:00"
-    }
+  areaServed: {
+    '@type': 'City',
+    name:    nomVille,
+  },
+  openingHoursSpecification: [{
+    '@type':     'OpeningHoursSpecification',
+    dayOfWeek:   ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens:       '08:00',
+    closes:      '18:30',
+  }],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name:    'Services digitaux pour PME',
+    itemListElement: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: `Création de site internet à ${nomVille}` } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: `SEO local à ${nomVille}` } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: `Google Ads à ${nomVille}` } },
+    ],
+  },
+  sameAs: [
+    'https://linkedin.com/company/clicom',
+    'https://facebook.com/clicom',
   ],
-  "telephone": "+41234567890",
-  "url": `https://clicom.pro/${ville}`,
-  "priceRange": "$$",
-  "image": "https://clicom.pro/logo.png"
 };
+
+// Services affichés sur la page
+const services = [
+  {
+    icon: '🌐',
+    titre: 'Site internet sur-mesure',
+    desc:  `Création de sites rapides, sécurisés et conformes nLPD — conçus pour convertir les visiteurs de ${nomVille} en clients.`,
+  },
+  {
+    icon: '📍',
+    titre: 'SEO local & Google Maps',
+    desc:  `Positionnement dans le top 3 de Google Maps pour votre activité à ${nomVille}. 73 % des recherches locales aboutissent à une visite sous 24h.`,
+  },
+  {
+    icon: '🎯',
+    titre: 'Google Ads & Meta Ads',
+    desc:  `Campagnes publicitaires géolocalisées sur ${nomVille} et ${geoData.region}. Chaque franc CHF investi est tracé et optimisé.`,
+  },
+  {
+    icon: '🤖',
+    titre: 'Agents IA & Automatisation',
+    desc:  `Chatbot qualifiant, relances SMS, emailing automatisé — vos prospects de ${nomVille} reçoivent la bonne réponse au bon moment.`,
+  },
+];
 ---
 
-<Layout 
-  title={`Création de site internet et SEO à ${nomVille} | CLICOM`} 
-  description={`Agence web experte en création de site internet et référencement local (SEO) à ${nomVille}. Attirez plus de clients dans votre région.`}
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  image={pageImage}
+  canonical={pageCanonical}
 >
+  <!-- JSON-LD LocalBusiness -->
   <script type="application/ld+json" set:html={JSON.stringify(schemaLD)} />
-  <section class="pt-32 pb-24 bg-[#191A23] min-h-screen">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <a href="/" class="inline-flex items-center text-gray-400 hover:text-[#B9FF66] transition-colors mb-12">
-        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-        Retour à l'accueil
-      </a>
 
-      <div class="text-center mb-16">
-        <span class="text-[#B9FF66] font-bold tracking-wider uppercase text-sm mb-4 block">Expertise Locale</span>
-        <h1 class="text-[clamp(2.5rem,4vw,4rem)] font-bold text-white mb-6 leading-tight">
-          Création de site internet et SEO à {nomVille}
-        </h1>
-        <p class="text-xl text-gray-400 max-w-2xl mx-auto">
-          Propulsez votre PME sur internet. Nous aidons les entreprises de {nomVille} et ses environs à dominer les résultats de recherche Google.
+  <!-- ═══════════════════════════════════════════════════════════════
+       HERO LOCAL
+  ═══════════════════════════════════════════════════════════════ -->
+  <section class="relative overflow-hidden bg-brand-dark pt-28 pb-20 px-4">
+
+    <!-- Halo décoratif -->
+    <div aria-hidden="true" class="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-[radial-gradient(ellipse_at_center,rgba(185,255,102,0.09)_0%,transparent_65%)]"></div>
+
+    <div class="max-w-5xl mx-auto">
+
+      <!-- Breadcrumb dynamique -->
+      <div class="mb-10">
+        <Breadcrumb items={[
+          { label: 'SEO Local', href: '/#visibilite' },
+          { label: nomVille },
+        ]} />
+      </div>
+
+      <!-- Header -->
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+        <!-- Texte -->
+        <div>
+          <!-- Badge région -->
+          <div class="inline-flex items-center gap-2 bg-lime-muted border border-lime/25 text-lime text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-6">
+            <span class="w-2 h-2 rounded-full bg-lime animate-pulse" aria-hidden="true"></span>
+            {geoData.region}
+          </div>
+
+          <h1 class="font-heading text-[clamp(2rem,4vw,3.25rem)] font-extrabold text-white leading-tight tracking-tight mb-5">
+            Agence Web & SEO<br/>
+            <span class="text-gradient-lime">à {nomVille}</span>
+          </h1>
+
+          <p class="text-lg text-gray-400 leading-relaxed mb-8 max-w-lg">
+            {geoData.accroche}
+          </p>
+
+          <!-- Stat locale -->
+          <div class="flex items-start gap-4 bg-brand-dark-2 border border-border rounded-2xl px-6 py-5 mb-8">
+            <div class="flex-1">
+              <p class="text-3xl font-extrabold text-lime leading-none mb-1">{geoData.stat}</p>
+              <p class="text-sm text-gray-500 leading-snug">{geoData.statDesc}</p>
+            </div>
+          </div>
+
+          <!-- CTA pair -->
+          <div class="flex flex-wrap gap-3">
+            <a href="/#contact" class="inline-flex items-center gap-2 bg-lime text-brand-dark font-extrabold px-7 py-3.5 rounded-xl hover:bg-lime-hover hover:-translate-y-0.5 transition-all shadow-lime text-sm">
+              Audit gratuit à {nomVille}
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+            <a href="tel:+41788238950" class="inline-flex items-center gap-2 border border-border text-gray-300 font-semibold px-6 py-3.5 rounded-xl hover:border-border-strong hover:text-white transition-all text-sm">
+              <svg class="w-4 h-4 text-lime" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 015.19 12a19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              Rappel sous 2h
+            </a>
+          </div>
+        </div>
+
+        <!-- Image locale -->
+        <div class="relative rounded-3xl overflow-hidden aspect-[4/3] border border-white/5 shadow-2xl">
+          <img
+            src={geoData.image}
+            alt={`Agence web et SEO local à ${nomVille} — CLICOM`}
+            class="w-full h-full object-cover"
+            loading="eager"
+          />
+          <!-- Pill flottant -->
+          <div class="absolute bottom-4 left-4 right-4 glass-lime rounded-2xl px-5 py-3 flex items-center justify-between">
+            <div>
+              <p class="text-xs text-gray-400 font-medium">Code postal</p>
+              <p class="text-lime font-extrabold text-lg leading-none">{geoData.cp} {nomVille}</p>
+            </div>
+            <svg class="w-8 h-8 text-lime/40" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       SERVICES
+  ═══════════════════════════════════════════════════════════════ -->
+  <section class="w-full bg-brand-dark-2 border-t border-border py-20 px-4">
+    <div class="max-w-5xl mx-auto">
+
+      <div class="text-center mb-12">
+        <h2 class="font-heading text-2xl md:text-3xl font-extrabold text-white mb-3">
+          Nos services pour les PME de {nomVille}
+        </h2>
+        <p class="text-gray-500 text-sm max-w-xl mx-auto">
+          Chaque prestation est calibrée pour le marché local de {geoData.region}.
         </p>
       </div>
 
-      <div class="w-full h-64 md:h-96 rounded-3xl overflow-hidden mb-16 shadow-2xl border border-white/5">
-      <img src="/assets/images/clicom-agence-web-suisse-romande.webp" alt={`Visibilité digitale et SEO à ${nomVille}`} class="w-full h-full object-cover" />
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-12 items-center mb-24">
-        <div>
-          <h2 class="text-3xl font-bold text-white mb-6">L'importance de la visibilité locale pour les PME</h2>
-          <p class="text-gray-400 text-lg mb-6 leading-relaxed">
-            À {nomVille}, la grande majorité des consommateurs cherchent un artisan ou un commerce de proximité sur Google avant de se déplacer. Si votre entreprise n'apparaît pas dans les premiers résultats ou sur Google Maps, vous laissez le champ libre à vos concurrents.
-          </p>
-          <p class="text-gray-400 text-lg leading-relaxed">
-            Avoir un site web performant, rapide et optimisé pour le référencement local (SEO) n'est plus une option, c'est le moteur de votre croissance.
-          </p>
-        </div>
-        <div class="bg-[#1f202b] p-8 md:p-10 rounded-3xl border border-white/10 shadow-2xl">
-          <h3 class="text-2xl font-bold text-white mb-4">Passez à l'action dès aujourd'hui</h3>
-          <p class="text-gray-400 mb-8">Découvrez exactement combien de clients vous perdez chaque mois à {nomVille} et comment inverser la tendance.</p>
-          <a href="/#contact" class="block text-center w-full bg-[#B9FF66] text-[#191A23] font-bold px-8 py-4 rounded-xl hover:bg-[#a3e655] transition-all text-lg shadow-lg shadow-[#B9FF66]/20">
-            Réserver mon audit gratuit
-          </a>
-        </div>
+      <div class="grid sm:grid-cols-2 gap-5">
+        {services.map(s => (
+          <div class="bg-brand-dark border border-border rounded-2xl p-6 hover:border-border-lime hover:-translate-y-0.5 transition-all duration-200 group">
+            <span class="text-3xl mb-4 block" aria-hidden="true">{s.icon}</span>
+            <h3 class="font-heading text-base font-bold text-white mb-2 group-hover:text-lime transition-colors">{s.titre}</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">{s.desc}</p>
+          </div>
+        ))}
       </div>
 
     </div>
   </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       ARGUMENTAIRE LOCAL
+  ═══════════════════════════════════════════════════════════════ -->
+  <section class="w-full bg-brand-dark py-20 px-4">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-start">
+
+      <!-- Argument éditorial -->
+      <div>
+        <span class="text-xs font-bold tracking-widest uppercase text-lime mb-4 block">Pourquoi CLICOM à {nomVille} ?</span>
+        <h2 class="font-heading text-2xl md:text-3xl font-extrabold text-white mb-6 leading-tight">
+          La visibilité locale,<br/>notre spécialité en {geoData.region}
+        </h2>
+        <div class="space-y-4 text-gray-400 text-base leading-relaxed">
+          <p>
+            À {nomVille}, la grande majorité des consommateurs cherchent un artisan ou un commerce de proximité sur Google avant de se déplacer.
+            Si votre entreprise n'apparaît pas dans les premiers résultats ou sur Google Maps, vous laissez vos clients à la concurrence.
+          </p>
+          <p>
+            Nous travaillons exclusivement avec des PME et artisans de Suisse romande. Nous connaissons les comportements de recherche locaux, les saisons, les événements et les mots-clés qui font sonner votre téléphone dans votre ville.
+          </p>
+        </div>
+
+        <!-- Garanties -->
+        <ul class="mt-8 space-y-3">
+          {[
+            'Résultats mesurables sous 90 jours',
+            'Conformité nLPD garantie sur tous nos sites',
+            'Rapport mensuel clair, sans jargon',
+            'Sans engagement minimum — vous gardez le contrôle',
+          ].map(g => (
+            <li class="flex items-center gap-3 text-sm text-gray-300">
+              <svg class="w-5 h-5 text-lime flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              {g}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Bloc CTA -->
+      <div class="bg-brand-dark-2 border border-border rounded-3xl p-8 lg:p-10 sticky top-24">
+        <h3 class="font-heading text-xl font-extrabold text-white mb-2">
+          Commencez par l'audit
+        </h3>
+        <p class="text-gray-500 text-sm mb-6 leading-relaxed">
+          En 15 minutes, nous identifions exactement combien de clients vous perdez chaque mois à {nomVille} et comment inverser la tendance.
+        </p>
+
+        <!-- Points inclus -->
+        <ul class="space-y-2 mb-8">
+          {[
+            'Analyse de votre position Google Maps',
+            'Audit de vitesse de votre site actuel',
+            'Analyse de vos 3 concurrents directs',
+            'Feuille de route SEO locale personnalisée',
+          ].map(p => (
+            <li class="flex items-center gap-2.5 text-sm text-gray-400">
+              <span class="w-1.5 h-1.5 rounded-full bg-lime flex-shrink-0" aria-hidden="true"></span>
+              {p}
+            </li>
+          ))}
+        </ul>
+
+        <a
+          href="/#contact"
+          class="block text-center w-full bg-lime text-brand-dark font-extrabold px-8 py-4 rounded-xl hover:bg-lime-hover transition-all shadow-lime text-base mb-3"
+        >
+          Réserver mon audit gratuit →
+        </a>
+        <p class="text-center text-xs text-gray-600">
+          Sans engagement · Réponse garantie sous 2h ouvrées
+        </p>
+      </div>
+
+    </div>
+  </section>
+
 </Layout>

@@ -1,15 +1,78 @@
-<nav aria-label="Fil d'Ariane" class="text-sm mb-6">
-  <ol class="flex flex-wrap items-center space-x-2">
-    <li>
-      <a href="/" class="text-gray-400 hover:text-[#B9FF66] transition-colors">
-        Accueil
+---
+// Breadcrumb.astro — Fil d'Ariane dynamique
+// Usage :
+//   <Breadcrumb items={[{ label: 'SEO Local', href: undefined }, { label: 'Lausanne' }]} />
+//   Le dernier item est toujours la page courante (aria-current, sans lien)
+
+interface BreadcrumbItem {
+  label: string;
+  href?:  string;   // undefined = page courante
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav aria-label="Fil d'Ariane" class="w-full">
+  <ol
+    class="flex flex-wrap items-center gap-1.5 text-sm"
+    itemscope
+    itemtype="https://schema.org/BreadcrumbList"
+  >
+    <!-- Accueil toujours en premier -->
+    <li
+      class="flex items-center gap-1.5"
+      itemprop="itemListElement"
+      itemscope
+      itemtype="https://schema.org/ListItem"
+    >
+      <a
+        href="/"
+        class="inline-flex items-center gap-1 text-gray-500 hover:text-lime transition-colors"
+        itemprop="item"
+      >
+        <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+        </svg>
+        <span itemprop="name">Accueil</span>
       </a>
+      <meta itemprop="position" content="1" />
     </li>
-    <li class="flex items-center space-x-2">
-      <span class="text-gray-600">/</span>
-      <span class="text-[#B9FF66] font-medium" aria-current="page">
-        Politique de confidentialité
-      </span>
-    </li>
+
+    <!-- Items dynamiques -->
+    {items.map((item, idx) => (
+      <li
+        class="flex items-center gap-1.5"
+        itemprop="itemListElement"
+        itemscope
+        itemtype="https://schema.org/ListItem"
+      >
+        <!-- Séparateur -->
+        <span aria-hidden="true" class="text-gray-700 select-none">/</span>
+
+        {item.href ? (
+          <a
+            href={item.href}
+            class="text-gray-500 hover:text-lime transition-colors"
+            itemprop="item"
+          >
+            <span itemprop="name">{item.label}</span>
+          </a>
+        ) : (
+          <span
+            class="text-lime font-semibold"
+            aria-current="page"
+            itemprop="name"
+          >
+            {item.label}
+          </span>
+        )}
+
+        <meta itemprop="position" content={String(idx + 2)} />
+      </li>
+    ))}
   </ol>
 </nav>
